@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>命令执行漏洞（Commnd Execution）总结 | 未完成的歌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前言：&amp;emsp; &amp;emsp;这周来学习下命令执行漏洞；命令执行漏洞是用户通过浏览器在远程服务器上执行任意系统命令，与代码执行漏洞没有太大的区别，不过我们在学习时还是要区分不同的概念。关于代码执行漏洞会在下篇博客中详述。 一、什么是命令执行漏洞： 应用 有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、passthru、popen、proc_popen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="命令执行漏洞（Commnd Execution）总结">
+<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2019/08/20/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%EF%BC%88Commnd%20Execution%EF%BC%89%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="未完成的歌">
+<meta property="og:description" content="前言：&amp;emsp; &amp;emsp;这周来学习下命令执行漏洞；命令执行漏洞是用户通过浏览器在远程服务器上执行任意系统命令，与代码执行漏洞没有太大的区别，不过我们在学习时还是要区分不同的概念。关于代码执行漏洞会在下篇博客中详述。 一、什么是命令执行漏洞： 应用 有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、passthru、popen、proc_popen">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190820151202475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190820161837141.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/2019082016482838.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190820170652732.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2019-08-20T09:20:28.000Z">
+<meta property="article:modified_time" content="2021-01-20T07:44:05.812Z">
+<meta property="article:author" content="未完成的歌">
+<meta property="article:tag" content="命令执行">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img-blog.csdnimg.cn/20190820151202475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="未完成的歌" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">未完成的歌</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/wwcdg/wwcdg.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-命令执行漏洞（Commnd Execution）总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/08/20/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%EF%BC%88Commnd%20Execution%EF%BC%89%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2019-08-20T09:20:28.000Z" itemprop="datePublished">2019-08-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/">漏洞原理</a>►<a class="article-category-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">命令执行</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      命令执行漏洞（Commnd Execution）总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>前言：<br>&emsp; &emsp;这周来学习下命令执行漏洞；命令执行漏洞是用户通过浏览器在远程服务器上执行任意系统命令，与代码执行漏洞没有太大的区别，不过我们在学习时还是要区分不同的概念。关于代码执行漏洞会在下篇博客中详述。</p>
+<p><strong>一、什么是命令执行漏洞</strong>：</p>
+<p>应用 有时需要调用一些执行系统命令的函数，如PHP中的<code>system</code>、<code>exec</code>、<code>shell_exec</code>、<code>passthru</code>、<code>popen</code>、<code>proc_popen</code>等，当用户能控制这些函数中的参数时，就可以将恶意系统命令拼接到正常命令中，从而造成命令执行攻击，这就是命令执行漏洞。</p>
+<p><strong>二、命令执行漏洞产生原因</strong>：</p>
+<ul>
+<li>开发人员没有对特殊函数入口做过滤，导致用户可以提交恶意代码并提交服务端执行。</li>
+<li>Web服务器没有过滤危险函数导致命令执行漏洞攻击成功。</li>
+</ul>
+<p><strong>三、PHP中的危险函数</strong>：</p>
+<p><code>system</code>：成功则返回命令输出的最后一行，失败则返回FALSE。<br><code>exec</code>：命令执行结果的最后一行内容。<br><code>shell_exec</code>：命令执行的输出。如果执行过程中发生错误或者进程不产生输出，则返回NULL。<br><code>passthru</code>：执行外部程序并且显示原始输出。<br><code>eval</code>：将输入的字符串参数当做PHP程序代码来执行。<br><code>assert</code><br><code>preg_replace</code><br><code>call_user_func</code></p>
+<p><strong>四、命令执行漏洞的危害</strong>：</p>
+<ul>
+<li>任意执行系统命令</li>
+<li>恶意木马被种植</li>
+<li>挂马、钓鱼</li>
+<li>敏感信息泄露</li>
+</ul>
+<p><strong>常用的命令连接符</strong>：</p>
+<p>在windows和linux都支持，如果程序没有进行过滤，那么我们可以通过连接符来执行多条命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A&amp;&amp;B   先执行A，执行成功后执行B，否则不执行B</span><br><span class="line">A|B    只执行B</span><br><span class="line">A&amp;B    先执行A，不管是否成功，都会执行B</span><br><span class="line">A;B    先执行A，再执行B</span><br><span class="line">A&amp;B    简单拼接，A B之间无制约关系</span><br></pre></td></tr></table></figure>
+<p>了解了这些知识后，下面就在本地搭建的DVWA中练习下。</p>
+<h2 id="DVWA—Command-Injection（命令注入）"><a href="#DVWA—Command-Injection（命令注入）" class="headerlink" title="DVWA—Command Injection（命令注入）"></a>DVWA—Command Injection（命令注入）</h2><p><img src="http://img-blog.csdnimg.cn/20190820151202475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>先从Low级别开始：<br>查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &#39;Submit&#39; ]  ) ) &#123;</span><br><span class="line">    &#x2F;&#x2F; Get input</span><br><span class="line">    $target &#x3D; $_REQUEST[ &#39;ip&#39; ];</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Determine OS and execute the ping command.</span><br><span class="line">    if( stristr( php_uname( &#39;s&#39; ), &#39;Windows NT&#39; ) ) &#123;</span><br><span class="line">        &#x2F;&#x2F; Windows</span><br><span class="line">        $cmd &#x3D; shell_exec( &#39;ping  &#39; . $target );</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        &#x2F;&#x2F; *nix</span><br><span class="line">        $cmd &#x3D; shell_exec( &#39;ping  -c 4 &#39; . $target );</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; Feedback for the end user</span><br><span class="line">    echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;&#x2F;pre&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看到，low级别的代码接收了用户输入的ip，服务器通过判断操作系统执行不同<strong>ping命令</strong>。但是这里对用户输入的ip并没有进行任何的过滤，所以存在可利用的命令执行漏洞。</p>
+<p>用<code>&amp;&amp;</code>来执行多条命令，构造payload：<code>127.0.0.1&amp;&amp;net user</code><br><img src="http://img-blog.csdnimg.cn/20190820161837141.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>执行成功；（如果存在乱码问题，把<code>DVWA\dvwa\includes</code>目录下的<code>dvwaPage.inc.php</code>文件中所有的<code>”charset=utf-8”</code>，全部替换修改为<code>”charset=gb2312”</code>即可）</p>
+<h3 id="Medium"><a href="#Medium" class="headerlink" title="Medium"></a>Medium</h3><p>源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if( isset( $_POST[ &#39;Submit&#39; ]  ) ) &#123;</span><br><span class="line">    &#x2F;&#x2F; Get input</span><br><span class="line">    $target &#x3D; $_REQUEST[ &#39;ip&#39; ];</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Set blacklist</span><br><span class="line">    $substitutions &#x3D; array(</span><br><span class="line">        &#39;&amp;&amp;&#39; &#x3D;&gt; &#39;&#39;,</span><br><span class="line">        &#39;;&#39;  &#x3D;&gt; &#39;&#39;,</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Remove any of the charactars in the array (blacklist).</span><br><span class="line">    $target &#x3D; str_replace( array_keys( $substitutions ), $substitutions, $target );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Determine OS and execute the ping command.</span><br><span class="line">    if( stristr( php_uname( &#39;s&#39; ), &#39;Windows NT&#39; ) ) &#123;</span><br><span class="line">        &#x2F;&#x2F; Windows</span><br><span class="line">        $cmd &#x3D; shell_exec( &#39;ping  &#39; . $target );</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        &#x2F;&#x2F; *nix</span><br><span class="line">        $cmd &#x3D; shell_exec( &#39;ping  -c 4 &#39; . $target );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Feedback for the end user</span><br><span class="line">    echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;&#x2F;pre&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt; </span><br></pre></td></tr></table></figure>
+<p>可以看到，medium级别相较于low级别的代码 只增加了对 <code>&amp;&amp;</code> 和 <code>；</code>的过滤，绕过也很简单，不用 <code>&amp;&amp;</code> ，直接用 <code>&amp;</code>不就好起来了吗！</p>
+<p><code>&amp;&amp;</code>和<code>&amp;</code>的区别在于<code>&amp;&amp;</code>是执行完前面的命令然后执行后面的命令，<code>&amp;</code>是不管前面的命令是否值执行，后面的都执行。</p>
+<p>构造poyload：<code>127.0.0.1&amp;ipconfig</code></p>
+<p><img src="http://img-blog.csdnimg.cn/2019082016482838.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>绕过执行成功！</p>
+<h3 id="High"><a href="#High" class="headerlink" title="High"></a>High</h3><p>源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if( isset( $_POST[ &#39;Submit&#39; ]  ) ) &#123;</span><br><span class="line">    &#x2F;&#x2F; Get input</span><br><span class="line">    $target &#x3D; trim($_REQUEST[ &#39;ip&#39; ]);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Set blacklist</span><br><span class="line">    $substitutions &#x3D; array(</span><br><span class="line">        &#39;&amp;&#39;  &#x3D;&gt; &#39;&#39;,</span><br><span class="line">        &#39;;&#39;  &#x3D;&gt; &#39;&#39;,</span><br><span class="line">        &#39;| &#39; &#x3D;&gt; &#39;&#39;,</span><br><span class="line">        &#39;-&#39;  &#x3D;&gt; &#39;&#39;,</span><br><span class="line">        &#39;$&#39;  &#x3D;&gt; &#39;&#39;,</span><br><span class="line">        &#39;(&#39;  &#x3D;&gt; &#39;&#39;,</span><br><span class="line">        &#39;)&#39;  &#x3D;&gt; &#39;&#39;,</span><br><span class="line">        &#39;&#96;&#39;  &#x3D;&gt; &#39;&#39;,</span><br><span class="line">        &#39;||&#39; &#x3D;&gt; &#39;&#39;,</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Remove any of the charactars in the array (blacklist).</span><br><span class="line">    $target &#x3D; str_replace( array_keys( $substitutions ), $substitutions, $target );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Determine OS and execute the ping command.</span><br><span class="line">    if( stristr( php_uname( &#39;s&#39; ), &#39;Windows NT&#39; ) ) &#123;</span><br><span class="line">        &#x2F;&#x2F; Windows</span><br><span class="line">        $cmd &#x3D; shell_exec( &#39;ping  &#39; . $target );</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        &#x2F;&#x2F; *nix</span><br><span class="line">        $cmd &#x3D; shell_exec( &#39;ping  -c 4 &#39; . $target );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Feedback for the end user</span><br><span class="line">    echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;&#x2F;pre&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt; </span><br></pre></td></tr></table></figure>
+<p>相比于前面两个等级的，high等级的黑名单更完善了，但是由我们可以看出来他只是过滤掉了<code>“| ”</code>，如果用<code>|</code>后不跟空格就可以绕过过滤。<br>构造payload：<code>127.0.0.1|dir</code><br><img src="http://img-blog.csdnimg.cn/20190820170652732.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>绕过成功。</p>
+<h3 id="Impossible"><a href="#Impossible" class="headerlink" title="Impossible"></a>Impossible</h3><p>源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if( isset( $_POST[ &#39;Submit&#39; ]  ) ) &#123;</span><br><span class="line">    &#x2F;&#x2F; Check Anti-CSRF token</span><br><span class="line">    checkToken( $_REQUEST[ &#39;user_token&#39; ], $_SESSION[ &#39;session_token&#39; ], &#39;index.php&#39; );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Get input</span><br><span class="line">    $target &#x3D; $_REQUEST[ &#39;ip&#39; ];</span><br><span class="line">    $target &#x3D; stripslashes( $target );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Split the IP into 4 octects</span><br><span class="line">    $octet &#x3D; explode( &quot;.&quot;, $target );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Check IF each octet is an integer</span><br><span class="line">    if( ( is_numeric( $octet[0] ) ) &amp;&amp; ( is_numeric( $octet[1] ) ) &amp;&amp; ( is_numeric( $octet[2] ) ) &amp;&amp; ( is_numeric( $octet[3] ) ) &amp;&amp; ( sizeof( $octet ) &#x3D;&#x3D; 4 ) ) &#123;</span><br><span class="line">        &#x2F;&#x2F; If all 4 octets are int&#39;s put the IP back together.</span><br><span class="line">        $target &#x3D; $octet[0] . &#39;.&#39; . $octet[1] . &#39;.&#39; . $octet[2] . &#39;.&#39; . $octet[3];</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; Determine OS and execute the ping command.</span><br><span class="line">        if( stristr( php_uname( &#39;s&#39; ), &#39;Windows NT&#39; ) ) &#123;</span><br><span class="line">            &#x2F;&#x2F; Windows</span><br><span class="line">            $cmd &#x3D; shell_exec( &#39;ping  &#39; . $target );</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            &#x2F;&#x2F; *nix</span><br><span class="line">            $cmd &#x3D; shell_exec( &#39;ping  -c 4 &#39; . $target );</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; Feedback for the end user</span><br><span class="line">        echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;&#x2F;pre&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        &#x2F;&#x2F; Ops. Let the user name theres a mistake</span><br><span class="line">        echo &#39;&lt;pre&gt;ERROR: You have entered an invalid IP.&lt;&#x2F;pre&gt;&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Generate Anti-CSRF token</span><br><span class="line">generateSessionToken();</span><br><span class="line">?&gt; </span><br></pre></td></tr></table></figure>
+<p>了解下几个函数：<br><code>stripslashes(string)</code> : 该函数会删除字符串string中的反斜杠，返回已剥离反斜杠的字符串。</p>
+<p><code>explode(separator,string,limit)</code>: 该函数把字符串打散为数组，返回字符串的数组。参数separator规定在哪里分割字符串，参数string是要分割的字符串，可选参数limit规定所返回的数组元素的数目。</p>
+<p><code>is_numeric(string)</code>: 该检测string是否为数字或数字字符串，如果是返回TRUE，否则返回FALSE。</p>
+<p>可以看到 Impossible级别的代码加入了<code>Anti-CSRF token</code>，至于什么是<code>Anti-CSRF token</code>请点击 <a target="_blank" rel="noopener" href="https://www.owasp.org/index.php/Anti_CSRF_Tokens_ASP.NET">链接</a> 查看；同时对参数ip进行了严格的限制，只有诸如“数字.数字.数字.数字”的输入才会被接收执行，因此不存在命令注入漏洞。<br>好了，关于命令执行漏洞这次就先总结到这，下篇会更代码执行漏洞的知识。(●’◡’●)</p>
+<p>参考博客：<br>  <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36119192/article/details/82917250">https://blog.csdn.net/qq_36119192/article/details/82917250</a><br>  <a target="_blank" rel="noopener" href="https://blog.csdn.net/jpygx123/article/details/83276533">https://blog.csdn.net/jpygx123/article/details/83276533</a>  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/wwcdg/wwcdg.github.io/2019/08/20/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%EF%BC%88Commnd%20Execution%EF%BC%89%E6%80%BB%E7%BB%93/" data-id="ckk5lg66z004ces7mah4n7nbk" data-title="命令执行漏洞（Commnd Execution）总结" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" rel="tag">命令执行</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/09/01/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8%E8%AF%A6%E8%A7%A3%20Sqli-labs%E9%97%AF%E5%85%B3(Less%209%E2%80%9410)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          时间盲注详解 Sqli-labs闯关(Less 9—10)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/17/%E5%AF%86%E7%A0%81%E5%AD%A6%E2%80%94RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E8%AF%A6%E8%A7%A3%EF%BC%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">密码学—RSA加密解密详解！</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog%E6%90%AD%E5%BB%BA/">Blog搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/JavaEE/">JavaEE</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/">前端</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">刷题记录</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/Crypto/">Crypto</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/MISC/">MISC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%88%86%E6%9E%90/">密码学分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/">漏洞原理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/Sql%E6%B3%A8%E5%85%A5/">Sql注入</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/XSS/">XSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">命令执行</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">文件上传</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BA%BF%E4%B8%8B%E8%B5%9B/">线下赛</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%B2%B2%E9%B9%8FHCIA/">鲲鹏HCIA</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HCIA/" rel="tag">HCIA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LSB/" rel="tag">LSB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crc%E7%A2%B0%E6%92%9E/" rel="tag">crc碰撞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crypto/" rel="tag">crypto</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlmap/" rel="tag">sqlmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag">sql注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xss/" rel="tag">xss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" rel="tag">上传漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%AA%E5%8A%A0%E5%AF%86/" rel="tag">伪加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" rel="tag">命令执行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" rel="tag">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E9%A1%B9/" rel="tag">杂项</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%B2%E6%B0%B4%E5%8D%B0/" rel="tag">盲水印</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%90%E5%86%99/" rel="tag">隐写</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Crypto/" style="font-size: 15px;">Crypto</a> <a href="/tags/HCIA/" style="font-size: 10px;">HCIA</a> <a href="/tags/LSB/" style="font-size: 10px;">LSB</a> <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/crc%E7%A2%B0%E6%92%9E/" style="font-size: 10px;">crc碰撞</a> <a href="/tags/crypto/" style="font-size: 10px;">crypto</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/misc/" style="font-size: 15px;">misc</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/sqlmap/" style="font-size: 10px;">sqlmap</a> <a href="/tags/sql%E6%B3%A8%E5%85%A5/" style="font-size: 20px;">sql注入</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" style="font-size: 15px;">上传漏洞</a> <a href="/tags/%E4%BC%AA%E5%8A%A0%E5%AF%86/" style="font-size: 10px;">伪加密</a> <a href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" style="font-size: 10px;">命令执行</a> <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" style="font-size: 10px;">密码学</a> <a href="/tags/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" style="font-size: 10px;">暴力破解</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 10px;">杂项</a> <a href="/tags/%E7%9B%B2%E6%B0%B4%E5%8D%B0/" style="font-size: 10px;">盲水印</a> <a href="/tags/%E9%9A%90%E5%86%99/" style="font-size: 10px;">隐写</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/20/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/20/Java%20EE%E2%80%94%E2%80%94Mybatis%20%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">Mybatis框架学习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/03/Java%20EE%E2%80%94%E2%80%94SpringMVC%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">SpringMVC框架学习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E5%8D%8E%E4%B8%BA%E9%B2%B2%E9%B9%8F%E4%BA%91HCIA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/">华为鲲鹏云HCIA知识总结（一）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">Python学习笔记（一）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 未完成的歌<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

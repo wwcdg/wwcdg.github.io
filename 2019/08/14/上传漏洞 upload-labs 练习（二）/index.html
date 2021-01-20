@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>上传漏洞 upload-labs 练习（二） | 未完成的歌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="接着上篇的总结   （&#x3D;￣ω￣&#x3D;）Less-11—20 上篇链接：点这   Less-11这关采用的防御手法是白名单过滤，只允许上传jpg、png和gif类型，并且将上传的文件给重命名为了白名单中的后缀查看源码： 123456789101112131415161718$is_upload &#x3D; false;$msg &#x3D; null;if(isset($_POST[&#39;subm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="上传漏洞 upload-labs 练习（二）">
+<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2019/08/14/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%20upload-labs%20%E7%BB%83%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
+<meta property="og:site_name" content="未完成的歌">
+<meta property="og:description" content="接着上篇的总结   （&#x3D;￣ω￣&#x3D;）Less-11—20 上篇链接：点这   Less-11这关采用的防御手法是白名单过滤，只允许上传jpg、png和gif类型，并且将上传的文件给重命名为了白名单中的后缀查看源码： 123456789101112131415161718$is_upload &#x3D; false;$msg &#x3D; null;if(isset($_POST[&#39;subm">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190809224249503.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/2019080922323739.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190809231037491.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190809231148663.png">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190811130122673.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190811130316391.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190811130824433.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190811131019426.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190811161026745.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190811161038122.png">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190811215009440.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190812101341510.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190812144541935.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190812103603762.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/2019081214094798.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190812144948969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190812152128350.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190812152339238.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190814132429106.png">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190814134136876.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190814134830601.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190814134822821.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20190814131818623.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2019-08-14T05:52:01.000Z">
+<meta property="article:modified_time" content="2021-01-20T07:38:58.950Z">
+<meta property="article:author" content="未完成的歌">
+<meta property="article:tag" content="上传漏洞">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img-blog.csdnimg.cn/20190809224249503.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="未完成的歌" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">未完成的歌</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/wwcdg/wwcdg.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-上传漏洞 upload-labs 练习（二）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/08/14/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%20upload-labs%20%E7%BB%83%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2019-08-14T05:52:01.000Z" itemprop="datePublished">2019-08-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/">漏洞原理</a>►<a class="article-category-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">文件上传</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      上传漏洞 upload-labs 练习（二）
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>接着上篇的总结   （=￣ω￣=）<br>Less-11—20</p>
+<p>上篇链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43531669/article/details/98470372">点这</a>  <hr></p>
+<p><strong>Less-11</strong><br>这关采用的防御手法是白名单过滤，只允许上传jpg、png和gif类型，并且将上传的文件给重命名为了白名单中的后缀<br>查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$is_upload &#x3D; false;</span><br><span class="line">$msg &#x3D; null;</span><br><span class="line">if(isset($_POST[&#39;submit&#39;]))&#123;</span><br><span class="line">  $ext_arr &#x3D; array(&#39;jpg&#39;,&#39;png&#39;,&#39;gif&#39;);</span><br><span class="line">  $file_ext &#x3D; substr($_FILES[&#39;upload_file&#39;][&#39;name&#39;],strrpos($_FILES[&#39;upload_file&#39;][&#39;name&#39;],&quot;.&quot;)+1);</span><br><span class="line">  if(in_array($file_ext,$ext_arr))&#123;</span><br><span class="line">  $temp_file &#x3D; $_FILES[&#39;upload_file&#39;][&#39;tmp_name&#39;];</span><br><span class="line">  $img_path &#x3D; $_GET[&#39;save_path&#39;].&quot;&#x2F;&quot;.rand(10, 99).date(&quot;YmdHis&quot;).&quot;.&quot;.$file_ext;</span><br><span class="line"></span><br><span class="line">   if(move_uploaded_file($temp_file,$img_path))&#123;</span><br><span class="line">            $is_upload &#x3D; true;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            $msg &#x3D; &#39;上传出错！&#39;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else&#123;</span><br><span class="line">        $msg &#x3D; &quot;只允许上传.jpg|.png|.gif类型文件！&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>处理上传文件的方式</p>
+<pre><code>$img_path = $_GET[&#39;save_path&#39;].&quot;/&quot;.rand(10, 99).date(&quot;YmdHis&quot;).&quot;.&quot;.$file_ext;</code></pre>
+<p>看起来这样防御并没有什么问题，但是这一关上传目录是可控的，所以可以先上传一个后缀名为<code>.jpg</code>，然后修改上传目录为<code>.php</code>后缀，之后在<code>.php</code>后使用截断后面的拼接内容，注意这里需要关掉<code>magic_quotes_gpc</code>这个php扩展，否则00会被转义<br><code>$_GET[&#39;save_path&#39;]</code>这里使用00截断<code>.&quot;/&quot;.rand(10, 99).date(&quot;YmdHis&quot;).&quot;.&quot;.$file_ext;</code><br>注意这里的00字符因为在url的GET参数中，所以需用进行url编码</p>
+<ul>
+<li><p><strong>截断的条件</strong>：<br>1）php版本必须小于5.3.4<br>2）打开php的配置文件php-ini，将magic_quotes_gpc设置为Off</p>
+</li>
+<li><p><strong>关闭magic_quotes_gpc函数</strong>:<br>在php.ini文件内找到<br><code> magic_quotes_gpc = On</code><br>将其改为<br>  <code>magic_quotes_gpc = Off</code></p>
+</li>
+</ul>
+<p><img src="http://img-blog.csdnimg.cn/20190809224249503.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/2019080922323739.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>配置好后，上传webshell.jpg，抓包，添加<code>webshell.php%00</code></p>
+<p><img src="http://img-blog.csdnimg.cn/20190809231037491.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>上传成功<br><img src="http://img-blog.csdnimg.cn/20190809231148663.png" alt="在这里插入图片描述"></p>
+<p><strong>Less-12</strong><br>和Less-11不同的是这次的<code>save_path</code>是通过<strong>post</strong>传进来的，我们还利用00截断，但这题需要在<strong>十六进制</strong>中进行修改，因为post不会像get对<code>%00</code>进行自动解码。<br>步骤：上传webshell.jpg 然后 <strong>send to repeater</strong><br><img src="http://img-blog.csdnimg.cn/20190811130122673.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>添加文件 <code>wenshell.php(空格)  </code><br><img src="http://img-blog.csdnimg.cn/20190811130316391.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>空格的十六进制为<code>20</code>然后找到<code>20</code> 改为<code>00</code><br><img src="http://img-blog.csdnimg.cn/20190811130824433.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后点击send 发包就好了<br><img src="http://img-blog.csdnimg.cn/20190811131019426.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发包成功。</p>
+<p><strong>Less-13</strong><br>PS：</p>
+<blockquote>
+<p>这关需要将服务器版本改到PHP5.3及以上才行，不然运行文件包含漏洞会报错</p>
+</blockquote>
+<p>查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">function getReailFileType($filename)&#123;</span><br><span class="line">    $file &#x3D; fopen($filename, &quot;rb&quot;);</span><br><span class="line">    $bin &#x3D; fread($file, 2); &#x2F;&#x2F;只读2字节</span><br><span class="line">    fclose($file);</span><br><span class="line">    $strInfo &#x3D; @unpack(&quot;C2chars&quot;, $bin);    </span><br><span class="line">    $typeCode &#x3D; intval($strInfo[&#39;chars1&#39;].$strInfo[&#39;chars2&#39;]);    </span><br><span class="line">    $fileType &#x3D; &#39;&#39;;    </span><br><span class="line">    switch($typeCode)&#123;      </span><br><span class="line">        case 255216:            </span><br><span class="line">            $fileType &#x3D; &#39;jpg&#39;;</span><br><span class="line">            break;</span><br><span class="line">        case 13780:            </span><br><span class="line">            $fileType &#x3D; &#39;png&#39;;</span><br><span class="line">            break;        </span><br><span class="line">        case 7173:            </span><br><span class="line">            $fileType &#x3D; &#39;gif&#39;;</span><br><span class="line">            break;</span><br><span class="line">        default:            </span><br><span class="line">            $fileType &#x3D; &#39;unknown&#39;;</span><br><span class="line">        &#125;    </span><br><span class="line">        return $fileType;</span><br><span class="line">&#125;</span><br><span class="line">$is_upload &#x3D; false;</span><br><span class="line">$msg &#x3D; null;</span><br><span class="line">if(isset($_POST[&#39;submit&#39;]))&#123;</span><br><span class="line">    $temp_file &#x3D; $_FILES[&#39;upload_file&#39;][&#39;tmp_name&#39;];</span><br><span class="line">    $file_type &#x3D; getReailFileType($temp_file);</span><br><span class="line"></span><br><span class="line">    if($file_type &#x3D;&#x3D; &#39;unknown&#39;)&#123;</span><br><span class="line">        $msg &#x3D; &quot;文件未知，上传失败！&quot;;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        $img_path &#x3D; UPLOAD_PATH.&quot;&#x2F;&quot;.rand(10, 99).date(&quot;YmdHis&quot;).&quot;.&quot;.$file_type;</span><br><span class="line">        if(move_uploaded_file($temp_file,$img_path))&#123;</span><br><span class="line">            $is_upload &#x3D; true;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            $msg &#x3D; &quot;上传出错！&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>发现主要是取上传文件的头两个字节判断文件类型，因此直接上传图片马即可；<br>图片制作方法：<code>copy 1.jpg /b + shell.php /a webshell.jpg </code>（图片一句话木马为：<code>&lt;?php phpinfo(); ?&gt;</code> ）<br>解释：参数/b指定以二进制格式复制、合并文件(图片),参数/a指定以ASCII格式复制、合并文件（php文件）<br><img src="http://img-blog.csdnimg.cn/20190811161026745.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>制作成功<br><img src="http://img-blog.csdnimg.cn/20190811161038122.png" alt="在这里插入图片描述"><br>然后直接上传<br><img src="http://img-blog.csdnimg.cn/20190811215009440.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>上传成功，得到文件名，如果是上传的是一句话木马就能连接菜刀了；我们上传的是图片码，可以利用文件包含漏洞进行测试：<br>先新建一个包含文件漏洞的页面upload.php，将该文件放在根目录下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$file &#x3D; $_GET[ &#39;page&#39; ];</span><br><span class="line">include($file);</span><br><span class="line">?&gt; </span><br></pre></td></tr></table></figure>
+<p>测试使用，包含成功<br><code>http://127.0.0.1/upload-labs-master/upload/include.php?page=文件名</code><br><img src="http://img-blog.csdnimg.cn/20190812101341510.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>另外有时候对文件大小也有限制，所以绕过文件幻数最合适的方式是利用16进制编辑器自己制作一个伪图片马，这里利用winhex创建shell.jpg伪图片马<br><img src="http://img-blog.csdnimg.cn/20190812144541935.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>Less-14</strong><br>查看关键代码：</p>
+<pre><code>$types = &#39;.jpeg|.png|.gif&#39;;
+     if(file_exists($filename))&#123;
+        $info = getimagesize($filename);
+        $ext = image_type_to_extension($info[2]);1234</code></pre>
+<p>这里用getimagesize获取文件类型，还是直接就可以利用图片马就可进行绕过，绕过方法同Less13 ，这里就不演示了<br>知识补充：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">array getimagesize ( string $filename [, array &amp;$imageinfo ] )</span><br><span class="line">getimagesize() 函数将测定任何 GIF，JPG，PNG，SWF，SWC，PSD，TIFF，BMP，IFF，JP2，JPX，JB2，JPC，XBM 或 WBMP 图像文件的大小并返回图像的尺寸以及文件类型和一个可以用于普通 HTML 文件中 IMG 标记中的 height&#x2F;width 文本字符串。</span><br><span class="line"></span><br><span class="line">如果不能访问 filename 指定的图像或者其不是有效的图像，getimagesize() 将返回 FALSE 并产生一条 E_WARNING 级的错误。</span><br></pre></td></tr></table></figure>
+<p><strong>Less-15</strong><br>关键源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function isImage($filename)&#123;</span><br><span class="line">    &#x2F;&#x2F;需要开启php_exif模块</span><br><span class="line">    $image_type &#x3D; exif_imagetype($filename);</span><br><span class="line">    switch ($image_type) &#123;</span><br><span class="line">        case IMAGETYPE_GIF:</span><br><span class="line">            return &quot;gif&quot;;</span><br><span class="line">            break;</span><br><span class="line">        case IMAGETYPE_JPEG:</span><br><span class="line">            return &quot;jpg&quot;;</span><br><span class="line">            break;</span><br><span class="line">        case IMAGETYPE_PNG:</span><br><span class="line">            return &quot;png&quot;;</span><br><span class="line">            break;    </span><br><span class="line">        default:</span><br><span class="line">            return false;</span><br><span class="line">            break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>利用<code>php_exif</code>模块判断文件类型，还是直接利用图片马就可以绕过。（查看下你的<code>php_exif</code>模块是否打开，没有的话就勾上）<br><img src="http://img-blog.csdnimg.cn/20190812103603762.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后直接上传图片马，仍和 less-13一样<br><img src="http://img-blog.csdnimg.cn/2019081214094798.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>上传成功。</p>
+<p><strong>Less-16</strong><br>查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">$is_upload &#x3D; false;</span><br><span class="line">$msg &#x3D; null;</span><br><span class="line">if (isset($_POST[&#39;submit&#39;]))&#123;</span><br><span class="line">    &#x2F;&#x2F; 获得上传文件的基本信息，文件名，类型，大小，临时文件路径</span><br><span class="line">    $filename &#x3D; $_FILES[&#39;upload_file&#39;][&#39;name&#39;];</span><br><span class="line">    $filetype &#x3D; $_FILES[&#39;upload_file&#39;][&#39;type&#39;];</span><br><span class="line">    $tmpname &#x3D; $_FILES[&#39;upload_file&#39;][&#39;tmp_name&#39;];</span><br><span class="line"></span><br><span class="line">    $target_path&#x3D;UPLOAD_PATH.&#39;&#x2F;&#39;.basename($filename);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获得上传文件的扩展名</span><br><span class="line">    $fileext&#x3D; substr(strrchr($filename,&quot;.&quot;),1);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;判断文件后缀与类型，合法才进行上传操作</span><br><span class="line">    if(($fileext &#x3D;&#x3D; &quot;jpg&quot;) &amp;&amp; ($filetype&#x3D;&#x3D;&quot;image&#x2F;jpeg&quot;))&#123;</span><br><span class="line">        if(move_uploaded_file($tmpname,$target_path))&#123;</span><br><span class="line">            &#x2F;&#x2F;使用上传的图片生成新的图片</span><br><span class="line">            $im &#x3D; imagecreatefromjpeg($target_path);</span><br><span class="line"></span><br><span class="line">            if($im &#x3D;&#x3D; false)&#123;</span><br><span class="line">                $msg &#x3D; &quot;该文件不是jpg格式的图片！&quot;;</span><br><span class="line">                @unlink($target_path);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                &#x2F;&#x2F;给新图片指定文件名</span><br><span class="line">                srand(time());</span><br><span class="line">                $newfilename &#x3D; strval(rand()).&quot;.jpg&quot;;</span><br><span class="line">                &#x2F;&#x2F;显示二次渲染后的图片（使用用户上传图片生成的新图片）</span><br><span class="line">                $img_path &#x3D; UPLOAD_PATH.&#39;&#x2F;&#39;.$newfilename;</span><br><span class="line">                imagejpeg($im,$img_path);</span><br><span class="line">                @unlink($target_path);</span><br><span class="line">                $is_upload &#x3D; true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            $msg &#x3D; &quot;上传出错！&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;else if(($fileext &#x3D;&#x3D; &quot;png&quot;) &amp;&amp; ($filetype&#x3D;&#x3D;&quot;image&#x2F;png&quot;))&#123;</span><br><span class="line">        if(move_uploaded_file($tmpname,$target_path))&#123;</span><br><span class="line">            &#x2F;&#x2F;使用上传的图片生成新的图片</span><br><span class="line">            $im &#x3D; imagecreatefrompng($target_path);</span><br><span class="line"></span><br><span class="line">            if($im &#x3D;&#x3D; false)&#123;</span><br><span class="line">                $msg &#x3D; &quot;该文件不是png格式的图片！&quot;;</span><br><span class="line">                @unlink($target_path);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                 &#x2F;&#x2F;给新图片指定文件名</span><br><span class="line">                srand(time());</span><br><span class="line">                $newfilename &#x3D; strval(rand()).&quot;.png&quot;;</span><br><span class="line">                &#x2F;&#x2F;显示二次渲染后的图片（使用用户上传图片生成的新图片）</span><br><span class="line">                $img_path &#x3D; UPLOAD_PATH.&#39;&#x2F;&#39;.$newfilename;</span><br><span class="line">                imagepng($im,$img_path);</span><br><span class="line"></span><br><span class="line">                @unlink($target_path);</span><br><span class="line">                $is_upload &#x3D; true;               </span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            $msg &#x3D; &quot;上传出错！&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;else if(($fileext &#x3D;&#x3D; &quot;gif&quot;) &amp;&amp; ($filetype&#x3D;&#x3D;&quot;image&#x2F;gif&quot;))&#123;</span><br><span class="line">        if(move_uploaded_file($tmpname,$target_path))&#123;</span><br><span class="line">            &#x2F;&#x2F;使用上传的图片生成新的图片</span><br><span class="line">            $im &#x3D; imagecreatefromgif($target_path);</span><br><span class="line">            if($im &#x3D;&#x3D; false)&#123;</span><br><span class="line">                $msg &#x3D; &quot;该文件不是gif格式的图片！&quot;;</span><br><span class="line">                @unlink($target_path);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                &#x2F;&#x2F;给新图片指定文件名</span><br><span class="line">                srand(time());</span><br><span class="line">                $newfilename &#x3D; strval(rand()).&quot;.gif&quot;;</span><br><span class="line">                &#x2F;&#x2F;显示二次渲染后的图片（使用用户上传图片生成的新图片）</span><br><span class="line">                $img_path &#x3D; UPLOAD_PATH.&#39;&#x2F;&#39;.$newfilename;</span><br><span class="line">                imagegif($im,$img_path);</span><br><span class="line"></span><br><span class="line">                @unlink($target_path);</span><br><span class="line">                $is_upload &#x3D; true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            $msg &#x3D; &quot;上传出错！&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        $msg &#x3D; &quot;只允许上传后缀为.jpg|.png|.gif的图片文件！&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过源码可以看到对文件后缀名和<strong>MIME</strong>类型进行了检查，而且用到了php的<code>imagecreatefromjpeg</code>、<code>imagecreatefrompng</code>、<code>imagecreatefromgif</code>这几个图片处理函数对上传的图片进行了二次渲染生成了新的图片，所以如果在这里上传的是一个普通的图片马，虽然图片马可以上传成功，但是上传的图片马在经过二次渲染后，图片尾部的php代码就会被删除掉，所以在这里不能使用直接在图片尾部添加一句话木马的方式去合成图片马。但是这一关的代码有一个明显的逻辑漏洞，如果这几个二次渲染函数处理的不是一个图片，就会使这几个函数报错，因为这几个二次渲染的函数只会去处理一个图片内部格式正确的图片，所以在这里只需要上传一个后缀名为<code>jpg、png、gif</code>的一句话木马，这样的话上传的一句话木马会绕过后缀名和<strong>MIME</strong>类型的检查，通过<code>move_uploaded_file</code>上传至服务器，但是遇到二次渲染时，由于上传的不是一个真正的图片，所以二次渲染函数在处理时会因为图片的内部格式报错，从而突破了对图片的二次渲染，这时候页面虽然会显示图片格式不允许，但是上传的一句话木马已经上传到了服务器</p>
+<p>上传后缀名为<code>jpg、png、gif</code>之一的图片马，<img src="http://img-blog.csdnimg.cn/20190812144948969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>可以看到上传成功，但是我的并没有成功解析；<br><img src="http://img-blog.csdnimg.cn/20190812152128350.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>wenHex打开发现并查找不到我们的木马<br><img src="http://img-blog.csdnimg.cn/20190812152339238.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>无奈 翻翻大佬们的blog发现是在二次渲染的时候被替换了，至于解决办法请看这位大佬写的<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2657">点这</a>我就不再描述(●’◡’●)</p>
+<p><strong>Less-17</strong><br>本关考察的是条件竞争，查看代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$is_upload &#x3D; false;</span><br><span class="line">$msg &#x3D; null;</span><br><span class="line"></span><br><span class="line">if(isset($_POST[&#39;submit&#39;]))&#123;</span><br><span class="line">    $ext_arr &#x3D; array(&#39;jpg&#39;,&#39;png&#39;,&#39;gif&#39;);</span><br><span class="line">    $file_name &#x3D; $_FILES[&#39;upload_file&#39;][&#39;name&#39;];</span><br><span class="line">    $temp_file &#x3D; $_FILES[&#39;upload_file&#39;][&#39;tmp_name&#39;];</span><br><span class="line">    $file_ext &#x3D; substr($file_name,strrpos($file_name,&quot;.&quot;)+1);</span><br><span class="line">    $upload_file &#x3D; UPLOAD_PATH . &#39;&#x2F;&#39; . $file_name;</span><br><span class="line"></span><br><span class="line">    if(move_uploaded_file($temp_file, $upload_file))&#123;</span><br><span class="line">        if(in_array($file_ext,$ext_arr))&#123;</span><br><span class="line">             $img_path &#x3D; UPLOAD_PATH . &#39;&#x2F;&#39;. rand(10, 99).date(&quot;YmdHis&quot;).&quot;.&quot;.$file_ext;</span><br><span class="line">             rename($upload_file, $img_path);</span><br><span class="line">             $is_upload &#x3D; true;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            $msg &#x3D; &quot;只允许上传.jpg|.png|.gif类型文件！&quot;;</span><br><span class="line">            unlink($upload_file);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        $msg &#x3D; &#39;上传出错！&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这题我是蒙蔽的，好在看了大佬的操作才后知道了些；这里先将文件上传到服务器，然后通过rename修改名称，再通过unlink删除文件，因此可以通过条件竞争的方式在unlink之前，访问webshell。</p>
+<ul>
+<li><p><code>unlink()</code> 函数是用来删除文件的</p>
+</li>
+<li><p>什么是条件竞争：</p>
+</li>
+</ul>
+<blockquote>
+<p>条件竞争漏洞是一种服务器端的漏洞，由于服务器端在处理不同用户的请求时是并发进行的，因此，如果并发处理不当或相关操作逻辑顺序设计的不合理时，将会导致此类问题的发生。</p>
+</blockquote>
+<ul>
+<li>首先在burp中不断发送上传webshell的数据包：</li>
+<li>然后不断在浏览器中访问，发现通过竞争可以访问到：</li>
+</ul>
+<p>具体的操作方法我也没掌握，等学习到了就补上</p>
+<p><strong>Less-18</strong><br>本关需要上传图片马，查看代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">$is_upload &#x3D; false;</span><br><span class="line">$msg &#x3D; null;</span><br><span class="line">if (isset($_POST[&#39;submit&#39;]))</span><br><span class="line">&#123;</span><br><span class="line">    require_once(&quot;.&#x2F;myupload.php&quot;);</span><br><span class="line">    $imgFileName &#x3D;time();</span><br><span class="line">    $u &#x3D; new MyUpload($_FILES[&#39;upload_file&#39;][&#39;name&#39;], $_FILES[&#39;upload_file&#39;][&#39;tmp_name&#39;], $_FILES[&#39;upload_file&#39;][&#39;size&#39;],$imgFileName);</span><br><span class="line">    $status_code &#x3D; $u-&gt;upload(UPLOAD_PATH);</span><br><span class="line">    switch ($status_code) &#123;</span><br><span class="line">        case 1:</span><br><span class="line">            $is_upload &#x3D; true;</span><br><span class="line">            $img_path &#x3D; $u-&gt;cls_upload_dir . $u-&gt;cls_file_rename_to;</span><br><span class="line">            break;</span><br><span class="line">        case 2:</span><br><span class="line">            $msg &#x3D; &#39;文件已经被上传，但没有重命名。&#39;;</span><br><span class="line">            break; </span><br><span class="line">        case -1:</span><br><span class="line">            $msg &#x3D; &#39;这个文件不能上传到服务器的临时文件存储目录。&#39;;</span><br><span class="line">            break; </span><br><span class="line">        case -2:</span><br><span class="line">            $msg &#x3D; &#39;上传失败，上传目录不可写。&#39;;</span><br><span class="line">            break; </span><br><span class="line">        case -3:</span><br><span class="line">            $msg &#x3D; &#39;上传失败，无法上传该类型文件。&#39;;</span><br><span class="line">            break; </span><br><span class="line">        case -4:</span><br><span class="line">            $msg &#x3D; &#39;上传失败，上传的文件过大。&#39;;</span><br><span class="line">            break; </span><br><span class="line">        case -5:</span><br><span class="line">            $msg &#x3D; &#39;上传失败，服务器已经存在相同名称文件。&#39;;</span><br><span class="line">            break; </span><br><span class="line">        case -6:</span><br><span class="line">            $msg &#x3D; &#39;文件无法上传，文件不能复制到目标目录。&#39;;</span><br><span class="line">            break;      </span><br><span class="line">        default:</span><br><span class="line">            $msg &#x3D; &#39;未知错误！&#39;;</span><br><span class="line">            break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;myupload.php</span><br><span class="line">class MyUpload&#123;</span><br><span class="line">......</span><br><span class="line">......</span><br><span class="line">...... </span><br><span class="line">  var $cls_arr_ext_accepted &#x3D; array(</span><br><span class="line">      &quot;.doc&quot;, &quot;.xls&quot;, &quot;.txt&quot;, &quot;.pdf&quot;, &quot;.gif&quot;, &quot;.jpg&quot;, &quot;.zip&quot;, &quot;.rar&quot;, &quot;.7z&quot;,&quot;.ppt&quot;,</span><br><span class="line">      &quot;.html&quot;, &quot;.xml&quot;, &quot;.tiff&quot;, &quot;.jpeg&quot;, &quot;.png&quot; );</span><br><span class="line">......</span><br><span class="line">......</span><br><span class="line">......  </span><br><span class="line">  &#x2F;** upload()</span><br><span class="line">   **</span><br><span class="line">   ** Method to upload the file.</span><br><span class="line">   ** This is the only method to call outside the class.</span><br><span class="line">   ** @para String name of directory we upload to</span><br><span class="line">   ** @returns void</span><br><span class="line">  **&#x2F;</span><br><span class="line">  function upload( $dir )&#123;    </span><br><span class="line">    $ret &#x3D; $this-&gt;isUploadedFile();</span><br><span class="line">    if( $ret !&#x3D; 1 )&#123;</span><br><span class="line">      return $this-&gt;resultUpload( $ret );</span><br><span class="line">    &#125;</span><br><span class="line">    $ret &#x3D; $this-&gt;setDir( $dir );</span><br><span class="line">    if( $ret !&#x3D; 1 )&#123;</span><br><span class="line">      return $this-&gt;resultUpload( $ret );</span><br><span class="line">    &#125;</span><br><span class="line">    $ret &#x3D; $this-&gt;checkExtension();</span><br><span class="line">    if( $ret !&#x3D; 1 )&#123;</span><br><span class="line">      return $this-&gt;resultUpload( $ret );</span><br><span class="line">    &#125;</span><br><span class="line">    $ret &#x3D; $this-&gt;checkSize();</span><br><span class="line">    if( $ret !&#x3D; 1 )&#123;</span><br><span class="line">      return $this-&gt;resultUpload( $ret );    </span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; if flag to check if the file exists is set to 1</span><br><span class="line">    if( $this-&gt;cls_file_exists &#x3D;&#x3D; 1 )&#123;</span><br><span class="line">      $ret &#x3D; $this-&gt;checkFileExists();</span><br><span class="line">      if( $ret !&#x3D; 1 )&#123;</span><br><span class="line">        return $this-&gt;resultUpload( $ret );    </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; if we are here, we are ready to move the file to destination</span><br><span class="line">    $ret &#x3D; $this-&gt;move();</span><br><span class="line">    if( $ret !&#x3D; 1 )&#123;</span><br><span class="line">      return $this-&gt;resultUpload( $ret );    </span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; check if we need to rename the file</span><br><span class="line">    if( $this-&gt;cls_rename_file &#x3D;&#x3D; 1 )&#123;</span><br><span class="line">      $ret &#x3D; $this-&gt;renameFile();</span><br><span class="line">      if( $ret !&#x3D; 1 )&#123;</span><br><span class="line">        return $this-&gt;resultUpload( $ret );    </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; if we are here, everything worked as planned :)</span><br><span class="line">    return $this-&gt;resultUpload( &quot;SUCCESS&quot; );</span><br><span class="line">  &#125;</span><br><span class="line">......</span><br><span class="line">......</span><br><span class="line">...... </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>本关对文件后缀名做了白名单判断，然后会一步一步检查文件大小、文件是否存在等等，将文件上传后，然后再 <code>$ret = $this-&gt;renameFile();</code>，进行了一次更改文件名；同样存在条件竞争的漏洞。可以不断利用burp发送上传图片马的数据包，由于条件竞争，程序会出现来不及rename的问题，从而上传成功。</p>
+<p><strong>Less-19</strong><br>查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$is_upload &#x3D; false;</span><br><span class="line">$msg &#x3D; null;</span><br><span class="line">if (isset($_POST[&#39;submit&#39;])) &#123;</span><br><span class="line">    if (file_exists(UPLOAD_PATH)) &#123;</span><br><span class="line">        $deny_ext &#x3D; array(&quot;php&quot;,&quot;php5&quot;,&quot;php4&quot;,&quot;php3&quot;,&quot;php2&quot;,&quot;html&quot;,&quot;htm&quot;,&quot;phtml&quot;,&quot;pht&quot;,&quot;jsp&quot;,&quot;jspa&quot;,&quot;jspx&quot;,&quot;jsw&quot;,&quot;jsv&quot;,&quot;jspf&quot;,&quot;jtml&quot;,&quot;asp&quot;,&quot;aspx&quot;,&quot;asa&quot;,&quot;asax&quot;,&quot;ascx&quot;,&quot;ashx&quot;,&quot;asmx&quot;,&quot;cer&quot;,&quot;swf&quot;,&quot;htaccess&quot;);</span><br><span class="line"></span><br><span class="line">        $file_name &#x3D; $_POST[&#39;save_name&#39;];</span><br><span class="line">        $file_ext &#x3D; pathinfo($file_name,PATHINFO_EXTENSION);</span><br><span class="line"></span><br><span class="line">        if(!in_array($file_ext,$deny_ext)) &#123;</span><br><span class="line">            $temp_file &#x3D; $_FILES[&#39;upload_file&#39;][&#39;tmp_name&#39;];</span><br><span class="line">            $img_path &#x3D; UPLOAD_PATH . &#39;&#x2F;&#39; .$file_name;</span><br><span class="line">            if (move_uploaded_file($temp_file, $img_path)) &#123; </span><br><span class="line">                $is_upload &#x3D; true;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                $msg &#x3D; &#39;上传出错！&#39;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            $msg &#x3D; &#39;禁止保存为该类型文件！&#39;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        $msg &#x3D; UPLOAD_PATH . &#39;文件夹不存在,请手工创建！&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>分析，<code>move_uploaded_file()</code>函数中的<code>img_path</code>是由post参数<code>save_name</code>控制的，<br>因此可以在<code>save_name</code>利用00截断绕过：<br>首先上传一个图片马，后缀名改为php+jpg</p>
+<p><img src="http://img-blog.csdnimg.cn/20190814132429106.png" alt="在这里插入图片描述"><br>然后再16进制中把加号的2b 改为 00 fordward发包就行了。然而我的burp不知道为啥发不了，唉<br><img src="http://img-blog.csdnimg.cn/20190814134136876.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后我又发现，这题可以直接加空格绕过<br><img src="http://img-blog.csdnimg.cn/20190814134830601.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20190814134822821.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>测试成功。<br><img src="http://img-blog.csdnimg.cn/20190814131818623.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>好了，到这暂时就结束了至于Less20，需要审计代码，目前自己还做不了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/wwcdg/wwcdg.github.io/2019/08/14/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%20upload-labs%20%E7%BB%83%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/" data-id="ckk5lg66q003ues7m4rxu5ksk" data-title="上传漏洞 upload-labs 练习（二）" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" rel="tag">上传漏洞</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/17/%E5%AF%86%E7%A0%81%E5%AD%A6%E2%80%94RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E8%AF%A6%E8%A7%A3%EF%BC%81/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          密码学—RSA加密解密详解！
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/08/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%20upload-labs%20%E7%BB%83%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">上传漏洞 upload-labs 练习（一）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog%E6%90%AD%E5%BB%BA/">Blog搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/JavaEE/">JavaEE</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/">前端</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">刷题记录</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/Crypto/">Crypto</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/MISC/">MISC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%88%86%E6%9E%90/">密码学分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/">漏洞原理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/Sql%E6%B3%A8%E5%85%A5/">Sql注入</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/XSS/">XSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">命令执行</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">文件上传</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BA%BF%E4%B8%8B%E8%B5%9B/">线下赛</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%B2%B2%E9%B9%8FHCIA/">鲲鹏HCIA</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HCIA/" rel="tag">HCIA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LSB/" rel="tag">LSB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crc%E7%A2%B0%E6%92%9E/" rel="tag">crc碰撞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crypto/" rel="tag">crypto</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlmap/" rel="tag">sqlmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag">sql注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xss/" rel="tag">xss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" rel="tag">上传漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%AA%E5%8A%A0%E5%AF%86/" rel="tag">伪加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" rel="tag">命令执行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" rel="tag">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E9%A1%B9/" rel="tag">杂项</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%B2%E6%B0%B4%E5%8D%B0/" rel="tag">盲水印</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%90%E5%86%99/" rel="tag">隐写</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Crypto/" style="font-size: 15px;">Crypto</a> <a href="/tags/HCIA/" style="font-size: 10px;">HCIA</a> <a href="/tags/LSB/" style="font-size: 10px;">LSB</a> <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/crc%E7%A2%B0%E6%92%9E/" style="font-size: 10px;">crc碰撞</a> <a href="/tags/crypto/" style="font-size: 10px;">crypto</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/misc/" style="font-size: 15px;">misc</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/sqlmap/" style="font-size: 10px;">sqlmap</a> <a href="/tags/sql%E6%B3%A8%E5%85%A5/" style="font-size: 20px;">sql注入</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" style="font-size: 15px;">上传漏洞</a> <a href="/tags/%E4%BC%AA%E5%8A%A0%E5%AF%86/" style="font-size: 10px;">伪加密</a> <a href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" style="font-size: 10px;">命令执行</a> <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" style="font-size: 10px;">密码学</a> <a href="/tags/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" style="font-size: 10px;">暴力破解</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 10px;">杂项</a> <a href="/tags/%E7%9B%B2%E6%B0%B4%E5%8D%B0/" style="font-size: 10px;">盲水印</a> <a href="/tags/%E9%9A%90%E5%86%99/" style="font-size: 10px;">隐写</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/20/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/20/Java%20EE%E2%80%94%E2%80%94Mybatis%20%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">Mybatis框架学习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/03/Java%20EE%E2%80%94%E2%80%94SpringMVC%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">SpringMVC框架学习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E5%8D%8E%E4%B8%BA%E9%B2%B2%E9%B9%8F%E4%BA%91HCIA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/">华为鲲鹏云HCIA知识总结（一）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">Python学习笔记（一）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 未完成的歌<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

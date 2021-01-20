@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>未完成的歌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="未完成的歌">
+<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/page/4/index.html">
+<meta property="og:site_name" content="未完成的歌">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="未完成的歌">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="未完成的歌" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">未完成的歌</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/wwcdg/wwcdg.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-PHP — Cookie and Session篇" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/04/28/PHP%20%E2%80%94%20Cookie%20and%20Session%E7%AF%87/" class="article-date">
+  <time class="dt-published" datetime="2019-04-28T12:28:45.000Z" itemprop="datePublished">2019-04-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a>►<a class="article-category-link" href="/categories/Web%E5%BC%80%E5%8F%91/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/04/28/PHP%20%E2%80%94%20Cookie%20and%20Session%E7%AF%87/">PHP — Cookie and Session篇</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>一、Cookie</strong></p>
+<p>例：<code>setcookie(&#39;username&#39;,&#39; $name&#39;,time()+3600);</code></p>
+<p>2.在服务器端读取cookie内容</p>
+<pre><code>$_COOKIE
+if(!isset($_COOKIE[&#39;username&#39;]))</code></pre>
+<p>3.将多维数组应用到Cookie中</p>
+<pre><code>setcookie(&quot;member[name]&quot;,&#39;薛之谦&#39;)；
+
+setcookie(&quot;member[password]&quot;,‘xiaobaixue&#39;)；</code></pre>
+<p>4.删除Cookie</p>
+<pre><code>setcookie(&quot;member&quot;, &#39; &#39;,time() -1);
+setcookie(&#39;username&#39;,$name,time()-1);</code></pre>
+<p><strong>二、Session</strong><br>    1.开启session</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">   session_start();</span><br><span class="line">   		$_SESSION[&#39;name&#39;]&#x3D;&#39;薛之谦&#39;</span><br><span class="line">   1)开启一个会话</span><br><span class="line">		一个客户 到超市里面买东西 办会员卡！</span><br><span class="line">2)打开已经存在的会话</span><br><span class="line">		当这个客户 以后再到超市买东西的时候 根据上次办的卡号 买东西！</span><br><span class="line">		根据客户端传来的session id 把这个 session id 对应的数据 读取到 $_SESSION这个变量里面</span><br><span class="line">	2.	销毁session</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">   session_start();&#x2F;&#x2F;打开要销毁的数据</span><br><span class="line">   session_unset( );&#x2F;&#x2F;</span><br><span class="line">   session_destory();&#x2F;&#x2F;销毁一个会话的全部数据</span><br><span class="line">   setcoookie(session_name(),&#39;&#39;,time()-3600,&#39;&#x2F;&#39;);&#x2F;&#x2F;销毁保存在客户端的卡号（session id）</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/wwcdg/wwcdg.github.io/2019/04/28/PHP%20%E2%80%94%20Cookie%20and%20Session%E7%AF%87/" data-id="ckk5lg65q001zes7m3nq58zuf" data-title="PHP — Cookie and Session篇" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-HTML+MYSQL+PHP搭建带有cookie的登陆页面" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/04/21/HTML+MYSQL+PHP%E6%90%AD%E5%BB%BA%E5%B8%A6%E6%9C%89cookie%E7%9A%84%E7%99%BB%E9%99%86%E9%A1%B5%E9%9D%A2/" class="article-date">
+  <time class="dt-published" datetime="2019-04-21T04:05:48.000Z" itemprop="datePublished">2019-04-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a>►<a class="article-category-link" href="/categories/Web%E5%BC%80%E5%8F%91/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/04/21/HTML+MYSQL+PHP%E6%90%AD%E5%BB%BA%E5%B8%A6%E6%9C%89cookie%E7%9A%84%E7%99%BB%E9%99%86%E9%A1%B5%E9%9D%A2/">HTML+MYSQL+PHP搭建带有cookie的登录页面</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>这周学长给我们布置了新任务，要让我们在一周内搭建一个带有cookie的登陆界面，任务很轻松（才怪），几经波折之后终于弄好了（呜呜呜~），下面总结一下过程。</p>
+<p>在本地搭建一个带有cookie的登陆注册界面需要以下步骤：</p>
+<ul>
+<li>创建数据库</li>
+<li>登陆界面</li>
+<li>注册界面</li>
+</ul>
+<p>大致需要以下PHP文件：<br><img src="https://github.com/weiwanchengdege/photos/blob/master/8NP(0XC%7B8Y1B%60VWQGI85A_3.png?raw=true" alt="在这里插入图片描述"><br><strong>-  使用phpstudy 自带的mysql 创建数据库</strong></p>
+<p>在localhost 点击箭头新建数据库命名为 mysql<br><img src="https://github.com/weiwanchengdege/photos/blob/master/Inked%7B(4%7D%60U$%5BCS%25H(%7DNPJ%604%25YS_LI.jpg?raw=true" alt="在这里插入图片描述"><br>然后在新建数据库中新建一个表，命名为 user，添加新字段，username 和 password ；内容可以先空着<br><img src="https://github.com/weiwanchengdege/photos/blob/master/WOJD~SRJ8M%5DVEYTZ%5DM%60N%25U.png?raw=true" alt="在这里插入图片描述"></p>
+<p> <strong>- 使用HTML编写登陆界面</strong><br> 总流程如下：<br><img src="https://github.com/weiwanchengdege/photos/blob/master/_3%600I1O5X3GIATXXAT4ZY.png?raw=true" alt="在这里插入图片描述"><br>  login.php；代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"> &lt;!DOCTYPE html&gt;</span><br><span class="line"> &lt;html lang&#x3D;&#39;zh&#39;&gt;</span><br><span class="line"> &lt;head&gt;</span><br><span class="line"> &lt;title&gt; login&lt;&#x2F;title&gt;</span><br><span class="line"> &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">	body&#123;</span><br><span class="line">		background-image:url(&#39;325151.jpg&#39;);</span><br><span class="line">		font-size:30px;&#x2F;&#x2F;字体大小</span><br><span class="line">	&#125;</span><br><span class="line">	.main&#123;</span><br><span class="line">		position:absolute;&#x2F;&#x2F;全局变量</span><br><span class="line">		top:35%;</span><br><span class="line">		left:45%;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	input&#123;</span><br><span class="line">		width:250px;</span><br><span class="line">		height:30px;</span><br><span class="line">		text-align:left;</span><br><span class="line">		color:blue;</span><br><span class="line">	&#125;</span><br><span class="line">	.sub&#123;</span><br><span class="line">		width:125px;</span><br><span class="line">		height:30px;</span><br><span class="line">	&#125;</span><br><span class="line">	button&#123;</span><br><span class="line">		width:125px;</span><br><span class="line">		height:30px;</span><br><span class="line">		text-align:left;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line"> &lt;body&gt;  </span><br><span class="line">&lt;div class&#x3D;&quot;main&quot;&gt;</span><br><span class="line">&lt;form name&#x3D;&quot;input&quot; action&#x3D;&quot;post.php&quot; method&#x3D;&quot;post&quot;&gt;</span><br><span class="line">用户名 ：&lt;br &#x2F;&gt;&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;username&quot;&gt;&lt;br&gt;</span><br><span class="line">密码 ：  &lt;br &#x2F;&gt;&lt;input type&#x3D;&quot;password&quot; name&#x3D;&quot;password&quot;&gt; &lt;br&gt;</span><br><span class="line">             &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;登陆&quot; class&#x3D;&quot;sub&quot;&gt;</span><br><span class="line">		     &lt;button&gt;&lt;a href&#x3D;&quot;reg.php&quot;&gt;注册&lt;&#x2F;a&gt;&lt;&#x2F;button&gt;</span><br><span class="line">		</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt; </span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<p>界面如下：<br><img src="https://github.com/weiwanchengdege/photos/blob/master/Microsoft%20Edge%202019_4_20%2023_05_54.png?raw=true" alt="在这里插入图片描述"><br><strong>- 登陆验证：</strong><br>post.php;代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">       $conn&#x3D;mysql_connect(&quot;localhost&quot;,&#39;root&#39;,&#39;root&#39;) or die(&quot;数据库连接失败！&quot;);&#x2F;&#x2F;连接你的本地数据库</span><br><span class="line">       localhost为服务器 root为用户名 root为密码</span><br><span class="line"></span><br><span class="line">       mysql_select_db(&#39;myphp&#39;,$conn) or die(&quot;您要选择的数据库不存在&quot;);&#x2F;&#x2F;选择你建立的数据表</span><br><span class="line"></span><br><span class="line">       $name&#x3D;$_POST[&#39;username&#39;];</span><br><span class="line"></span><br><span class="line">       $pwd&#x3D;$_POST[&#39;password&#39;];&#x2F;&#x2F;获取表单提交的内容用两个变量来存post方式接受的值</span><br><span class="line"></span><br><span class="line">       $sql&#x3D;&quot;select * from user where username&#x3D;&#39;$name&#39; and password&#x3D;&#39;$pwd&#39;&quot;;&#x2F;&#x2F;查询语句</span><br><span class="line"></span><br><span class="line">       $query&#x3D;mysql_query($sql);&#x2F;&#x2F;函数执行一条 MySQL 查询。</span><br><span class="line"></span><br><span class="line">       $arr&#x3D;mysql_fetch_array($query);然后从$query中取一行数字数组</span><br><span class="line"></span><br><span class="line">       if(is_array($arr))&#123;&#x2F;&#x2F;对$arr进行判断</span><br><span class="line">		   </span><br><span class="line">			  setcookie(&#39;username&#39;,$name,time()+3600);&#x2F;&#x2F;设置cookie,时间为一小时，（以秒为单位）</span><br><span class="line">              header(&quot;Location:index.php&quot;);&#x2F;&#x2F;跳转页面</span><br><span class="line"></span><br><span class="line">       &#125;else&#123;</span><br><span class="line"></span><br><span class="line">              echo &quot;您的用户名或密码输入有误，&lt;a href&#x3D;\&quot;login.php\&quot;&gt;请重新登录！&lt;&#x2F;a&gt;&quot;;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>实现注册总流程：</strong><br><img src="https://github.com/weiwanchengdege/photos/blob/master/347(0V6CSGE%7D3$9%5DCD4C~6X.png?raw=true" alt="在这里插入图片描述"></p>
+<p><strong>-注册页面</strong><br><img src="https://github.com/weiwanchengdege/photos/blob/master/Microsoft%20Edge%202019_4_21%2011_21_51.png?raw=true" alt="在这里插入图片描述"><br> reg.php;代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"> &lt;!DOCTYPE html&gt;</span><br><span class="line">    &lt;html &gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">    &lt;title&gt; 注册&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">	&lt;style&gt;</span><br><span class="line">	body&#123;</span><br><span class="line">		background-image:url(&#39;323971.jpg&#39;);</span><br><span class="line">		background-repeat:no-repeat;</span><br><span class="line">		font-size:30px;</span><br><span class="line">	&#125;</span><br><span class="line">	.main&#123;</span><br><span class="line">		position:absolute;</span><br><span class="line">		top:35%;</span><br><span class="line">		left:45%;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	input&#123;</span><br><span class="line">		text-align:center;</span><br><span class="line">		width:250px;</span><br><span class="line">		height:30px;</span><br><span class="line">		text-align:left;</span><br><span class="line">		color:green;</span><br><span class="line">	&#125;</span><br><span class="line">	.sub&#123;</span><br><span class="line">		width:125px;</span><br><span class="line">		height:30px;</span><br><span class="line">	&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;&#x2F;head&gt;</span><br><span class="line">    &lt;body&gt;  </span><br><span class="line">&lt;div class&#x3D;&quot;main&quot;&gt;</span><br><span class="line">&lt;form name&#x3D;&quot;input&quot; action&#x3D;&quot;regin.php&quot; method&#x3D;&quot;post&quot;&gt;</span><br><span class="line">用户名&lt;br&#x2F;&gt;&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;username&quot;&gt;&lt;br&gt;</span><br><span class="line">密码  &lt;br&#x2F;&gt;&lt;input type&#x3D;&quot;password&quot; name&#x3D;&quot;password&quot;&gt; &lt;br&gt;</span><br><span class="line">           &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;注册&quot; class&#x3D;&quot;sub&quot;&gt;</span><br><span class="line">    &lt;&#x2F;body&gt;</span><br><span class="line">	&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>regin.php  ; 注册验证：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> &lt;?php</span><br><span class="line">     $conn&#x3D;mysql_connect(&quot;localhost&quot;,&#39;root&#39;,&#39;root&#39;) or die(&quot;数据库连接失败！&quot;);</span><br><span class="line"></span><br><span class="line">           mysql_select_db(&#39;myphp&#39;,$conn) or die(&quot;您要选择的数据库不存在&quot;);</span><br><span class="line">     $name&#x3D;trim($_POST[&#39;username&#39;]);</span><br><span class="line">	&#x2F;&#x2F;trim函数，过滤空格，如果不加，我们在用户名后面添加很多空格，提交表单，打开firebug</span><br><span class="line">	&#x2F;&#x2F;调试工具，我们可以到输入的用户名后面会有很多空格，使用trim函数，我们可以把表单中空格给过滤掉</span><br><span class="line">	 $password&#x3D;$_POST[&#39;password&#39;];</span><br><span class="line">	 $sql &#x3D; &quot;select * from user where username&#x3D;&#39;$name&#39;&quot;;</span><br><span class="line">	 $info &#x3D; mysql_query($sql);</span><br><span class="line">	 $res &#x3D; mysql_num_rows($info);</span><br><span class="line">	if(empty($name))&#123;</span><br><span class="line">		echo &quot;&lt;script&gt;alert(&#39;用户名不能为空&#39;);location.href&#x3D;&#39;reg.php&#39;;&lt;&#x2F;script&gt;&quot;;</span><br><span class="line">	&#125;else if(empty($password))&#123;</span><br><span class="line">		echo &quot;&lt;script&gt;alert(&#39;密码不能为空&#39;);location.href&#x3D;&#39;reg.php&#39;;&lt;&#x2F;script&gt;&quot;;</span><br><span class="line">	&#125;else&#123;	</span><br><span class="line">		if($res)&#123;</span><br><span class="line">			echo &quot;&lt;script&gt;alert(&#39;用户名已存在&#39;);location.href&#x3D;&#39;reg.php&#39;;&lt;&#x2F;script&gt;&quot;;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			$sql1 &#x3D;&quot;insert into user(username,password) values(&#39;&quot;.$name.&quot;&#39;,&#39;&quot; .($password).&quot;&#39;)&quot;;</span><br><span class="line">			$result &#x3D; mysql_query($sql1);</span><br><span class="line">			if($result)&#123;</span><br><span class="line">		 			echo &quot;&lt;script&gt;alert(&#39;注册成功&#39;)&lt;&#x2F;script&gt;&quot;,header(&quot;Location:login.php&quot;);;</span><br><span class="line">			&#125;else&#123;</span><br><span class="line">		 			echo &quot;&lt;script&gt;alert(&#39;注册失败&#39;)&lt;&#x2F;script&gt;&quot;;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;	</span><br><span class="line">?&gt;                                           </span><br></pre></td></tr></table></figure>
+<p><strong>- 登陆成功界面</strong><br><img src="https://github.com/weiwanchengdege/photos/blob/master/J%7B~ID%25BBDF9GON9%60_AN4IN.png?raw=true" alt="在这里插入图片描述"><br>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if(!isset($_COOKIE[&#39;username&#39;]))&#x2F;&#x2F;对跳转方式判断，阻止直接跳转；</span><br><span class="line">&#123;</span><br><span class="line">	echo &#39;登录非法!&lt;a href&#x3D;&quot;login.php&quot;&gt;请登录&lt;&#x2F;a&gt;&#39;;</span><br><span class="line">	exit();</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">   &lt;html &gt;</span><br><span class="line">   &lt;head&gt;</span><br><span class="line">   &lt;title&gt; welcome! &lt;&#x2F;title&gt;</span><br><span class="line">   &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">   &lt;&#x2F;head&gt;</span><br><span class="line">   &lt;body&gt;  </span><br><span class="line">  Hello 靓仔!</span><br><span class="line">  &lt;a href&#x3D;&quot;logout.php&quot;&gt;注销&lt;&#x2F;a&gt;&#x2F;&#x2F;点击“ 注销 ”跳转页面</span><br><span class="line">   &lt;&#x2F;body&gt;</span><br><span class="line">   &lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>- 注销 cookie</strong><br>logout.php:<br>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	if(isset($_COOKIE[&#39;username&#39;]))&#123;</span><br><span class="line">		setcookie(&#39;username&#39;,$name,time()-1);&#x2F;&#x2F;清除cookie 将时间设置为负数</span><br><span class="line">		header(&#39;Location:login.php&#39;);</span><br><span class="line">	&#125;</span><br><span class="line">	else&#123;</span><br><span class="line">		echo &#39;注销失败&#39;;</span><br><span class="line">		header(&#39;Location:index.php&#39;);</span><br><span class="line">	&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+以上就是利用phpstudy搭建带有cookie 的登录注册界面的全过程，希望这篇文章可以帮助别人，同时也防止自己遗忘。
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/wwcdg/wwcdg.github.io/2019/04/21/HTML+MYSQL+PHP%E6%90%AD%E5%BB%BA%E5%B8%A6%E6%9C%89cookie%E7%9A%84%E7%99%BB%E9%99%86%E9%A1%B5%E9%9D%A2/" data-id="ckk5lg6480011es7mbnrf68f6" data-title="HTML+MYSQL+PHP搭建带有cookie的登录页面" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-双图+盲水印" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/04/16/%E5%8F%8C%E5%9B%BE+%E7%9B%B2%E6%B0%B4%E5%8D%B0/" class="article-date">
+  <time class="dt-published" datetime="2019-04-16T07:41:28.000Z" itemprop="datePublished">2019-04-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">刷题记录</a>►<a class="article-category-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/MISC/">MISC</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/04/16/%E5%8F%8C%E5%9B%BE+%E7%9B%B2%E6%B0%B4%E5%8D%B0/">双图+盲水印</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>1.双图</strong><br>打开压缩包，发现有两张图片 first1和second.png，使用Stegsolve打开first1.png进行一次异或处理</p>
+<p><img src="https://github.com/weiwanchengdege/photos/blob/master/20190408201207778.png?raw=true" alt="在这里插入图片描述"><br>然后分析选择结合second.png得到<br><img src="https://github.com/weiwanchengdege/photos/blob/master/20190408201646144.png?raw=true" alt="在这里插入图片描述"><br>用stegslove对二维码进行运算得到三张二维码</p>
+<p><img src="https://github.com/weiwanchengdege/photos/blob/master/20190408201910360.png?raw=true" alt="在这里插入图片描述"><br><img src="https://github.com/weiwanchengdege/photos/blob/master/201904082020166.png?raw=true" alt="在这里插入图片描述"><br><img src="https://github.com/weiwanchengdege/photos/blob/master/20190408202109348.png?raw=true" alt="在这里插入图片描述"><br>扫描结果是DES 6XaMMbM7<br>和一长串字符，很显然是des加密，秘钥是6XaMMbM7，然后对长串字符进行DES解密，得到flag。<br><strong>2.盲水印</strong><br>据提示为盲水印题打开有两张图片<br><img src="https://github.com/weiwanchengdege/photos/blob/master/20190408202952565.png?raw=true" alt="在这里插入图片描述"><br>所以使用bwm脚本（python2）bwm脚本的<a href="https://github.com/chishaxie/BlindWaterMark">github</a>,如果没有cv2这个模块，使用下面的命令安装cv2</p>
+<pre><code>pip install opencv-python</code></pre>
+<p>然后运行<code>python bwm.py decode 1.png 2.png flag.png</code><br>其中1.png和2.png是解压所得图片，flag.png是所分离出来的水印。<br>由于加密方式不同，所以未能得到水印图。<br>于是推测为软件添加的水印使用watermark工具进行破解<a target="_blank" rel="noopener" href="https://www.anxz.com/down/10929.html">软件下载</a><br>得到水印图：<img src="https://github.com/weiwanchengdege/photos/blob/master/20190408204103908.png?raw=true"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/wwcdg/wwcdg.github.io/2019/04/16/%E5%8F%8C%E5%9B%BE+%E7%9B%B2%E6%B0%B4%E5%8D%B0/" data-id="ckk5lg66y004bes7m7cfebykf" data-title="双图+盲水印" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9B%B2%E6%B0%B4%E5%8D%B0/" rel="tag">盲水印</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-哈夫曼树+密码题+TTL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/04/15/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91+%E5%AF%86%E7%A0%81%E9%A2%98+TTL/" class="article-date">
+  <time class="dt-published" datetime="2019-04-15T12:24:29.000Z" itemprop="datePublished">2019-04-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">刷题记录</a>►<a class="article-category-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/MISC/">MISC</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/04/15/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91+%E5%AF%86%E7%A0%81%E9%A2%98+TTL/">哈夫曼树+TTL+密码题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>这周又做了几道题，挺有意思的，记录下。<br><strong>一 .奇怪的TTL</strong><br> 至于什么是TTL，我给大家解释下：IP报文在路由间穿梭的时候每经过一个路由，TTL就会减1，当TTL为0的时候，该报文就会被丢弃。TTL所占的位数是8位，也就是0-255的范围，但是在大多数情况下通常只需要经过很小的跳数就能完成报文的转发，远远比上限255小得多，所以我们可以用TTL值的前两位来进行传输隐藏数据<br>如：须传送H字符，只需把H字符换成二进制，每两位为一组，每次填充到TTL字段的开头两位并把剩下的6位设置为1（xx111111），这样发4个IP报文即可传送1个字节。（摘抄···）<br>了解了这些之后开始做题。<hr><br>打开有两个txt文档<br><img src="https://github.com/weiwanchengdege/photos/blob/master/Z3HGLJJWTYLU%5B7Y306VOU7W.png?raw=true" alt="在这里插入图片描述"><br>题目描述如下：<br>我们截获了一些IP数据报，发现报文头中的TTL值特别可疑，怀疑是通信方嵌入了数据到TTL，我们将这些TTL值提取了出来，你能看出什么端倪吗？<br>打开文档：</p>
+<p><img src="https://github.com/weiwanchengdege/photos/blob/master/20190408114948666705.png?raw=true" alt="在这里插入图片描述"><br>txt文件里面有很多列ttl值，63,127,191,255<br>63== 00111111<br>127==01111111<br>191==10111111<br>255==11111111<br>变得只有前面两位，后面6位不变，如果传输4个就是一字节<br>使用脚本提取<br>(大佬的脚本)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">fp &#x3D; open(&#39;ttl.txt&#39;,&#39;r&#39;)</span><br><span class="line">a &#x3D; fp.readlines()</span><br><span class="line">p &#x3D; []</span><br><span class="line">for i in a:</span><br><span class="line">    p.append(int(i[4:]))</span><br><span class="line">s &#x3D; &#39;&#39;</span><br><span class="line">for i in p:</span><br><span class="line">    if i &#x3D;&#x3D; 63:</span><br><span class="line">        a &#x3D; &#39;00&#39;</span><br><span class="line">    elif i &#x3D;&#x3D; 127:</span><br><span class="line">        a &#x3D; &#39;01&#39;</span><br><span class="line">    elif i &#x3D;&#x3D; 191:</span><br><span class="line">        a &#x3D; &#39;10&#39;</span><br><span class="line">    elif i &#x3D;&#x3D; 255:</span><br><span class="line">        a &#x3D; &#39;11&#39;</span><br><span class="line">    s +&#x3D; a</span><br><span class="line"># print(s)</span><br><span class="line"></span><br><span class="line">import binascii</span><br><span class="line">flag &#x3D; &#39;&#39;</span><br><span class="line">for i in range(0,len(s),8):</span><br><span class="line">    flag +&#x3D; chr(int(s[i:i+8],2))</span><br><span class="line">flag &#x3D; binascii.unhexlify(flag)</span><br><span class="line">wp &#x3D; open(&#39;res.jpg&#39;,&#39;wb&#39;)</span><br><span class="line">wp.write(flag)</span><br><span class="line">wp.close()</span><br><span class="line">#00111111 63</span><br><span class="line">#01111111 127</span><br><span class="line">#10111111 191</span><br><span class="line">#11111111 255</span><br></pre></td></tr></table></figure>
+<p>得到：<img src="https://img-blog.csdnimg.cn/20190414202949301.jpg" alt="在这里插入图片描述"><br>写完之后发现只有二维码的一部分，应该是不止一张图，用foremost直接分开就好了，之后用ps拼在一块<br><a target="_blank" rel="noopener" href="http://www.mamicode.com/info-detail-2283219.html">foremost下载及使用说明</a><br><img src="https://github.com/weiwanchengdege/photos/blob/master/E2%25YM%7D%7D24~101AHU~2BMJBT.png?raw=true" alt="在这里插入图片描述"><br>得到六张图：<img src="https://github.com/weiwanchengdege/photos/blob/master/A~S%7D6A7UL@UH6Z$V@3$ABUF.png?raw=true" alt="在这里插入图片描述"><br>使用PS拼接：<img src="https://github.com/weiwanchengdege/photos/blob/master/OWO_%5BRDO@" alt="在这里插入图片描述">WYEP%5DFM~KMYET.png?raw=true)</p>
+<p>扫描之后得到如下信息：</p>
+<pre><code>key:AutomaticKey 
+cipher:fftu&#123;2028mb39927wn1f96o6e12z03j58002p&#125;</code></pre>
+<p>应该就是AutoKey那个加密，<a target="_blank" rel="noopener" href="https://www.wishingstarmoye.com/ctf/autokey">解密网站</a><br>得到flag{2028ab39927df1d96e6a12b03w58002k}<br><strong>二.哈夫曼树</strong><br>霍夫曼树又称最优二叉树，是一种带权路径长度最短的二叉树。所谓树的带权路径长度，就是树中所有的叶结点的权值乘上其到根结点的路径长度（若根结点为0层，叶结点到根结点的路径长度为叶结点的层数）。树的路径长度是从树根到每一结点的路径长度之和，记为WPL=（W1<em>L1+W2</em>L2+W3<em>L3+…+Wn</em>Ln），N个权值Wi（i=1,2,…n）构成一棵有N个叶结点的二叉树，相应的叶结点的路径长度为Li（i=1,2,…n）。可以证明霍夫曼树的WPL是最小的。<hr></p>
+<p>打开题目为：<br><img src="https://github.com/weiwanchengdege/photos/blob/master/WR_OEE87" alt="在这里插入图片描述">~7@STVFM44K(%7DD.png?raw=true)由于是小白所以不会写哈夫曼树的脚本，只能自己画了（Q w Q）<br>    想知道咋画点击👉    <a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/a501d80c16dfa0ec620f5e70.html">画法</a><br>   <img src="https://github.com/weiwanchengdege/photos/blob/master/IMG_20190415_1947502.jpg?raw=true" alt="在这里插入图片描述"><br>之后就自己对照树的结构，左0右1进行查找<br><img src="https://github.com/weiwanchengdege/photos/blob/master/YX6CJY9" alt="在这里插入图片描述">CM9K%5D%5DH8YFC%7BE%60S.png?raw=true)<br>得到flag有两种可能试试就知道那个对了。<br><strong>三.密码题</strong><br>打开：<img src="https://github.com/weiwanchengdege/photos/blob/master/7NG%7D" alt="在这里插入图片描述">E6%5BE%5BM437OU%5DQ%5BXQ6C.png?raw=true)<br>一看就知道是摩斯密码，解码得：</p>
+<pre><code>MORSEISCOOLBUTBACONISCOOLER/CCCDDCDDDC/DDCCCCDDDCDCDCC/CDCDCCDDCDCDDDCDCDDC/
+DCCDDCCDDDCCDCC/CCDCDCDDDCDCDCCDCCCD/CCDCDCCDCCCDDCDCCCDCCCDCC/DDCCDCCDDCC
+DCCCCCCCCCCDDDDDCCCCCCCCCDDCDCCCCCDCDCCCDDDCDDCCDCDDCDDCDDDDCDDCCDCCC</code></pre>
+<p>根据前面的提示为发现后面培根密码，根据培根密码的格式将CD转化为AB</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;AAABBABBBA&#x2F;BBAAAABBBABABAA&#x2F;ABABAABBABABBBABABBA&#x2F;BAABBAABBBAABAA&#x2F;AABABABBBABABAAB</span><br><span class="line">AAAB&#x2F;AABABAABAAABBABAAABAAABAA&#x2F;BBAABAABBAABAAAAAAAAAABBBBBAAAAAAAAABBABAAAAABAB</span><br><span class="line">AAABBBABBAABABBABBABBBBABBAABAAA</span><br></pre></td></tr></table></figure>
+<p>解得：<code>DO YOU KNOW THE FOUR FENCE ZGIAHYANAUOZNXWI</code><br>英语不太好，百度翻译得：你知道四道栅栏吗？<br>再接着着解栅栏密码  （每组次数为4）：ZHANGYUXIAOWANZI<br>终于解完了，最后的提交格式弄了半小时，太坑了。。。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/wwcdg/wwcdg.github.io/2019/04/15/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91+%E5%AF%86%E7%A0%81%E9%A2%98+TTL/" data-id="ckk5lg670004fes7mdr9wct27" data-title="哈夫曼树+TTL+密码题" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-LSB隐写+画图" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/04/10/LSB%E9%9A%90%E5%86%99+%E7%94%BB%E5%9B%BE/" class="article-date">
+  <time class="dt-published" datetime="2019-04-10T12:20:41.000Z" itemprop="datePublished">2019-04-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">刷题记录</a>►<a class="article-category-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/MISC/">MISC</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/04/10/LSB%E9%9A%90%E5%86%99+%E7%94%BB%E5%9B%BE/">LSB隐写+画图</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>关于<strong>LSB</strong><br><strong>一.LSB简介</strong><br>LSB(英文 least significant bit)即最低有效位。LSB加密是信息隐藏中最基本的方法。由于人们识别声音或图片的能力有限，因此我们稍微改动信息的某一位是不会影响我们识别声音或图片的。<br><strong>二.用法</strong><br>通常来说LSB加密用在无损压缩的数据格式文件中，例如图像中的bmp格式和音频的wav格式。由于这两种格式未对源数据进行有损压缩，因此可以将信息隐藏起来。<br><strong>BMP文件中的使用</strong><br>对于图像文件LSB的特征很明显，通常将信息隐藏在某一个颜色通道中。我们可以查看图片的每个像素点的RGB值，或者使用stegsolve工具进行查看。 </p>
+<p>由于图像是由像素构成的，每个像素有8位(对于BMP图像来说),通常最后一位的变化，通过肉眼是无法察觉的<br>一道LSB隐写题，打开有张图：<br><img src="http://img-blog.csdnimg.cn/20190410192758137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">使用stegsolve工具进行查看，-&gt;分析-&gt;数据提出<br>Bit Order选择LSB Lirst  （最低有效位） ，MSB是最高有效位；分析如下<br><img src="http://img-blog.csdnimg.cn/2019041019493387.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">发现 flag{hav e a good time!}<br>LSB隐写2：<br>打开为：<br><img src="http://img-blog.csdnimg.cn/20190410195323228.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>同样的套路，得到：</p>
+<p><img src="http://img-blog.csdnimg.cn/20190410195501146.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr>
+
+<p><strong>画图题：</strong><br>打开发现有个萌妹子：</p>
+<p><img src="http://img-blog.csdnimg.cn/20190410200137789.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>用winhex打开发现图片后面有很多的数据：<br><img src="http://img-blog.csdnimg.cn/20190410200318425.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>复制下来保存为txt文件用notepad++转换一下编码</p>
+<p><img src="http://img-blog.csdnimg.cn/20190410200522981.png" alt="在这里插入图片描述"></p>
+<p><img src="http://img-blog.csdnimg.cn/20190410200659463.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>接下来就是取坐标，用Notepad++的替换功能：</p>
+<p><img src="http://img-blog.csdnimg.cn/20190410200929937.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>另存为txt文件，接下来使用一个画图工具：gnuplot（百度 下载地址很多）把txt文件拖进bin目录下，然后执行命令：<br>plot”文件名.txt”</p>
+<p><img src="http://img-blog.csdnimg.cn/2019041020172961.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>回车：<img src="https://img-blog.csdnimg.cn/20190410201740269.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>扫描二维码得到flag:<img src="http://img-blog.csdnimg.cn/20190410201959720.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">。。。<br>。。。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/wwcdg/wwcdg.github.io/2019/04/10/LSB%E9%9A%90%E5%86%99+%E7%94%BB%E5%9B%BE/" data-id="ckk5lg656001kes7mbxw29zhe" data-title="LSB隐写+画图" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LSB/" rel="tag">LSB</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-PHP学习记录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/04/07/PHP%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time class="dt-published" datetime="2019-04-07T12:04:51.000Z" itemprop="datePublished">2019-04-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a>►<a class="article-category-link" href="/categories/Web%E5%BC%80%E5%8F%91/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/04/07/PHP%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">PHP学习记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>1.PHP概述</strong></p>
+<ul>
+<li>php的目标是允许网络开发人员快速编写动态页面</li>
+<li>主要被用于开发各种网站程序</li>
+<li>是脚本语言，不需要事先编译，在服务器运行。</li>
+</ul>
+<p> <strong>2.web工作原理</strong><br> web服务器： 浏览器-&gt;输入url地址-&gt;显示网站内容<br> 服务器是一种软件，把安装运行了服务器的电脑叫主机（host）</p>
+<p> <img src="https://github.com/weiwanchengdege/photos/blob/master/20190406225149649.png?raw=true" alt="在这里插入图片描述"><br> <strong>3.php脚本语言</strong><br> 开始: <?php
+ 结束: ?><br> <?php ?>表示进入php模式。</p>
+<ul>
+<li>PHP代码可以嵌入到html代码中任何位置，并且可以嵌入任意多个。</li>
+<li>文件末尾的?&gt;结束标志可以省略</li>
+<li> 一些PHP语句的结尾要加上;表示一句话的结束</li>
+<li>结束标记?&gt;就隐含了一个;</li>
+</ul>
+<p> 1)多行注释<br>   /*<br>    多行注释<br>   */<br>  2)单行注释<br>   //我是单行注释<br>   3.变量<br> 变量是用于临时（只有在我们的程序的运行过程中才存在）存储值（数据）的容器<br>   变量用于存储 数字、文本字符串 或者数组这些数据!</p>
+<pre><code>  $变量名=数据(值)</code></pre>
+<p>1.变量的销毁</p>
+<pre><code> unset($变量名称)
+  $and1=1;
+  unset($and1);//销毁$and变量
+  echo $and1;//提示出错，因为变量已经被销毁了！   </code></pre>
+<p>2 .变量的命名规则<br>  1)变量名称严格区分大写</p>
+<pre><code>   $name,$NAME,$Name都是不同的变量</code></pre>
+<p>   2）</p>
+<p>   字母或者下划线开头<br>   后面接任意数量的字母数字下划线都可以!</p>
+<p>   错误的命名方式：<br>    $1name  错误点：以数字开头了<br>    $n ame  错误点：中间有空白字符<br>   总结一下：变量名只能包含 字母 数字 下划线 并且必须以字母或者下划线开头！</p>
+<p>  3)最好不要用一些关键字作为变量名称(因为在其他的编程语言里面是完全不被允许的)!<br>  <strong>4.变量类型</strong><br>  1.变量类型简介<br>    1）bool (布尔型)<br>       <code>$a=true;</code><br>    <code>var_dump($a);</code><br>    往变量里面存true或者false，那么这个变量就是布尔型了<br>    2）int (整型)<br>    往变量里面存整数，那么这个变量就是整型变量啦！<br>    3）float (浮点型，也称double)<br>    往变量里面存小数，那么这个变量就是浮点型数据了!<br>   <code> $a=1.1;</code><br><code>    var_dump($a);</code><br>  4）string (字符串)<br>    字符串就是一系列的字符组成串在一起！<br>    1单引号：</p>
+<pre><code>   $b=1;
+    $a=&#39;test$bdwqd\&#39;wqdqw&#39;;
+    var_dump($a);
+    echo $a;</code></pre>
+<p>  在定义一些简单的字符串的时候使用单引号这种方法效率比较高！<br>    2双引号</p>
+<pre><code>   $b=100;
+    $a=&#39;te$bst......&#39;;
+    $a=&quot;te&#123;$b&#125;st......&quot;;
+    var_dump($a);
+    echo $a;</code></pre>
+<p> 3定界符</p>
+<pre><code>  $b=200;
+    $a=&lt;&lt;&lt;www
+    dwqdqwdwq&#123;$b&#125;dwqdqdqdqdwqdwqcwcfwefwefcscwecwefwdqwdqdefwefwefewfwe
+    www;
+    var_dump($a);</code></pre>
+<p>   3定界符</p>
+<p>$b=200;<br>$a=&lt;&lt;&lt;www<br>dwqdqwdwq{$b}dwqdqdqdqdwqdwqcwcfwefwefcscwecwefwdqwdqdefwefwefewfwe<br>www;<br>var_dump($a);</p>
+<p>4）NULL</p>
+<pre><code> null表示一个变量没有值，表示空
+    将变量直接赋值为null
+    声明的变量尚未被赋值
+    被unset函数销毁的变量
+    $a=1111;
+    unset($a);
+    var_dump($a);</code></pre>
+<p><strong>5.常量</strong><br> 1.概念<br>  常量是用于临时（只有在我们的程序的运行过程中才存在）存储值（数据）的容器<br> 2.定义和使用<br>  define(‘常量名称’,常量值) 或者 define(“常量名称”,常量值)<br>  常量的命名：<br>   1)和变量一样 只能包含字母数字下划线 并且必须以 字母或者下划线开头<br>   2)按照惯例常量名字总是大写的<br>   3)自定义的常量是严格区分大小写的！<br>  defined()函数来检查是否定义了某个常量<br> 3.常量和变量的区别<br>  1)常量前面没有美元符号($)<br>  2)常量只能用define()函数定义，不能通过赋值语句<br>  3)<strong>****</strong>常量可以不用理会变量范围的规则而在任何地方定义和使用<br>  4)常量一旦被定义就不能被重新定义或者取消定义<br>  5)常量的值只能是bool,int,float,string类型<br> 4.预定义常量<br>  预定义常量说白了就是我们的PHP内核已经帮我们定义好了的常量!</p>
+<p>  其中有的预定义常量是一__开头的，这些预定义常量我们又叫它魔术常量</p>
+<p>   代码所在的位置不同他的值也是不同的，所以它加 魔术常量<br>  八个常用的魔术常量<br>   <a target="_blank" rel="noopener" href="http://php.net/manual/zh/language.constants.predefined.php">http://php.net/manual/zh/language.constants.predefined.php</a><br>  预定义常量是不区分大小写的！<br>  <strong>6.运算符</strong><br> 概述：<br>  说白了就是一些符号，这些符号可以将变量或者数据执行某中运算！<br> 1.算术运算符<br>  1)+</p>
+<pre><code> $a=1;
+   $b=2;
+   $c=$a+$b;
+   echo $c;</code></pre>
+<p>2)-<br>   第一个意思： 减号</p>
+<pre><code> $a=10;
+    $b=2;
+    $c=$a-$b;
+    echo $c;</code></pre>
+<p> 第二个意思： 取反</p>
+<pre><code>$a=1;
+$b=-$a;
+echo $b;//-1
+echo &#39;&lt;br /&gt;&#39;;
+echo $a;//1
+
+
+ 注意</code></pre>
+<p>：取反并不会影响到被取反变量本身的值!<br>  3)* 乘号</p>
+<pre><code>   $a=4;
+   $b=2;
+   $c=$a*$b;
+   echo $c;</code></pre>
+<p>4)/ 除号</p>
+<pre><code>   $a=10;
+   $b=2;
+   $c=$a/$b;
+   echo $c;</code></pre>
+<p>5)% 取模</p>
+<pre><code>   $a=12;
+   $b=2;
+   echo $a%$b;</code></pre>
+<p> 6)++ 自增<br>   前++<br>    当在一个语句里面需要使用到被自增的变量的值的时候，前++会先执行自增,然后再返回自增之后的值！</p>
+<pre><code>  $a=10;
+    echo ++$a;//11</code></pre>
+<p>   后++<br>    当在一个语句里面需要使用到被自增的变量的值的时候，后++会先返回变量的值然后再去执行自增</p>
+<pre><code>   $a=10;
+    //++$a;//$a=$a+1;
+    //$a++;//$a=$a+1;
+    echo $a++;//echo $a;$a=$a+1;
+    echo &#39;&lt;br /&gt;&#39;;
+    echo $a;//11</code></pre>
+<p> 注意：</p>
+<pre><code>$a=10;
+   ++$a;//这种情况不需要用到自增变量值的时候，和后++无区别
+   echo $a;</code></pre>
+<p> 7)– 自减<br>   前–</p>
+<pre><code>$a=10;
+//$a--;//$a=$a-1; 和--$a没区别;
+echo --$a;//$a=$a-1;echo $a;
+echo &#39;&lt;br /&gt;&#39;;
+echo $a;</code></pre>
+<p>   后–</p>
+<pre><code>    $a=10;
+    //$a--;//$a=$a-1; 和--$a没区别;
+    echo $a--;//echo $a;$a=$a-1;
+    echo &#39;&lt;br /&gt;&#39;;
+    echo $a;
+  注</code></pre>
+<p>意：自增或者自减是对变量而言的！<br>2.字符串运算符<br>  . 连接运算符</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$a&#x3D;&#39;孙胜利&#39;;</span><br><span class="line">$b&#x3D;&#39;测试字符串连接符&#39;;</span><br><span class="line">echo $a.$b;</span><br></pre></td></tr></table></figure>
+<p> 3.赋值运算符<br><code>  =</code><br>   把右边的值赋给左边的变量<br> <code>  $a=1;</code><br>   二元运算符</p>
+<p>   表达式是 PHP 最重要的基石。在 PHP 中，几乎所写的任何东西都是一个表达式。简单但却最精确的定义一个表达式的方式就是“任何有值的东西”。</p>
+<pre><code>   +=
+   $a=1;
+   $b=2;
+   $a+=$b;//$a=$a+$b;
+   echo $a;
+  -=
+   $a=2;
+   $b=1;
+   $a-=$b;//$a=$a-$b
+   echo $a；</code></pre>
+<p>  4.比较运算符<br>  概念：<br>  对操作数（按照比较运算符的要求,规则）进行比较<br>   如果比较出的结果满足比较运算符的要求那么结果就是true(真，成立，满足),否则就是false（假，不成立,不满足）<br>  PHP中规定：<br>   使用echo输出布尔类型值的时候<br>    echo true;它在页面中会输出1<br>    echo false;它会在页面中什么都不输出<br>    规定的，记住就好！所以说我们在测试的过程中如果需要输出布尔类型值的时候我们最好使用var_dump()来输出更明了的结果！</p>
+<p>  1)== 值是否相等<br>   如果值相等则就是 true（真，成立）<br>   如果值不相等那么就是false（假，不成立）</p>
+<pre><code>$a=1;
+   $b=1;
+   var_dump($a==$b);//true</code></pre>
+<p> 2)=== 全等（值要相等，类型也要相等）<br>   如果两边操作数的值 全等那么就是true否则就是false</p>
+<pre><code> $a=11;
+   $b=&#39;11&#39;;
+   //var_dump($a==$b);//true
+   var_dump($a===$b);//false</code></pre>
+<p>3)!= 值是否不相等<br>   如果两边操作数的值不相等那么就是true，否则就是false</p>
+<pre><code>$a=1;
+   $b=11;
+   var_dump($a!=$b);//true</code></pre>
+<p> 4)&lt;&gt; 同上<br> 5)!== 不全等<br>   如果两边的操作数不全等那么就是true，否则就是false<br>   /*</p>
+<pre><code>$a=1111;
+   $b=2;
+   var_dump($a!=$b);//true
+   var_dump($a!==$b);//true
+   */
+   $a=11;
+   $b=&#39;11&#39;;
+   var_dump($a!=$b);//false
+   var_dump($a!==$b);//true,$a不全等于$b</code></pre>
+<p> 6)&lt; 小于<br>   比较两边操作数的值，前面的是否小与后面的</p>
+<pre><code>   $a=1;
+   $b=1;
+   var_dump($a&lt;$b);//false,$a小与$b</code></pre>
+<p>这句话正确还是错误</p>
+<pre><code>7)&gt; 大于
+   $a=10;
+   $b=1;
+   var_dump($a&gt;$b);</code></pre>
+<p>8)&lt;= 小于等于</p>
+<pre><code> $a=1;
+   $b=1;
+   var_dump($a&lt;=$b);//$a小与等于$b就是true,否则就是false</code></pre>
+<p> 9)&gt;= 大于等于</p>
+<pre><code>$a=2;
+   $b=1;
+   var_dump($a&gt;=$b);//true</code></pre>
+<p><strong>5.逻辑运算符</strong><br>  概念：<br>   对表达式进行逻辑运算，运算出的结果是布尔类型的值（true,false）<br>   要求：<br>    参与逻辑运算的表达式的值是布尔类型的值，如果不是布尔类型的值会被PHP自动转换成布尔类型的值，然后再参与运算！<br>  1)逻辑与<br>   and 或者 &amp;&amp;<br>    运算规则：<br>     左右两边的表达式的值都为true的时候，运算的结果就是true<br>     否则只要其中任意一个为false，运算的结果就是false;<br>    现实举例：<br>     true 及格<br>     false 不及格<br>     左右两边的表达式就是我们要考试的科目;<br>     要求：当语文和数学都及格的时候那么，最终的结果才能够通过(true),否则就是不通过(false)</p>
+<pre><code> $a=false;//语文
+ $b=true;//数学
+ var_dump($a &amp;&amp; $b);</code></pre>
+<p>   中间隐含一个问题：“短路”,运算符的优先级的问题！<br>  2)逻辑或<br>   or 或者 ||<br>    运算规则：<br>     左右两边的表达式的值有一个为true，运算的结果就是true<br>     ，只有当两边的值都是false的时候，结果才会是false</p>
+<pre><code> $a=false;//语文
+ $b=true;//数学
+ var_dump($a || $b);</code></pre>
+<p>   现实举例：<br>    要求：当语文和数学有一门及格那么最终的结果就是通过true<br>   中间隐含一个问题：“短路”,运算符的优先级的问题！<br>  3)逻辑异或<br>   xor<br>    运算规则：<br>     左右两边的表达式的值不一样的时候结果就是true,如果一样那么运算的结果就是false</p>
+<pre><code>$a=false;
+$b=false;
+var_dump($a xor $b);</code></pre>
+<p>  4)逻辑非<br>   !<br>    运算规则：<br>     将原来表达式的值否定掉，原来是true，那么结果就是false<br>      原来是false，那么结果就是true</p>
+<ul>
+<li>5)运算符<br>   1)? :<br>三元运算<br>格式：<br> 表达式1 ? 表达式2 : 表达式3;<br> 如果表达式1的值为true,那么就执行表达式2,否则那么就执行表达式3<br>$a=false ? 10 : 20;<br>echo $a;//20</li>
+</ul>
+<ol start="2">
+<li>可以把系统的命令放在里面执行！<br>涉及到跨平台:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$a&#x3D;&#96;ipconfig&#96;;windows环境下</span><br><span class="line">$b&#x3D;&#96;ifconfig&#96;;liunx环境下</span><br><span class="line">var_dump($b);</span><br></pre></td></tr></table></figure>
+<p> 3)@<br>   屏蔽表达式可能发生错误！<br>   echo @$a;<br>   当然，实际在哪些地方应用，我们用到大家就知道了！<br>  4)=&gt;<br>  5)-&gt;<br>  6)instanceof<br> 8.运算符的优先级<br>  优先级的概念：<br>   谁的优先级别高就先算谁！<br>  结合方向：<br>   规定了从那个方向开始算的问题！</p>
+<p>  优先级这个概念只要知道一些基本的常用的就可以了，因为我们在实际开发中几乎没有那么需要写非常复杂的表达式，<br>  让我们去考虑先算谁，后算谁的问题！</p>
+<p>  优先级归纳:<br>   1)[无]递增递减<br>   2)[右]逻辑非!<br>   3)[左]乘，除，取余<br>   4)[左]加，减，字符串连接符<br>   5)[无]包含大于号或者小于号的比较运算符<br>   6)[无]不包含大于号或者小于号的比较运算符<br>   7)[左]逻辑与&amp;&amp;<br>   8)[左]逻辑或||<br>   9)[左]? :<br>   10)[右]赋值运算符<br>   12)[左 ]逻辑异或xor<br>  圆括号的作用：<br>   用圆括号可以将表达式里面的某一块看成一个整体！<br>  *使用括号可以增强代码的可读性。<br><strong>6.流程控制</strong><br>if语句<br>switch语句<br>循环语句<br>与C语言基本相同就不再详写。<br><em>特殊的流程控制语句</em><br> 1.break语句<br>  作用：用于switch语句，for，while，do…while，foreach，用于中断这些语句！<br>     后面可以接上一个数字来表示跳出几层循环！默认不加就是跳出当前循环语句！<br> 2.continue语句<br>  作用：只能用在循环语句，跳出本次循环，并不是结束整个循环语句！<br> 3.exit()语句<br>  作用：结束当前整个程序的执行！<br>  die()语句作用同上！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/wwcdg/wwcdg.github.io/2019/04/07/PHP%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="ckk5lg65p001xes7mg5c1e9y4" data-title="PHP学习记录" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CSS练习记录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/03/31/CSS%E7%BB%83%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time class="dt-published" datetime="2019-03-31T10:00:52.000Z" itemprop="datePublished">2019-03-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a>►<a class="article-category-link" href="/categories/Web%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/03/31/CSS%E7%BB%83%E4%B9%A0%E8%AE%B0%E5%BD%95/">CSS练习小结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>css引入方式</strong></p>
+<p> 内联引入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;    </span><br><span class="line">  &lt;div style&#x3D;&quot;color:red;width:100px;heigh:100px;&quot;&gt;苹果&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div style&#x3D;&quot;color:green;width:100px;heigh:100px;&quot;&gt;苹果&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div style&#x3D;&quot;color:gray;width:100px;heigh:100px;&quot;&gt;核桃&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div style&#x3D;&quot;color:yellow;width:100px;heigh:100px;&quot;&gt;香蕉&lt;&#x2F;div&gt; </span><br><span class="line">&lt;&#x2F;body&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/201903301714023.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr>
+内部引入
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;    </span><br><span class="line">    div&#123;</span><br><span class="line">         color:red;      </span><br><span class="line">  width:100px;  </span><br><span class="line">  height:100px;   </span><br><span class="line">         &#125;   </span><br><span class="line">&lt;&#x2F;style&gt;  </span><br><span class="line">  &lt;&#x2F;head&gt;  </span><br><span class="line">  &lt;body&gt; </span><br><span class="line">  &lt;div&gt;苹果&lt;&#x2F;div&gt; </span><br><span class="line">  &lt;&#x2F;body&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190330171658457.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><hr><br>外部引入<br><img src="http://img-blog.csdnimg.cn/20190330180205676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"></p>
+<hr>
+
+<p><img src="http://img-blog.csdnimg.cn/20190330175808917.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br><strong>css选择器</strong><br>CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明:<br>选择器通常是您需要改变样式的 HTML 元素。<br>   选择器主要由有四大类：</p>
+<ul>
+<li>基本选择器</li>
+<li>组合选择器</li>
+<li>属性选择器</li>
+<li>伪元素选择器</li>
+</ul>
+<p><strong>基本选择器：</strong><br>通配符:全部都被标注！<br>标签div：<br>div{<br>     }只有对应的div才被标注<br> <img src="http://img-blog.csdnimg.cn/20190330212130114.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="有唯一性"><br>id选择器：<img src="http://img-blog.csdnimg.cn/20190330212604222.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"></p>
+<p>class：<img src="http://img-blog.csdnimg.cn/2019033021335212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="没有唯一性性"></p>
+<hr>
+**css原理**
+
+
+<p>1.优先原理：后解析的内容会覆盖掉之前的内容<br>2.继承原则：嵌套里面的标签拥有外部标签的某些样式；子元素可以继承父元素的属性。<br>优先原则：-》选择器<br>1.同一个选择器：从上往下执行。<br><img src="http://img-blog.csdnimg.cn/20190331102853541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">效果如下</p>
+<p><img src="http://img-blog.csdnimg.cn/20190331103330788.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>3.不同类型的选择器：优先级<br>先解析低优先级；<br>div&lt;class&lt;id<br>原理同上 <hr></p>
+<p>4.外部样式 内部样式合并之后再一起解析<br>先外部样式再内部。<br>其他原理同上。<br>5.内联样式：外部和内部解析完之后再解析内联。<br>6.加了important字段的 最后执行。<br><strong>继承原则</strong></p>
+<p>1.文字 文本 样式 可被继承</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  div.txt&#123;</span><br><span class="line">   color:red;</span><br><span class="line">   &#125;</span><br><span class="line">   &lt;body&gt;  </span><br><span class="line">    &lt;div class&#x3D;&quot;txt&quot;&gt;</span><br><span class="line">     苹果</span><br><span class="line"> &lt;p&gt; 香蕉   &lt;&#x2F;p&gt;</span><br><span class="line"> &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<p>其中苹果和香蕉属性相同。</p>
+<p>2.块级元素 宽度不被设置时则会继承父级元素的宽，高由内容决定。<br><strong>组合选择器</strong><br>把基本选择器 通过特殊字符串在一起<br>分组选择器<br>用逗号隔开：div,p 代表两个选择器内容共同<br>嵌套选择器<br>用空格隔开：div p  嵌套在div里的p才能生效<br>子选择器<br>div&gt;p 必须是上一级的div才能生效。<br>相邻选择器；同级别的<br>div+p<br><strong>属性选择器</strong></p>
+<p><img src="http://img-blog.csdnimg.cn/20190331122301403.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>css背景</strong><br>CSS 属性定义背景效果:</p>
+<p><em>background-color</em>属性定义了元素的背景颜色.<br><em>background-image</em>属性描述了元素的背景图像.<br>默认情况下，背景图像进行平铺重复显示<br><em>background-repeat</em>：<br>background-repeat:repeat-x;水平方向平铺<br>background-repeat:repeat-y;垂直方向平铺<br>background-repeat:no-repeat;不平铺<br><em>background-attachment</em>：<br>scroll<br>背景图片随页面的其余部分滚动。这是默认<br>fixed<br>背景图像是固定的<br>使用简写属性时，属性值的顺序为：:</p>
+<p>   background-color<br>    background-image<br>    background-repeat<br>    background-attachment<br>    background-position</p>
+<p><strong>css字体</strong><br>font<br>    在一个声明中设置所有的字体属性</p>
+<p>font-family<br>    指定文本的字体系列</p>
+<p>font-size<br>    指定文本的字体大小</p>
+<p>font-style<br>    指定文本的字体样式</p>
+<p>font-variant<br>    以小型大写字体或者正常字体显示文本。</p>
+<p>font-weight<br>    指定字体的粗细。</p>
+<p>   <strong>css链接和列表</strong><br>链接的样式，可以用任何CSS属性（如颜色，字体，背景等）。<br>特别的链接，可以有不同的样式，这取决于他们是什么状态。<br>这四个链接状态是： </p>
+<p>a:link - 正常，未访问过的链接<br>    a:visited - 用户已访问过的链接<br>    a:hover - 当用户鼠标放在链接上时<br>    a:active - 链接被点击的那一刻<br>    <img src="http://img-blog.csdnimg.cn/20190331152838763.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>    <strong>css盒子模型</strong><br>    Margin(外边距) - 清除边框外的区域，外边距是透明的。<br>Border(边框) - 围绕在内边距和内容外的边框。<br>Padding(内边距) - 清除内容周围的区域，内边距是透明的。<br>Content(内容) - 盒子的内容，显示文本和图像。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">div &#123;</span><br><span class="line">    width: 300px;</span><br><span class="line">    border: 25px solid green;</span><br><span class="line">    padding: 25px;</span><br><span class="line">    margin: 25px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img-blog.csdnimg.cn/20190331154327409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br><strong>css布局</strong><br><img src="http://img-blog.csdnimg.cn/20190331172852392.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">清除浮动在下一个div中添加<br>div{<br>clean :both;<br>}就可以将恢复浮动</p>
+<p><strong>css定位</strong><br>position 属性的五个值：<br>static:HTML 元素的默认值，即没有定位,遵循正常的文档流对象。<br>relative:相对定位元素的定位是相对其正常位置。<br>fixed:元素的位置相对于浏览器窗口是固定位置。<br>即使窗口是滚动的它也不会移动：<br>absolute:绝对定位的元素的位置相对于最近的已定位父元素，如果元素没有已定位的父元素，那么它的位置相对于<html>:<br>sticky:这个有点魔性，就不写了。。。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/wwcdg/wwcdg.github.io/2019/03/31/CSS%E7%BB%83%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="ckk5lg645000yes7m8ly9bk5a" data-title="CSS练习小结" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/" rel="tag">css</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-html练习记录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/03/30/html%E7%BB%83%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time class="dt-published" datetime="2019-03-30T07:08:19.000Z" itemprop="datePublished">2019-03-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a>►<a class="article-category-link" href="/categories/Web%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/03/30/html%E7%BB%83%E4%B9%A0%E8%AE%B0%E5%BD%95/">HTML练习记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p> <strong>网页基本结构</strong>：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt; 标题&lt;/title&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt; 
+hello world!
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p><img src="http://img-blog.csdnimg.cn/20190328143835884.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>  <strong>-html 文本</strong><br><img src="http://img-blog.csdnimg.cn/20190328145055305.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"></p>
+<p><strong>-HTML 图像</strong><br>HTML 图像是通过标签<code> &lt;img&gt;</code> 来定义的.<br><code>&lt;img&gt; </code>是空标签，意思是说，它只包含属性，并且没有闭合标签。要在页面上显示图像，你需要使用源属性（src）。src 指 “source”。源属性的值是图像的 URL 地址。<br>URL 指存储图像的位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt; 图片&lt;&#x2F;title&gt;</span><br><span class="line">&lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt; </span><br><span class="line"> </span><br><span class="line">&lt;img src&#x3D;&quot;C:\360downloads\wpcache\internetcache\5.jpg&quot;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img-blog.csdnimg.cn/20190328150212679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br><strong>超文本链接</strong><br>HTML 链接是通过标签<code>&lt;a&gt;</code>  来定义的.</p>
+<p>实例</p>
+<pre><code>&lt;a href=&quot;https://store.steampowered.com/&quot;&gt;这是一个链接&lt;/a&gt;</code></pre>
+<p><img src="http://img-blog.csdnimg.cn/20190328160017517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>1.HTML 链接 - target 属性</p>
+<p>使用 target 属性，你可以定义被链接的文档在何处显示。</p>
+<p>下面的这行会在新窗口打开文档：</p>
+<pre><code>&lt;a href=&quot;https://store.steampowered.com//&quot; target=&quot;_blank&quot;&gt;stream 官网&lt;/a&gt;</code></pre>
+<p><img src="http://img-blog.csdnimg.cn/20190328160116863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ul>
+<li><strong>html图片映射</strong></li>
+<li><strong>html列表</strong><br>无序列表使用<code>&lt;ul&gt;</code> 标签<br>有序列表使用<code>&lt;ol&gt;</code>标签</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">无序列表</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">&lt;li&gt;Coffee&lt;&#x2F;li&gt;</span><br><span class="line">&lt;li&gt;Milk&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br><span class="line">有序列表</span><br><span class="line">&lt;ol&gt;</span><br><span class="line">&lt;li&gt;Coffee&lt;&#x2F;li&gt;</span><br><span class="line">&lt;li&gt;Milk&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ol&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="http://img-blog.csdnimg.cn/20190328165051175.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>-HTML 表格</strong><br>表格由<code> &lt;table&gt;</code> 标签来定义。每个表格均有若干行（由<code> &lt;tr&gt;</code> 标签定义），每行被分割为若干单元格（由<code> &lt;td&gt;</code> 标签定义）。字母 td 指表格数据（table data），即数据单元格的内容。数据单元格可以包含文本、图片、列表、段落、表单、水平线、表格等。 </p>
+<pre><code>&lt;table border=&quot;1&quot;&gt;
+    &lt;tr&gt;
+        &lt;td&gt;row 1, cell 1&lt;/td&gt;
+        &lt;td&gt;row 1, cell 2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;row 2, cell 1&lt;/td&gt;
+        &lt;td&gt;row 2, cell 2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+<p><img src="http://img-blog.csdnimg.cn/20190329151313779.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>    <strong>-HTML 表单和输入</strong><br>    文本域通过<input type="text"> 标签来设定，当用户要在表单中键入字母、数字等内容时，就会用到文本域。<br>表单使用表单标签 <code>&lt;form&gt;</code> 来设置:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;form&gt;</span><br><span class="line">First name: &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;firstname&quot;&gt;&lt;br&gt;</span><br><span class="line">Last name: &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;lastname&quot;&gt;</span><br><span class="line">&lt;&#x2F;form&gt; </span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190329151830622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2. 密码字段通过标签<code>&lt;input type=&quot;password&quot;&gt;</code> 来定义:*<br>    密码字段字符不会明文显示，而是以星号或圆点替代</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;form&gt;</span><br><span class="line">Password: &lt;input type&#x3D;&quot;password&quot; name&#x3D;&quot;pwd&quot;&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+<p><img src="http://img-blog.csdnimg.cn/20190329152700653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/wwcdg/wwcdg.github.io/2019/03/30/html%E7%BB%83%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="ckk5lg645000xes7m5zgb1h06" data-title="HTML练习记录" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/" rel="tag">html</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-伪加密做法及原理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/03/25/%E4%BC%AA%E5%8A%A0%E5%AF%86%E5%81%9A%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2019-03-25T12:52:13.000Z" itemprop="datePublished">2019-03-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/">漏洞原理</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/03/25/%E4%BC%AA%E5%8A%A0%E5%AF%86%E5%81%9A%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/">伪加密做法及原理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p><strong>总结一下伪加密题的解法，首先伪加密是指对zip文件的标志位进行修改，然后达到加密的效果，实际上并没有加密。</strong></p>
+<p>一个 ZIP 文件由三个部分组成：<br>　　压缩源文件数据区+压缩源文件目录区+压缩源文件目录结束标志 。</p>
+<p>　　用Winhex工具打开查看其十六进制编码，图如下：<br>　　<img src="http://img-blog.csdnimg.cn/20190325203657619.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<p>首先需要了解一下这些16进制数的作用才能知道为什么要这样写，不要只为了做题而做题。</p>
+<p><strong>a.压缩源文件数据区：</strong><br>50 4B 03 04：这是头文件标记（0x04034b50）<br>14 00：解压文件所需 pkware 版本 </p>
+<pre><code>***00 00：全局方式位标记（有无加密）*** 这呢就是伪加密的地方！！！在504B0102的后面。下面有图。</code></pre>
+<p>08 00：压缩方式<br>5A 7E：最后修改文件时间<br>F7 46：最后修改文件日期<br>16 B5 80 14：CRC-32校验（1480B516）<br>19 00 00 00：压缩后尺寸（25）<br>17 00 00 00：未压缩尺寸（23）<br>07 00：文件名长度<br>00 00：扩展记录长度<br>6B65792E7478740BCECC750E71ABCE48CDC9C95728CECC2DC849AD284DAD0500b.压缩源文件目录区:50 4B 01 02：目录中文件文件头标记(0x02014b50)<br>3F 00：压缩使用的 pkware 版本<br>14 00：解压文件所需 pkware 版本<br>00 00：全局方式位标记（有无加密，这个更改这里进行伪加密，改为09 00打开就会提示有密码了）<br>08 00：压缩方式<br>5A 7E：最后修改文件时间<br>F7 46：最后修改文件日期<br>16 B5 80 14：CRC-32校验（1480B516）<br>19 00 00 00：压缩后尺寸（25）<br>17 00 00 00：未压缩尺寸（23）<br>07 00：文件名长度<br>24 00：扩展字段长度<br>00 00：文件注释长度<br>00 00：磁盘开始号<br>00 00：内部文件属性<br>20 00 00 00：外部文件属性<br>00 00 00 00：局部头部偏移量<br>6B65792E7478740A00200000000000010018006558F04A1CC5D001BDEBDD3B1CC5D001BDEBDD3B1CC5D001c.压缩源文件目录结束标志:50 4B 05 06：目录结束标记<br>00 00：当前磁盘编号<br>00 00：目录区开始磁盘编号<br>01 00：本磁盘上纪录总数<br>01 00：目录区中纪录总数<br>59 00 00 00：目录区尺寸大小<br>3E 00 00 00：目录区对第一张磁盘的偏移量<br>00 00 1A：ZIP 文件注释长度<br><strong>b.压缩源文件目录区:50 4B 01 02：目录中文件文件头标记(0x02014b50)</strong><br>3F 00：压缩使用的 pkware 版本<br>14 00：解压文件所需 pkware 版本<br>00 00：全局方式位标记（有无加密，这个更改这里进行伪加密，改为09 00打开就会提示有密码了）<br>08 00：压缩方式<br>5A 7E：最后修改文件时间<br>F7 46：最后修改文件日期<br>16 B5 80 14：CRC-32校验（1480B516）<br>19 00 00 00：压缩后尺寸（25）<br>17 00 00 00：未压缩尺寸（23）<br>07 00：文件名长度<br>24 00：扩展字段长度<br>00 00：文件注释长度<br>00 00：磁盘开始号<br>00 00：内部文件属性<br>20 00 00 00：外部文件属性<br>00 00 00 00：局部头部偏移量<br>6B65792E7478740A00200000000000010018006558F04A1CC5D001BDEBDD3B1CC5D001BDEBDD3B1CC5D001<br><strong>c.压缩源文件目录结束标志:50 4B 05 06：目录结束标记</strong><br>00 00：当前磁盘编号<br>00 00：目录区开始磁盘编号<br>01 00：本磁盘上纪录总数<br>01 00：目录区中纪录总数<br>59 00 00 00：目录区尺寸大小<br>3E 00 00 00：目录区对第一张磁盘的偏移量<br>00 00 1A：ZIP 文件注释长度<br>找到 504B0102 后<img src="http://img-blog.csdnimg.cn/20190325204935609.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>改完另存为文件再打开就可以了！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/wwcdg/wwcdg.github.io/2019/03/25/%E4%BC%AA%E5%8A%A0%E5%AF%86%E5%81%9A%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/" data-id="ckk5lg66k003aes7mdwtm0sli" data-title="伪加密做法及原理" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BC%AA%E5%8A%A0%E5%AF%86/" rel="tag">伪加密</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-使用hexo 搭建 blog过程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/03/22/%E4%BD%BF%E7%94%A8hexo%20%E6%90%AD%E5%BB%BA%20blog%E8%BF%87%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2019-03-22T07:59:36.000Z" itemprop="datePublished">2019-03-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Blog%E6%90%AD%E5%BB%BA/">Blog搭建</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/03/22/%E4%BD%BF%E7%94%A8hexo%20%E6%90%AD%E5%BB%BA%20blog%E8%BF%87%E7%A8%8B/">使用hexo搭建blog</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>教你如何一步一步使用hexo搭建blog。</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/03/22/%E4%BD%BF%E7%94%A8hexo%20%E6%90%AD%E5%BB%BA%20blog%E8%BF%87%E7%A8%8B/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/wwcdg/wwcdg.github.io/2019/03/22/%E4%BD%BF%E7%94%A8hexo%20%E6%90%AD%E5%BB%BA%20blog%E8%BF%87%E7%A8%8B/" data-id="ckk5lg66l003bes7mhc12c5kp" data-title="使用hexo搭建blog" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/" rel="tag">blog</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">下一页 &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog%E6%90%AD%E5%BB%BA/">Blog搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/JavaEE/">JavaEE</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/">前端</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">刷题记录</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/Crypto/">Crypto</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/MISC/">MISC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%88%86%E6%9E%90/">密码学分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/">漏洞原理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/Sql%E6%B3%A8%E5%85%A5/">Sql注入</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/XSS/">XSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">命令执行</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">文件上传</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BA%BF%E4%B8%8B%E8%B5%9B/">线下赛</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%B2%B2%E9%B9%8FHCIA/">鲲鹏HCIA</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HCIA/" rel="tag">HCIA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LSB/" rel="tag">LSB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crc%E7%A2%B0%E6%92%9E/" rel="tag">crc碰撞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crypto/" rel="tag">crypto</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlmap/" rel="tag">sqlmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag">sql注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xss/" rel="tag">xss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" rel="tag">上传漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%AA%E5%8A%A0%E5%AF%86/" rel="tag">伪加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" rel="tag">命令执行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" rel="tag">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E9%A1%B9/" rel="tag">杂项</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%B2%E6%B0%B4%E5%8D%B0/" rel="tag">盲水印</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%90%E5%86%99/" rel="tag">隐写</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Crypto/" style="font-size: 15px;">Crypto</a> <a href="/tags/HCIA/" style="font-size: 10px;">HCIA</a> <a href="/tags/LSB/" style="font-size: 10px;">LSB</a> <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/crc%E7%A2%B0%E6%92%9E/" style="font-size: 10px;">crc碰撞</a> <a href="/tags/crypto/" style="font-size: 10px;">crypto</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/misc/" style="font-size: 15px;">misc</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/sqlmap/" style="font-size: 10px;">sqlmap</a> <a href="/tags/sql%E6%B3%A8%E5%85%A5/" style="font-size: 20px;">sql注入</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" style="font-size: 15px;">上传漏洞</a> <a href="/tags/%E4%BC%AA%E5%8A%A0%E5%AF%86/" style="font-size: 10px;">伪加密</a> <a href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" style="font-size: 10px;">命令执行</a> <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" style="font-size: 10px;">密码学</a> <a href="/tags/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" style="font-size: 10px;">暴力破解</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 10px;">杂项</a> <a href="/tags/%E7%9B%B2%E6%B0%B4%E5%8D%B0/" style="font-size: 10px;">盲水印</a> <a href="/tags/%E9%9A%90%E5%86%99/" style="font-size: 10px;">隐写</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/20/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/20/Java%20EE%E2%80%94%E2%80%94Mybatis%20%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">Mybatis框架学习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/03/Java%20EE%E2%80%94%E2%80%94SpringMVC%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">SpringMVC框架学习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E5%8D%8E%E4%B8%BA%E9%B2%B2%E9%B9%8F%E4%BA%91HCIA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/">华为鲲鹏云HCIA知识总结（一）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">Python学习笔记（一）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 未完成的歌<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

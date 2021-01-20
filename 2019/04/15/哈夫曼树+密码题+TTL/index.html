@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>哈夫曼树+TTL+密码题 | 未完成的歌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="这周又做了几道题，挺有意思的，记录下。一 .奇怪的TTL 至于什么是TTL，我给大家解释下：IP报文在路由间穿梭的时候每经过一个路由，TTL就会减1，当TTL为0的时候，该报文就会被丢弃。TTL所占的位数是8位，也就是0-255的范围，但是在大多数情况下通常只需要经过很小的跳数就能完成报文的转发，远远比上限255小得多，所以我们可以用TTL值的前两位来进行传输隐藏数据如：须传送H字符，只需把H字符">
+<meta property="og:type" content="article">
+<meta property="og:title" content="哈夫曼树+TTL+密码题">
+<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2019/04/15/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91+%E5%AF%86%E7%A0%81%E9%A2%98+TTL/index.html">
+<meta property="og:site_name" content="未完成的歌">
+<meta property="og:description" content="这周又做了几道题，挺有意思的，记录下。一 .奇怪的TTL 至于什么是TTL，我给大家解释下：IP报文在路由间穿梭的时候每经过一个路由，TTL就会减1，当TTL为0的时候，该报文就会被丢弃。TTL所占的位数是8位，也就是0-255的范围，但是在大多数情况下通常只需要经过很小的跳数就能完成报文的转发，远远比上限255小得多，所以我们可以用TTL值的前两位来进行传输隐藏数据如：须传送H字符，只需把H字符">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/weiwanchengdege/photos/blob/master/Z3HGLJJWTYLU%5B7Y306VOU7W.png?raw=true">
+<meta property="og:image" content="https://github.com/weiwanchengdege/photos/blob/master/20190408114948666705.png?raw=true">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190414202949301.jpg">
+<meta property="og:image" content="https://github.com/weiwanchengdege/photos/blob/master/E2%25YM%7D%7D24~101AHU~2BMJBT.png?raw=true">
+<meta property="og:image" content="https://github.com/weiwanchengdege/photos/blob/master/A~S%7D6A7UL@UH6Z$V@3$ABUF.png?raw=true">
+<meta property="og:image" content="https://github.com/weiwanchengdege/photos/blob/master/OWO_%5BRDO@">
+<meta property="og:image" content="https://github.com/weiwanchengdege/photos/blob/master/WR_OEE87">
+<meta property="og:image" content="https://github.com/weiwanchengdege/photos/blob/master/IMG_20190415_1947502.jpg?raw=true">
+<meta property="og:image" content="https://github.com/weiwanchengdege/photos/blob/master/YX6CJY9">
+<meta property="og:image" content="https://github.com/weiwanchengdege/photos/blob/master/7NG%7D">
+<meta property="article:published_time" content="2019-04-15T12:24:29.000Z">
+<meta property="article:modified_time" content="2021-01-20T08:08:39.345Z">
+<meta property="article:author" content="未完成的歌">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/weiwanchengdege/photos/blob/master/Z3HGLJJWTYLU%5B7Y306VOU7W.png?raw=true">
+  
+    <link rel="alternate" href="/atom.xml" title="未完成的歌" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">未完成的歌</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/wwcdg/wwcdg.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-哈夫曼树+密码题+TTL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/04/15/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91+%E5%AF%86%E7%A0%81%E9%A2%98+TTL/" class="article-date">
+  <time class="dt-published" datetime="2019-04-15T12:24:29.000Z" itemprop="datePublished">2019-04-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">刷题记录</a>►<a class="article-category-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/MISC/">MISC</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      哈夫曼树+TTL+密码题
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>这周又做了几道题，挺有意思的，记录下。<br><strong>一 .奇怪的TTL</strong><br> 至于什么是TTL，我给大家解释下：IP报文在路由间穿梭的时候每经过一个路由，TTL就会减1，当TTL为0的时候，该报文就会被丢弃。TTL所占的位数是8位，也就是0-255的范围，但是在大多数情况下通常只需要经过很小的跳数就能完成报文的转发，远远比上限255小得多，所以我们可以用TTL值的前两位来进行传输隐藏数据<br>如：须传送H字符，只需把H字符换成二进制，每两位为一组，每次填充到TTL字段的开头两位并把剩下的6位设置为1（xx111111），这样发4个IP报文即可传送1个字节。（摘抄···）<br>了解了这些之后开始做题。<hr><br>打开有两个txt文档<br><img src="https://github.com/weiwanchengdege/photos/blob/master/Z3HGLJJWTYLU%5B7Y306VOU7W.png?raw=true" alt="在这里插入图片描述"><br>题目描述如下：<br>我们截获了一些IP数据报，发现报文头中的TTL值特别可疑，怀疑是通信方嵌入了数据到TTL，我们将这些TTL值提取了出来，你能看出什么端倪吗？<br>打开文档：</p>
+<p><img src="https://github.com/weiwanchengdege/photos/blob/master/20190408114948666705.png?raw=true" alt="在这里插入图片描述"><br>txt文件里面有很多列ttl值，63,127,191,255<br>63== 00111111<br>127==01111111<br>191==10111111<br>255==11111111<br>变得只有前面两位，后面6位不变，如果传输4个就是一字节<br>使用脚本提取<br>(大佬的脚本)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">fp &#x3D; open(&#39;ttl.txt&#39;,&#39;r&#39;)</span><br><span class="line">a &#x3D; fp.readlines()</span><br><span class="line">p &#x3D; []</span><br><span class="line">for i in a:</span><br><span class="line">    p.append(int(i[4:]))</span><br><span class="line">s &#x3D; &#39;&#39;</span><br><span class="line">for i in p:</span><br><span class="line">    if i &#x3D;&#x3D; 63:</span><br><span class="line">        a &#x3D; &#39;00&#39;</span><br><span class="line">    elif i &#x3D;&#x3D; 127:</span><br><span class="line">        a &#x3D; &#39;01&#39;</span><br><span class="line">    elif i &#x3D;&#x3D; 191:</span><br><span class="line">        a &#x3D; &#39;10&#39;</span><br><span class="line">    elif i &#x3D;&#x3D; 255:</span><br><span class="line">        a &#x3D; &#39;11&#39;</span><br><span class="line">    s +&#x3D; a</span><br><span class="line"># print(s)</span><br><span class="line"></span><br><span class="line">import binascii</span><br><span class="line">flag &#x3D; &#39;&#39;</span><br><span class="line">for i in range(0,len(s),8):</span><br><span class="line">    flag +&#x3D; chr(int(s[i:i+8],2))</span><br><span class="line">flag &#x3D; binascii.unhexlify(flag)</span><br><span class="line">wp &#x3D; open(&#39;res.jpg&#39;,&#39;wb&#39;)</span><br><span class="line">wp.write(flag)</span><br><span class="line">wp.close()</span><br><span class="line">#00111111 63</span><br><span class="line">#01111111 127</span><br><span class="line">#10111111 191</span><br><span class="line">#11111111 255</span><br></pre></td></tr></table></figure>
+<p>得到：<img src="https://img-blog.csdnimg.cn/20190414202949301.jpg" alt="在这里插入图片描述"><br>写完之后发现只有二维码的一部分，应该是不止一张图，用foremost直接分开就好了，之后用ps拼在一块<br><a target="_blank" rel="noopener" href="http://www.mamicode.com/info-detail-2283219.html">foremost下载及使用说明</a><br><img src="https://github.com/weiwanchengdege/photos/blob/master/E2%25YM%7D%7D24~101AHU~2BMJBT.png?raw=true" alt="在这里插入图片描述"><br>得到六张图：<img src="https://github.com/weiwanchengdege/photos/blob/master/A~S%7D6A7UL@UH6Z$V@3$ABUF.png?raw=true" alt="在这里插入图片描述"><br>使用PS拼接：<img src="https://github.com/weiwanchengdege/photos/blob/master/OWO_%5BRDO@" alt="在这里插入图片描述">WYEP%5DFM~KMYET.png?raw=true)</p>
+<p>扫描之后得到如下信息：</p>
+<pre><code>key:AutomaticKey 
+cipher:fftu&#123;2028mb39927wn1f96o6e12z03j58002p&#125;</code></pre>
+<p>应该就是AutoKey那个加密，<a target="_blank" rel="noopener" href="https://www.wishingstarmoye.com/ctf/autokey">解密网站</a><br>得到flag{2028ab39927df1d96e6a12b03w58002k}<br><strong>二.哈夫曼树</strong><br>霍夫曼树又称最优二叉树，是一种带权路径长度最短的二叉树。所谓树的带权路径长度，就是树中所有的叶结点的权值乘上其到根结点的路径长度（若根结点为0层，叶结点到根结点的路径长度为叶结点的层数）。树的路径长度是从树根到每一结点的路径长度之和，记为WPL=（W1<em>L1+W2</em>L2+W3<em>L3+…+Wn</em>Ln），N个权值Wi（i=1,2,…n）构成一棵有N个叶结点的二叉树，相应的叶结点的路径长度为Li（i=1,2,…n）。可以证明霍夫曼树的WPL是最小的。<hr></p>
+<p>打开题目为：<br><img src="https://github.com/weiwanchengdege/photos/blob/master/WR_OEE87" alt="在这里插入图片描述">~7@STVFM44K(%7DD.png?raw=true)由于是小白所以不会写哈夫曼树的脚本，只能自己画了（Q w Q）<br>    想知道咋画点击👉    <a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/a501d80c16dfa0ec620f5e70.html">画法</a><br>   <img src="https://github.com/weiwanchengdege/photos/blob/master/IMG_20190415_1947502.jpg?raw=true" alt="在这里插入图片描述"><br>之后就自己对照树的结构，左0右1进行查找<br><img src="https://github.com/weiwanchengdege/photos/blob/master/YX6CJY9" alt="在这里插入图片描述">CM9K%5D%5DH8YFC%7BE%60S.png?raw=true)<br>得到flag有两种可能试试就知道那个对了。<br><strong>三.密码题</strong><br>打开：<img src="https://github.com/weiwanchengdege/photos/blob/master/7NG%7D" alt="在这里插入图片描述">E6%5BE%5BM437OU%5DQ%5BXQ6C.png?raw=true)<br>一看就知道是摩斯密码，解码得：</p>
+<pre><code>MORSEISCOOLBUTBACONISCOOLER/CCCDDCDDDC/DDCCCCDDDCDCDCC/CDCDCCDDCDCDDDCDCDDC/
+DCCDDCCDDDCCDCC/CCDCDCDDDCDCDCCDCCCD/CCDCDCCDCCCDDCDCCCDCCCDCC/DDCCDCCDDCC
+DCCCCCCCCCCDDDDDCCCCCCCCCDDCDCCCCCDCDCCCDDDCDDCCDCDDCDDCDDDDCDDCCDCCC</code></pre>
+<p>根据前面的提示为发现后面培根密码，根据培根密码的格式将CD转化为AB</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;AAABBABBBA&#x2F;BBAAAABBBABABAA&#x2F;ABABAABBABABBBABABBA&#x2F;BAABBAABBBAABAA&#x2F;AABABABBBABABAAB</span><br><span class="line">AAAB&#x2F;AABABAABAAABBABAAABAAABAA&#x2F;BBAABAABBAABAAAAAAAAAABBBBBAAAAAAAAABBABAAAAABAB</span><br><span class="line">AAABBBABBAABABBABBABBBBABBAABAAA</span><br></pre></td></tr></table></figure>
+<p>解得：<code>DO YOU KNOW THE FOUR FENCE ZGIAHYANAUOZNXWI</code><br>英语不太好，百度翻译得：你知道四道栅栏吗？<br>再接着着解栅栏密码  （每组次数为4）：ZHANGYUXIAOWANZI<br>终于解完了，最后的提交格式弄了半小时，太坑了。。。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/wwcdg/wwcdg.github.io/2019/04/15/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91+%E5%AF%86%E7%A0%81%E9%A2%98+TTL/" data-id="ckk5lg670004fes7mdr9wct27" data-title="哈夫曼树+TTL+密码题" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/16/%E5%8F%8C%E5%9B%BE+%E7%9B%B2%E6%B0%B4%E5%8D%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          双图+盲水印
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/10/LSB%E9%9A%90%E5%86%99+%E7%94%BB%E5%9B%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">LSB隐写+画图</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog%E6%90%AD%E5%BB%BA/">Blog搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/JavaEE/">JavaEE</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/">前端</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">刷题记录</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/Crypto/">Crypto</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/MISC/">MISC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%88%86%E6%9E%90/">密码学分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/">漏洞原理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/Sql%E6%B3%A8%E5%85%A5/">Sql注入</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/XSS/">XSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">命令执行</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">文件上传</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BA%BF%E4%B8%8B%E8%B5%9B/">线下赛</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%B2%B2%E9%B9%8FHCIA/">鲲鹏HCIA</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HCIA/" rel="tag">HCIA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LSB/" rel="tag">LSB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crc%E7%A2%B0%E6%92%9E/" rel="tag">crc碰撞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crypto/" rel="tag">crypto</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlmap/" rel="tag">sqlmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag">sql注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xss/" rel="tag">xss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" rel="tag">上传漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%AA%E5%8A%A0%E5%AF%86/" rel="tag">伪加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" rel="tag">命令执行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" rel="tag">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E9%A1%B9/" rel="tag">杂项</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%B2%E6%B0%B4%E5%8D%B0/" rel="tag">盲水印</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%90%E5%86%99/" rel="tag">隐写</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Crypto/" style="font-size: 15px;">Crypto</a> <a href="/tags/HCIA/" style="font-size: 10px;">HCIA</a> <a href="/tags/LSB/" style="font-size: 10px;">LSB</a> <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/crc%E7%A2%B0%E6%92%9E/" style="font-size: 10px;">crc碰撞</a> <a href="/tags/crypto/" style="font-size: 10px;">crypto</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/misc/" style="font-size: 15px;">misc</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/sqlmap/" style="font-size: 10px;">sqlmap</a> <a href="/tags/sql%E6%B3%A8%E5%85%A5/" style="font-size: 20px;">sql注入</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" style="font-size: 15px;">上传漏洞</a> <a href="/tags/%E4%BC%AA%E5%8A%A0%E5%AF%86/" style="font-size: 10px;">伪加密</a> <a href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" style="font-size: 10px;">命令执行</a> <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" style="font-size: 10px;">密码学</a> <a href="/tags/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" style="font-size: 10px;">暴力破解</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 10px;">杂项</a> <a href="/tags/%E7%9B%B2%E6%B0%B4%E5%8D%B0/" style="font-size: 10px;">盲水印</a> <a href="/tags/%E9%9A%90%E5%86%99/" style="font-size: 10px;">隐写</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/20/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/20/Java%20EE%E2%80%94%E2%80%94Mybatis%20%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">Mybatis框架学习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/03/Java%20EE%E2%80%94%E2%80%94SpringMVC%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">SpringMVC框架学习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E5%8D%8E%E4%B8%BA%E9%B2%B2%E9%B9%8F%E4%BA%91HCIA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/">华为鲲鹏云HCIA知识总结（一）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">Python学习笔记（一）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 未完成的歌<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Python学习笔记（一） | 未完成的歌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前言：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;立个flag，从今天开始学习Python （￣︶￣）↗，希望自己能坚持下去。  那些最好的程序员不是为了得到更高的薪水或者得到公众的仰慕而编程，他们只是觉得这是一件有趣的事情。（扯淡） ——Linux 之父 LinusTorvalds    Python 的设计理念是 “优雅”、“明确”、“简单”。  人生苦">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python学习笔记（一）">
+<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2019/12/05/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="未完成的歌">
+<meta property="og:description" content="前言：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;立个flag，从今天开始学习Python （￣︶￣）↗，希望自己能坚持下去。  那些最好的程序员不是为了得到更高的薪水或者得到公众的仰慕而编程，他们只是觉得这是一件有趣的事情。（扯淡） ——Linux 之父 LinusTorvalds    Python 的设计理念是 “优雅”、“明确”、“简单”。  人生苦">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200930203006395.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200930211450520.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200922200245998.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191121192741750.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019112119523915.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,sha1dow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191125115206221.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019112512173868.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191125122930346.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019112519354257.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191125200619272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191125201915323.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191125202121359.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200411182121977.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200411215338220.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200411215257461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200411215202749.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200411220748460.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200411221629527.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020041123171936.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200411232205779.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200411234053636.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200411234245265.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200411235925460.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020041200040212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/202004121313258.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200412162907530.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200412164301434.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200412224324884.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200412224352282.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200412225347119.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200412225631372.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2019-12-05T07:13:07.000Z">
+<meta property="article:modified_time" content="2021-01-20T14:21:48.381Z">
+<meta property="article:author" content="未完成的歌">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200930203006395.png">
+  
+    <link rel="alternate" href="/atom.xml" title="未完成的歌" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">未完成的歌</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/wwcdg/wwcdg.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-python学习笔记（一）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/12/05/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2019-12-05T07:13:07.000Z" itemprop="datePublished">2019-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Python学习笔记（一）
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>前言：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;立个flag，从今天开始学习Python （￣︶￣）↗，希望自己能坚持下去。</p>
+<blockquote>
+<p>那些最好的程序员不是为了得到更高的薪水或者得到公众的仰慕而编程，他们只是觉得这是一件有趣的事情。（扯淡） ——Linux 之父 LinusTorvalds</p>
+</blockquote>
+<ul>
+<li><p> Python 的设计理念是 “优雅”、“明确”、“简单”。</p>
+</li>
+<li><p>人生苦短，我用Python</p>
+<hr>
+
+</li>
+</ul>
+<p>关于python的介绍就不多说了，只记录下一些重要的部分，在系统的学习之前先说下python语言的一些特点。</p>
+<h4 id="一、Python3-基础语法："><a href="#一、Python3-基础语法：" class="headerlink" title="一、Python3 基础语法："></a>一、Python3 基础语法：</h4><p><strong>1、编码</strong>:</p>
+<p>默认情况下，Python 3源码文件以<code>utf-8</code>编码，所有字符串都是 unicode 字符串。 当然也可以为源码文件指定不同的编码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8  -*-</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:cp-1252 -*-</span></span><br></pre></td></tr></table></figure>
+<p> <strong>2、python保留字</strong>:</p>
+<p>保留字即关键字，我们不能把它们用作任何标识符名称。Python 的标准库提供了一个 keyword 模块，可以输出当前版本的所有关键字：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> keyword</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>keyword.kwlist</span><br><span class="line">[<span class="string">&#x27;False&#x27;</span>, <span class="string">&#x27;None&#x27;</span>, <span class="string">&#x27;True&#x27;</span>, <span class="string">&#x27;and&#x27;</span>, <span class="string">&#x27;as&#x27;</span>, <span class="string">&#x27;assert&#x27;</span>, <span class="string">&#x27;break&#x27;</span>, <span class="string">&#x27;class&#x27;</span>, <span class="string">&#x27;continue&#x27;</span>, <span class="string">&#x27;def&#x27;</span>, <span class="string">&#x27;del&#x27;</span>, <span class="string">&#x27;elif&#x27;</span>, <span class="string">&#x27;else&#x27;</span>, <span class="string">&#x27;except&#x27;</span>, </span><br><span class="line"><span class="string">&#x27;finally&#x27;</span>, <span class="string">&#x27;for&#x27;</span>, <span class="string">&#x27;from&#x27;</span>, <span class="string">&#x27;global&#x27;</span>, <span class="string">&#x27;if&#x27;</span>, <span class="string">&#x27;import&#x27;</span>, <span class="string">&#x27;in&#x27;</span>, <span class="string">&#x27;is&#x27;</span>, <span class="string">&#x27;lambda&#x27;</span>, <span class="string">&#x27;nonlocal&#x27;</span>, <span class="string">&#x27;not&#x27;</span>, <span class="string">&#x27;or&#x27;</span>, <span class="string">&#x27;pass&#x27;</span>, <span class="string">&#x27;raise&#x27;</span>, </span><br><span class="line"><span class="string">&#x27;return&#x27;</span>, <span class="string">&#x27;try&#x27;</span>, <span class="string">&#x27;while&#x27;</span>, <span class="string">&#x27;with&#x27;</span>, <span class="string">&#x27;yield&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<p> <strong>3、标识符</strong>:</p>
+<ul>
+<li>第一个字符必须是<strong>字母</strong>或<strong>下划线</strong> <code>_</code> 。</li>
+<li>标识符对大小写敏感。</li>
+<li>在 Python 3 中，可以用中文作为变量名。</li>
+</ul>
+<p> <strong>4、注释</strong>:</p>
+<p>Python中单行注释以 <code>#</code> 开头，Python中单行注释以#开头，多行注释用三个单引号（<code>&#39;&#39;&#39;</code>）或者三个双引号（<code>&quot;&quot;&quot;</code>）将注释括起来。</p>
+<p>例：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/python3</span></span><br><span class="line"> </span><br><span class="line"><span class="meta"># 第一个注释</span></span><br><span class="line">print (<span class="string">&quot;Hello, Python!&quot;</span>) <span class="meta"># 第二个注释</span></span><br></pre></td></tr></table></figure>
+<p> <strong>5、行与缩进</strong>：</p>
+<ul>
+<li><p>python最具特色的就是使用缩进来表示代码块，不需要使用大括号 <code>&#123;&#125;</code> 。</p>
+</li>
+<li><p>缩进的空格数是可变的，但是<strong>同一个代码块的语句必须包含相同的缩进空格数</strong>。实例如下：</p>
+</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> True:</span><br><span class="line">    print (<span class="string">&quot;True&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print (<span class="string">&quot;False&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>以下代码最后一行语句缩进数的空格数不一致，会导致运行错误：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;Answer&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;True&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;Answer&quot;</span>)</span><br><span class="line">  <span class="built_in">print</span> (<span class="string">&quot;False&quot;</span>)    <span class="comment"># 缩进不一致，会导致运行错误</span></span><br></pre></td></tr></table></figure>
+<p> <strong>6、多行语句</strong>：</p>
+<p> Python 通常是一行写完一条语句，但如果语句很长，我们可以使用反斜杠<code>\</code>来实现多行语句，例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">total = item_one + \</span><br><span class="line">        item_two + \</span><br><span class="line">        item_three</span><br></pre></td></tr></table></figure>
+<p>在 [], {}, 或 () 中的多行语句，不需要使用反斜杠()，例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">total = [<span class="string">&#x27;item_one&#x27;</span>, <span class="string">&#x27;item_two&#x27;</span>, <span class="string">&#x27;item_three&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;item_four&#x27;</span>, <span class="string">&#x27;item_five&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p> <strong>7、同一行使用多条语句</strong>：</p>
+<p> Python可以在同一行中使用多条语句，语句之间使用分号<code>;</code>分割，以下是一个简单的实例：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import sys; x = <span class="string">&#x27;runoob&#x27;</span>; sys.stdout.write(x + <span class="string">&#x27;\n&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>输出结果为：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runoob</span><br></pre></td></tr></table></figure>
+<p> <strong>8、导入模块</strong>：</p>
+<ul>
+<li>在 python 用 <code>import</code> 或者 <code>from...import</code> 来导入相应的模块。</li>
+<li>将整个模块(somemodule)导入： <code>import somemodule</code></li>
+<li>从某个模块中导入某个函数： <code>from somemodule import somefunction</code></li>
+<li>从某个模块中导入多个函数： <code>from somemodule import firstfunc, secondfunc, thirdfunc</code></li>
+<li>将某个模块中的全部函数导入： <code>from somemodule import *</code></li>
+</ul>
+<p> <strong>9、输入输出</strong>：</p>
+<p>执行下面的程序在按回车键后就会等待用户输入：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">input</span>(<span class="string">&quot;请输入：&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200930203006395.png" alt="在这里插入图片描述"></p>
+<p>用户按下 enter 键时，程序将退出。</p>
+<p> <code>print</code> 默认输出是换行的，如果要实现不换行需要在变量末尾加上 <code>end=&quot;&quot;: </code> ，引号里可以添加符号用来分隔数据。</p>
+<p> 例：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200930211450520.png" alt="在这里插入图片描述"></p>
+<hr>
+
+<p> <strong>第一个 Python3 程序</strong>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line">print(<span class="string">&quot;Hello, World!&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p><code>​#!/usr/bin/python​​</code> ：指定用什么解释器运行脚本（如果是python2就用<code>#!/usr/bin/python2</code>，python3同理）和解释器所在的位置，如果解释器没有装在/usr/bin/目录，改成其所在目录就行了，或者更通用的方法是（自动寻找解释器）：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python​</span><br></pre></td></tr></table></figure>
+<p>将以上代码保存在 ​hello.py​ 文件中并使用 python 命令执行该脚本文件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python hello.py</span><br></pre></td></tr></table></figure>
+<p>以上命令输出结果为：<br><img src="https://img-blog.csdnimg.cn/20200922200245998.png" alt="在这里插入图片描述"></p>
+<p>🆗，这些基本的东西说完了，开始正式学习。<hr></p>
+<h3 id="第一节：变量和字符串"><a href="#第一节：变量和字符串" class="headerlink" title="第一节：变量和字符串"></a>第一节：变量和字符串</h3><p>首先：Python 每个语句结束可以不写分号 <code>;</code>， 如 <code>print(&#39;hello&#39;)</code> 打印 <code>hello</code></p>
+<h5 id="1、变量"><a href="#1、变量" class="headerlink" title="1、变量"></a>1、变量</h5><p>因为之前学过编程语言，变量就不多说了。需要注意的是，Python 对<strong>大小写敏感</strong>，也就是说 “a” 和 “A” 会是两个不同的变量。</p>
+<h5 id="2、字符串"><a href="#2、字符串" class="headerlink" title="2、字符串"></a>2、字符串</h5><p> <strong>1、基本介绍</strong>：</p>
+<p>单引号 <code>&#39;&#39;</code>或者双引号 <code>&quot;&quot;</code> 都可以，再或者 <code>&#39;&#39;&#39; &#39;&#39;&#39;</code> 三引号，其中三引号被用于过于长段的文字或者是说明，只要是三引号不完你就可以随意换行写下文字。</p>
+<ul>
+<li>字符串直接能相加，如：<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str1 = <span class="string">&#x27;hi&#x27;</span></span><br><span class="line">str2 = <span class="string">&#x27;hello&#x27;</span></span><br><span class="line">print(str1 + str2)</span><br></pre></td></tr></table></figure>
+运行结果：</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hi jaybo</span><br></pre></td></tr></table></figure>
+<ul>
+<li>字符串相乘，如：<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> = <span class="string">&#x27;bang!&#x27;</span></span><br><span class="line">total = <span class="built_in">string</span> * <span class="number">3</span> </span><br></pre></td></tr></table></figure>
+打印 total ：</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bang!bang!bang!</span><br></pre></td></tr></table></figure>
+<p><strong>2、字符串的分片与索引</strong>：</p>
+<p>字符串可以通过 <code>string[n]</code> 的方式进行索引和分片。</p>
+<p>字符串的分片实际可以看作是从字符串中找出来你要截取的东西，复制出来一小段你要的长度，存储在另一个地方，而不会对字符串这个源文件改动。分片获得的每个字符串可以看作是原字符串的一个副本。</p>
+<p>先看下面这段代码：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">&#x27;My name is Mike&#x27;</span></span><br><span class="line">print(name[<span class="number">0</span>])</span><br><span class="line"><span class="string">&#x27;M&#x27;</span></span><br><span class="line">print(name[<span class="number">-4</span>])</span><br><span class="line"><span class="string">&#x27;M&#x27;</span></span><br><span class="line">print(name[<span class="number">11</span>:<span class="number">14</span>]) <span class="meta"># from 11th to 14th, 14th one is excluded</span></span><br><span class="line"><span class="string">&#x27;Mik&#x27;</span></span><br><span class="line">print(name[<span class="number">11</span>:<span class="number">15</span>]) <span class="meta"># from 11th to 15th, 15th one is excluded</span></span><br><span class="line"><span class="string">&#x27;Mike&#x27;</span></span><br><span class="line">print(name[<span class="number">5</span>:])</span><br><span class="line"><span class="string">&#x27;me is Mike&#x27;</span></span><br><span class="line">print(name[:<span class="number">5</span>])</span><br><span class="line"><span class="string">&#x27;My na&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>解释：<br><img src="https://img-blog.csdnimg.cn/20191121192741750.png" alt="在这里插入图片描述"><br><code>:</code> 两边分别代表着字符串的分割从哪里开始，并到哪里结束。</p>
+<p>以 name[11:14] 为例，截取的编号从第11个字符开始，到位置为14但不包含第14个字符结束。</p>
+<p>而像 name[5:] 这样的写法代表着从编号为5的字符到结束的字符串分片。</p>
+<p>相反，name[:5] 则代表着从编号为0的字符开始到编号为5但不包含第5个字符的字符分片。可能容易搞混，可以想象成第一种是从5到最后面，程序员懒得数有多少个所以就省略地写。第二种是从最前面到5，同样是懒得写0，所以就写成了 [:5] 。</p>
+<p><strong>3、尝试</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">num = <span class="number">1</span></span><br><span class="line"><span class="built_in">string</span> = <span class="string">&#x27;1&#x27;</span></span><br><span class="line">print(num + <span class="built_in">string</span>)</span><br></pre></td></tr></table></figure>
+<p>上面代码将出错！</p>
+<p>解释：整数型不能和字符串直接相加。可以先把该字符串转为整数型，再相加，即 <code>int(string)</code></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">num = <span class="number">1</span></span><br><span class="line"><span class="built_in">string</span> = <span class="string">&#x27;1&#x27;</span></span><br><span class="line">print(num + <span class="built_in">int</span>(<span class="built_in">string</span>))</span><br></pre></td></tr></table></figure>
+<p><strong>4、 字符串的方法</strong>：</p>
+<p>这里以<strong>replace</strong>方法为例</p>
+<ul>
+<li>很多时候你使用手机号在网站注册账户信息，为了保证用户的信息安全性，通常账户信息只会显示后四位，其余的用 * 来代替，我们试着用字符串的方法来完成这一个功能。</li>
+</ul>
+<p>输入代码：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">phone_number = <span class="string">&#x27;1386-666-0006&#x27;</span></span><br><span class="line">hiding_number = phone_number.replace(phone_number[:<span class="number">9</span>],<span class="string">&#x27;*&#x27;</span> * <span class="number">9</span>)</span><br><span class="line">print(hiding_number)</span><br></pre></td></tr></table></figure>
+<p>我们使用了一个字符串方法 <code>replace()</code>进行“遮挡”。replace 方法的括号中，第一个 <code>phone_number[:9]</code> 代表要被替换掉的部分，后面的 <code>&#39;*&#39; * 9</code> 表示将要替换成什么字符，也就是把 <code>*</code> 乘以9，显示9个 <code>*</code> 。</p>
+<p>你会得到这样的结果：<code>*********0006</code></p>
+<h3 id="第二节：函数"><a href="#第二节：函数" class="headerlink" title="第二节：函数"></a>第二节：函数</h3><h4 id="1、创建函数"><a href="#1、创建函数" class="headerlink" title="1、创建函数"></a>1、创建函数</h4><p>Python 中所谓的使用函数，就是把你要处理的对象放到一个名字后面的括号里。简单来说，函数就是这么使用的，往里面塞东西就可以得到处理结果。这样的函数在 Python 中还有很多。<br>这里面先介绍几个常见的词：</p>
+<ul>
+<li><code>def</code>（即 define，定义）的含义是创建函数，也就是定义一个函数。</li>
+<li><code>arg</code> （即 argument，参数）有时你还能见到这种写法：<code>parameter</code>，二者都是参数的意思但是稍有不同，这里不展开说了。</li>
+<li><code>return</code> 即返回结果<br><img src="https://img-blog.csdnimg.cn/2019112119523915.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,sha1dow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li><strong>举个例子</strong>：<br>把摄氏度转化定义为函数 fahrenheit_Converter() ，那么将输入进去的必然是摄氏度（Celsius）的数值，我们把 C 设为参数，最后返回的是华氏度（fahrenheit）的数值，我们用下面的函数来表达，输入代码：</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">def <span class="title">fahrenheit_converter</span>(<span class="params">C</span>):</span></span><br><span class="line"><span class="function">     fahrenheit</span> = C * <span class="number">9</span>/<span class="number">5</span> + <span class="number">32</span></span><br><span class="line">     <span class="keyword">return</span> str(fahrenheit) + <span class="string">&#x27;˚F&#x27;</span></span><br></pre></td></tr></table></figure>
+<p> 注：计算的结果类型是float，不能与字符串<code>&#39;˚F&#39;</code>相合并，所以需要先用str()函数进行转换。</p>
+<p>输入完以上代码后，函数定义完成，那么我们开始使用它。我们把使用函数这种行为叫做“调用”（call）。</p>
+<p>下面这段代码意味着——“请使用摄氏度转换器将35摄氏度转换成华氏度，将结果储存在名为 C2F 的变量并打印出来。”这样我们就完成了函数的调用同时打印了结果。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C2F = fahrenheit_converter(<span class="number">35</span>)</span><br><span class="line">print(C2F)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、传递参数与参数类型"><a href="#2、传递参数与参数类型" class="headerlink" title="2、传递参数与参数类型"></a>2、传递参数与参数类型</h4><p>前面说了关于函数定义和使用，在这一节我们谈论一些细节但是重要的问题一一参数。对于在一开始就设定了必要参数的函数来说，我们是通过打出函数的名称并向括号中传递参数实现对函数的调用（call），即只要把参数放进函数的括号中即可，就像是这样：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fahrenheit_converter(<span class="number">35</span>)</span><br><span class="line">fahrenheit_converter(<span class="number">15</span>)</span><br></pre></td></tr></table></figure>
+<p>事实上，传递参数的方式有两种：</p>
+<ul>
+<li>位置参数</li>
+<li>关键词参数</li>
+</ul>
+<p>例:</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">def <span class="title">trapezoid_area</span>(<span class="params">base_up, base_down, height</span>):</span></span><br><span class="line"><span class="function">     <span class="keyword">return</span> 1/2 * (<span class="params">base_up + base_down</span>) * height</span></span><br></pre></td></tr></table></figure>
+<p>接下来我们开始调用函数。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trapezoid_area(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>不难看出，填入的参数 1，2，3 分别对应着参数 <code>base_up</code>，<code>base_down</code> 和 <code>height</code>。 这种传入参数的方式被称作为<strong>位置参数</strong>。</p>
+<p>接着是第二种传入方式：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trapezoid_area(base_up=<span class="number">1</span>, base_down=<span class="number">2</span>, height=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>更直观地，在调用函数的时候，我们将每个参数名称后面赋予一个我们想要传入的值。这种以名称作为一一对应的参数传入方式被称作是<strong>关键词参数</strong>。</p>
+<p>避免混乱的最好方法就是先制造混乱，我们试着解决一个更复杂的问题，按照下面几种方式调用函数并打印结果：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">trapezoid_area(height=<span class="number">3</span>, base_down=<span class="number">2</span>, base_up=<span class="number">1</span>)   <span class="meta"># RIGHT!</span></span><br><span class="line">trapezoid_area(height=<span class="number">3</span>, base_down=<span class="number">2</span>, <span class="number">1</span>)           <span class="meta"># WRONG!</span></span><br><span class="line">trapezoid_area(base_up=<span class="number">1</span>, base_down=<span class="number">2</span>, <span class="number">3</span>)          <span class="meta"># RIGHT!</span></span><br><span class="line">trapezoid_area(<span class="number">1</span>, <span class="number">2</span>, height=<span class="number">3</span>)                     <span class="meta"># RIGHT!</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一行的函数参数按照反序传入，因为是关键词参数，所以并不影响函数正常运作；</li>
+<li>第二行的函数参数反序传入，但是到了第三个却变成了位置参数，遗憾的是这种方式是 错误的语法，因为如果按照位置来传入，最后一个应该是参数 height 的位置。 但是前面 height 已经按照名称传入了值3，所以是冲突的。</li>
+<li>第三行的函数参数正序传入，前两个是以关键词的方式传入，最后一个以位置参数传入，这个函数是可以正常运行的；</li>
+<li>第四行的函数参数正序传入，前两个是以位置的方式传入，最后一个以关键词参数传入，这个函数是可以正常运行的。</li>
+</ul>
+<h5 id="2-1-认识一个新的函数一-“open”"><a href="#2-1-认识一个新的函数一-“open”" class="headerlink" title="2.1 认识一个新的函数一 “open”"></a>2.1 认识一个新的函数一 “open”</h5><p>这个函数使用起来很简单，只需要传入两个参数就可以正常运转了：文件的完整路径和名称，打开的方式。</p>
+<p>如果是 Windows 用户，应该像这样写你的路径：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file = open(<span class="string">&#x27;C:/Users/smk/Desktop/text.txt&#x27;</span>,<span class="string">&#x27;w&#x27;</span>) </span><br><span class="line">file.write(<span class="string">&#x27;hello world!&#x27;</span>)</span><br><span class="line">file.close()</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20191125115206221.png" alt="在这里插入图片描述"><br>这段代码打开了桌面上的 file.txt 文件，并写入了 “Hello World” ，<code>w</code> 代表着如果桌面上有 file.txt 这个文件就直接写入 “hello world” ,如果没有 file.txt 这个文件就创建一个这样的文件。<br>但此时数据只写到了缓存中，并未保存到文件！文件需要<code>close()</code>方法关闭这个文件即可将缓存中的数据写入到文件中。</p>
+<h3 id="第三节：循环与判断"><a href="#第三节：循环与判断" class="headerlink" title="第三节：循环与判断"></a>第三节：循环与判断</h3><h4 id="1、逻辑判断一一True-amp-False"><a href="#1、逻辑判断一一True-amp-False" class="headerlink" title="1、逻辑判断一一True &amp; False"></a>1、逻辑判断一一True &amp; False</h4><p>之前学过编程语言，这里就不多写了。</p>
+<h4 id="2、成员运算符与身份运算符"><a href="#2、成员运算符与身份运算符" class="headerlink" title="2、成员运算符与身份运算符"></a>2、成员运算符与身份运算符</h4><p>成员运算符和身份运算符的关键词是 <code>in</code> 与 <code>is</code>。把 <code>in</code> 放在两个对象中间的含义是，测试前者是否存在于 <code>in</code> 后面的集合中。<br>例：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">album = [<span class="string">&#x27;Black Star&#x27;</span>,<span class="string">&#x27;David Bowie&#x27;</span>,<span class="number">25</span>,True]</span><br></pre></td></tr></table></figure>
+<p>接下来我们使用 in 来测试字符串 “Black Star” 是否在列表 album 中。如果存在则会显示 True，不存在就会显示 False 了：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;Black Star&#x27;</span> <span class="keyword">in</span> album</span><br></pre></td></tr></table></figure>
+<p>接下来再来说 <code>is</code> 和 <code>is not</code>，它们是表示身份鉴别的布尔运算符，<code>in</code> 和 <code>not in</code> 则是表示归属关系的布尔运算符号。</p>
+<p>在 Python 中任何一个对象都要满足身份（Identity）、类型（Type）、值 （Value）这三个点，缺一不可。<code>is</code> 操作符号就是来进行身份的对比的。<br>例：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">the_Eddie = <span class="string">&#x27;Eddie&#x27;</span></span><br><span class="line">name = <span class="string">&#x27;Eddie&#x27;</span>  </span><br><span class="line">the_Eddie <span class="keyword">is</span> name</span><br></pre></td></tr></table></figure>
+<p>当两个变量一致时，经过 is 对比后会返回 True。</p>
+<h4 id="3、条件控制"><a href="#3、条件控制" class="headerlink" title="3、条件控制"></a>3、条件控制</h4><p>条件控制其实就是 <code>if…else</code> 的使用。先来看下条件控制的基本结构：<br><img src="https://img-blog.csdnimg.cn/2019112512173868.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>例：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">def <span class="title">account_login</span>(<span class="params"></span>): </span></span><br><span class="line"><span class="function">    password</span> = input(<span class="string">&#x27;Password:&#x27;</span>) </span><br><span class="line">    <span class="keyword">if</span> password == <span class="string">&#x27;12345&#x27;</span>: </span><br><span class="line">        print(<span class="string">&#x27;Login success!&#x27;</span>)  </span><br><span class="line">    <span class="keyword">else</span>:   </span><br><span class="line">        print(<span class="string">&#x27;Wrong password or invalid input!&#x27;</span>)                                             </span><br><span class="line">        account_login() </span><br><span class="line">account_login()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第1行：定义函数，并不需要参数；</li>
+<li>第2行：使用 input 获得用户输入的字符串并储存在变量 password 中；</li>
+<li>第3、4行：设置条件，如果用户输入的字符串和预设的密码12345相等时，就执行打印- 文本‘Login success！’；</li>
+<li>第5、6行：反之，一切不等于预设密码的输入结果，全部会执行打印错误提示，并且再次调用函数，让用户再次输入密码；</li>
+<li>第7行：运行函数；</li>
+<li>第8行：调用函数。<br>如果 if 后面的布尔表达式过长或者难于理解，可以采取给变量赋值的办法来储存布尔表达式返回的布尔值 True 或 False。因此上面的代码可以写成这样：</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">def <span class="title">account_login</span>(<span class="params"></span>):</span></span><br><span class="line"><span class="function">    password</span> = input(<span class="string">&#x27;Password:&#x27;</span>)</span><br><span class="line">    password_correct = password == <span class="string">&#x27;12345&#x27;</span>     <span class="meta">#HERE！</span></span><br><span class="line">    <span class="keyword">if</span> password_correct:</span><br><span class="line">        print(<span class="string">&#x27;Login success!&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">&#x27;Wrong password or invalid input!&#x27;</span>)</span><br><span class="line">        account_login()</span><br><span class="line">account_login()</span><br></pre></td></tr></table></figure>
+<p>多条件判断同样很简单，只需在 if 和else 之间增加上 elif，用法和 if 是一致的。就不多说了。<br><img src="https://img-blog.csdnimg.cn/20191125122930346.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="4、循环（Loop"><a href="#4、循环（Loop" class="headerlink" title="4、循环（Loop)"></a>4、循环（Loop)</h4><ul>
+<li>for 循环<br>例：</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> every_letter <span class="keyword">in</span> <span class="string">&#x27;Hello world&#x27;</span>:</span><br><span class="line">    print(every_letter)</span><br></pre></td></tr></table></figure>
+<p>得到这样的结果：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">H</span><br><span class="line">e</span><br><span class="line">l</span><br><span class="line">l</span><br><span class="line">o</span><br><span class="line"></span><br><span class="line">w</span><br><span class="line">o</span><br><span class="line">r</span><br><span class="line">l</span><br><span class="line">d</span><br></pre></td></tr></table></figure>
+<p>解释：</p>
+<ul>
+<li><p>for 是关键词，后面的为变量名称，至于变量起什么名字自己定，但不要和关键词重名。</p>
+</li>
+<li><p>在关键词 in 后面所对应的一定是具有“可迭代的”，或者说是像列表那样的集合形态的对象，即可以连续地提供其中的每一个元素的对象。</p>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/2019112519354257.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>为了更深入了解 for 循环，我们来举个例子：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">for</span> num <span class="keyword">in</span> <span class="title">range</span>(<span class="params"><span class="number">1</span>,<span class="number">11</span></span>): #不包含11，因此实际范围是1～10</span></span><br><span class="line"><span class="function">    <span class="title">print</span>(<span class="params">str(num</span>) + &#x27; + 1</span> =<span class="string">&#x27;,num + 1)</span></span><br></pre></td></tr></table></figure>
+<p>运行结果：<br><img src="https://img-blog.csdnimg.cn/20191125200619272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里用到了内置函数一<code>range</code>。我们只需要在 <code>range</code> 函数后面的括号中填上数字，就可以得到一个具有连续整数的序列。</p>
+<p><strong>把 for 和 if 结合起来使用</strong><br>代码如下：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">songslist = [<span class="string">&#x27;Holy Diver&#x27;</span>, <span class="string">&#x27;Thunderstruck&#x27;</span>, <span class="string">&#x27;Rebel Rebel&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> song <span class="keyword">in</span> songslist:</span><br><span class="line">    <span class="keyword">if</span> song == <span class="string">&#x27;Holy Diver&#x27;</span>:</span><br><span class="line">        print(song,<span class="string">&#x27; - Dio&#x27;</span>)</span><br><span class="line">    elif song == <span class="string">&#x27;Thunderstruck&#x27;</span>:</span><br><span class="line">        print(song,<span class="string">&#x27; - AC/DC&#x27;</span>)</span><br><span class="line">    elif song == <span class="string">&#x27;Rebel Rebel&#x27;</span>:</span><br><span class="line">        print(song,<span class="string">&#x27; - David Bowie&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>实现了这样一个功能：歌曲列表中有三首歌“Holy Diver, Thunderstruck, Rebel Rebel”，当播放到每首时，分别显示对应的歌手名字“Dio, AC/DC, David Bowie”。</p>
+<h5 id="5、嵌套循环"><a href="#5、嵌套循环" class="headerlink" title="5、嵌套循环"></a>5、嵌套循环</h5><p>打印九九乘法表：<br>还记得当初学C语言的时候打印一个九九乘法表需要的代码起码有十几二十行吧，但是在python里却只需要三行！！</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="title">range</span>(<span class="params"><span class="number">1</span>,<span class="number">10</span></span>):</span></span><br><span class="line"><span class="function">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="title">range</span>(<span class="params"><span class="number">1</span>,<span class="number">10</span></span>):</span></span><br><span class="line"><span class="function">        <span class="title">print</span>(<span class="params"><span class="string">&#x27;&#123;&#125; X &#123;&#125; = &#123;&#125;&#x27;</span>.format(i,j,i*j</span>))</span></span><br></pre></td></tr></table></figure>
+<p>运行结果：<br><img src="https://img-blog.csdnimg.cn/20191125201915323.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="6、While-循环"><a href="#6、While-循环" class="headerlink" title="6、While 循环"></a>6、While 循环</h5><p>语法：<br><img src="https://img-blog.csdnimg.cn/20191125202121359.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>用法就不举例了。</p>
+<h3 id="第六节：数据结构"><a href="#第六节：数据结构" class="headerlink" title="第六节：数据结构"></a>第六节：数据结构</h3><p> 正如在现实世界中一样，直到我们拥有足够多的东西，才迫切需要一个储存东西的容器，这些储存大量数据的容器，在 Python 称之为内置数据结构。<br> Python 有四种数据结构，分别是：列表、字典、元组，集合。每种数据结构都有自己的特点，并且都有着独到的用处。<br><img src="https://img-blog.csdnimg.cn/20200411182121977.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="1、列表（list"><a href="#1、列表（list" class="headerlink" title="1、列表（list)"></a>1、列表（list)</h5><p>先从列表开始，列表具有的最显著的特征是：</p>
+<ul>
+<li>列表中的每一个元素都是可变的；</li>
+<li>列表中的元素是有序的，也就是说每一个元素都有一个位置；</li>
+<li>列表可以容纳 Python 中的任何对象。</li>
+<li>列表中的元素是可变的，这意味着我们可以在列表中添加、删除和修改元素。</li>
+</ul>
+<p>列表中的每一个元素都对应着一个位置，我们通过输入位置而查询该位置所对应的值，试着输入：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Weekday = [<span class="string">&#x27;Monday&#x27;</span>,<span class="string">&#x27;Tuesday&#x27;</span>,<span class="string">&#x27;Wednesday&#x27;</span>,<span class="string">&#x27;Thursday&#x27;</span>,<span class="string">&#x27;Friday&#x27;</span>]</span><br><span class="line">print(Weekday[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<p>结果为；<br><img src="https://img-blog.csdnimg.cn/20200411215338220.png" alt="在这里插入图片描述"><br>第三个特征是列表可以装入 Python 中所有的对象：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">all_in_list = [</span><br><span class="line">    <span class="number">1</span>,                              <span class="meta">#整数</span></span><br><span class="line">    <span class="number">1.0</span>,                            <span class="meta">#浮点数</span></span><br><span class="line">    <span class="string">&#x27;a word&#x27;</span>,                       <span class="meta">#字符串</span></span><br><span class="line">    print(<span class="number">1</span>),                       <span class="meta">#函数</span></span><br><span class="line">    True,                           <span class="meta">#布尔值</span></span><br><span class="line">    [<span class="meta">1,2</span>],                          <span class="meta">#列表中套列表</span></span><br><span class="line">    (<span class="number">1</span>,<span class="number">2</span>),                          <span class="meta">#元组</span></span><br><span class="line">    &#123;<span class="string">&#x27;key&#x27;</span>:<span class="string">&#x27;value&#x27;</span>&#125;                 <span class="meta">#字典</span></span><br><span class="line">]</span><br><span class="line"><span class="keyword">for</span> all <span class="keyword">in</span> all_in_list:</span><br><span class="line">    print(all)</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<p>结果为:<br><img src="https://img-blog.csdnimg.cn/20200411215257461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>列表的增删改查</strong>：</p>
+<p>对于数据的操作，最常见的是增删改查这四类。从列表的<strong>插入</strong>方法开始，输入：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fruit = [<span class="string">&#x27;pineapple&#x27;</span>,<span class="string">&#x27;pear&#x27;</span>]</span><br><span class="line">fruit.insert(<span class="number">1</span>,<span class="string">&#x27;grape&#x27;</span>)</span><br><span class="line">print(fruit)</span><br></pre></td></tr></table></figure>
+<p>结果为：<br><img src="https://img-blog.csdnimg.cn/20200411215202749.png" alt="在这里插入图片描述"><br><strong>删除</strong>列表中元素的方法是使用 remove()：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fruit = [<span class="string">&#x27;pinapple&#x27;</span>,<span class="string">&#x27;pear&#x27;</span>,<span class="string">&#x27;grape&#x27;</span>]</span><br><span class="line">fruit.<span class="keyword">remove</span>(<span class="string">&#x27;grape&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>删除还有一种方法，那就是使用 del 关键字来声明：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del fruit[<span class="number">0</span>:<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<p>想替换<strong>修改</strong>其中的元素可以这样：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fruit[<span class="number">0</span>] = <span class="string">&#x27;Grapefruit&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>列表的索引与字符串的分片相似，同样是分正反两种索引方式，只要输入对应的位置就会返回给你在这个位置上的值：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200411220748460.png" alt="在这里插入图片描述"><br>用元素周期表来试验一下：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">periodic_table = [<span class="string">&#x27;H&#x27;</span>,<span class="string">&#x27;He&#x27;</span>,<span class="string">&#x27;Li&#x27;</span>,<span class="string">&#x27;Be&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;N&#x27;</span>,<span class="string">&#x27;O&#x27;</span>,<span class="string">&#x27;F&#x27;</span>,<span class="string">&#x27;Ne&#x27;</span>]</span><br><span class="line">print(periodic_table[<span class="number">0</span>])</span><br><span class="line">print(periodic_table[<span class="number">-2</span>])</span><br><span class="line">print(periodic_table[<span class="number">0</span>:<span class="number">3</span>])</span><br><span class="line">print(periodic_table[<span class="number">-10</span>:<span class="number">-7</span>])</span><br><span class="line">print(periodic_table[<span class="number">-10</span>:]) </span><br><span class="line">print(periodic_table[:<span class="number">9</span>])</span><br></pre></td></tr></table></figure>
+<p>结果为：<br><img src="https://img-blog.csdnimg.cn/20200411221629527.png" alt="在这里插入图片描述"><br>如果要是反过来，想要查看某个具体的值所在的位置，就需要用别的方法了，否则就会报错，这是因为列表只接受用位置进行索引，但如果数据量很大的话，肯定会记不住什么元素在什么位置，那么有没有一种数据类型可以用人类的方式来进行索引呢？其实这就是字典，我们一起来继续学习。</p>
+<h5 id="2、字典（Dictionary"><a href="#2、字典（Dictionary" class="headerlink" title="2、字典（Dictionary)"></a>2、字典（Dictionary)</h5><p>字典这种数据结构的特征也正如现实世界中的字典一样，使用名称－内容进行数据的构建，在 Python 中分别对应着键（key）－ 值（value），习惯上称之为键值对。<br>字典的特征总结如下：</p>
+<ul>
+<li><p>字典中数据必须是以键值对的形式出现的；</p>
+</li>
+<li><p>逻辑上讲，键是不能重复的，而值可以重复；</p>
+</li>
+<li><p>字典中的键（key）是不可变的，也就是无法修改的；而值（value）是可变的，可修改的，可以是任何对象。</p>
+<p>用下面这个例子来看一下，这是字典的书写方式：</p>
+</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NASDAQ_code = &#123;</span><br><span class="line">    <span class="string">&#x27;BIDU&#x27;</span>:<span class="string">&#x27;Baidu&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;SINA&#x27;</span>:<span class="string">&#x27;Sina&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;YOKU&#x27;</span>:<span class="string">&#x27;Youku&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>字典中的键与值必须是成对的！<br>同时字典中的键值不会有重复，即便你这么做，相同的键值也只能出现一次：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="string">&#x27;key&#x27;</span>:<span class="number">123</span>,<span class="string">&#x27;key&#x27;</span>:<span class="number">1234</span>&#125;</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020041123171936.png" alt="在这里插入图片描述"><br><strong>字典的增删改查</strong>：<br>创建一个字典，继续使用前面的例子：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NASDAQ_code = &#123;<span class="string">&#x27;BIDU&#x27;</span>:<span class="string">&#x27;Baidu&#x27;</span>,<span class="string">&#x27;SINA&#x27;</span>:<span class="string">&#x27;Sina&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>与列表不同的是，字典并没有一个可以往里面添加单一元素的“方法”，但是我们可以通过这种方式进行<strong>添加</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NASDAQ_code[<span class="string">&#x27;YOKU&#x27;</span>] = <span class="string">&#x27;Youku&#x27;</span></span><br><span class="line">print(NASDAQ_code）</span><br></pre></td></tr></table></figure>
+<p>结果为：<br><img src="https://img-blog.csdnimg.cn/20200411232205779.png" alt="在这里插入图片描述"><br>列表中有用来<strong>添加多个</strong>元素的方法 <code>extend()</code> ，在字典中也有对应的添加多个元素的方法 <code>update()</code>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NASDAQ_code.update(&#123;<span class="string">&#x27;FB&#x27;</span>:<span class="string">&#x27;Facebook&#x27;</span>,<span class="string">&#x27;TSLA&#x27;</span>:<span class="string">&#x27;Tesla&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p>删除字典中的元素则使用 <strong>del</strong> 方法：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del NASDAQ_code[<span class="string">&#x27;FB&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，虽说字典是使用的花括号，在索引内容的时候仍旧使用的是和列表一样的方括号进行索引，只不过在括号中放入的一定是字典中的键，也就是说需要通过键来索引值：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NASDAQ_code[<span class="string">&#x27;TSLA&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p>同时，字典是不能够切片的，也就是说下面这样的写法应用在字典上是错误的：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chart[<span class="number">1</span>:<span class="number">4</span>]  <span class="meta"># WRONG!</span></span><br></pre></td></tr></table></figure>
+<h5 id="3、元组（Tuple"><a href="#3、元组（Tuple" class="headerlink" title="3、元组（Tuple)"></a>3、元组（Tuple)</h5><p>元组其实可以理解成一个稳固版的列表，因为元组是不可修改的，因此在列表中的存在的方法均不可以使用在元组上，但是元组是可以被查看索引的，方式就和列表一样：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">letters = (<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;f&#x27;</span>,<span class="string">&#x27;g&#x27;</span>)</span><br><span class="line">letter[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<h6 id="4、集合（Set"><a href="#4、集合（Set" class="headerlink" title="4、集合（Set)"></a>4、集合（Set)</h6><p>集合则更接近数学上集合的概念。每一个集合中的元素是无序的、不重复的任意对象，我们可以通过集合去判断数据的从属关系，有时还可以通过集合把数据结构中重复的元素减掉。</p>
+<ul>
+<li>集合不能被切片也不能被索引，除了做集合运算之外，集合元素可以被添加还有删除：<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a_set = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;                                              </span><br><span class="line">a_set.<span class="keyword">add</span>(<span class="number">5</span>) <span class="meta">#添加</span></span><br><span class="line">a_set.discard(<span class="number">5</span>) <span class="meta">#删除</span></span><br></pre></td></tr></table></figure>
+<h5 id="5、数据结构的一些技巧"><a href="#5、数据结构的一些技巧" class="headerlink" title="5、数据结构的一些技巧"></a>5、数据结构的一些技巧</h5>有很多函数的用法和数据结构的使用是息息相关的。前面我们学习了列表的基本用法，而在实际操作中往往会遇到更多的问题。比如，在整理表格或者文件的时候会按照字母或者日期进行排序，在 Python 中也存在类似的功能：</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num_list = [<span class="number">6</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>]</span><br><span class="line">print(sorted(num_list))</span><br></pre></td></tr></table></figure>
+<p>结果：<br><img src="https://img-blog.csdnimg.cn/20200411234053636.png" alt="在这里插入图片描述"><br><code>sorted</code> 函数按照<strong>长短</strong>、<strong>大小</strong>、英文字母的<strong>顺序</strong>给每个列表中的元素进行排序。这个函数会经常在数据的展示中使用，其中有一个非常重要的地方，sorted 函数并不会改变列表本身，你可以把它理解成是先将列表进行复制，然后再进行顺序的整理。</p>
+<ul>
+<li>在使用默认参数 reverse 后列表可以被按照逆序整理：</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sorted(num_list,reverse=True)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200411234245265.png" alt="在这里插入图片描述"><br><strong>推导式</strong>：<br>现在我们来看数据结构中的推导式（List comprehension），也许你还看到过它的另一种名称叫做列表的解析式，在这里你只需要知道这两个说的其实是一个东西就可以了。</p>
+<p>现在我有10个元素要装进列表中，普通的写法是这样的：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = []</span><br><span class="line"><span class="function"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="title">range</span>(<span class="params"><span class="number">1</span>,<span class="number">11</span></span>):</span></span><br><span class="line"><span class="function">    a.<span class="title">append</span>(<span class="params">i</span>) #append函数会在数组后加上相应的元素</span></span><br></pre></td></tr></table></figure>
+<p>下面换成列表解析的方式来写：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = [<span class="function">i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="title">range</span>(<span class="params"><span class="number">1</span>,<span class="number">11</span></span>)]</span></span><br></pre></td></tr></table></figure>
+<p>列表解析式不仅非常方便，并且在执行效率上要远远胜过前者，我们把两种不同的列表操作方式所耗费的时间进行对比，就不难发现其效率的巨大差异：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import time</span><br><span class="line"></span><br><span class="line">a = []</span><br><span class="line">t0 = time.clock()</span><br><span class="line"><span class="function"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="title">range</span>(<span class="params"><span class="number">1</span>,<span class="number">20000</span></span>):</span></span><br><span class="line"><span class="function">    a.<span class="title">append</span>(<span class="params">i</span>)</span></span><br><span class="line"><span class="function"><span class="title">print</span>(<span class="params">time.clock(</span>) - t0, seconds process time&quot;)</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">t0</span> = time.clock()</span><br><span class="line">b = [<span class="function">i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="title">range</span>(<span class="params"><span class="number">1</span>,<span class="number">20000</span></span>)]</span></span><br><span class="line"><span class="function"><span class="title">print</span>(<span class="params">time.clock(</span>) - t0, seconds process time&quot;)</span></span><br><span class="line"><span class="function">得到结果：</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8.999999999998592e-06</span> seconds process time</span><br><span class="line"><span class="number">0.0012320000000000005</span> seconds process time</span><br></pre></td></tr></table></figure>
+<p>列表推导式的用法也很好理解，可以简单地看成两部分。红色虚线后面的是我们熟悉的 for 循环的表达式，而虚线前面的可以认为是我们想要放在列表中的元素，在这个例子中放在列表中的元素即是后面循环的元素本身。<br><img src="https://img-blog.csdnimg.cn/20200411235925460.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>为了更好地理解这句话，我们继续看几个例子：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = [i**<span class="number">2</span> <span class="function"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="title">range</span>(<span class="params"><span class="number">1</span>,<span class="number">10</span></span>)]</span></span><br><span class="line"><span class="function">c</span> = [j+<span class="number">1</span> <span class="function"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="title">range</span>(<span class="params"><span class="number">1</span>,<span class="number">10</span></span>)]</span></span><br><span class="line"><span class="function">k</span> = [<span class="function">n <span class="keyword">for</span> n <span class="keyword">in</span> <span class="title">range</span>(<span class="params"><span class="number">1</span>,<span class="number">10</span></span>) <span class="keyword">if</span> n % 2</span> ==<span class="number">0</span>]</span><br><span class="line">z = [letter.lower() <span class="keyword">for</span> letter <span class="keyword">in</span> <span class="string">&#x27;ABCDEFGHIGKLMN&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p>字典推导式的方式略有不同，主要是因为创建字典必须满足键－值的两个条件才能达成：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;i:i+<span class="number">1</span> <span class="function"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="title">range</span>(<span class="params"><span class="number">4</span></span>)&#125;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">g</span> = &#123;i:j <span class="keyword">for</span> i,<span class="function">j <span class="keyword">in</span> <span class="title">zip</span>(<span class="params">range(<span class="number">1</span>,<span class="number">6</span></span>),&#x27;abcde&#x27;)&#125;</span></span><br><span class="line"><span class="function">g</span> = &#123;i:j.upper() <span class="keyword">for</span> i,<span class="function">j <span class="keyword">in</span> <span class="title">zip</span>(<span class="params">range(<span class="number">1</span>,<span class="number">6</span></span>),&#x27;abcde&#x27;)&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>循环列表时获取元素的索引</strong><br>现在我们有一个字母表，如何能像下图中一样，在索引的时候得到每个元素的具体位置的展示呢？</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;f&#x27;</span>, <span class="string">&#x27;g&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020041200040212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>前面提到过，列表是有序的，这时候我们可以使用 Python 中独有的函数 <code>enumerate</code> 来进行：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;f&#x27;</span>, <span class="string">&#x27;g&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> num,<span class="function">letter <span class="keyword">in</span> <span class="title">enumerate</span>(<span class="params">letters</span>):</span></span><br><span class="line"><span class="function">    <span class="title">print</span>(<span class="params">letter,<span class="string">&#x27;is&#x27;</span>,num + <span class="number">1</span></span>)</span></span><br></pre></td></tr></table></figure>
+<p>如果同时需要两个列表应该怎么办？这时候就可以用到 <code>zip</code> 函数，比如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b=[<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;y&#x27;</span>,<span class="string">&#x27;z&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> a,<span class="function">b <span class="keyword">in</span> <span class="title">zip</span>(<span class="params">str,num</span>):</span></span><br><span class="line"><span class="function">    <span class="title">print</span>(<span class="params">b,<span class="string">&#x27;is&#x27;</span>,a</span>)</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/202004121313258.png" alt="在这里插入图片描述"></p>
+<h3 id="第七节：类"><a href="#第七节：类" class="headerlink" title="第七节：类"></a>第七节：类</h3><p>Python的类和C++/java 的类定义方法基本相同，但在声明对象是略有不同，Python把对象的声明进一步简化了。<br>例：</p>
+<p>定义类：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">CocaCola</span>:</span><br><span class="line">    <span class="title">formula</span> = [<span class="string">&#x27;caffeine&#x27;</span>,<span class="string">&#x27;sugar&#x27;</span>,<span class="string">&#x27;water&#x27;</span>,<span class="string">&#x27;soda&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p>声明对象：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">coke_for_me = CocaCola()</span><br></pre></td></tr></table></figure>
+<p>调用：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(CocaCola.formula)</span><br><span class="line">print(coke_for_me.formula)</span><br><span class="line">print(coke_for_you.formula)</span><br></pre></td></tr></table></figure>
+<p>结果为：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; [<span class="string">&#x27;caffeine&#x27;</span>,<span class="string">&#x27;sugar&#x27;</span>,<span class="string">&#x27;water&#x27;</span>,<span class="string">&#x27;soda&#x27;</span>]</span><br><span class="line">&gt;&gt;&gt; [<span class="string">&#x27;caffeine&#x27;</span>,<span class="string">&#x27;sugar&#x27;</span>,<span class="string">&#x27;water&#x27;</span>,<span class="string">&#x27;soda&#x27;</span>]</span><br><span class="line">&gt;&gt;&gt; [<span class="string">&#x27;caffeine&#x27;</span>,<span class="string">&#x27;sugar&#x27;</span>,<span class="string">&#x27;water&#x27;</span>,<span class="string">&#x27;soda&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p>Python 支持直接使用类来调用方法，而java中必须是静态的方法才能使用类进行直接调用。</p>
+<p>类的属性与正常的变量并无区别：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> element <span class="keyword">in</span> coke_for_me.formula:</span><br><span class="line">    print(element)</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; caffeine</span><br><span class="line">&gt;&gt;&gt; sugar</span><br><span class="line">&gt;&gt;&gt; water</span><br><span class="line">&gt;&gt;&gt; soda</span><br></pre></td></tr></table></figure>
+<p>和java里的类相同，Python的类有属性，方法等等…这里就不详细记录了。</p>
+<p>例子：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">CocaCola</span>:</span><br><span class="line">    <span class="title">formula</span> = [<span class="string">&#x27;caffeine&#x27;</span>,<span class="string">&#x27;sugar&#x27;</span>,<span class="string">&#x27;water&#x27;</span>,<span class="string">&#x27;soda&#x27;</span>]</span><br><span class="line">    <span class="function">def <span class="title">drink</span>(<span class="params">self,how_much</span>):      </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">        <span class="keyword">if</span> how_much</span> == <span class="string">&#x27;a sip&#x27;</span>:</span><br><span class="line">            print(<span class="string">&#x27;Cool~&#x27;</span>)</span><br><span class="line">        elif how_much == <span class="string">&#x27;whole bottle&#x27;</span>:</span><br><span class="line">            print(<span class="string">&#x27;Headache!&#x27;</span>)       </span><br><span class="line"></span><br><span class="line">ice_coke = CocaCola()</span><br><span class="line">ice_coke.drink(<span class="string">&#x27;a sip&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; Cool~</span><br></pre></td></tr></table></figure>
+<h5 id="2、魔术方法："><a href="#2、魔术方法：" class="headerlink" title="2、魔术方法："></a>2、魔术方法：</h5><p> Python 的类中存在一些方法，被称为”魔术方法”，<code>_init_()</code> 就是其中之一。<br> <code>_init()</code>是 <code>initialize(初始化)</code>的缩写，这也就意味着即使我们在创建实例的时候不去引用 <code>init_()</code>方法，其中的命令也会先被自动地执行。<br><code>_init()</code> 的神奇之处就在于，如果你在类里定义了它，在创建实例的时候它就能帮你自动地处理很多事情——比如新增实例属性。在上面的代码中，我们创建了一个实例属性，但那是在定义完类之后再做的，这次我们一步到位：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class CocaCola():</span><br><span class="line">    formula = [<span class="string">&#x27;caffeine&#x27;</span>,<span class="string">&#x27;sugar&#x27;</span>,<span class="string">&#x27;water&#x27;</span>,<span class="string">&#x27;soda&#x27;</span>]</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.local_logo = <span class="string">&#x27;可口可乐&#x27;</span> </span><br><span class="line"></span><br><span class="line">    <span class="function">def <span class="title">drink</span>(<span class="params">self</span>):    # HERE！</span></span><br><span class="line"><span class="function">        <span class="title">print</span>(<span class="params"><span class="string">&#x27;Energy!&#x27;</span></span>)        </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">coke</span> = CocaCola()</span><br><span class="line">print(coke.local_logo)</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; 可口可乐</span><br></pre></td></tr></table></figure>
+<p><code>_init_()</code> 方法可以给类的使用提供极大的灵活性。试试看下面的代码会发生什么：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">CocaCola</span>:</span><br><span class="line">    <span class="title">formula</span> = [<span class="string">&#x27;caffeine&#x27;</span>,<span class="string">&#x27;sugar&#x27;</span>,<span class="string">&#x27;water&#x27;</span>,<span class="string">&#x27;soda&#x27;</span>]</span><br><span class="line">    def __init__(self):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> element <span class="keyword">in</span> self.formula:</span><br><span class="line">            print(<span class="string">&#x27;Coke has &#123;&#125;!&#x27;</span>.format(element))</span><br><span class="line"></span><br><span class="line">coke = CocaCola()</span><br></pre></td></tr></table></figure>
+<p>结果为：<br><img src="https://img-blog.csdnimg.cn/20200412162907530.png" alt="在这里插入图片描述"><br>除了必写的<code>self</code> 参数之外，<code>_init()</code> 也有自己的参数，同时也不需要这样<code>obj.init()</code>的方式来调用（因为是自动执行），而是在实例化的时候往类后面的括号中放进参数，相应的所有参数都会传递到这个特殊的 <code>init_()</code> 方法中，和函数的参数的用法完全相同。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">CocaCola</span>:</span><br><span class="line">    <span class="title">formula</span> = [<span class="string">&#x27;caffeine&#x27;</span>,<span class="string">&#x27;sugar&#x27;</span>,<span class="string">&#x27;water&#x27;</span>,<span class="string">&#x27;soda&#x27;</span>]</span><br><span class="line">    def __init__(self,logo_name):</span><br><span class="line">        self.local_logo = logo_name</span><br><span class="line"></span><br><span class="line">    <span class="function">def <span class="title">drink</span>(<span class="params">self</span>):</span></span><br><span class="line"><span class="function">        <span class="title">print</span>(<span class="params"><span class="string">&#x27;Energy!&#x27;</span></span>)</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">coke</span> = CocaCola(<span class="string">&#x27;可口可乐&#x27;</span>)</span><br><span class="line">print(coke.local_logo)</span><br></pre></td></tr></table></figure>
+<p>结果为：<br><img src="https://img-blog.csdnimg.cn/20200412164301434.png" alt="在这里插入图片描述"></p>
+<h5 id="3、类的继承"><a href="#3、类的继承" class="headerlink" title="3、类的继承"></a>3、类的继承</h5><p>python中类的继承也比java更加简洁。<br><strong>例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class CaffeineFree(CocaCola):</span><br><span class="line">    caffeine = <span class="number">0</span>                           <span class="meta">#覆盖</span></span><br><span class="line">    ingredients =  [                       <span class="meta">#覆盖</span></span><br><span class="line">        <span class="string">&#x27;High Fructose Corn Syrup&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Carbonated Water&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Phosphoric Acid&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Natural Flavors&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Caramel Color&#x27;</span>,</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">coke_a = CaffeineFree(<span class="string">&#x27;Cocacola-FREE&#x27;</span>)       <span class="meta"># 传入初始化参数</span></span><br><span class="line"></span><br><span class="line">coke_a.drink()</span><br></pre></td></tr></table></figure>
+<p>在新的类 CaffeineFree 后面的括号中放入 CocaCola，这就表示这个类是继承于 CocaCola 这个父类的， CaffeineFree 就成为了 CocaCola 子类。类中的变量和方法可以完全被子类继承，但如需有特殊的改动也可以进行覆盖。</p>
+<h5 id="4、类属性与实例属性"><a href="#4、类属性与实例属性" class="headerlink" title="4、类属性与实例属性"></a>4、类属性与实例属性</h5><p>Q1：类属性如果被重新赋值，是否会影响到类属性的引用？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestA</span>:</span></span><br><span class="line">    attr = <span class="number">1</span></span><br><span class="line">obj_a = TestA()</span><br><span class="line"></span><br><span class="line">TestA.attr = <span class="number">42</span></span><br><span class="line">print(obj_a.attr)</span><br></pre></td></tr></table></figure>
+<p>结果：<br><img src="https://img-blog.csdnimg.cn/20200412224324884.png" alt="在这里插入图片描述"><br>Q2：实例属性如果被重新赋值，是否会影响到类属性的引用？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestA</span>:</span></span><br><span class="line">    attr = <span class="number">1</span></span><br><span class="line">obj_a = TestA()</span><br><span class="line">obj_b = TestA()</span><br><span class="line"></span><br><span class="line">obj_a.attr = <span class="number">42</span></span><br><span class="line"></span><br><span class="line">print(obj_b.attr)</span><br></pre></td></tr></table></figure>
+<p>结果：<br><img src="https://img-blog.csdnimg.cn/20200412224352282.png" alt="在这里插入图片描述"></p>
+<p>Q3：类属性实例属性具有相同的名称，那么 <code>.</code> 后面引用的将会是什么？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestA</span>:</span></span><br><span class="line">    attr = <span class="number">1</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.attr = <span class="number">42</span></span><br><span class="line"></span><br><span class="line">obj_a = TestA()</span><br><span class="line"></span><br><span class="line">print(obj_a.attr)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200412225347119.png" alt="在这里插入图片描述"><br><strong>解释</strong>：<br>如图所示， Python 中属性的引用机制是自外而内的，当你创建了一个实例之后，准备开始引用属性，这时候编译器会先搜索该实例是否拥有该属性，如果有，则引用；如果没有，将搜索这个实例所属的类是否有这个属性，如果有，则引用，没有那就只能报错了。<br><img src="https://img-blog.csdnimg.cn/20200412225631372.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="第七节：使用第三方库"><a href="#第七节：使用第三方库" class="headerlink" title="第七节：使用第三方库"></a>第七节：使用第三方库</h3><p>如果用手机来比喻编程语言，那么 Python 是一款智能机。而海量的第三方库就是各种各样的app，丰富的第三方库为 Python 开发提供了极大的便利。</p>
+<p><strong>安装 pip</strong>:<br>在 Python 3.4 之后，安装好 Python 环境就可以直接支持 pip，你可以在终端/命令行里输入这句检查一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip -version</span><br></pre></td></tr></table></figure>
+<p>如果显示了 pip 的版本，就说明 pip 已经成功安装了。</p>
+<p><strong>使用 pip 安装库</strong>:</p>
+<p>在安装好 pip 之后，以后安装库，只需要在命令行里面输入：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install PackageName</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：PackageName 需要替换成你要安装的库的名称；如果你想安装到 python 2中，需要把 pip3 换成 pip。</p>
+</blockquote>
+<p>如果你安装了 python 2和3两种版本，可能会遇到安装目录的问题，可以换成:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m pip install PackageName</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：在存在多个 Python 版本的环境中，加上<code>python3 -m</code>这种写法可以精确地控制三方库的安装位置如果你想安装到 python 2中，需要把 python3 换成 python</p>
+</blockquote>
+<p>如果遇到权限问题，可以输入：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install PackageName</span><br></pre></td></tr></table></figure>
+<p>安装成功后会提示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Successfully installed PackageName</span><br></pre></td></tr></table></figure>
+<p>几个 pip 的常用指令：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install -upgrade pip                  <span class="comment">#升级 pip</span></span><br><span class="line">pip uninstall flask                       <span class="comment">#卸载库</span></span><br><span class="line">pip <span class="built_in">list</span>                                  <span class="comment">#查看已安装库</span></span><br></pre></td></tr></table></figure>
+<p>🆗，Python的基础学习就到这了，想要学好Python一定要多加练习！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/wwcdg/wwcdg.github.io/2019/12/05/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="ckk5lg66i0035es7mfc1dg33f" data-title="Python学习笔记（一）" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/05/%E5%8D%8E%E4%B8%BA%E9%B2%B2%E9%B9%8F%E4%BA%91HCIA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          华为鲲鹏云HCIA知识总结（一）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/03/i%E6%98%A5%E7%A7%8B%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%20web(%E4%B8%80)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">i春秋做题记录 web(一)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog%E6%90%AD%E5%BB%BA/">Blog搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/JavaEE/">JavaEE</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/">前端</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">刷题记录</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/Crypto/">Crypto</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/MISC/">MISC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%88%86%E6%9E%90/">密码学分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/">漏洞原理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/Sql%E6%B3%A8%E5%85%A5/">Sql注入</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/XSS/">XSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">命令执行</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">文件上传</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BA%BF%E4%B8%8B%E8%B5%9B/">线下赛</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%B2%B2%E9%B9%8FHCIA/">鲲鹏HCIA</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HCIA/" rel="tag">HCIA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LSB/" rel="tag">LSB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crc%E7%A2%B0%E6%92%9E/" rel="tag">crc碰撞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crypto/" rel="tag">crypto</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlmap/" rel="tag">sqlmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag">sql注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xss/" rel="tag">xss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" rel="tag">上传漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%AA%E5%8A%A0%E5%AF%86/" rel="tag">伪加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" rel="tag">命令执行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" rel="tag">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E9%A1%B9/" rel="tag">杂项</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%B2%E6%B0%B4%E5%8D%B0/" rel="tag">盲水印</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%90%E5%86%99/" rel="tag">隐写</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Crypto/" style="font-size: 15px;">Crypto</a> <a href="/tags/HCIA/" style="font-size: 10px;">HCIA</a> <a href="/tags/LSB/" style="font-size: 10px;">LSB</a> <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/crc%E7%A2%B0%E6%92%9E/" style="font-size: 10px;">crc碰撞</a> <a href="/tags/crypto/" style="font-size: 10px;">crypto</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/misc/" style="font-size: 15px;">misc</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/sqlmap/" style="font-size: 10px;">sqlmap</a> <a href="/tags/sql%E6%B3%A8%E5%85%A5/" style="font-size: 20px;">sql注入</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" style="font-size: 15px;">上传漏洞</a> <a href="/tags/%E4%BC%AA%E5%8A%A0%E5%AF%86/" style="font-size: 10px;">伪加密</a> <a href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" style="font-size: 10px;">命令执行</a> <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" style="font-size: 10px;">密码学</a> <a href="/tags/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" style="font-size: 10px;">暴力破解</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 10px;">杂项</a> <a href="/tags/%E7%9B%B2%E6%B0%B4%E5%8D%B0/" style="font-size: 10px;">盲水印</a> <a href="/tags/%E9%9A%90%E5%86%99/" style="font-size: 10px;">隐写</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/20/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/20/Java%20EE%E2%80%94%E2%80%94Mybatis%20%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">Mybatis框架学习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/03/Java%20EE%E2%80%94%E2%80%94SpringMVC%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">SpringMVC框架学习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E5%8D%8E%E4%B8%BA%E9%B2%B2%E9%B9%8F%E4%BA%91HCIA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/">华为鲲鹏云HCIA知识总结（一）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">Python学习笔记（一）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 未完成的歌<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
