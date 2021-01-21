@@ -6,17 +6,17 @@
   <meta name="keywords" content=" Google Hacking ">
   <meta name="description" content="Google Hacking语法总结 | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="@[toc] 前言：简单总结下Google Hacking语法。 一、什么是Google Hacking？ Google Hacking是指使用Google、百度等搜索引擎对某些特定网站主机漏洞（通常是服务器上的脚本漏洞）进行搜索，以达到快速找到漏洞主机或特定主机的漏洞的目的。 对于普通的用户而言，Google只是一款强大的搜索引擎，而对于渗透人员而言，它可能是一款绝佳的渗透工具。正因为Googl">
+<meta name="description" content="[toc] 前言：简单总结下Google Hacking语法。 一、什么是Google Hacking？ Google Hacking是指使用Google、百度等搜索引擎对某些特定网站主机漏洞（通常是服务器上的脚本漏洞）进行搜索，以达到快速找到漏洞主机或特定主机的漏洞的目的。 对于普通的用户而言，Google只是一款强大的搜索引擎，而对于渗透人员而言，它可能是一款绝佳的渗透工具。正因为Google">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Google Hacking语法总结">
 <meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2021/01/21/Google%20Hacking%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="未完成的歌">
-<meta property="og:description" content="@[toc] 前言：简单总结下Google Hacking语法。 一、什么是Google Hacking？ Google Hacking是指使用Google、百度等搜索引擎对某些特定网站主机漏洞（通常是服务器上的脚本漏洞）进行搜索，以达到快速找到漏洞主机或特定主机的漏洞的目的。 对于普通的用户而言，Google只是一款强大的搜索引擎，而对于渗透人员而言，它可能是一款绝佳的渗透工具。正因为Googl">
+<meta property="og:description" content="[toc] 前言：简单总结下Google Hacking语法。 一、什么是Google Hacking？ Google Hacking是指使用Google、百度等搜索引擎对某些特定网站主机漏洞（通常是服务器上的脚本漏洞）进行搜索，以达到快速找到漏洞主机或特定主机的漏洞的目的。 对于普通的用户而言，Google只是一款强大的搜索引擎，而对于渗透人员而言，它可能是一款绝佳的渗透工具。正因为Google">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://img-blog.csdnimg.cn/20210121211831580.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="http://img-blog.csdnimg.cn/20210121214752387.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2021-01-21T13:54:54.909Z">
-<meta property="article:modified_time" content="2021-01-21T13:59:18.048Z">
+<meta property="article:modified_time" content="2021-01-21T14:02:00.948Z">
 <meta property="article:author" content="未完成的歌">
 <meta property="article:tag" content="Google Hacking">
 <meta name="twitter:card" content="summary">
@@ -1031,7 +1031,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-01-21 21:59:18'>2021-01-21 21:54</time>
+            发布时间 : <time class="date" title='最后更新: 2021-01-21 22:02:00'>2021-01-21 21:54</time>
         
     </div>
     <div class="article-meta">
@@ -1071,7 +1071,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>@<div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFGoogle-Hacking%EF%BC%9F"><span class="toc-text">一、什么是Google Hacking？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Google-Hacking%E7%9A%84%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="toc-text">二、Google Hacking的常用语法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81Google-hacking%E5%B8%B8%E8%A7%81%E7%9A%84%E6%94%BB%E5%87%BB%E8%A7%84%E5%BE%8B%EF%BC%9A"><span class="toc-text">三、Google hacking常见的攻击规律：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E5%AF%BB%E6%89%BE%E7%BD%91%E7%AB%99%E7%9A%84%E5%90%8E%E5%8F%B0%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%EF%BC%9A"><span class="toc-text">1、寻找网站的后台登录页面：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E9%9A%8F%E6%84%8F%E6%B5%8F%E8%A7%88%E7%BD%91%E7%AB%99%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-text">2、随意浏览网站中的文件：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E6%90%9C%E7%B4%A2%E7%9B%B8%E5%85%B3%E9%A1%B5%E9%9D%A2%EF%BC%9A"><span class="toc-text">3、搜索相关页面：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E6%89%BE%E5%88%B0%E7%BD%91%E7%AB%99%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9A"><span class="toc-text">4、找到网站数据库：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E5%88%A9%E7%94%A8%E5%85%B6%E4%BB%96%E6%BC%8F%E6%B4%9E%EF%BC%9A"><span class="toc-text">5、利用其他漏洞：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%EF%BC%9A"><span class="toc-text">最后：</span></a></li></ol></div></p>
+        <p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFGoogle-Hacking%EF%BC%9F"><span class="toc-text">一、什么是Google Hacking？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Google-Hacking%E7%9A%84%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="toc-text">二、Google Hacking的常用语法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81Google-hacking%E5%B8%B8%E8%A7%81%E7%9A%84%E6%94%BB%E5%87%BB%E8%A7%84%E5%BE%8B%EF%BC%9A"><span class="toc-text">三、Google hacking常见的攻击规律：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E5%AF%BB%E6%89%BE%E7%BD%91%E7%AB%99%E7%9A%84%E5%90%8E%E5%8F%B0%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%EF%BC%9A"><span class="toc-text">1、寻找网站的后台登录页面：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E9%9A%8F%E6%84%8F%E6%B5%8F%E8%A7%88%E7%BD%91%E7%AB%99%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-text">2、随意浏览网站中的文件：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E6%90%9C%E7%B4%A2%E7%9B%B8%E5%85%B3%E9%A1%B5%E9%9D%A2%EF%BC%9A"><span class="toc-text">3、搜索相关页面：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E6%89%BE%E5%88%B0%E7%BD%91%E7%AB%99%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9A"><span class="toc-text">4、找到网站数据库：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E5%88%A9%E7%94%A8%E5%85%B6%E4%BB%96%E6%BC%8F%E6%B4%9E%EF%BC%9A"><span class="toc-text">5、利用其他漏洞：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%EF%BC%9A"><span class="toc-text">最后：</span></a></li></ol></div></p>
 <h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><p>简单总结下Google Hacking语法。</p>
 <h4 id="一、什么是Google-Hacking？"><a href="#一、什么是Google-Hacking？" class="headerlink" title="一、什么是Google Hacking？"></a>一、什么是Google Hacking？</h4><p><img src="http://img-blog.csdnimg.cn/20210121211831580.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"></p>
 <p>Google Hacking是指使用Google、百度等搜索引擎对某些特定网站主机漏洞（通常是服务器上的脚本漏洞）进行搜索，以达到快速找到漏洞主机或特定主机的漏洞的目的。<hr></p>
