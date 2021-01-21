@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Bugku杂项（二） | 未完成的歌</title>
-  <meta name="keywords" content=" misc ">
-  <meta name="description" content="Bugku杂项（二） | 未完成的歌">
+  <title>Google Hacking语法总结 | 未完成的歌</title>
+  <meta name="keywords" content=" Google Hacking ">
+  <meta name="description" content="Google Hacking语法总结 | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="@[toc] 前言：简单总结下Google Hacking语法。 一、什么是Google Hacking？ Google Hacking是指使用Google、百度等搜索引擎对某些特定网站主机漏洞（通常是服务器上的脚本漏洞）进行搜索，以达到快速找到漏洞主机或特定主机的漏洞的目的。 对于普通的用户而言，Google只是一款强大的搜索引擎，而对于渗透人员而言，它可能是一款绝佳的渗透工具。正因为Googl">
 <meta property="og:type" content="article">
@@ -1004,9 +1004,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Bugku杂项（二）" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Google Hacking语法总结" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Bugku杂项（二）</h1>
+        <h1 class="article-title">Google Hacking语法总结</h1>
     
     <div class="article-meta">
         
@@ -1016,9 +1016,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="刷题记录">刷题记录</a> > 
-            
-            <a  data-rel="刷题记录&lt;---&gt;MISC">MISC</a>
+            <a  data-rel="工具使用">工具使用</a>
             
         </span>
         
@@ -1026,19 +1024,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">misc</a>
+            <a class="color5">Google Hacking</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-01-20 15:54:48'>2019-07-18 21:57</time>
+            发布时间 : <time class="date" title='最后更新: 2021-01-21 21:59:18'>2021-01-21 21:54</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:623</span>
+        <span>字数:2k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1057,7 +1055,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFGoogle-Hacking%EF%BC%9F"><span class="toc-text">一、什么是Google Hacking？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Google-Hacking%E7%9A%84%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="toc-text">二、Google Hacking的常用语法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81Google-hacking%E5%B8%B8%E8%A7%81%E7%9A%84%E6%94%BB%E5%87%BB%E8%A7%84%E5%BE%8B%EF%BC%9A"><span class="toc-text">三、Google hacking常见的攻击规律：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E5%AF%BB%E6%89%BE%E7%BD%91%E7%AB%99%E7%9A%84%E5%90%8E%E5%8F%B0%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%EF%BC%9A"><span class="toc-text">1、寻找网站的后台登录页面：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E9%9A%8F%E6%84%8F%E6%B5%8F%E8%A7%88%E7%BD%91%E7%AB%99%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-text">2、随意浏览网站中的文件：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E6%90%9C%E7%B4%A2%E7%9B%B8%E5%85%B3%E9%A1%B5%E9%9D%A2%EF%BC%9A"><span class="toc-text">3、搜索相关页面：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E6%89%BE%E5%88%B0%E7%BD%91%E7%AB%99%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9A"><span class="toc-text">4、找到网站数据库：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E5%88%A9%E7%94%A8%E5%85%B6%E4%BB%96%E6%BC%8F%E6%B4%9E%EF%BC%9A"><span class="toc-text">5、利用其他漏洞：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%EF%BC%9A"><span class="toc-text">最后：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1073,10 +1071,56 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1、又一张图片，还单纯吗<br>2、隐写2<br>3、细心的大象<br>4、爆照(08067CTF)</p>
-<a id="more"></a>
-
-<p><strong>1、又一张图片，还单纯吗</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589962073058_201104351_H1920.png" alt="在这里插入图片描述"><br>链接地址：<a target="_blank" rel="noopener" href="http://123.206.87.240:8002/misc/2.jpg">http://123.206.87.240:8002/misc/2.jpg</a><br>打开一看是一张图<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963366997_201104351_H800.jpg" alt="在这里插入图片描述"><br>先查看一下图片详细信息，不能在吃了上次的亏；emm…没发现啥信息,直接用刚得到的神器binwalk一下(～￣▽￣)～<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963593089_201104351_H1920.png" alt="在这里插入图片描述"><br>哇哦<del>，竟然藏着这么多图片，唉，按顺序一个个分离吧；<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589961454236_201104351_H800.png" alt="在这里插入图片描述"><br>哦吼</del>第一张打开一看竟然就是flag吗，提交试试—对了，真好。<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589969713368_201104351_H800.png" alt="在这里插入图片描述"><br><strong>2、隐写2</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964857928_201104351_H800.png" alt="在这里插入图片描述"><br>打开是一张表情包：<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589966810932_201104351_H800.jpg" alt="在这里插入图片描述"><br>B数，自在人心(●’◡’●)  先用winhex看看 ，额 在之最后面发现了可疑的信息(⊙_⊙)？<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589961327786_201104351_H800.png" alt="在这里插入图片描述"><br>尝试把后缀名改了，果然 打开后有一个压缩包和一张图片<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967894562_201104351_H800.png" alt="在这里插入图片描述"><br>打开提示：<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967797359_201104351_H800.jpg" alt="在这里插入图片描述"><br>这里提示信息已将很明显了， 国王是K ；女神是Q ；骑士是J   不知道的可以百度下；尝试输入KQJ解密，但是失败了，看看提示发现密码是三个数字， 没看清 大意了╰(￣ω￣ｏ)<br>既然只有三位数直接暴力破解好了；很快得到密码：<strong>871</strong> ；其实对照键盘也是可以猜出来的<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967169776_201104351_H800.png" alt="在这里插入图片描述"><br>打开是这样的一张图，emmm… 再次丢进winhex里面<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963700206_201104351_H800.jpg" alt="在这里插入图片描述"><br>在末尾发现了flag^o^/：<code>f1@g&#123;eTB1IEFyZSBhIGhAY2tlciE=&#125;</code><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589961432233_201104351_W120.png" alt="在这里插入图片描述"><br>然而提交失败╯︿╰，观察发现 这个flag应该被base加密了，拿去base64解密后得到<br>flag：<code>fl@g&#123;y0u Are a h@cker!&#125;</code>，再次提交，成功。<br><strong>3、细心的大象</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964833676_201104351_H1920.png" alt="在这里插入图片描述"><br>打开是一张图片：<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963096230_201104351_H800.jpg" alt="在这里插入图片描述"><br>先看下图片详细信息<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963395800_201104351_H800.png" alt="在这里插入图片描述"><br>额…看着应该是base64；拿去解下密：<code>MSDS456ASD123zz</code><br>不用说了，图片肯定隐藏着压缩包，直接用<strong>foremost</strong>分离出来<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963300232_201104351_H800.png" alt="在这里插入图片描述"><br>输入解出来密码，额，又是杂项（一）隐写的那题，下面的步骤就不写了(●’◡’●)<br><strong>4、爆照(08067CTF)</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964884809_201104351_H800.png" alt="在这里插入图片描述"><br>打开是一张妹子的照片：<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967249183_201104351_H800.jpg" alt="在这里插入图片描述"><br>先看下图片详细信息，啥也没有，直接binwalk吧<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967647360_201104351_H800.png" alt="在这里插入图片描述"><br>哦吼~好多压缩包，直接用foremost分离吧，分离出一个压缩包，打开<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589965269995_201104351_H800.png" alt="在这里插入图片描述"><br>额 ＞︿＜ 没思路啊，直接拿去binwalk吧<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964923678_201104351_H800.png" alt="在这里插入图片描述"><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589966736129_201104351_H800.png" alt="在这里插入图片描述"><br>可以看到88/888/8888里有图片，8888里还有一个压缩包，全都提取出来。<br>88：<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964822191_201104351_H800.jpg" alt="在这里插入图片描述"><br>扫描二维码：bilibili<br>888：<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967020918_201104351_H800.jpg" alt="在这里插入图片描述"><br>没啥东西，查看下详细信息：果然有东西<code>c2lsaXNpbGk=</code><br>拿去base64解码：<code>silisili</code><br>8888：图片<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963015826_201104351_H800.jpg" alt="在这里插入图片描述"><br>没啥信息；<br>zip打开有张二维码：<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589962413249_201104351_H800.png" alt="在这里插入图片描述"><br>扫描得：panama<br>多番尝试提交得到flag{bilibili_silisili_panama}<br>不得不说，这题真狗！！！<br>好，日后继续更新ヾ(≧▽≦*)o</p>
+        <p>@<div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFGoogle-Hacking%EF%BC%9F"><span class="toc-text">一、什么是Google Hacking？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Google-Hacking%E7%9A%84%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="toc-text">二、Google Hacking的常用语法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81Google-hacking%E5%B8%B8%E8%A7%81%E7%9A%84%E6%94%BB%E5%87%BB%E8%A7%84%E5%BE%8B%EF%BC%9A"><span class="toc-text">三、Google hacking常见的攻击规律：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E5%AF%BB%E6%89%BE%E7%BD%91%E7%AB%99%E7%9A%84%E5%90%8E%E5%8F%B0%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%EF%BC%9A"><span class="toc-text">1、寻找网站的后台登录页面：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E9%9A%8F%E6%84%8F%E6%B5%8F%E8%A7%88%E7%BD%91%E7%AB%99%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-text">2、随意浏览网站中的文件：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E6%90%9C%E7%B4%A2%E7%9B%B8%E5%85%B3%E9%A1%B5%E9%9D%A2%EF%BC%9A"><span class="toc-text">3、搜索相关页面：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E6%89%BE%E5%88%B0%E7%BD%91%E7%AB%99%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9A"><span class="toc-text">4、找到网站数据库：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E5%88%A9%E7%94%A8%E5%85%B6%E4%BB%96%E6%BC%8F%E6%B4%9E%EF%BC%9A"><span class="toc-text">5、利用其他漏洞：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%EF%BC%9A"><span class="toc-text">最后：</span></a></li></ol></div></p>
+<h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><p>简单总结下Google Hacking语法。</p>
+<h4 id="一、什么是Google-Hacking？"><a href="#一、什么是Google-Hacking？" class="headerlink" title="一、什么是Google Hacking？"></a>一、什么是Google Hacking？</h4><p><img src="http://img-blog.csdnimg.cn/20210121211831580.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"></p>
+<p>Google Hacking是指使用Google、百度等搜索引擎对某些特定网站主机漏洞（通常是服务器上的脚本漏洞）进行搜索，以达到快速找到漏洞主机或特定主机的漏洞的目的。<hr></p>
+<p>对于普通的用户而言，Google只是一款强大的搜索引擎，而对于渗透人员而言，它可能是一款绝佳的渗透工具。正因为Google的检索能力强大，我们可以构造特殊的关键字语法来搜索互联网上的的相关敏感信息。</p>
+<h4 id="二、Google-Hacking的常用语法："><a href="#二、Google-Hacking的常用语法：" class="headerlink" title="二、Google Hacking的常用语法："></a>二、Google Hacking的常用语法：</h4><ul>
+<li><p>site：找到与指定网站有联系的URL。例如输入<code>Site：family.chinaok.com</code>。所有和这个网站有联系的URL都会被显示。</p>
+</li>
+<li><p>intitle：搜索网页标题中包含有特定字符的网页。例如输入<code>intitle: cbi</code>，这样网页标题中带有cbi的网页都会被搜索出来。</p>
+</li>
+<li><p>alintitle，在结果的标题中同时包含多个关键词。例如：<code>allintitle:seo 搜索引擎</code>，起作用相当于<code>intitle:seo intitle:搜索引擎</code>。allintitle属于排他性指令，不能与其他指令结合使用。</p>
+</li>
+<li><p>inurl：搜索包含有特定字符的URL。例如输入<code>inurl:cbi</code>，则可以找到带有cbi字符的URL。</p>
+</li>
+<li><p>allinurl，结果的url中包含多个关键词。例如：<code>allinurl:byr jobs</code>，等于<code>inurl:byr inurl:jobs</code>。allinurl也是排他性指令</p>
+</li>
+<li><p>intext：搜索网页正文内容中的指定字符，例如输入<code>intext:cbi</code>。这个语法类似我们平时在某些网站中使用的“文章内容搜索”功能。</p>
+</li>
+<li><p>allintext，在结果的正文内容中同时包含多个关键词。排他性指令。</p>
+</li>
+<li><p>filetype：搜索指定类型的文件。例如输入<code>filetype:cbi</code>，将返回所有以cbi结尾的文件URL。</p>
+</li>
+</ul>
+<p>这些就是Google Hacking的常用语法，虽然这只是Google语法中很小的部分，但是合理使用这些语法将产生意想不到的效果。<hr></p>
+<p>了解了Google Hacking的基本语法后，我们来看一下黑客是如何使用这些语法进行Google Hack的，这些语法在渗透的过程中又会起到怎样的作用呢？</p>
+<h4 id="三、Google-hacking常见的攻击规律："><a href="#三、Google-hacking常见的攻击规律：" class="headerlink" title="三、Google hacking常见的攻击规律："></a>三、Google hacking常见的攻击规律：</h4><p>Google hacking主要是发现那些 公告文件，安全漏洞，错误信息， 口令文件， 用户文件， 演示页面，登录页面， 安全文件， 敏感目录，商业信息，漏洞主机， 网站服务器检测等信息。攻击规律有：</p>
+<h5 id="1、寻找网站的后台登录页面："><a href="#1、寻找网站的后台登录页面：" class="headerlink" title="1、寻找网站的后台登录页面："></a>1、寻找网站的后台登录页面：</h5><p>Intitle：</p>
+<p> intitle语法通常被用来搜索网站的后台、特殊页面和文件，通过在Google中搜索<code>intitle:登录</code>、<code>intitle:管理</code>就可以找到很多网站的后台登录页面。此外，intitle语法还可以被用在搜索文件上，例如搜索<code>intitle:&quot;indexof&quot;etc/shadow</code>就可以找到Linux中因为配置不合理而泄露出来的用户密码文件。</p>
+<p>Inurl：</p>
+<p> Google Hack中，inurl发挥的作用的最大，主要可以分为以下两个方面：寻找网站后台登录地址，搜索特殊URL。</p>
+<ol>
+<li><p>寻找网站后台登录地址：<br>和intitle不同的是，inurl可以指定URL中的关键字，我们都知道网站的后台URL都是类似login.asp、admin.asp为结尾的，那么我们只要以<code>inurl:login.asp</code>、<code>inurl:admin.asp</code>为关键字进行搜索，同样可以找到很多网站的后台。此外，我们还可以搜索一下网站的数据库地址，以<code>inurl:data</code>、<code>inurl:db</code>为关键字进行搜索即可。</p>
+</li>
+<li><p>搜索特殊URL：<br>通过inurl语法搜索特殊URL，我们可以找到很多网站程序的漏洞，例如最早IIS中的Uncode目录遍历漏洞，我们可以构造<code>inurl:／winnt／system32／cmd exe?／c+dir</code>这样的关键字进行搜索，不过目前要搜索到存在这种古董漏洞的网站是比较困难的。再比如前段日子很火的上传漏洞，我们使用<code>inurl:upload.asp</code>或<code>inurl:upload_soft.asp</code>即可找到很多上传页面，此时再用工具进行木马上传就可以完成入侵。</p>
+</li>
+</ol>
+<p>Intext：</p>
+<p> intext的作用是搜索网页中的指定字符，这貌似在Google Hack中没有什么作用，不过在以<code>intext:to parent directory</code>为关键字进行搜索后，我们会很惊奇的发现，无数网站的目录暴露在我们眼前。我们可以在其中随意切换目录，浏览文件，就像拥有了一个简单的Webshell。形成这种现象的原因是由于IIS的配置疏忽。同样，中文IIS配置疏忽也可能出现类似的漏洞，我们用<code>intext:转到父目录</code>就可以找到很多有漏洞的中文网站。</p>
+<h5 id="2、随意浏览网站中的文件："><a href="#2、随意浏览网站中的文件：" class="headerlink" title="2、随意浏览网站中的文件："></a>2、随意浏览网站中的文件：</h5><p><strong>Filetype</strong>：</p>
+<p> Filetype的作用是搜索指定文件。假如我们要搜索网站的数据库文件，那么可以以<code>filetype:mdb</code>为关键字进行搜索，很快就可以下载到不少网站的数据库文件。当然，Filetype语法的作用不仅于此，在和其他语法配合使用的时候更能显示出其强大作用。</p>
+<p><strong>Site</strong>：</p>
+<p>黑客使用Site，通常都是做入侵前的信息收集。<code>Site:target.com</code>来获取相关网页，从中提取有用的资料。Site语法可以显示所有和目标网站有联系的页面，从中或多或少存在一些关于目标网站的资料，这对于黑客而言就是入侵的突破口，是关于目标网站的一份详尽的报告。</p>
+<p>语法组合，威力加倍</p>
+<p>虽然上文中介绍的这几个语法能各自完成入侵中的一些步骤，但是只使用一个语法进行入侵，其效率是很低下的。Google Hack的威力在于能将多个语法组合起来，这样就可以快速地找到我们需要的东西。下面我们来模拟黑客是如何使用Google语法组合来入侵一个网站的。</p>
+<h5 id="3、搜索相关页面："><a href="#3、搜索相关页面：" class="headerlink" title="3、搜索相关页面："></a>3、搜索相关页面：</h5><p>下载网站的数据库：</p>
+<p>搜索<code>Site:target.com Filetype:mdb</code>就可以寻找目标网站的数据库，其中的Site语法限定搜索范围，Filetype决定搜索目标。用这种方法有一个缺点，就是下载到数据库的成功率较低。在这里我们还可以采用另一种语法组合，前提是目标网站存在IIS配置缺陷，即可以随意浏览站点文件夹，我们搜索<code>Site:target.com intext:to parent directory</code>来确定其是否存在此漏洞。在确定漏洞存在后，可以使用<code>Site:target.com intext:to parent directory+intext.mdb</code>进行数据库的搜索。</p>
+<h5 id="4、找到网站数据库："><a href="#4、找到网站数据库：" class="headerlink" title="4、找到网站数据库："></a>4、找到网站数据库：</h5><p>登录后台管理：</p>
+<p>下载到数据库后，我们就可以从中找到网站的管理员帐户和密码，并登录网站的后台。对于网站后台的查找，可以使用语法组合<code>Site:target.com intitle:管理</code>或者<code>Site:target.com inurl:login.asp</code>进行搜索，当然我们可以在这里进行联想，以不同的字符进行搜索，这样就有很大的概率可以找到网站的后台管理地址。接下去黑客就可以在后台上传Webshell，进一步提升权限，在此不再阐述。</p>
+<h5 id="5、利用其他漏洞："><a href="#5、利用其他漏洞：" class="headerlink" title="5、利用其他漏洞："></a>5、利用其他漏洞：</h5><p>如果下载数据库不成功，我们还可以尝试其他的入侵方法。例如寻找上传漏洞，搜索 <code>Site:target.com inurl:upload.asp</code>。此外，我们还可以根据一些程序漏洞的特征，定制出Google Hack的语句。</p>
+<h4 id="最后："><a href="#最后：" class="headerlink" title="最后："></a>最后：</h4><p>给大家推荐一个网站：<a target="_blank" rel="noopener" href="https://www.exploit-db.com/google-hacking-database">Exploit DB</a>上有很多大佬总结分享的构造语句，感兴趣的同学可以去看下。<br><img src="http://img-blog.csdnimg.cn/20210121214752387.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>参考文章：<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/H4ck3R-XiX/p/12489218.html">https://www.cnblogs.com/H4ck3R-XiX/p/12489218.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/auguse/articles/11784307.html">https://www.cnblogs.com/auguse/articles/11784307.html</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>
