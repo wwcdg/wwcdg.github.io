@@ -511,7 +511,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="42">
-<input type="hidden" id="yelog_site_word_count" value="93.1k">
+<input type="hidden" id="yelog_site_word_count" value="92k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -876,18 +876,18 @@
         </a>
         
         <a  class="全部文章 CTF刷题 Crypto "
-           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF刷题 Crypto "
            href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF刷题 Crypto "
+           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
@@ -1110,7 +1110,22 @@
 
 <h2 id="1、command-execution"><a href="#1、command-execution" class="headerlink" title="1、command_execution"></a>1、command_execution</h2><p><img src="https://img-blog.csdnimg.cn/20190925201112852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>看提示这题为<strong>命令执行漏洞（command_execution）</strong>，关于命令执行漏洞，我前面有篇博客详细介绍了，大家不了解的话的可以去看看<code>https://blog.csdn.net/qq_43531669/article/details/99771487</code><br>先尝试一下127.0.0.1 发现执行成功，得到回显：<br><img src="https://img-blog.csdnimg.cn/20190927195057483.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>那没什么好说的了，直接查看目录下的所有文件吧：<br><img src="https://img-blog.csdnimg.cn/20190927195438230.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>得到这些，接着查看home目录下的文件：<br><img src="https://img-blog.csdnimg.cn/20190927195602377.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现flag文件，然后查看得到flag<br><img src="https://img-blog.csdnimg.cn/20190927200107438.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="2、simple-php"><a href="#2、simple-php" class="headerlink" title="2、simple_php"></a>2、simple_php</h2><p><img src="https://img-blog.csdnimg.cn/20190927200346866.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开题目地址：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">﻿&lt;?php</span><br><span class="line">show_source(__FILE__);</span><br><span class="line">include(&quot;config.php&quot;);</span><br><span class="line">$a&#x3D;@$_GET[&#39;a&#39;];</span><br><span class="line">$b&#x3D;@$_GET[&#39;b&#39;];</span><br><span class="line">if($a&#x3D;&#x3D;0 and $a)&#123;</span><br><span class="line">    echo $flag1;</span><br><span class="line">&#125;</span><br><span class="line">if(is_numeric($b))&#123;</span><br><span class="line">    exit();</span><br><span class="line">&#125;</span><br><span class="line">if($b&gt;1234)&#123;</span><br><span class="line">    echo $flag2;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>﻿&lt;?php
+show_source(__FILE__);
+include(&quot;config.php&quot;);
+$a=@$_GET[&#39;a&#39;];
+$b=@$_GET[&#39;b&#39;];
+if($a==0 and $a)&#123;
+    echo $flag1;
+&#125;
+if(is_numeric($b))&#123;
+    exit();
+&#125;
+if($b&gt;1234)&#123;
+    echo $flag2;
+&#125;
+?&gt;
+</code></pre>
 <p>得到这么几串代码<br>意思是当a==0，但a的值又不能为0时输出flag1，b大于1234，并且b不是数字时输出flag2； 于是构造：<code>?a=0a&amp;b=12345A</code>便可绕过得到完整的flag。<img src="https://img-blog.csdnimg.cn/20190927201406132.png" alt="在这里插入图片描述"></p>
 <h2 id="3、NaNNaNNaNNaN-Batman"><a href="#3、NaNNaNNaNNaN-Batman" class="headerlink" title="3、NaNNaNNaNNaN-Batman"></a>3、NaNNaNNaNNaN-Batman</h2><p><img src="https://img-blog.csdnimg.cn/20190927205956336.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p><strong>知识点</strong>：js代码（eval函数,alert函数）正则、代码审计</p>
@@ -1118,12 +1133,43 @@
 <p>eval() 函数:可计算某个字符串，并执行其中的的 JavaScript 代码。<br>alert()函数:用于显示带有一条指定消息和一个确定按钮的警告框。</p>
 </blockquote>
 <p>下载附件，以文本格式打开：<br><img src="https://img-blog.csdnimg.cn/20190928091903759.png" alt="在这里插入图片描述"><br>是一段JS的代码，改后缀为.html在游览器打开：<br><img src="https://img-blog.csdnimg.cn/20190928094003459.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>有一个输入框，但输入什么都没有反应，继续分析js代码   <code>=￣ω￣=</code> 审计代码可以看到<code>eval</code>函数执行了<code>_</code>变量中的内容也就是<code>&#39; &#39;</code>中的内容，但是，要注意的是，它并没有执行<code>$()</code>函数，仅仅执行了字符串而已（从而导致乱码），因而页面html页面没有任何显示，只显示了input标签的内容，但是我们想让源代码正常显示出来，不进行执行，那么，我们就用到了alert弹窗（将eval函数改为alert），将乱码的<code>$()</code>函数源码完整显示出来：<br><img src="https://img-blog.csdnimg.cn/20190928101554343.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>整理一下得到：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function $()&#123;</span><br><span class="line">var e&#x3D;document.getElementById(&quot;c&quot;).value;</span><br><span class="line">if(e.length&#x3D;&#x3D;16)</span><br><span class="line">   if(e.match(&#x2F;^be0f23&#x2F;)!&#x3D;null)</span><br><span class="line">      if(e.match(&#x2F;233ac&#x2F;)!&#x3D;null)</span><br><span class="line">         if(e.match(&#x2F;e98aa$&#x2F;)!&#x3D;null)</span><br><span class="line">             if(e.match(&#x2F;c7be9&#x2F;)!&#x3D;null)&#123;</span><br><span class="line">             var t&#x3D;[&quot;fl&quot;,&quot;s_a&quot;,&quot;i&quot;,&quot;e&#125;&quot;];</span><br><span class="line">             var n&#x3D;[&quot;a&quot;,&quot;_h0l&quot;,&quot;n&quot;];</span><br><span class="line">             var r&#x3D;[&quot;g&#123;&quot;,&quot;e&quot;,&quot;_0&quot;];</span><br><span class="line">             var i&#x3D;[&quot;it&#39;&quot;,&quot;_&quot;,&quot;n&quot;];</span><br><span class="line">             var s&#x3D;[t,n,r,i];</span><br><span class="line">             for(var o&#x3D;0;o&lt;13;++o)&#123;</span><br><span class="line">             document.write(s[o%4][0]);s[o%4].splice(0,1)&#125;</span><br><span class="line">             &#125;</span><br><span class="line">&#125;</span><br><span class="line">document.write(&#39;&lt;input id&#x3D;&quot;c&quot;&gt;&lt;button οnclick&#x3D;$()&gt;Ok&lt;&#x2F;button&gt;&#39;);</span><br><span class="line">delete _</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>function $()&#123;
+var e=document.getElementById(&quot;c&quot;).value;
+if(e.length==16)
+   if(e.match(/^be0f23/)!=null)
+      if(e.match(/233ac/)!=null)
+         if(e.match(/e98aa$/)!=null)
+             if(e.match(/c7be9/)!=null)&#123;
+             var t=[&quot;fl&quot;,&quot;s_a&quot;,&quot;i&quot;,&quot;e&#125;&quot;];
+             var n=[&quot;a&quot;,&quot;_h0l&quot;,&quot;n&quot;];
+             var r=[&quot;g&#123;&quot;,&quot;e&quot;,&quot;_0&quot;];
+             var i=[&quot;it&#39;&quot;,&quot;_&quot;,&quot;n&quot;];
+             var s=[t,n,r,i];
+             for(var o=0;o&lt;13;++o)&#123;
+             document.write(s[o%4][0]);s[o%4].splice(0,1)&#125;
+             &#125;
+&#125;
+document.write(&#39;&lt;input id=&quot;c&quot;&gt;&lt;button οnclick=$()&gt;Ok&lt;/button&gt;&#39;);
+delete _
+</code></pre>
 <p>分析代码，我们的目标是打印出<code>document.write(s[o%4][0]);s[o%4].splice(0,1)&#125;</code><br>因此我们要满足关键变量e的条件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">e.length&#x3D;&#x3D;16</span><br><span class="line">e.match(&#x2F;^be0f23&#x2F;)!&#x3D;null</span><br><span class="line">e.match(&#x2F;233ac&#x2F;)!&#x3D;null</span><br><span class="line">e.match(&#x2F;e98aa$&#x2F;)!&#x3D;null</span><br><span class="line">e.match(&#x2F;c7be9&#x2F;)!&#x3D;null</span><br></pre></td></tr></table></figure>
+<pre><code>e.length==16
+e.match(/^be0f23/)!=null
+e.match(/233ac/)!=null
+e.match(/e98aa$/)!=null
+e.match(/c7be9/)!=null</code></pre>
 <p>这里又用到了正则表达式 <code>^</code>表示开头一定要匹配到be0f23，<code>$</code>表示结尾一定要匹配到e98aa，其它的只要匹配到就好，没有位置要求，于是构造<code>e=be0f233ac7be98aa</code><br>在输入框中输入e的值，点击Ok<br>成功得到flag：<br><code>flag&#123;it’s_a_h0le_in_0ne&#125;</code></p>
 <p>也可以直接将核心代码直接在控制台执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var t&#x3D;[&quot;fl&quot;,&quot;s_a&quot;,&quot;i&quot;,&quot;e&#125;&quot;];</span><br><span class="line">        var n&#x3D;[&quot;a&quot;,&quot;_h0l&quot;,&quot;n&quot;];</span><br><span class="line">        var r&#x3D;[&quot;g&#123;&quot;,&quot;e&quot;,&quot;_0&quot;];</span><br><span class="line">        var i&#x3D;[&quot;it&#39;&quot;,&quot;_&quot;,&quot;n&quot;];</span><br><span class="line">        var s&#x3D;[t,n,r,i];</span><br><span class="line">    for(var o&#x3D;0;o&lt;13;++o)</span><br><span class="line">        &#123;</span><br><span class="line">         document.write(s[o%4][0]);</span><br><span class="line">         s[o%4].splice(0,1)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<pre><code>var t=[&quot;fl&quot;,&quot;s_a&quot;,&quot;i&quot;,&quot;e&#125;&quot;];
+        var n=[&quot;a&quot;,&quot;_h0l&quot;,&quot;n&quot;];
+        var r=[&quot;g&#123;&quot;,&quot;e&quot;,&quot;_0&quot;];
+        var i=[&quot;it&#39;&quot;,&quot;_&quot;,&quot;n&quot;];
+        var s=[t,n,r,i];
+    for(var o=0;o&lt;13;++o)
+        &#123;
+         document.write(s[o%4][0]);
+         s[o%4].splice(0,1)
+        &#125;</code></pre>
 <p><img src="https://img-blog.csdnimg.cn/20190928120243165.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="4、NewsCenter"><a href="#4、NewsCenter" class="headerlink" title="4、NewsCenter"></a>4、NewsCenter</h2><p><img src="https://img-blog.csdnimg.cn/20190928212847819.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这一题考察的是 SQL 注入，这里演示下手动注入和sqlmap两种方法。</p>
 <h3 id="手动注入："><a href="#手动注入：" class="headerlink" title="手动注入："></a>手动注入：</h3><p>首先查返回列，经测试共三列返回数据。<img src="https://img-blog.csdnimg.cn/20191005132953391.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>接着查看数据库名，看到库名为news</p>

@@ -511,7 +511,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="42">
-<input type="hidden" id="yelog_site_word_count" value="93.1k">
+<input type="hidden" id="yelog_site_word_count" value="92k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -876,18 +876,18 @@
         </a>
         
         <a  class="全部文章 CTF刷题 Crypto "
-           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF刷题 Crypto "
            href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF刷题 Crypto "
+           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
@@ -1222,7 +1222,9 @@ echo $a;</code></pre>
     echo $a;
   注</code></pre>
 <p>意：自增或者自减是对变量而言的！<br>2.字符串运算符<br>  . 连接运算符</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$a&#x3D;&#39;孙胜利&#39;;</span><br><span class="line">$b&#x3D;&#39;测试字符串连接符&#39;;</span><br><span class="line">echo $a.$b;</span><br></pre></td></tr></table></figure>
+<pre><code>$a=&#39;孙胜利&#39;;
+$b=&#39;测试字符串连接符&#39;;
+echo $a.$b;</code></pre>
 <p> 3.赋值运算符<br><code>  =</code><br>   把右边的值赋给左边的变量<br> <code>  $a=1;</code><br>   二元运算符</p>
 <p>   表达式是 PHP 最重要的基石。在 PHP 中，几乎所写的任何东西都是一个表达式。简单但却最精确的定义一个表达式的方式就是“任何有值的东西”。</p>
 <pre><code>   +=
@@ -1295,7 +1297,9 @@ var_dump($a xor $b);</code></pre>
 <ol start="2">
 <li>可以把系统的命令放在里面执行！<br>涉及到跨平台:</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$a&#x3D;&#96;ipconfig&#96;;windows环境下</span><br><span class="line">$b&#x3D;&#96;ifconfig&#96;;liunx环境下</span><br><span class="line">var_dump($b);</span><br></pre></td></tr></table></figure>
+<pre><code>    $a=`ipconfig`;windows环境下
+    $b=`ifconfig`;liunx环境下
+    var_dump($b);</code></pre>
 <p> 3)@<br>   屏蔽表达式可能发生错误！<br>   echo @$a;<br>   当然，实际在哪些地方应用，我们用到大家就知道了！<br>  4)=&gt;<br>  5)-&gt;<br>  6)instanceof<br> 8.运算符的优先级<br>  优先级的概念：<br>   谁的优先级别高就先算谁！<br>  结合方向：<br>   规定了从那个方向开始算的问题！</p>
 <p>  优先级这个概念只要知道一些基本的常用的就可以了，因为我们在实际开发中几乎没有那么需要写非常复杂的表达式，<br>  让我们去考虑先算谁，后算谁的问题！</p>
 <p>  优先级归纳:<br>   1)[无]递增递减<br>   2)[右]逻辑非!<br>   3)[左]乘，除，取余<br>   4)[左]加，减，字符串连接符<br>   5)[无]包含大于号或者小于号的比较运算符<br>   6)[无]不包含大于号或者小于号的比较运算符<br>   7)[左]逻辑与&amp;&amp;<br>   8)[左]逻辑或||<br>   9)[左]? :<br>   10)[右]赋值运算符<br>   12)[左 ]逻辑异或xor<br>  圆括号的作用：<br>   用圆括号可以将表达式里面的某一块看成一个整体！<br>  *使用括号可以增强代码的可读性。<br><strong>6.流程控制</strong><br>if语句<br>switch语句<br>循环语句<br>与C语言基本相同就不再详写。<br><em>特殊的流程控制语句</em><br> 1.break语句<br>  作用：用于switch语句，for，while，do…while，foreach，用于中断这些语句！<br>     后面可以接上一个数字来表示跳出几层循环！默认不加就是跳出当前循环语句！<br> 2.continue语句<br>  作用：只能用在循环语句，跳出本次循环，并不是结束整个循环语句！<br> 3.exit()语句<br>  作用：结束当前整个程序的执行！<br>  die()语句作用同上！</p>

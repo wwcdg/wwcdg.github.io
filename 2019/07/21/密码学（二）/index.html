@@ -511,7 +511,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="42">
-<input type="hidden" id="yelog_site_word_count" value="93.1k">
+<input type="hidden" id="yelog_site_word_count" value="92k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -876,18 +876,18 @@
         </a>
         
         <a  class="全部文章 CTF刷题 Crypto "
-           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF刷题 Crypto "
            href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF刷题 Crypto "
+           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
@@ -1070,7 +1070,7 @@
     </div>
     <div class="article-meta">
         
-        <span>字数:816</span>
+        <span>字数:801</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1108,7 +1108,8 @@
         <p>1、凯撒部长的奖励<br>2、告诉你个秘密(ISCCCTF)<br>3、变异凯撒<br>4、传统知识+古典密码</p>
 <a id="more"></a>
 <p><strong>1、凯撒部长的奖励</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/83/2019/0721/16/15636971007962172_201104351_H800.png" alt="在这里插入图片描述"><br>密文：<code>MSW&#123;byly_Cm_sIol_lYqUlx_yhdIs_Cn_Wuymul_il_wuff_bcg_pCwnIl_cm_u_Yrwyffyhn_guh_cz_sio_quhn_ni_ayn_bcm_chzilguncihm_sio_wuh_dich_om&#125;</code><br>看着挺凶的题，拿去解个密竟然就出来了；这里使用的是Bugku的工具，不得不说，真的很好用，嘿嘿。<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/83/2019/0721/16/15636971007264636_201104351_H800.png"><br>flag：<code>SYC&#123;here_Is_yOur_rEwArd_enjOy_It_Caesar_or_call_him_vIctOr_is_a_Excellent_man_if_you_want_to_get_his_informations_you_can_join_us&#125;</code><br><strong>2、告诉你个秘密(ISCCCTF)</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/83/2019/0721/16/15636971001479119_201104351_H800.png" alt="在这里插入图片描述">密文：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">636A56355279427363446C4A49454A7154534230526D6843</span><br><span class="line">56445A31614342354E326C4B4946467A5769426961453067</span><br></pre></td></tr></table></figure>
+<pre><code>636A56355279427363446C4A49454A7154534230526D6843
+56445A31614342354E326C4B4946467A5769426961453067</code></pre>
 <p>先来理性分析一波</p>
 <ol>
 <li><p>查看给定的字符串中，字符只有A-F，并且字符串两两结合对应的十进制小于128（ASCII码范围为0–127）</p>
@@ -1123,13 +1124,45 @@
 </li>
 </ol>
 <p>代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8</span><br><span class="line">import base64</span><br><span class="line">strs&#x3D;&quot;636A56355279427363446C4A49454A7154534230526D684356445A31614342354E326C4B4946467A5769426961453067&quot;</span><br><span class="line">i &#x3D; 0</span><br><span class="line">strs_len &#x3D; len(strs)</span><br><span class="line">chs&#x3D;[]</span><br><span class="line">while(i &lt; strs_len):</span><br><span class="line">    chs.append(chr(int(strs[i:i+2],16)))</span><br><span class="line">    i &#x3D; i + 2</span><br><span class="line">print(&quot;&quot;.join(chs))</span><br><span class="line">print(base64.decodestring(&quot;&quot;.join(chs)))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>#coding:utf-8
+import base64
+strs=&quot;636A56355279427363446C4A49454A7154534230526D684356445A31614342354E326C4B4946467A5769426961453067&quot;
+i = 0
+strs_len = len(strs)
+chs=[]
+while(i &lt; strs_len):
+    chs.append(chr(int(strs[i:i+2],16)))
+    i = i + 2
+print(&quot;&quot;.join(chs))
+print(base64.decodestring(&quot;&quot;.join(chs)))
+</code></pre>
 <p><strong>3、变异凯撒</strong><br>加密密文：<code>afZ_r9VYfScOeO_UL^RWUc</code><br>由题目中得知，这个密文的加密与凯撒解密有关，那就先解下密；<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/83/2019/0721/16/15636971001399059_201104351_H800.png" alt="在这里插入图片描述"><br>但是解密内容貌似并没有我们想要的；那来分析下他们的ASCII码吧<br>密文：<code>afZ_r9VYfScOeO_UL^RWUc</code>，看看能否与<code>ctf</code> 或者<code>flag</code> 对应上，</p>
 <pre><code>a:97    f:102    Z:106     _:95`                                                                                                                           
 c:99    t:116    f:102     &#123;:123
 f:102   l:108    a:97      g:103</code></pre>
 <p>可以发现规律a→f 移动了5  ； f→l移动了6， 后面依次移动了7、8。<br>知道了这些就可以写脚本了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;env python</span><br><span class="line"># coding:utf-8</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def b_kaisa(mstr):</span><br><span class="line">    j &#x3D; 5</span><br><span class="line">    i &#x3D; 0</span><br><span class="line">    lmstr &#x3D; []</span><br><span class="line">    for i in range(len(mstr)):</span><br><span class="line">        m &#x3D; ord(mstr[i])          # 将密文的第i个字母变为其ascii码值</span><br><span class="line">        m &#x3D; m + j                 # ascii值+j</span><br><span class="line">        lmstr.append(m)           # 将递进后的ascii值存入列表lmstr[]</span><br><span class="line">        i &#x3D; i+1</span><br><span class="line">        j &#x3D; j+1</span><br><span class="line">    return lmstr</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    m_str &#x3D; &#39;afZ_r9VYfScOeO_UL^RWUc&#39;    # 密文</span><br><span class="line">    lstr &#x3D; []</span><br><span class="line">    lstr &#x3D; b_kaisa(m_str)</span><br><span class="line">    print lstr</span><br></pre></td></tr></table></figure>
+<pre><code>#!/usr/bin/env python
+# coding:utf-8
+
+
+def b_kaisa(mstr):
+    j = 5
+    i = 0
+    lmstr = []
+    for i in range(len(mstr)):
+        m = ord(mstr[i])          # 将密文的第i个字母变为其ascii码值
+        m = m + j                 # ascii值+j
+        lmstr.append(m)           # 将递进后的ascii值存入列表lmstr[]
+        i = i+1
+        j = j+1
+    return lmstr
+
+
+if __name__ == &#39;__main__&#39;:
+    m_str = &#39;afZ_r9VYfScOeO_UL^RWUc&#39;    # 密文
+    lstr = []
+    lstr = b_kaisa(m_str)
+    print lstr</code></pre>
 <p>运行结果：<img src="https://img-blog.csdnimg.cn/20190721140851536.png" alt="在这里插入图片描述"><br>然后将这些ASCII码转换为字符串就好了；<br><img src="https://img-blog.csdnimg.cn/20190721144855252.png" alt="在这里插入图片描述"></p>
 <p>   <code> flag&#123;Caesar_variation&#125;</code></p>
 <p><strong>4、传统知识+古典密码</strong><br>小明某一天收到一封密信，信中写了几个不同的年份<br>          辛卯，癸巳，丙戌，辛未，庚辰，癸酉，己卯，癸巳。<br>          信的背面还写有“+甲子”，请解出这段密文。</p>

@@ -511,7 +511,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="42">
-<input type="hidden" id="yelog_site_word_count" value="93.1k">
+<input type="hidden" id="yelog_site_word_count" value="92k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -876,18 +876,18 @@
         </a>
         
         <a  class="全部文章 CTF刷题 Crypto "
-           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF刷题 Crypto "
            href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF刷题 Crypto "
+           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
@@ -1061,7 +1061,7 @@
     </div>
     <div class="article-meta">
         
-        <span>字数:1.5k</span>
+        <span>字数:1.4k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1098,12 +1098,49 @@
       
         <p>这周四团队进行了一次内部比赛，学长让我们进行对各自搭建的登陆注册界面互相进行sql注入攻击，毫无准备的我很快就被打穿了…，唉，无奈代码写太简陋，没有提前准备，体验感极差hhh。。。<hr><br>那么先来了解一下什么是sql注入<br><strong>sql注入定义</strong><br>所谓SQL注入，就是通过把SQL命令插入到Web表单递交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。<br><strong>sql注入原理</strong><br>　 　当用户使用输入内容来构造动态sql语句以访问数据库时，如果代码使用存储过程，而这些存储过程作为包含未筛选的用户输入的 字符串来传递，会发生sql注入。在某些表单中，用户输入的内容直接用来构造动态sql命令，或者作为存储过程的输入参数，这些表单特别容易受到sql注入的攻击。因此，没有对用户输入的合法性进行判断或者程序中本身的变量处理不当，这样，用户就可以提交一段数据库查询的代码， 根据程序返回的结果，获得一些敏感的信息或者控制整个服务器，于是sql注入就发生了。<br>　<strong>如何防护</strong> 　<br>主要有以下几点：<br>1.永远不要信任用户的输入。对用户的输入进行校验，可以通过正则表达式，或限制长度；对单引号和<br>双”-“进行转换等。<br>2.永远不要使用动态拼装sql，可以使用参数化的sql或者直接使用存储过程进行数据查询存取。<br>3.永远不要使用管理员权限的数据库连接，为每个应用使用单独的权限有限的数据库连接。<br>4.不要把机密信息直接存放，加密或者hash掉密码和敏感的信息。<br>5.应用的异常信息应该给出尽可能少的提示，最好使用自定义的错误信息对原始错误信息进行包装<br>6.sql注入的检测方法一般采取辅助软件或网站平台来检测，软件一般采用sql注入检测工具jsky，网站平台就有亿思网站安全平台检测工具。MDCSOFT SCAN等。采用MDCSOFT-IPS可以有效的防御SQL注入，XSS攻击等。<hr></p>
 <p>下面是我的登陆验证代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">       $conn&#x3D;mysql_connect(&quot;localhost&quot;,&#39;root&#39;,&#39;root&#39;) or die(&quot;数据库连接失败！&quot;);&#x2F;&#x2F;连接你的本地数据库</span><br><span class="line">       localhost为服务器 root为用户名 root为密码</span><br><span class="line"></span><br><span class="line">       mysql_select_db(&#39;myphp&#39;,$conn) or die(&quot;您要选择的数据库不存在&quot;);&#x2F;&#x2F;选择你建立的数据库</span><br><span class="line"></span><br><span class="line">       $name&#x3D;$_POST[&#39;username&#39;];</span><br><span class="line"></span><br><span class="line">       $pass&#x3D;$_POST[&#39;password&#39;];&#x2F;&#x2F;获取表单提交的内容用两个变量来存post方式接受的值</span><br><span class="line"></span><br><span class="line">       $sql&#x3D;&quot;select * from user where username&#x3D;&#39;$name&#39; and password&#x3D;&#39;$pass&#39;&quot;;&#x2F;&#x2F;查询语句</span><br><span class="line"></span><br><span class="line">       $query&#x3D;mysql_query($sql);&#x2F;&#x2F;函数执行一条 MySQL 查询。</span><br><span class="line"></span><br><span class="line">       $arr&#x3D;mysql_fetch_array($query);然后从$query中取一行数字数组</span><br><span class="line"></span><br><span class="line">       if(is_array($arr))&#123;&#x2F;&#x2F;对$arr进行判断</span><br><span class="line">		   </span><br><span class="line">			  setcookie(&#39;username&#39;,$name,time()+3600);&#x2F;&#x2F;设置cookie,时间为一小时，（以秒为单位）</span><br><span class="line">              header(&quot;Location:index.php&quot;);&#x2F;&#x2F;跳转页面</span><br><span class="line"></span><br><span class="line">       &#125;else&#123;</span><br><span class="line"></span><br><span class="line">              echo &quot;您的用户名或密码输入有误，&lt;a href&#x3D;\&quot;login.php\&quot;&gt;请重新登录！&lt;&#x2F;a&gt;&quot;;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;?php
+
+       $conn=mysql_connect(&quot;localhost&quot;,&#39;root&#39;,&#39;root&#39;) or die(&quot;数据库连接失败！&quot;);//连接你的本地数据库
+       localhost为服务器 root为用户名 root为密码
+
+       mysql_select_db(&#39;myphp&#39;,$conn) or die(&quot;您要选择的数据库不存在&quot;);//选择你建立的数据库
+
+       $name=$_POST[&#39;username&#39;];
+
+       $pass=$_POST[&#39;password&#39;];//获取表单提交的内容用两个变量来存post方式接受的值
+
+       $sql=&quot;select * from user where username=&#39;$name&#39; and password=&#39;$pass&#39;&quot;;//查询语句
+
+       $query=mysql_query($sql);//函数执行一条 MySQL 查询。
+
+       $arr=mysql_fetch_array($query);然后从$query中取一行数字数组
+
+       if(is_array($arr))&#123;//对$arr进行判断
+
+              setcookie(&#39;username&#39;,$name,time()+3600);//设置cookie,时间为一小时，（以秒为单位）
+              header(&quot;Location:index.php&quot;);//跳转页面
+
+       &#125;else&#123;
+
+              echo &quot;您的用户名或密码输入有误，&lt;a href=\&quot;login.php\&quot;&gt;请重新登录！&lt;/a&gt;&quot;;
+
+       &#125;
+
+?&gt;</code></pre>
 <p>注意到了没，我们直接将用户提交过来的数据(用户名和密码)直接拿去执行，并没有实现进行特殊字符过滤，待会你将明白，这是致命的。<br>　　代码分析：如果，用户名和密码都匹配成功的话，将跳转到目的操作界面 index.php，不成功，则给出提示信息。<br><strong>演示注入手法</strong><br>     接下来将展开我们的重头戏SQL注入：<br>　　填好正确的用户名(123)和密码(123)后，点击提交，将会返回给我们“登陆成功”的界面。<br>　　因为根据我们提交的用户名和密码被合成到SQL查询语句当中之后是这样的：
 　　   </p>
 <pre><code> select * from users where username=&#39;123&#39; and password=&#39;123&#39;</code></pre>
 <p>　　      很明显，用户名和密码都和我们之前给出的一样，肯定能够成功登陆。<br>但是，如果我们输入一个错误的用户名或密码呢?很明显，肯定登入不了吧。恩，正常情况下是如此，但是对于有SQL注入漏洞的网站来说，只要构造个特殊的“字符串”，照样能够成功登录。<br>比如在用户名输入框中输入:’or 1=1#,密码随便输入，这时候的合成后的SQL查询语句为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">select * from users where username&#x3D;&#39;&#39; or 1&#x3D;1#&#39; and password&#x3D;md5(&#39; &#39;)</span><br><span class="line">语义分析：“#”在mysql中是注释符，这样#号后面的内容将被mysql视为注释内容，</span><br><span class="line">这样就不会去执行了，换句话说，以下的两句sql语句等价：</span><br><span class="line"></span><br><span class="line">select * from users where username&#x3D;&#39;&#39; or 1&#x3D;1#&#39; and password&#x3D;md5(&#39; &#39;)</span><br><span class="line">等价于   select * from users where username&#x3D;&#39;&#39; or 1&#x3D;1</span><br><span class="line"></span><br><span class="line">因为1&#x3D;1永远都是成立的，即where子句总是为真，将该sql进一步简化之后，</span><br><span class="line">等价如下select语句：</span><br><span class="line">select * from users</span><br></pre></td></tr></table></figure>
+<pre><code>select * from users where username=&#39;&#39; or 1=1#&#39; and password=md5(&#39; &#39;)
+语义分析：“#”在mysql中是注释符，这样#号后面的内容将被mysql视为注释内容，
+这样就不会去执行了，换句话说，以下的两句sql语句等价：
+
+select * from users where username=&#39;&#39; or 1=1#&#39; and password=md5(&#39; &#39;)
+等价于   select * from users where username=&#39;&#39; or 1=1
+
+因为1=1永远都是成立的，即where子句总是为真，将该sql进一步简化之后，
+等价如下select语句：
+select * from users</code></pre>
 <p>　　没错，该sql语句的作用是检索users表中的所有字段<br>    果不其然，我们利用万能语句(’or 1=1#)能够登录！看到了吧，一个经构造后的sql语句竟有如此可怕的破坏力，相信你看到这后，开始对sql注入有了一个理性的认识了吧~</p>
 
       

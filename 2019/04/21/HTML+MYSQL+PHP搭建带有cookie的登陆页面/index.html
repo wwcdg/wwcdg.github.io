@@ -511,7 +511,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="42">
-<input type="hidden" id="yelog_site_word_count" value="93.1k">
+<input type="hidden" id="yelog_site_word_count" value="92k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -876,18 +876,18 @@
         </a>
         
         <a  class="全部文章 CTF刷题 Crypto "
-           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF刷题 Crypto "
            href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF刷题 Crypto "
+           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
@@ -1063,7 +1063,7 @@
     </div>
     <div class="article-meta">
         
-        <span>字数:1.5k</span>
+        <span>字数:1.4k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1108,18 +1108,185 @@
 <p>大致需要以下PHP文件：<br><img src="https://github.com/weiwanchengdege/photos/blob/master/8NP(0XC%7B8Y1B%60VWQGI85A_3.png?raw=true" alt="在这里插入图片描述"><br><strong>-  使用phpstudy 自带的mysql 创建数据库</strong></p>
 <p>在localhost 点击箭头新建数据库命名为 mysql<br><img src="https://github.com/weiwanchengdege/photos/blob/master/Inked%7B(4%7D%60U$%5BCS%25H(%7DNPJ%604%25YS_LI.jpg?raw=true" alt="在这里插入图片描述"><br>然后在新建数据库中新建一个表，命名为 user，添加新字段，username 和 password ；内容可以先空着<br><img src="https://github.com/weiwanchengdege/photos/blob/master/WOJD~SRJ8M%5DVEYTZ%5DM%60N%25U.png?raw=true" alt="在这里插入图片描述"></p>
 <p> <strong>- 使用HTML编写登陆界面</strong><br> 总流程如下：<br><img src="https://github.com/weiwanchengdege/photos/blob/master/_3%600I1O5X3GIATXXAT4ZY.png?raw=true" alt="在这里插入图片描述"><br>  login.php；代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"> &lt;!DOCTYPE html&gt;</span><br><span class="line"> &lt;html lang&#x3D;&#39;zh&#39;&gt;</span><br><span class="line"> &lt;head&gt;</span><br><span class="line"> &lt;title&gt; login&lt;&#x2F;title&gt;</span><br><span class="line"> &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">	body&#123;</span><br><span class="line">		background-image:url(&#39;325151.jpg&#39;);</span><br><span class="line">		font-size:30px;&#x2F;&#x2F;字体大小</span><br><span class="line">	&#125;</span><br><span class="line">	.main&#123;</span><br><span class="line">		position:absolute;&#x2F;&#x2F;全局变量</span><br><span class="line">		top:35%;</span><br><span class="line">		left:45%;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	input&#123;</span><br><span class="line">		width:250px;</span><br><span class="line">		height:30px;</span><br><span class="line">		text-align:left;</span><br><span class="line">		color:blue;</span><br><span class="line">	&#125;</span><br><span class="line">	.sub&#123;</span><br><span class="line">		width:125px;</span><br><span class="line">		height:30px;</span><br><span class="line">	&#125;</span><br><span class="line">	button&#123;</span><br><span class="line">		width:125px;</span><br><span class="line">		height:30px;</span><br><span class="line">		text-align:left;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line"> &lt;body&gt;  </span><br><span class="line">&lt;div class&#x3D;&quot;main&quot;&gt;</span><br><span class="line">&lt;form name&#x3D;&quot;input&quot; action&#x3D;&quot;post.php&quot; method&#x3D;&quot;post&quot;&gt;</span><br><span class="line">用户名 ：&lt;br &#x2F;&gt;&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;username&quot;&gt;&lt;br&gt;</span><br><span class="line">密码 ：  &lt;br &#x2F;&gt;&lt;input type&#x3D;&quot;password&quot; name&#x3D;&quot;password&quot;&gt; &lt;br&gt;</span><br><span class="line">             &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;登陆&quot; class&#x3D;&quot;sub&quot;&gt;</span><br><span class="line">		     &lt;button&gt;&lt;a href&#x3D;&quot;reg.php&quot;&gt;注册&lt;&#x2F;a&gt;&lt;&#x2F;button&gt;</span><br><span class="line">		</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt; </span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<pre><code> &lt;!DOCTYPE html&gt;
+ &lt;html lang=&#39;zh&#39;&gt;
+ &lt;head&gt;
+ &lt;title&gt; login&lt;/title&gt;
+ &lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;style&gt;
+    body&#123;
+        background-image:url(&#39;325151.jpg&#39;);
+        font-size:30px;//字体大小
+    &#125;
+    .main&#123;
+        position:absolute;//全局变量
+        top:35%;
+        left:45%;
+    &#125;
+
+    input&#123;
+        width:250px;
+        height:30px;
+        text-align:left;
+        color:blue;
+    &#125;
+    .sub&#123;
+        width:125px;
+        height:30px;
+    &#125;
+    button&#123;
+        width:125px;
+        height:30px;
+        text-align:left;
+    &#125;
+&lt;/style&gt;
+&lt;/head&gt;
+ &lt;body&gt;  
+&lt;div class=&quot;main&quot;&gt;
+&lt;form name=&quot;input&quot; action=&quot;post.php&quot; method=&quot;post&quot;&gt;
+用户名 ：&lt;br /&gt;&lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;&lt;br&gt;
+密码 ：  &lt;br /&gt;&lt;input type=&quot;password&quot; name=&quot;password&quot;&gt; &lt;br&gt;
+             &lt;input type=&quot;submit&quot; value=&quot;登陆&quot; class=&quot;sub&quot;&gt;
+             &lt;button&gt;&lt;a href=&quot;reg.php&quot;&gt;注册&lt;/a&gt;&lt;/button&gt;
+
+&lt;/form&gt;
+&lt;/div&gt;
+&lt;/body&gt; 
+&lt;/html&gt;</code></pre>
 <p>界面如下：<br><img src="https://github.com/weiwanchengdege/photos/blob/master/Microsoft%20Edge%202019_4_20%2023_05_54.png?raw=true" alt="在这里插入图片描述"><br><strong>- 登陆验证：</strong><br>post.php;代码如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">       $conn&#x3D;mysql_connect(&quot;localhost&quot;,&#39;root&#39;,&#39;root&#39;) or die(&quot;数据库连接失败！&quot;);&#x2F;&#x2F;连接你的本地数据库</span><br><span class="line">       localhost为服务器 root为用户名 root为密码</span><br><span class="line"></span><br><span class="line">       mysql_select_db(&#39;myphp&#39;,$conn) or die(&quot;您要选择的数据库不存在&quot;);&#x2F;&#x2F;选择你建立的数据表</span><br><span class="line"></span><br><span class="line">       $name&#x3D;$_POST[&#39;username&#39;];</span><br><span class="line"></span><br><span class="line">       $pwd&#x3D;$_POST[&#39;password&#39;];&#x2F;&#x2F;获取表单提交的内容用两个变量来存post方式接受的值</span><br><span class="line"></span><br><span class="line">       $sql&#x3D;&quot;select * from user where username&#x3D;&#39;$name&#39; and password&#x3D;&#39;$pwd&#39;&quot;;&#x2F;&#x2F;查询语句</span><br><span class="line"></span><br><span class="line">       $query&#x3D;mysql_query($sql);&#x2F;&#x2F;函数执行一条 MySQL 查询。</span><br><span class="line"></span><br><span class="line">       $arr&#x3D;mysql_fetch_array($query);然后从$query中取一行数字数组</span><br><span class="line"></span><br><span class="line">       if(is_array($arr))&#123;&#x2F;&#x2F;对$arr进行判断</span><br><span class="line">		   </span><br><span class="line">			  setcookie(&#39;username&#39;,$name,time()+3600);&#x2F;&#x2F;设置cookie,时间为一小时，（以秒为单位）</span><br><span class="line">              header(&quot;Location:index.php&quot;);&#x2F;&#x2F;跳转页面</span><br><span class="line"></span><br><span class="line">       &#125;else&#123;</span><br><span class="line"></span><br><span class="line">              echo &quot;您的用户名或密码输入有误，&lt;a href&#x3D;\&quot;login.php\&quot;&gt;请重新登录！&lt;&#x2F;a&gt;&quot;;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>&lt;?php
+
+       $conn=mysql_connect(&quot;localhost&quot;,&#39;root&#39;,&#39;root&#39;) or die(&quot;数据库连接失败！&quot;);//连接你的本地数据库
+       localhost为服务器 root为用户名 root为密码
+
+       mysql_select_db(&#39;myphp&#39;,$conn) or die(&quot;您要选择的数据库不存在&quot;);//选择你建立的数据表
+
+       $name=$_POST[&#39;username&#39;];
+
+       $pwd=$_POST[&#39;password&#39;];//获取表单提交的内容用两个变量来存post方式接受的值
+
+       $sql=&quot;select * from user where username=&#39;$name&#39; and password=&#39;$pwd&#39;&quot;;//查询语句
+
+       $query=mysql_query($sql);//函数执行一条 MySQL 查询。
+
+       $arr=mysql_fetch_array($query);然后从$query中取一行数字数组
+
+       if(is_array($arr))&#123;//对$arr进行判断
+
+              setcookie(&#39;username&#39;,$name,time()+3600);//设置cookie,时间为一小时，（以秒为单位）
+              header(&quot;Location:index.php&quot;);//跳转页面
+
+       &#125;else&#123;
+
+              echo &quot;您的用户名或密码输入有误，&lt;a href=\&quot;login.php\&quot;&gt;请重新登录！&lt;/a&gt;&quot;;
+
+       &#125;
+
+?&gt;
+
+</code></pre>
 <p><strong>实现注册总流程：</strong><br><img src="https://github.com/weiwanchengdege/photos/blob/master/347(0V6CSGE%7D3$9%5DCD4C~6X.png?raw=true" alt="在这里插入图片描述"></p>
 <p><strong>-注册页面</strong><br><img src="https://github.com/weiwanchengdege/photos/blob/master/Microsoft%20Edge%202019_4_21%2011_21_51.png?raw=true" alt="在这里插入图片描述"><br> reg.php;代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"> &lt;!DOCTYPE html&gt;</span><br><span class="line">    &lt;html &gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">    &lt;title&gt; 注册&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">	&lt;style&gt;</span><br><span class="line">	body&#123;</span><br><span class="line">		background-image:url(&#39;323971.jpg&#39;);</span><br><span class="line">		background-repeat:no-repeat;</span><br><span class="line">		font-size:30px;</span><br><span class="line">	&#125;</span><br><span class="line">	.main&#123;</span><br><span class="line">		position:absolute;</span><br><span class="line">		top:35%;</span><br><span class="line">		left:45%;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	input&#123;</span><br><span class="line">		text-align:center;</span><br><span class="line">		width:250px;</span><br><span class="line">		height:30px;</span><br><span class="line">		text-align:left;</span><br><span class="line">		color:green;</span><br><span class="line">	&#125;</span><br><span class="line">	.sub&#123;</span><br><span class="line">		width:125px;</span><br><span class="line">		height:30px;</span><br><span class="line">	&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;&#x2F;head&gt;</span><br><span class="line">    &lt;body&gt;  </span><br><span class="line">&lt;div class&#x3D;&quot;main&quot;&gt;</span><br><span class="line">&lt;form name&#x3D;&quot;input&quot; action&#x3D;&quot;regin.php&quot; method&#x3D;&quot;post&quot;&gt;</span><br><span class="line">用户名&lt;br&#x2F;&gt;&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;username&quot;&gt;&lt;br&gt;</span><br><span class="line">密码  &lt;br&#x2F;&gt;&lt;input type&#x3D;&quot;password&quot; name&#x3D;&quot;password&quot;&gt; &lt;br&gt;</span><br><span class="line">           &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;注册&quot; class&#x3D;&quot;sub&quot;&gt;</span><br><span class="line">    &lt;&#x2F;body&gt;</span><br><span class="line">	&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code> &lt;!DOCTYPE html&gt;
+    &lt;html &gt;
+    &lt;head&gt;
+    &lt;title&gt; 注册&lt;/title&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;style&gt;
+    body&#123;
+        background-image:url(&#39;323971.jpg&#39;);
+        background-repeat:no-repeat;
+        font-size:30px;
+    &#125;
+    .main&#123;
+        position:absolute;
+        top:35%;
+        left:45%;
+    &#125;
+
+    input&#123;
+        text-align:center;
+        width:250px;
+        height:30px;
+        text-align:left;
+        color:green;
+    &#125;
+    .sub&#123;
+        width:125px;
+        height:30px;
+    &#125;
+    &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;  
+&lt;div class=&quot;main&quot;&gt;
+&lt;form name=&quot;input&quot; action=&quot;regin.php&quot; method=&quot;post&quot;&gt;
+用户名&lt;br/&gt;&lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;&lt;br&gt;
+密码  &lt;br/&gt;&lt;input type=&quot;password&quot; name=&quot;password&quot;&gt; &lt;br&gt;
+           &lt;input type=&quot;submit&quot; value=&quot;注册&quot; class=&quot;sub&quot;&gt;
+    &lt;/body&gt;
+    &lt;/div&gt;
+    &lt;/html&gt;
+</code></pre>
 <p>regin.php  ; 注册验证：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> &lt;?php</span><br><span class="line">     $conn&#x3D;mysql_connect(&quot;localhost&quot;,&#39;root&#39;,&#39;root&#39;) or die(&quot;数据库连接失败！&quot;);</span><br><span class="line"></span><br><span class="line">           mysql_select_db(&#39;myphp&#39;,$conn) or die(&quot;您要选择的数据库不存在&quot;);</span><br><span class="line">     $name&#x3D;trim($_POST[&#39;username&#39;]);</span><br><span class="line">	&#x2F;&#x2F;trim函数，过滤空格，如果不加，我们在用户名后面添加很多空格，提交表单，打开firebug</span><br><span class="line">	&#x2F;&#x2F;调试工具，我们可以到输入的用户名后面会有很多空格，使用trim函数，我们可以把表单中空格给过滤掉</span><br><span class="line">	 $password&#x3D;$_POST[&#39;password&#39;];</span><br><span class="line">	 $sql &#x3D; &quot;select * from user where username&#x3D;&#39;$name&#39;&quot;;</span><br><span class="line">	 $info &#x3D; mysql_query($sql);</span><br><span class="line">	 $res &#x3D; mysql_num_rows($info);</span><br><span class="line">	if(empty($name))&#123;</span><br><span class="line">		echo &quot;&lt;script&gt;alert(&#39;用户名不能为空&#39;);location.href&#x3D;&#39;reg.php&#39;;&lt;&#x2F;script&gt;&quot;;</span><br><span class="line">	&#125;else if(empty($password))&#123;</span><br><span class="line">		echo &quot;&lt;script&gt;alert(&#39;密码不能为空&#39;);location.href&#x3D;&#39;reg.php&#39;;&lt;&#x2F;script&gt;&quot;;</span><br><span class="line">	&#125;else&#123;	</span><br><span class="line">		if($res)&#123;</span><br><span class="line">			echo &quot;&lt;script&gt;alert(&#39;用户名已存在&#39;);location.href&#x3D;&#39;reg.php&#39;;&lt;&#x2F;script&gt;&quot;;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			$sql1 &#x3D;&quot;insert into user(username,password) values(&#39;&quot;.$name.&quot;&#39;,&#39;&quot; .($password).&quot;&#39;)&quot;;</span><br><span class="line">			$result &#x3D; mysql_query($sql1);</span><br><span class="line">			if($result)&#123;</span><br><span class="line">		 			echo &quot;&lt;script&gt;alert(&#39;注册成功&#39;)&lt;&#x2F;script&gt;&quot;,header(&quot;Location:login.php&quot;);;</span><br><span class="line">			&#125;else&#123;</span><br><span class="line">		 			echo &quot;&lt;script&gt;alert(&#39;注册失败&#39;)&lt;&#x2F;script&gt;&quot;;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;	</span><br><span class="line">?&gt;                                           </span><br></pre></td></tr></table></figure>
+<pre><code> &lt;?php
+     $conn=mysql_connect(&quot;localhost&quot;,&#39;root&#39;,&#39;root&#39;) or die(&quot;数据库连接失败！&quot;);
+
+           mysql_select_db(&#39;myphp&#39;,$conn) or die(&quot;您要选择的数据库不存在&quot;);
+     $name=trim($_POST[&#39;username&#39;]);
+    //trim函数，过滤空格，如果不加，我们在用户名后面添加很多空格，提交表单，打开firebug
+    //调试工具，我们可以到输入的用户名后面会有很多空格，使用trim函数，我们可以把表单中空格给过滤掉
+     $password=$_POST[&#39;password&#39;];
+     $sql = &quot;select * from user where username=&#39;$name&#39;&quot;;
+     $info = mysql_query($sql);
+     $res = mysql_num_rows($info);
+    if(empty($name))&#123;
+        echo &quot;&lt;script&gt;alert(&#39;用户名不能为空&#39;);location.href=&#39;reg.php&#39;;&lt;/script&gt;&quot;;
+    &#125;else if(empty($password))&#123;
+        echo &quot;&lt;script&gt;alert(&#39;密码不能为空&#39;);location.href=&#39;reg.php&#39;;&lt;/script&gt;&quot;;
+    &#125;else&#123;    
+        if($res)&#123;
+            echo &quot;&lt;script&gt;alert(&#39;用户名已存在&#39;);location.href=&#39;reg.php&#39;;&lt;/script&gt;&quot;;
+        &#125;else&#123;
+            $sql1 =&quot;insert into user(username,password) values(&#39;&quot;.$name.&quot;&#39;,&#39;&quot; .($password).&quot;&#39;)&quot;;
+            $result = mysql_query($sql1);
+            if($result)&#123;
+                     echo &quot;&lt;script&gt;alert(&#39;注册成功&#39;)&lt;/script&gt;&quot;,header(&quot;Location:login.php&quot;);;
+            &#125;else&#123;
+                     echo &quot;&lt;script&gt;alert(&#39;注册失败&#39;)&lt;/script&gt;&quot;;
+            &#125;
+        &#125;
+&#125;    
+?&gt;                                           </code></pre>
 <p><strong>- 登陆成功界面</strong><br><img src="https://github.com/weiwanchengdege/photos/blob/master/J%7B~ID%25BBDF9GON9%60_AN4IN.png?raw=true" alt="在这里插入图片描述"><br>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if(!isset($_COOKIE[&#39;username&#39;]))&#x2F;&#x2F;对跳转方式判断，阻止直接跳转；</span><br><span class="line">&#123;</span><br><span class="line">	echo &#39;登录非法!&lt;a href&#x3D;&quot;login.php&quot;&gt;请登录&lt;&#x2F;a&gt;&#39;;</span><br><span class="line">	exit();</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">   &lt;html &gt;</span><br><span class="line">   &lt;head&gt;</span><br><span class="line">   &lt;title&gt; welcome! &lt;&#x2F;title&gt;</span><br><span class="line">   &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">   &lt;&#x2F;head&gt;</span><br><span class="line">   &lt;body&gt;  </span><br><span class="line">  Hello 靓仔!</span><br><span class="line">  &lt;a href&#x3D;&quot;logout.php&quot;&gt;注销&lt;&#x2F;a&gt;&#x2F;&#x2F;点击“ 注销 ”跳转页面</span><br><span class="line">   &lt;&#x2F;body&gt;</span><br><span class="line">   &lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<pre><code> &lt;?php
+    if(!isset($_COOKIE[&#39;username&#39;]))//对跳转方式判断，阻止直接跳转；
+    &#123;
+        echo &#39;登录非法!&lt;a href=&quot;login.php&quot;&gt;请登录&lt;/a&gt;&#39;;
+        exit();
+    &#125;
+ ?&gt;
+ &lt;!DOCTYPE html&gt;
+    &lt;html &gt;
+    &lt;head&gt;
+    &lt;title&gt; welcome! &lt;/title&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;  
+   Hello 靓仔!
+   &lt;a href=&quot;logout.php&quot;&gt;注销&lt;/a&gt;//点击“ 注销 ”跳转页面
+    &lt;/body&gt;
+    &lt;/html&gt;</code></pre>
 <p><strong>- 注销 cookie</strong><br>logout.php:<br>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	if(isset($_COOKIE[&#39;username&#39;]))&#123;</span><br><span class="line">		setcookie(&#39;username&#39;,$name,time()-1);&#x2F;&#x2F;清除cookie 将时间设置为负数</span><br><span class="line">		header(&#39;Location:login.php&#39;);</span><br><span class="line">	&#125;</span><br><span class="line">	else&#123;</span><br><span class="line">		echo &#39;注销失败&#39;;</span><br><span class="line">		header(&#39;Location:index.php&#39;);</span><br><span class="line">	&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;?php
+    if(isset($_COOKIE[&#39;username&#39;]))&#123;
+        setcookie(&#39;username&#39;,$name,time()-1);//清除cookie 将时间设置为负数
+        header(&#39;Location:login.php&#39;);
+    &#125;
+    else&#123;
+        echo &#39;注销失败&#39;;
+        header(&#39;Location:index.php&#39;);
+    &#125;
+?&gt;</code></pre>
 <hr>
 以上就是利用phpstudy搭建带有cookie 的登录注册界面的全过程，希望这篇文章可以帮助别人，同时也防止自己遗忘。
 

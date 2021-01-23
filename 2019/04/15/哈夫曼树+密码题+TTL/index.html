@@ -511,7 +511,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="42">
-<input type="hidden" id="yelog_site_word_count" value="93.1k">
+<input type="hidden" id="yelog_site_word_count" value="92k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -876,18 +876,18 @@
         </a>
         
         <a  class="全部文章 CTF刷题 Crypto "
-           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF刷题 Crypto "
            href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF刷题 Crypto "
+           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
@@ -1063,7 +1063,7 @@
     </div>
     <div class="article-meta">
         
-        <span>字数:985</span>
+        <span>字数:959</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1100,7 +1100,36 @@
       
         <p>这周又做了几道题，挺有意思的，记录下。<br><strong>一 .奇怪的TTL</strong><br> 至于什么是TTL，我给大家解释下：IP报文在路由间穿梭的时候每经过一个路由，TTL就会减1，当TTL为0的时候，该报文就会被丢弃。TTL所占的位数是8位，也就是0-255的范围，但是在大多数情况下通常只需要经过很小的跳数就能完成报文的转发，远远比上限255小得多，所以我们可以用TTL值的前两位来进行传输隐藏数据<br>如：须传送H字符，只需把H字符换成二进制，每两位为一组，每次填充到TTL字段的开头两位并把剩下的6位设置为1（xx111111），这样发4个IP报文即可传送1个字节。（摘抄···）<br>了解了这些之后开始做题。<hr><br>打开有两个txt文档<br><img src="https://github.com/weiwanchengdege/photos/blob/master/Z3HGLJJWTYLU%5B7Y306VOU7W.png?raw=true" alt="在这里插入图片描述"><br>题目描述如下：<br>我们截获了一些IP数据报，发现报文头中的TTL值特别可疑，怀疑是通信方嵌入了数据到TTL，我们将这些TTL值提取了出来，你能看出什么端倪吗？<br>打开文档：</p>
 <p><img src="https://github.com/weiwanchengdege/photos/blob/master/20190408114948666705.png?raw=true" alt="在这里插入图片描述"><br>txt文件里面有很多列ttl值，63,127,191,255<br>63== 00111111<br>127==01111111<br>191==10111111<br>255==11111111<br>变得只有前面两位，后面6位不变，如果传输4个就是一字节<br>使用脚本提取<br>(大佬的脚本)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">fp &#x3D; open(&#39;ttl.txt&#39;,&#39;r&#39;)</span><br><span class="line">a &#x3D; fp.readlines()</span><br><span class="line">p &#x3D; []</span><br><span class="line">for i in a:</span><br><span class="line">    p.append(int(i[4:]))</span><br><span class="line">s &#x3D; &#39;&#39;</span><br><span class="line">for i in p:</span><br><span class="line">    if i &#x3D;&#x3D; 63:</span><br><span class="line">        a &#x3D; &#39;00&#39;</span><br><span class="line">    elif i &#x3D;&#x3D; 127:</span><br><span class="line">        a &#x3D; &#39;01&#39;</span><br><span class="line">    elif i &#x3D;&#x3D; 191:</span><br><span class="line">        a &#x3D; &#39;10&#39;</span><br><span class="line">    elif i &#x3D;&#x3D; 255:</span><br><span class="line">        a &#x3D; &#39;11&#39;</span><br><span class="line">    s +&#x3D; a</span><br><span class="line"># print(s)</span><br><span class="line"></span><br><span class="line">import binascii</span><br><span class="line">flag &#x3D; &#39;&#39;</span><br><span class="line">for i in range(0,len(s),8):</span><br><span class="line">    flag +&#x3D; chr(int(s[i:i+8],2))</span><br><span class="line">flag &#x3D; binascii.unhexlify(flag)</span><br><span class="line">wp &#x3D; open(&#39;res.jpg&#39;,&#39;wb&#39;)</span><br><span class="line">wp.write(flag)</span><br><span class="line">wp.close()</span><br><span class="line">#00111111 63</span><br><span class="line">#01111111 127</span><br><span class="line">#10111111 191</span><br><span class="line">#11111111 255</span><br></pre></td></tr></table></figure>
+<pre><code>fp = open(&#39;ttl.txt&#39;,&#39;r&#39;)
+a = fp.readlines()
+p = []
+for i in a:
+    p.append(int(i[4:]))
+s = &#39;&#39;
+for i in p:
+    if i == 63:
+        a = &#39;00&#39;
+    elif i == 127:
+        a = &#39;01&#39;
+    elif i == 191:
+        a = &#39;10&#39;
+    elif i == 255:
+        a = &#39;11&#39;
+    s += a
+# print(s)
+
+import binascii
+flag = &#39;&#39;
+for i in range(0,len(s),8):
+    flag += chr(int(s[i:i+8],2))
+flag = binascii.unhexlify(flag)
+wp = open(&#39;res.jpg&#39;,&#39;wb&#39;)
+wp.write(flag)
+wp.close()
+#00111111 63
+#01111111 127
+#10111111 191
+#11111111 255</code></pre>
 <p>得到：<img src="https://img-blog.csdnimg.cn/20190414202949301.jpg" alt="在这里插入图片描述"><br>写完之后发现只有二维码的一部分，应该是不止一张图，用foremost直接分开就好了，之后用ps拼在一块<br><a target="_blank" rel="noopener" href="http://www.mamicode.com/info-detail-2283219.html">foremost下载及使用说明</a><br><img src="https://github.com/weiwanchengdege/photos/blob/master/E2%25YM%7D%7D24~101AHU~2BMJBT.png?raw=true" alt="在这里插入图片描述"><br>得到六张图：<img src="https://github.com/weiwanchengdege/photos/blob/master/A~S%7D6A7UL@UH6Z$V@3$ABUF.png?raw=true" alt="在这里插入图片描述"><br>使用PS拼接：<img src="https://github.com/weiwanchengdege/photos/blob/master/OWO_%5BRDO@" alt="在这里插入图片描述">WYEP%5DFM~KMYET.png?raw=true)</p>
 <p>扫描之后得到如下信息：</p>
 <pre><code>key:AutomaticKey 
@@ -1111,7 +1140,9 @@ cipher:fftu&#123;2028mb39927wn1f96o6e12z03j58002p&#125;</code></pre>
 DCCDDCCDDDCCDCC/CCDCDCDDDCDCDCCDCCCD/CCDCDCCDCCCDDCDCCCDCCCDCC/DDCCDCCDDCC
 DCCCCCCCCCCDDDDDCCCCCCCCCDDCDCCCCCDCDCCCDDDCDDCCDCDDCDDCDDDDCDDCCDCCC</code></pre>
 <p>根据前面的提示为发现后面培根密码，根据培根密码的格式将CD转化为AB</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;AAABBABBBA&#x2F;BBAAAABBBABABAA&#x2F;ABABAABBABABBBABABBA&#x2F;BAABBAABBBAABAA&#x2F;AABABABBBABABAAB</span><br><span class="line">AAAB&#x2F;AABABAABAAABBABAAABAAABAA&#x2F;BBAABAABBAABAAAAAAAAAABBBBBAAAAAAAAABBABAAAAABAB</span><br><span class="line">AAABBBABBAABABBABBABBBBABBAABAAA</span><br></pre></td></tr></table></figure>
+<pre><code>/AAABBABBBA/BBAAAABBBABABAA/ABABAABBABABBBABABBA/BAABBAABBBAABAA/AABABABBBABABAAB
+AAAB/AABABAABAAABBABAAABAAABAA/BBAABAABBAABAAAAAAAAAABBBBBAAAAAAAAABBABAAAAABAB
+AAABBBABBAABABBABBABBBBABBAABAAA</code></pre>
 <p>解得：<code>DO YOU KNOW THE FOUR FENCE ZGIAHYANAUOZNXWI</code><br>英语不太好，百度翻译得：你知道四道栅栏吗？<br>再接着着解栅栏密码  （每组次数为4）：ZHANGYUXIAOWANZI<br>终于解完了，最后的提交格式弄了半小时，太坑了。。。</p>
 
       

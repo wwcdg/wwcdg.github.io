@@ -511,7 +511,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="42">
-<input type="hidden" id="yelog_site_word_count" value="93.1k">
+<input type="hidden" id="yelog_site_word_count" value="92k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -876,18 +876,18 @@
         </a>
         
         <a  class="全部文章 CTF刷题 Crypto "
-           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF刷题 Crypto "
            href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF刷题 Crypto "
+           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
@@ -1107,12 +1107,27 @@
       
         <p><strong>css引入方式</strong></p>
 <p> 内联引入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;    </span><br><span class="line">  &lt;div style&#x3D;&quot;color:red;width:100px;heigh:100px;&quot;&gt;苹果&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div style&#x3D;&quot;color:green;width:100px;heigh:100px;&quot;&gt;苹果&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div style&#x3D;&quot;color:gray;width:100px;heigh:100px;&quot;&gt;核桃&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div style&#x3D;&quot;color:yellow;width:100px;heigh:100px;&quot;&gt;香蕉&lt;&#x2F;div&gt; </span><br><span class="line">&lt;&#x2F;body&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>   &lt;body&gt;    
+     &lt;div style=&quot;color:red;width:100px;heigh:100px;&quot;&gt;苹果&lt;/div&gt;
+     &lt;div style=&quot;color:green;width:100px;heigh:100px;&quot;&gt;苹果&lt;/div&gt;
+     &lt;div style=&quot;color:gray;width:100px;heigh:100px;&quot;&gt;核桃&lt;/div&gt;
+     &lt;div style=&quot;color:yellow;width:100px;heigh:100px;&quot;&gt;香蕉&lt;/div&gt; 
+   &lt;/body&gt;</code></pre>
 <p><img src="http://img-blog.csdnimg.cn/201903301714023.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <hr>
 内部引入
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;    </span><br><span class="line">    div&#123;</span><br><span class="line">         color:red;      </span><br><span class="line">  width:100px;  </span><br><span class="line">  height:100px;   </span><br><span class="line">         &#125;   </span><br><span class="line">&lt;&#x2F;style&gt;  </span><br><span class="line">  &lt;&#x2F;head&gt;  </span><br><span class="line">  &lt;body&gt; </span><br><span class="line">  &lt;div&gt;苹果&lt;&#x2F;div&gt; </span><br><span class="line">  &lt;&#x2F;body&gt;</span><br></pre></td></tr></table></figure>
+<pre><code> &lt;style&gt;    
+     div&#123;
+          color:red;      
+      width:100px;  
+      height:100px;   
+          &#125;   
+ &lt;/style&gt;  
+   &lt;/head&gt;  
+   &lt;body&gt; 
+   &lt;div&gt;苹果&lt;/div&gt; 
+   &lt;/body&gt;</code></pre>
 <p><img src="http://img-blog.csdnimg.cn/20190330171658457.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><hr><br>外部引入<br><img src="http://img-blog.csdnimg.cn/20190330180205676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"></p>
 <hr>
 
@@ -1133,7 +1148,16 @@
 <p><img src="http://img-blog.csdnimg.cn/20190331103330788.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>3.不同类型的选择器：优先级<br>先解析低优先级；<br>div&lt;class&lt;id<br>原理同上 <hr></p>
 <p>4.外部样式 内部样式合并之后再一起解析<br>先外部样式再内部。<br>其他原理同上。<br>5.内联样式：外部和内部解析完之后再解析内联。<br>6.加了important字段的 最后执行。<br><strong>继承原则</strong></p>
 <p>1.文字 文本 样式 可被继承</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  div.txt&#123;</span><br><span class="line">   color:red;</span><br><span class="line">   &#125;</span><br><span class="line">   &lt;body&gt;  </span><br><span class="line">    &lt;div class&#x3D;&quot;txt&quot;&gt;</span><br><span class="line">     苹果</span><br><span class="line"> &lt;p&gt; 香蕉   &lt;&#x2F;p&gt;</span><br><span class="line"> &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<pre><code>       div.txt&#123;
+        color:red;
+        &#125;
+        &lt;body&gt;  
+         &lt;div class=&quot;txt&quot;&gt;
+          苹果
+      &lt;p&gt; 香蕉   &lt;/p&gt;
+      &lt;/div&gt;
+     &lt;/body&gt;
+</code></pre>
 <p>其中苹果和香蕉属性相同。</p>
 <p>2.块级元素 宽度不被设置时则会继承父级元素的宽，高由内容决定。<br><strong>组合选择器</strong><br>把基本选择器 通过特殊字符串在一起<br>分组选择器<br>用逗号隔开：div,p 代表两个选择器内容共同<br>嵌套选择器<br>用空格隔开：div p  嵌套在div里的p才能生效<br>子选择器<br>div&gt;p 必须是上一级的div才能生效。<br>相邻选择器；同级别的<br>div+p<br><strong>属性选择器</strong></p>
 <p><img src="http://img-blog.csdnimg.cn/20190331122301403.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>css背景</strong><br>CSS 属性定义背景效果:</p>
@@ -1147,8 +1171,12 @@
 <p>font-weight<br>    指定字体的粗细。</p>
 <p>   <strong>css链接和列表</strong><br>链接的样式，可以用任何CSS属性（如颜色，字体，背景等）。<br>特别的链接，可以有不同的样式，这取决于他们是什么状态。<br>这四个链接状态是： </p>
 <p>a:link - 正常，未访问过的链接<br>    a:visited - 用户已访问过的链接<br>    a:hover - 当用户鼠标放在链接上时<br>    a:active - 链接被点击的那一刻<br>    <img src="http://img-blog.csdnimg.cn/20190331152838763.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>    <strong>css盒子模型</strong><br>    Margin(外边距) - 清除边框外的区域，外边距是透明的。<br>Border(边框) - 围绕在内边距和内容外的边框。<br>Padding(内边距) - 清除内容周围的区域，内边距是透明的。<br>Content(内容) - 盒子的内容，显示文本和图像。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">div &#123;</span><br><span class="line">    width: 300px;</span><br><span class="line">    border: 25px solid green;</span><br><span class="line">    padding: 25px;</span><br><span class="line">    margin: 25px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code>div &#123;
+    width: 300px;
+    border: 25px solid green;
+    padding: 25px;
+    margin: 25px;
+&#125;</code></pre>
 <p><img src="http://img-blog.csdnimg.cn/20190331154327409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br><strong>css布局</strong><br><img src="http://img-blog.csdnimg.cn/20190331172852392.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">清除浮动在下一个div中添加<br>div{<br>clean :both;<br>}就可以将恢复浮动</p>
 <p><strong>css定位</strong><br>position 属性的五个值：<br>static:HTML 元素的默认值，即没有定位,遵循正常的文档流对象。<br>relative:相对定位元素的定位是相对其正常位置。<br>fixed:元素的位置相对于浏览器窗口是固定位置。<br>即使窗口是滚动的它也不会移动：<br>absolute:绝对定位的元素的位置相对于最近的已定位父元素，如果元素没有已定位的父元素，那么它的位置相对于<html>:<br>sticky:这个有点魔性，就不写了。。。</p>
 

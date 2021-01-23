@@ -511,7 +511,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="42">
-<input type="hidden" id="yelog_site_word_count" value="93.1k">
+<input type="hidden" id="yelog_site_word_count" value="92k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -876,18 +876,18 @@
         </a>
         
         <a  class="全部文章 CTF刷题 Crypto "
-           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF刷题 Crypto "
            href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF刷题 Crypto "
+           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
@@ -1070,7 +1070,7 @@
     </div>
     <div class="article-meta">
         
-        <span>字数:479</span>
+        <span>字数:476</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1112,7 +1112,15 @@
 <h5 id="5、简单加密"><a href="#5、简单加密" class="headerlink" title="5、简单加密"></a>5、简单加密</h5><p><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731179839622_201104351_H800.png" alt="在这里插入图片描述"><br>这题乍一看没啥头绪，但是最后两位字符是我联想到了base64 加密，<code>A</code>的ASCII码为65，<code>=</code>的ASCII码为61，即需要先左移4位；<br>将字符转换为ASCII码：</p>
 <pre><code>101,54,90,57,105,126,93,56,82,126,85,126,81,72,69,123,82,110,89,123,81,88,103,126,81,110,81,123,94,88,86,108,82,88,108,112,94,88,73,53,81,54,81,54,83,75,89,56,106,85,65,65</code></pre>
 <p>再写个Python脚本解密</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import base64</span><br><span class="line">m&#x3D;[101,54,90,57,105,126,93,56,82,126,85,126,81,72,69,123,82,110,89,123,81,88,103,126,81,110,81,123,94,88,86,108,82,88,108,112,94,88,73,53,81,54,81,54,83,75,89,56,106,85,65,65]</span><br><span class="line">flag&#x3D;&#39;&#39;</span><br><span class="line">i&#x3D;4</span><br><span class="line">for j in m:</span><br><span class="line">    flag+&#x3D;chr(j-i)</span><br><span class="line">flag&#x3D;base64.b64decode(flag).decode()</span><br><span class="line">print(flag)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>import base64
+m=[101,54,90,57,105,126,93,56,82,126,85,126,81,72,69,123,82,110,89,123,81,88,103,126,81,110,81,123,94,88,86,108,82,88,108,112,94,88,73,53,81,54,81,54,83,75,89,56,106,85,65,65]
+flag=&#39;&#39;
+i=4
+for j in m:
+    flag+=chr(j-i)
+flag=base64.b64decode(flag).decode()
+print(flag)
+</code></pre>
 <p>Ok，得到flag</p>
 <h5 id="6、散乱的密文"><a href="#6、散乱的密文" class="headerlink" title="6、散乱的密文"></a>6、散乱的密文</h5><p><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731174029626_201104351_H800.png" alt="在这里插入图片描述">打开题目，嗯…密文确实挺散乱的，但还是感觉flag就在这里面，重点看第二句话“一张纸条上凌乱的写着2 1 6 5 3 4”，看到这，我们就能想起来，在古典密码中，有一种特使的加密方式是分组置换加密，嗯，没错，这题就是，而且这道题已经把分组的顺序告诉了我们。下面看解题过程：</p>
 <p>|2 |1| 6| 5| 3| 4|<br>|–|–|–|–|–|–|–|<br>|l |f |5 |{ |a |g|<br>|0 | 2| 4|c |4 |8|<br>|3 | 5| 4|9 |d |7|<br>|f | d| @|@ |1 |}|<br>然后按照顺序读出来得到：flag{52048c453d794df1}@@<br>测试知后面@@应删去。</p>
