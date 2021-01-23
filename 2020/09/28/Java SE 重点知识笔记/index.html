@@ -296,61 +296,6 @@
         
             
                 <li>
-                    <div data-rel="刷题记录">
-                        <i class="fold iconfont icon-right"></i>
-                        
-                        刷题记录
-                        <small>(17)</small>
-                        
-                    </div>
-                    
-                        <ul class="sub hide">
-                            
-                                <li>
-                                    <div data-rel="刷题记录<--->Crypto">
-                                        
-                                        Crypto
-                                        
-                                            <small>(3
-                                                )</small>
-                                        
-                                    </div>
-                                    
-                                </li>
-                            
-                                <li>
-                                    <div data-rel="刷题记录<--->MISC">
-                                        
-                                        MISC
-                                        
-                                            <small>(10
-                                                )</small>
-                                        
-                                    </div>
-                                    
-                                </li>
-                            
-                                <li>
-                                    <div data-rel="刷题记录<--->Web">
-                                        
-                                        Web
-                                        
-                                            <small>(4
-                                                )</small>
-                                        
-                                    </div>
-                                    
-                                </li>
-                            
-                        </ul>
-                    
-                </li>
-            
-        
-    
-        
-            
-                <li>
                     <div data-rel="Blog搭建">
                         
                         Blog搭建
@@ -405,6 +350,61 @@
         
     
         
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="刷题记录">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        刷题记录
+                        <small>(17)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="刷题记录<--->Crypto">
+                                        
+                                        Crypto
+                                        
+                                            <small>(3
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="刷题记录<--->MISC">
+                                        
+                                        MISC
+                                        
+                                            <small>(10
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="刷题记录<--->Web">
+                                        
+                                        Web
+                                        
+                                            <small>(4
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
             
         
     
@@ -676,6 +676,10 @@
 
 </div>
 
+    
+    <div id="local-search-result">
+
+    </div>
     
     <nav id="title-list-nav">
         
@@ -1061,7 +1065,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-01-23 16:10:16'>2020-09-28 20:07</time>
+            发布时间 : <time class="date" title='最后更新: 2021-01-23 16:18:52'>2020-09-28 20:07</time>
         
     </div>
     <div class="article-meta">
@@ -1107,11 +1111,11 @@
 <ul>
 <li>通过构造方法创建</li>
 </ul>
-<p>通过 new 创建的字符串对象，每一次 new 都会申请一个内存空间，虽然内容相同，但是地址值不同。<br><img src="https://img-blog.csdnimg.cn/20200725232701179.png" alt="在这里插入图片描述"><br>上面的代码中，JVM会首先创建一个字符数组, 然后每一次new的时候都会有一 个新的地址， 只不过s1和s2参考的字符串内容是相同的。</p>
+<p>通过 new 创建的字符串对象，每一次 new 都会申请一个内存空间，虽然内容相同，但是地址值不同。<br><img src="https://img-blog.csdnimg.cn/20200725232701179.png"><br>上面的代码中，JVM会首先创建一个字符数组, 然后每一次new的时候都会有一 个新的地址， 只不过s1和s2参考的字符串内容是相同的。</p>
 <ul>
 <li>直接赋值方式创建</li>
 </ul>
-<p>以<code>&quot;&quot;</code>方式给出的字符串，只要字符序列相同(顺序和大小写)，无论在程序代码中出现几次，JVM 都只会建立一个 String 对象，并在字符串池中维护。<br><img src="https://img-blog.csdnimg.cn/20200725234256229.png" alt="在这里插入图片描述"><br>在上面的代码中，针对第一行代码， JVM会建立一个 String对象放在字符串池中，并给s3参考，第二行则让s4直接参考字符串池中的String对象,也就是说它们本质上是同一个对象。</p>
+<p>以<code>&quot;&quot;</code>方式给出的字符串，只要字符序列相同(顺序和大小写)，无论在程序代码中出现几次，JVM 都只会建立一个 String 对象，并在字符串池中维护。<br><img src="https://img-blog.csdnimg.cn/20200725234256229.png"><br>在上面的代码中，针对第一行代码， JVM会建立一个 String对象放在字符串池中，并给s3参考，第二行则让s4直接参考字符串池中的String对象,也就是说它们本质上是同一个对象。</p>
 <p><strong>2、字符串的比较</strong>：</p>
 <p>1、<code>==</code>号的作用 ：</p>
 <ul>
@@ -1121,7 +1125,7 @@
 <p>2、<code>equals</code>方法的作用：</p>
 <p>因为String是类，属于引用类型，所以用<code>equals</code>来进行比较。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(String s)</span>   比较两个字符串内容是否相同、区分大小写</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20200819215804840.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><hr></p>
+<p><img src="https://img-blog.csdnimg.cn/20200819215804840.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><hr></p>
 <h4 id="2、StringBuilder对象"><a href="#2、StringBuilder对象" class="headerlink" title="2、StringBuilder对象"></a>2、StringBuilder对象</h4><p><strong>1、StringBuilder概述</strong>：</p>
 <ul>
 <li>StringBuilder是一个可变的字符串类,我们可以把它看成是一个容器，这里的可变指的是StringBuilder对象中的内容是可变的。</li>
@@ -1132,11 +1136,11 @@
 <li>StringBuilder: 内容是可变的</li>
 </ul>
 <p><strong>2、StringBuilder类的构造方法</strong>：</p>
-<p>常用的构造方法：<br><img src="https://img-blog.csdnimg.cn/20200730221223824.png" alt="在这里插入图片描述"></p>
+<p>常用的构造方法：<br><img src="https://img-blog.csdnimg.cn/20200730221223824.png"></p>
 <p>示例代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringTest2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// public StringBuilder() :创建一个空白可变字符串对象,不含有任何内容</span></span><br><span class="line">		StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">&quot;sb:&quot;</span> + sb);</span><br><span class="line">		System.out.println(<span class="string">&quot;sb. length():&quot;</span> + sb.length());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// public Stri ngBuilder(String str) :根据字符串的内容，来创建可变字符串对象</span></span><br><span class="line">		StringBuilder sb2 = <span class="keyword">new</span> StringBuilder(<span class="string">&quot;he11o&quot;</span>);</span><br><span class="line">		System.out.println(<span class="string">&quot;sb2:&quot;</span> + sb2);</span><br><span class="line">		System.out.println(<span class="string">&quot;sb2. length():&quot;</span> + sb2.length());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>3、StringBuilder类添加和反转方法</strong>：</p>
-<p> 添加和反转方法：<br><img src="https://img-blog.csdnimg.cn/20200730223038613.png" alt="在这里插入图片描述"><br> 示例代码：<br><img src="https://img-blog.csdnimg.cn/20200730223855933.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p> 添加和反转方法：<br><img src="https://img-blog.csdnimg.cn/20200730223038613.png"><br> 示例代码：<br><img src="https://img-blog.csdnimg.cn/20200730223855933.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"></p>
 <p><strong>4、StringBuilder和String相互转换</strong>：</p>
 <p>StringBuilder转换为String：</p>
 <ul>
@@ -1162,7 +1166,7 @@
 <li>用于约束集合中存储元素的数据类型。</li>
 </ul>
 <p><strong>2、ArrayList类常用方法</strong>：</p>
-<p>构造方法：<br>| 方法名 | 说明 |<br>|–|–|<br>| public ArrayList() | 创建一个空的集合对象 |<br>成员方法：<br><img src="https://img-blog.csdnimg.cn/20200731204753744.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>构造方法：<br>| 方法名 | 说明 |<br>|–|–|<br>| public ArrayList() | 创建一个空的集合对象 |<br>成员方法：<br><img src="https://img-blog.csdnimg.cn/20200731204753744.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayListDemo02</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 创建集合</span></span><br><span class="line">		ArrayList&lt;String&gt; array = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		<span class="comment">// 添加元素</span></span><br><span class="line">		array.add(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">		array.add(<span class="string">&quot;world&quot;</span>);</span><br><span class="line">		array.add(<span class="string">&quot;java&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// public boolean remove(Object o)：删除指定的元素，返回删除是否成功</span></span><br><span class="line">		System.out.println(array.remove(<span class="string">&quot;world&quot;</span>));</span><br><span class="line">		System.out.println(array.remove(<span class="string">&quot;javaee&quot;</span>));</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// public E remove(int index)：删除指定索引处的元素，返回被删除的元素</span></span><br><span class="line">		System.out.println(array.remove(<span class="number">1</span>));</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// IndexOutOfBoundsException</span></span><br><span class="line">		System.out.println(array.remove(<span class="number">3</span>));</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// public E set(int index,E element)：修改指定索引处的元素，返回被修改的元素</span></span><br><span class="line">		System.out.println(array.set(<span class="number">1</span>, <span class="string">&quot;javaee&quot;</span>));</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// IndexOutOfBoundsException</span></span><br><span class="line">		System.out.println(array.set(<span class="number">3</span>, <span class="string">&quot;javaee&quot;</span>));</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// public E get(int index)：返回指定索引处的元素</span></span><br><span class="line">		System.out.println(array.get(<span class="number">0</span>));</span><br><span class="line">		System.out.println(array.get(<span class="number">1</span>));</span><br><span class="line">		System.out.println(array.get(<span class="number">2</span>));</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// public int size()：返回集合中的元素的个数</span></span><br><span class="line">		System.out.println(array.size());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 输出集合</span></span><br><span class="line">		System.out.println(<span class="string">&quot;array:&quot;</span> + array);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 
@@ -1198,7 +1202,7 @@
 <li>this：代表本类对象的引用</li>
 <li>super：代表父类存储空间的标识(可以理解为父类对象引用)</li>
 </ul>
-<p>this和super的使用分别：<br><img src="https://img-blog.csdnimg.cn/20200803210418891.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>2.3 继承中构造方法的访问特点</strong>：</p>
+<p>this和super的使用分别：<br><img src="https://img-blog.csdnimg.cn/20200803210418891.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br><strong>2.3 继承中构造方法的访问特点</strong>：</p>
 <p> <font color =red><strong>注意：子类中所有的构造方法默认都会访问父类中无参的构造方法。</strong></p>
 <p>子类会继承父类中的数据，可能还会使用父类的数据。所以，子类初始化之前，一定要先完成父类数据的初始化，原因在于，每一个子类构造方法的第一条语句默认都是：<code>super()</code>；</p>
 <p>如果父类中没有无参构造方法，只有带参构造方法，该怎么办呢？</p>
@@ -1235,7 +1239,7 @@
 <hr>
 
 <h4 id="5、修饰符"><a href="#5、修饰符" class="headerlink" title="5、修饰符"></a>5、修饰符</h4><p><strong>1、权限修饰符</strong>:</p>
-<p><img src="https://img-blog.csdnimg.cn/20200826191017525.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>2、final</strong>：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200826191017525.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br><strong>2、final</strong>：</p>
 <p>fianl关键字的作用：</p>
 <ul>
 <li>final代表最终的意思，可以修饰成员方法，成员变量，类。</li>
@@ -1478,7 +1482,7 @@
 </li>
 </ul>
 <p>基本类型对应的包装类：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200820181227350.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>1.2、int和String类型的相互转换</strong>：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200820181227350.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br><strong>1.2、int和String类型的相互转换</strong>：</p>
 <p>1、int转换为String:</p>
 <p>转换方式：</p>
 <ul>
@@ -1508,7 +1512,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer i = <span class="number">100</span>; <span class="comment">// 自动装箱</span></span><br><span class="line">i += <span class="number">200</span>; <span class="comment">// i = i + 200; i + 200 自动拆箱；i = i + 200; 是自动装箱</span></span><br></pre></td></tr></table></figure>
 <h4 id="10、时间日期类"><a href="#10、时间日期类" class="headerlink" title="10、时间日期类"></a>10、时间日期类</h4><p><strong>1、 SimpleDateFormat类</strong>：</p>
 <p>SimpleDateFormat类构造方法:</p>
-<p><img src="https://img-blog.csdnimg.cn/20200822003633751.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>SimpleDateFormat类的常用方法：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200822003633751.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br>SimpleDateFormat类的常用方法：</p>
 <ul>
 <li>格式化(从Date到String)：public final String format(Date date)：将日期格式化成日期/时间字符串。</li>
 </ul>
@@ -1517,7 +1521,7 @@
 </ul>
 <p>例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleDateFormatDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException </span>&#123;</span><br><span class="line">		<span class="comment">//格式化：从 Date 到 String</span></span><br><span class="line">		Date d = <span class="keyword">new</span> Date();</span><br><span class="line"><span class="comment">// 			SimpleDateFormat sdf = new SimpleDateFormat();</span></span><br><span class="line">		SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy年MM月dd日 HH:mm:ss&quot;</span>);</span><br><span class="line">		String s = sdf.format(d);</span><br><span class="line">		System.out.println(s);</span><br><span class="line">		System.out.println(<span class="string">&quot;--------&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//从 String 到 Date</span></span><br><span class="line">		String ss = <span class="string">&quot;2048-08-09 11:11:11&quot;</span>;</span><br><span class="line">		<span class="comment">//ParseException</span></span><br><span class="line">		SimpleDateFormat sdf2 = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line">		Date dd = sdf2.parse(ss);</span><br><span class="line">		System.out.println(dd);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果：<br><img src="https://img-blog.csdnimg.cn/20200822004554286.png#pic_center" alt="在这里插入图片描述"></p>
+<p>运行结果：<br><img src="https://img-blog.csdnimg.cn/20200822004554286.png#pic_center"></p>
 <hr>
 
 <h4 id="11、异常"><a href="#11、异常" class="headerlink" title="11、异常"></a>11、异常</h4><p><strong>1、异常</strong>：</p>
@@ -1525,7 +1529,7 @@
 <ul>
 <li>异常就是程序出现了不正常的情况。</li>
 </ul>
-<p>异常的体系结构：<br>                         <img src="https://img-blog.csdnimg.cn/20200822150419747.png" alt="在这里插入图片描述"><br>Error ：严重问题，不需要处理。</p>
+<p>异常的体系结构：<br>                         <img src="https://img-blog.csdnimg.cn/20200822150419747.png"><br>Error ：严重问题，不需要处理。</p>
 <p>Exception：称为异常类，它表示程序本身可以处理的问题。</p>
 <ul>
 <li>RuntimeException：在编译期是不检查的，出现问题后，需要我们回来修改代码。</li>
@@ -1533,7 +1537,7 @@
 </ul>
 <p><strong>2、Throwable成员方法</strong>:</p>
 <p>常用方法：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200822232918326.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>例：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200822232918326.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br>例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionDemo02</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;开始&quot;</span>);</span><br><span class="line">		method();</span><br><span class="line">		System.out.println(<span class="string">&quot;结束&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">		System.out.println(arr[<span class="number">3</span>]); <span class="comment">//new ArrayIndexOutOfBoundsException();</span></span><br><span class="line">		System.out.println(<span class="string">&quot;这里能够访问到吗&quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (ArrayIndexOutOfBoundsException e) &#123; <span class="comment">//new ArrayIndexOutOfBoundsException();</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//public String getMessage():返回此 throwable 的详细消息字符串</span></span><br><span class="line"><span class="comment">// 		  System.out.println(e.getMessage());</span></span><br><span class="line">		<span class="comment">//Index 3 out of bounds for length 3</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//public String toString():返回此可抛出的简短描述</span></span><br><span class="line"><span class="comment">// 		  System.out.println(e.toString());</span></span><br><span class="line">		<span class="comment">//java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//public void printStackTrace():把异常的错误信息输出在控制台：</span></span><br><span class="line">		e.printStackTrace();</span><br><span class="line"><span class="comment">// 		java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds</span></span><br><span class="line"><span class="keyword">for</span> length <span class="number">3</span></span><br><span class="line"><span class="comment">// 		at com.itheima_02.ExceptionDemo02.method(ExceptionDemo02.java:18)</span></span><br><span class="line"><span class="comment">// 		at com.itheima_02.ExceptionDemo02.main(ExceptionDemo02.java:11)</span></span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>3、编译时异常和运行时异常的区别</strong>：</p>
 <p>编译时异常：</p>
@@ -1586,10 +1590,10 @@
 <li>是单例集合的顶层接口，它表示一组对象，这些对象也称为Collection的元素。</li>
 <li>JDK 不提供此接口的任何直接实现，它提供更具体的子接口（如Set和List）实现。</li>
 </ul>
-<p>Collection集合的常用方法：<br><img src="https://img-blog.csdnimg.cn/20200824092217259.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>Collection集合基本使用：</p>
+<p>Collection集合的常用方法：<br><img src="https://img-blog.csdnimg.cn/20200824092217259.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br>Collection集合基本使用：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CollectionDemo01</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建Collection集合的对象</span></span><br><span class="line">		Collection&lt;String&gt; c = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//添加元素：boolean add(E e)</span></span><br><span class="line">		c.add(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">		c.add(<span class="string">&quot;world&quot;</span>);</span><br><span class="line">		c.add(<span class="string">&quot;java&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//输出集合对象</span></span><br><span class="line">		System.out.println(c);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行结果：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200824092623241.png#pic_center" alt="在这里插入图片描述"><br>其中ArrayList重写了<code>toString</code>方法，直接输出了集合添加的内容。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200824092623241.png#pic_center"><br>其中ArrayList重写了<code>toString</code>方法，直接输出了集合添加的内容。</p>
 <p><strong>3、Collection集合的遍历</strong>：</p>
 <p>lterator：迭代器，集合的专用遍历方式</p>
 <ul>
@@ -1603,7 +1607,7 @@
 </ul>
 <p>示例代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IteratorDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建集合对象</span></span><br><span class="line">		Collection&lt;String&gt; c = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//添加元素</span></span><br><span class="line">		c.add(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">		c.add(<span class="string">&quot;world&quot;</span>);</span><br><span class="line">		c.add(<span class="string">&quot;java&quot;</span>);</span><br><span class="line">		c.add(<span class="string">&quot;javaee&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//Iterator&lt;E&gt; iterator()：返回此集合中元素的迭代器，通过集合的iterator()方法得到</span></span><br><span class="line">		Iterator&lt;String&gt; it = c.iterator();</span><br><span class="line"></span><br><span class="line">		<span class="comment">//用while循环改进元素的判断和获取</span></span><br><span class="line">		<span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">			String s = it.next();</span><br><span class="line">			System.out.println(s);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果：<br><img src="https://img-blog.csdnimg.cn/202008242236483.png" alt="在这里插入图片描述"></p>
+<p>输出结果：<br><img src="https://img-blog.csdnimg.cn/202008242236483.png"></p>
 <h4 id="13、List集合"><a href="#13、List集合" class="headerlink" title="13、List集合"></a>13、List集合</h4><p><strong>1、List集合概述和特点</strong>：</p>
 <p>List集合概述：</p>
 <ul>
@@ -1617,7 +1621,7 @@
 <li>元素存取有序</li>
 </ol>
 <p><strong>2、List集合的特有方法</strong>：</p>
-<p><img src="https://img-blog.csdnimg.cn/2020082610354832.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>3、并发修改异常</strong>：</p>
+<p><img src="https://img-blog.csdnimg.cn/2020082610354832.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br><strong>3、并发修改异常</strong>：</p>
 <p>出现的原因：</p>
 <ul>
 <li>迭代器遍历的过程中，通过集合对象修改了集合中的元素，造成了迭代器获取元素中判断预期修改值和实际修改值不一致，则会出现：ConcurrentModificationException</li>
@@ -1667,7 +1671,7 @@
 </ul>
 <p><strong>3、LinkedList集合的特有功能</strong>：</p>
 <p>特有方法：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200827231822328.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200827231822328.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"></p>
 <hr>
 
 <h4 id="15、Set集合"><a href="#15、Set集合" class="headerlink" title="15、Set集合"></a>15、Set集合</h4><p><strong>1、Set集合特点</strong>：</p>
@@ -1699,7 +1703,7 @@
 </ul>
 <p>HashSet集合的基本使用：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashSetDemo01</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建集合对象</span></span><br><span class="line">		HashSet&lt;String&gt; hs = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//添加元素</span></span><br><span class="line">		hs.add(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">		hs.add(<span class="string">&quot;world&quot;</span>);</span><br><span class="line">		hs.add(<span class="string">&quot;java&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		hs.add(<span class="string">&quot;world&quot;</span>);</span><br><span class="line">		<span class="comment">//遍历</span></span><br><span class="line">		<span class="keyword">for</span>(String s : hs) &#123;</span><br><span class="line">			System.out.println(s);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果：<br><img src="https://img-blog.csdnimg.cn/20200828233603190.png#pic_center" alt="在这里插入图片描述"></p>
+<p>运行结果：<br><img src="https://img-blog.csdnimg.cn/20200828233603190.png#pic_center"></p>
 <p><strong>4、HashSet集合存储学生对象并遍历</strong>：</p>
 <p>案例需求     ：</p>
 <ul>
@@ -1727,7 +1731,7 @@
 </ol>
 <p>TreeSet集合基本使用：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeSetDemo01</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建集合对象</span></span><br><span class="line">		TreeSet&lt;Integer&gt; ts = <span class="keyword">new</span> TreeSet&lt;Integer&gt;();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//添加元素</span></span><br><span class="line">		ts.add(<span class="number">10</span>);</span><br><span class="line">		ts.add(<span class="number">40</span>);</span><br><span class="line">		ts.add(<span class="number">30</span>);</span><br><span class="line">		ts.add(<span class="number">50</span>);</span><br><span class="line">		ts.add(<span class="number">20</span>);</span><br><span class="line">		</span><br><span class="line">		ts.add(<span class="number">30</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//遍历集合</span></span><br><span class="line">		<span class="keyword">for</span>(Integer i : ts) &#123;</span><br><span class="line">			System.out.println(i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果：<br><img src="https://img-blog.csdnimg.cn/20200829232048111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>2、自然排序Comparable</strong>：</p>
+<p>运行结果：<br><img src="https://img-blog.csdnimg.cn/20200829232048111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br><strong>2、自然排序Comparable</strong>：</p>
 <p>案例需求：</p>
 <ul>
 <li>存储学生对象并遍历，创建TreeSet集合使用带参构造方法</li>
@@ -1798,7 +1802,7 @@
 <li>如果一个方法有多个参数，包含可变参数，可变参数要放在最后</li>
 </ul>
 <p>可变参数的基本使用：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200901225327217.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200901225327217.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"></p>
 <h4 id="19、Map集合"><a href="#19、Map集合" class="headerlink" title="19、Map集合"></a>19、Map集合</h4><p><strong>1、Map集合概述和特点</strong>：</p>
 <p>Map集合概述：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="title">K</span>：键的类型；<span class="title">V</span>：值的类型</span></span><br></pre></td></tr></table></figure>
@@ -1812,12 +1816,12 @@
 <p>Map集合的基本使用：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MapDemo01</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建集合对象</span></span><br><span class="line">		Map&lt;String,String&gt; map = <span class="keyword">new</span> HashMap&lt;String,String&gt;();</span><br><span class="line">		<span class="comment">//V put(K key, V value) 将指定的值与该映射中的指定键相关联</span></span><br><span class="line">		map.put(<span class="string">&quot;itheima001&quot;</span>,<span class="string">&quot;林青霞&quot;</span>);</span><br><span class="line">		map.put(<span class="string">&quot;itheima002&quot;</span>,<span class="string">&quot;张曼玉&quot;</span>);</span><br><span class="line">		map.put(<span class="string">&quot;itheima003&quot;</span>,<span class="string">&quot;王祖贤&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		map.put(<span class="string">&quot;itheima003&quot;</span>,<span class="string">&quot;柳岩&quot;</span>);<span class="comment">//键值相同时会覆盖原来的元素</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//输出集合对象</span></span><br><span class="line">		System.out.println(map);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行结果：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200902130145858.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200902130145858.png#pic_center"></p>
 <p><strong>2、Map集合的基本功能</strong>：</p>
 <p>方法介绍：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200902130025895.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200902130025895.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"></p>
 <p><strong>3、Map集合的获取功能</strong>：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200902170720207.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200902170720207.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"></p>
 <p><strong>4、Map集合的遍历</strong>：</p>
 <p>方式一：</p>
 <p>步骤分析:</p>
@@ -1846,7 +1850,7 @@
 <li>是针对集合操作的工具类</li>
 </ul>
 <p>Collections类常用方法：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200903222436345.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200903222436345.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"></p>
 <hr>
 
 <h4 id="21、File类"><a href="#21、File类" class="headerlink" title="21、File类"></a>21、File类</h4><p><strong>1、File类概述和构造方法</strong>：</p>
@@ -1857,21 +1861,21 @@
 <li>对于File而言，其封装的并不是一个真正存在的文件，仅仅是一个路径名。它可以是存在的，也可以是不存在的。将来是要通过具体的操作把这个路径的内容转换为具体存在的。</li>
 </ul>
 <p>File类的构造方法：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200904223446621.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200904223446621.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"></p>
 <p>示例代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileDemo01</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//File(String pathname)：通过将给定的路径名字符串转换为抽象路径名来创建新的 File实例。</span></span><br><span class="line">		File f1 = <span class="keyword">new</span> File(<span class="string">&quot;E:\\itcast\\java.txt&quot;</span>);</span><br><span class="line">		System.out.println(f1);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//File(String parent, String child)：从父路径名字符串和子路径名字符串创建新的File实例。</span></span><br><span class="line">		File f2 = <span class="keyword">new</span> File(<span class="string">&quot;E:\\itcast&quot;</span>,<span class="string">&quot;java.txt&quot;</span>);</span><br><span class="line">		System.out.println(f2);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//File(File parent, String child)：从父抽象路径名和子路径名字符串创建新的 File实例。</span></span><br><span class="line">		File f3 = <span class="keyword">new</span> File(<span class="string">&quot;E:\\itcast&quot;</span>);</span><br><span class="line">		File f4 = <span class="keyword">new</span> File(f3,<span class="string">&quot;java.txt&quot;</span>);</span><br><span class="line">		System.out.println(f4);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其中File类重写了toString方法。</p>
-<p>运行结果：<br><img src="https://img-blog.csdnimg.cn/202009042242029.png#pic_center" alt="在这里插入图片描述"></p>
+<p>运行结果：<br><img src="https://img-blog.csdnimg.cn/202009042242029.png#pic_center"></p>
 <p><strong>2、File类创建功能</strong>：</p>
 <p>方法分类：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200904225443493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>示例代码：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200904225443493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br>示例代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileDemo02</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		<span class="comment">//需求1：我要在E:\\itcast目录下创建一个文件java.txt</span></span><br><span class="line">		File f1 = <span class="keyword">new</span> File(<span class="string">&quot;E:\\itcast\\java.txt&quot;</span>);</span><br><span class="line">		System.out.println(f1.createNewFile());<span class="comment">//如果文件原本不存在，就创建文件，返回true，如果文件存在，不创建文件，返回false</span></span><br><span class="line">		System.out.println(<span class="string">&quot;--------&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//需求2：我要在E:\\itcast目录下创建一个目录JavaSE</span></span><br><span class="line">		File f2 = <span class="keyword">new</span> File(<span class="string">&quot;E:\\itcast\\JavaSE&quot;</span>);</span><br><span class="line">		System.out.println(f2.mkdir());<span class="comment">//如果目录原本不存在，就创建目录，返回true；如果目录存在，不创建目录，返回false</span></span><br><span class="line">		System.out.println(<span class="string">&quot;--------&quot;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//需求3：我要在E:\\itcast目录下创建一个多级目录JavaWEB\\HTML</span></span><br><span class="line">		File f3 = <span class="keyword">new</span> File(<span class="string">&quot;E:\\itcast\\JavaWEB\\HTML&quot;</span>);</span><br><span class="line"><span class="comment">// 		System.out.println(f3.mkdir());</span></span><br><span class="line">		System.out.println(f3.mkdirs());</span><br><span class="line">		System.out.println(<span class="string">&quot;--------&quot;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//需求4：我要在E:\\itcast目录下创建一个文件javase.txt</span></span><br><span class="line">		File f4 = <span class="keyword">new</span> File(<span class="string">&quot;E:\\itcast\\javase.txt&quot;</span>);</span><br><span class="line"><span class="comment">// 		System.out.println(f4.mkdir());//会创建目录，而不是文件。</span></span><br><span class="line">		System.out.println(f4.createNewFile());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>3、File类判断和获取功能</strong>：</p>
 <p>判断功能:</p>
-<p><img src="https://img-blog.csdnimg.cn/20200905123203136.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>获取功能：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200905123309250.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200905123203136.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br>获取功能：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200905123309250.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"></p>
 <p><strong>4、File类删除功能</strong>：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200905131618503.png#pic_center" alt="在这里插入图片描述"><br>删除目录时的注意事项:</p>
+<p><img src="https://img-blog.csdnimg.cn/20200905131618503.png#pic_center"><br>删除目录时的注意事项:</p>
 <ul>
 <li>如果一个目录中有内容(目录，文件)，不能直接删除。应该先删除目录中的内容，最后才能删除目录<hr>
 
@@ -1915,7 +1919,7 @@
 <p>示例代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileOutputStreamDemo01</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="comment">//创建字节输出流对象</span></span><br><span class="line">		<span class="comment">//FileOutputStream(String name)：创建文件输出流以指定的名称写入文件</span></span><br><span class="line">		FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;myByteStream\\fos.txt&quot;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//void write(int b)：将指定的字节写入此文件输出流</span></span><br><span class="line">		fos.write(<span class="number">97</span>);</span><br><span class="line">		<span class="comment">// fos.write(57);</span></span><br><span class="line">		<span class="comment">// fos.write(55);</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//最后都要释放资源</span></span><br><span class="line">		<span class="comment">//void close()：关闭此文件输出流并释放与此流相关联的任何系统资源。</span></span><br><span class="line">		fos.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>3、字节流写数据的三种方式</strong>：</p>
-<p><img src="https://img-blog.csdnimg.cn/2020090712215021.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>4、字节流写数据加异常处理</strong>：</p>
+<p><img src="https://img-blog.csdnimg.cn/2020090712215021.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br><strong>4、字节流写数据加异常处理</strong>：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">	可能出现异常的代码;</span><br><span class="line">&#125;<span class="keyword">catch</span>(异常类名 变量名)&#123;</span><br><span class="line">	异常的处理代码;</span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">	执行所有清除操作;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>finally特点：</p>
 <ul>
@@ -1977,7 +1981,7 @@
 </li>
 </ul>
 <p>构造方法：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200916165824311.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>示例代码：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200916165824311.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br>示例代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BufferStreamDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		<span class="comment">//字节缓冲输出流：BufferedOutputStream(OutputStream out)</span></span><br><span class="line">		</span><br><span class="line">		BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">&quot;myByteStream\\bos.txt&quot;</span>));</span><br><span class="line">		<span class="comment">//写数据</span></span><br><span class="line">		bos.write(<span class="string">&quot;hello\r\n&quot;</span>.getBytes());</span><br><span class="line">		bos.write(<span class="string">&quot;world\r\n&quot;</span>.getBytes());</span><br><span class="line">		<span class="comment">//释放资源</span></span><br><span class="line">		bos.close();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//字节缓冲输入流：BufferedInputStream(InputStream in)</span></span><br><span class="line">		BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;myByteStream\\bos.txt&quot;</span>));</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//一次读取一个字节数据</span></span><br><span class="line">		<span class="comment">// int by;</span></span><br><span class="line">		<span class="comment">// while ((by=bis.read())!=-1) &#123;</span></span><br><span class="line">		<span class="comment">// System.out.print((char)by);</span></span><br><span class="line">		<span class="comment">// &#125;</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//一次读取一个字节数组数据</span></span><br><span class="line">		<span class="keyword">byte</span>[] bys = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">		<span class="keyword">int</span> len;</span><br><span class="line">		<span class="keyword">while</span> ((len=bis.read(bys))!=-<span class="number">1</span>) &#123;</span><br><span class="line">			System.out.print(<span class="keyword">new</span> String(bys,<span class="number">0</span>,len));</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//释放资源</span></span><br><span class="line">		bis.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="24、字符流"><a href="#24、字符流" class="headerlink" title="24、字符流"></a>24、字符流</h4><p><strong>1、为什么会出现字符流</strong>：</p>
 <p>字符流的介绍：</p>
@@ -1990,7 +1994,7 @@
 </ul>
 <p><strong>2、字符串中的编码解码问题</strong>：</p>
 <p>相关方法：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200917124320584.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>代码演示：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200917124320584.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br>代码演示：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> UnsupportedEncodingException </span>&#123;</span><br><span class="line">		<span class="comment">//定义一个字符串</span></span><br><span class="line">		String s = <span class="string">&quot;中国&quot;</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//byte[] bys = s.getBytes(&quot;UTF-8&quot;); //[-28, -72, -83, -27, -101, -67]</span></span><br><span class="line">		<span class="keyword">byte</span>[] bys = s.getBytes(<span class="string">&quot;GBK&quot;</span>); <span class="comment">//[-42, -48, -71, -6]</span></span><br><span class="line">		System.out.println(Arrays.toString(bys));</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//String ss = new String(bys);</span></span><br><span class="line">		<span class="comment">//String ss = new String(bys,&quot;UTF-8&quot;);</span></span><br><span class="line">		String ss = <span class="keyword">new</span> String(bys,<span class="string">&quot;GBK&quot;</span>);</span><br><span class="line">		System.out.println(ss);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>3、字符流中的编码解码问题</strong>：</p>
 <p>字符流中和编码解码的两个类：</p>
@@ -2001,29 +2005,29 @@
 </li>
 </ul>
 <p>构造方法：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200917195607516.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>示例代码：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200917195607516.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br>示例代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConversionStreamDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		<span class="comment">//OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(&quot;myCharStream\\osw.txt&quot;));</span></span><br><span class="line">		OutputStreamWriter osw = <span class="keyword">new</span> OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(<span class="string">&quot;myCharStream\\osw.txt&quot;</span>),<span class="string">&quot;GBK&quot;</span>);</span><br><span class="line">		osw.write(<span class="string">&quot;中国&quot;</span>);</span><br><span class="line">		osw.close();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//InputStreamReader isr = new InputStreamReader(new FileInputStream(&quot;myCharStream\\osw.txt&quot;));</span></span><br><span class="line">		InputStreamReader isr = <span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;myCharStream\\osw.txt&quot;</span>),<span class="string">&quot;GBK&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//一次读取一个字符数据</span></span><br><span class="line">		<span class="keyword">int</span> ch;</span><br><span class="line">		<span class="keyword">while</span> ((ch=isr.read())!=-<span class="number">1</span>) &#123;</span><br><span class="line">			System.out.print((<span class="keyword">char</span>)ch);</span><br><span class="line">		&#125;</span><br><span class="line">		isr.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>4、字符流写数据的5种方式</strong>：</p>
 <p>方法介绍：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200917201539934.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>刷新和关闭的方法：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200917201740807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br> 刷新流作用：刷新缓冲，写入数据。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200917201539934.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br>刷新和关闭的方法：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200917201740807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br> 刷新流作用：刷新缓冲，写入数据。</p>
 <p><strong>5、字符流读数据的2种方式</strong>：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200917201836496.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>6、字符缓冲流</strong>：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200917201836496.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br><strong>6、字符缓冲流</strong>：</p>
 <p>构造方法：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200920163849290.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>7、字符缓冲流特有功能</strong>：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200920163849290.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br><strong>7、字符缓冲流特有功能</strong>：</p>
 <p>BufferedWriter：</p>
-<p>写一个换行符，由操作系统系统决定。<br><img src="https://img-blog.csdnimg.cn/20200920165440690.png#pic_center" alt="在这里插入图片描述"></p>
+<p>写一个换行符，由操作系统系统决定。<br><img src="https://img-blog.csdnimg.cn/20200920165440690.png#pic_center"></p>
 <p>BufferedReader:</p>
-<p><img src="https://img-blog.csdnimg.cn/20200920165500154.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>8、字符缓冲流特有功能复制Java文件</strong>：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200920165500154.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br><strong>8、字符缓冲流特有功能复制Java文件</strong>：</p>
 <p>代码实现：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CopyJavaDemo02</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		<span class="comment">//根据数据源创建字符缓冲输入流对象</span></span><br><span class="line">		BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">&quot;myCharStream\\ConversionStreamDemo.java&quot;</span>));</span><br><span class="line">		<span class="comment">//根据目的地创建字符缓冲输出流对象</span></span><br><span class="line">		BufferedWriter bw = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="string">&quot;myCharStream\\Copy.java&quot;</span>));</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//读写数据，复制文件</span></span><br><span class="line">		<span class="comment">//使用字符缓冲流特有功能实现</span></span><br><span class="line">		String line;</span><br><span class="line">		<span class="keyword">while</span> ((line=br.readLine())!=<span class="keyword">null</span>) &#123;</span><br><span class="line">			bw.write(line);</span><br><span class="line">			bw.newLine();<span class="comment">//换行</span></span><br><span class="line">			bw.flush();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//释放资源</span></span><br><span class="line">		bw.close();</span><br><span class="line">		br.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>9、IO流小结</strong>：</p>
-<p> 字节流：<br><img src="https://img-blog.csdnimg.cn/202009201715519.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p> 字节流：<br><img src="https://img-blog.csdnimg.cn/202009201715519.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"></p>
 <blockquote>
 <p>字节流可以复制任意文件数据，一般采用字节缓冲流一次读写一个字节数组的方式</p>
 </blockquote>
 <p>字符流：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200920171620468.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200920171620468.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"></p>
 <blockquote>
 <p> 字符流只能复制文本数据，一般使用字符缓冲流。</p>
 </blockquote>
@@ -2055,9 +2059,9 @@
 <li>将Java对象的原始数据类型和图形写入OutputStream。 可以使用ObjectInputStream读取（重构）对象。 可以通过使用流的文件来实现对象的持久存储。 如果流是网络套接字流，则可以在另一个主机上或另一个进程中重构对象。</li>
 </ul>
 <p>构造方法：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200923232605414.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200923232605414.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"></p>
 <p>序列化对象的方法：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200923232625425.png#pic_center" alt="在这里插入图片描述"><br>示例代码：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200923232625425.png#pic_center"><br>示例代码：</p>
 <p>学生类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> age;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>测试类：</p>
@@ -2073,8 +2077,8 @@
 <li>ObjectInputStream反序列化先前使用ObjectOutputStream编写的原始数据和对象</li>
 </ul>
 <p>构造方法：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200923234533475.png#pic_center" alt="在这里插入图片描述"><br>反序列化对象的方法：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200923234606377.png#pic_center" alt="在这里插入图片描述"><br>示例代码：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200923234533475.png#pic_center"><br>反序列化对象的方法：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200923234606377.png#pic_center"><br>示例代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObjectInputStreamDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException,ClassNotFoundException </span>&#123;</span><br><span class="line">	<span class="comment">//ObjectInputStream(InputStream in)：创建从指定的InputStream读取的ObjectInputStream</span></span><br><span class="line">	ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;myOtherStream\\oos.txt&quot;</span>));</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Object readObject()：从ObjectInputStream读取一个对象</span></span><br><span class="line">	Object obj = ois.readObject();</span><br><span class="line">	</span><br><span class="line">	Student s = (Student) obj;</span><br><span class="line">	System.out.println(s.getName() + <span class="string">&quot;,&quot;</span> + s.getAge());</span><br><span class="line">	</span><br><span class="line">	ois.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="26、多线程"><a href="#26、多线程" class="headerlink" title="26、多线程"></a>26、多线程</h4><p><strong>1、进程和线程</strong>：</p>
 <p>进程：是正在运行的程序</p>
@@ -2089,7 +2093,7 @@
 </ul>
 <p><strong>2、实现多线程方式一：继承Thread类</strong></p>
 <p>方法介绍：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200926171541923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>实现步骤：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200926171541923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br>实现步骤：</p>
 <ol>
 <li>定义一个类MyThread继承Thread类</li>
 <li>在MyThread类中重写run()方法</li>
@@ -2110,7 +2114,7 @@
 <li>start()：启动线程；然后由JVM调用此线程的run()方法</li>
 </ul>
 <p><strong>3、设置和获取线程名称</strong>：</p>
-<p><img src="https://img-blog.csdnimg.cn/2020092617461151.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>例：</p>
+<p><img src="https://img-blog.csdnimg.cn/2020092617461151.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br>例：</p>
 <p>获取main方法的线程名</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		System.out.println(Thread.currentThread().getName());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>4、线程优先级</strong>：</p>
@@ -2121,13 +2125,13 @@
 <li>抢占式调度模型：优先让优先级高的线程使用 CPU，如果线程的优先级相同，那么会随机选择一个，优先级高的线程获取的 CPU 时间片相对多一些。（Java使用的是抢占式调度模型）</li>
 </ul>
 <p>优先级相关方法：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200926180041158.png" alt="在这里插入图片描述"><br>默认优先级为5</p>
+<p><img src="https://img-blog.csdnimg.cn/20200926180041158.png"><br>默认优先级为5</p>
 <p><strong>5、线程控制</strong>：</p>
 <p>相关方法：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200926180724781.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>6、线程的生命周期</strong>：<br><img src="https://img-blog.csdnimg.cn/20200926182530650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200926180724781.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br><strong>6、线程的生命周期</strong>：<br><img src="https://img-blog.csdnimg.cn/20200926182530650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"></p>
 <p><strong>7、实现多线程方式二：实现Runnable接口</strong></p>
 <p>Thread构造方法：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200927175751162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>实现步骤：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200927175751162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center"><br>实现步骤：</p>
 <ol>
 <li>定义一个类MyRunnable实现Runnable接口</li>
 <li>在MyRunnable类中重写run()方法</li>
