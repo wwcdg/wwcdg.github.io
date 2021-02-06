@@ -511,7 +511,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="42">
-<input type="hidden" id="yelog_site_word_count" value="92k">
+<input type="hidden" id="yelog_site_word_count" value="91.9k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -876,18 +876,18 @@
         </a>
         
         <a  class="全部文章 CTF刷题 Crypto "
-           href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF刷题 Crypto "
            href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF刷题 Crypto "
+           href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
@@ -996,7 +996,7 @@
         </a>
         
         <a  class="全部文章 漏洞原理 "
-           href="/2019/03/25/%E4%BC%AA%E5%8A%A0%E5%AF%86%E5%81%9A%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/"
+           href="/2019/03/25/zip%E4%BC%AA%E5%8A%A0%E5%AF%86%E5%81%9A%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/"
            data-tag="伪加密"
            data-author="" >
             <span class="post-title" title="伪加密做法及原理">伪加密做法及原理</span>
@@ -1036,7 +1036,7 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-伪加密做法及原理" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-zip伪加密做法及原理" class="article article-type-post" itemscope itemprop="blogPost">
     
         <h1 class="article-title">伪加密做法及原理</h1>
     
@@ -1063,12 +1063,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-01-20 16:06:57'>2019-03-25 20:52</time>
+            发布时间 : <time class="date" title='最后更新: 2021-02-06 23:27:41'>2019-03-25 20:52</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:886</span>
+        <span>字数:739</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1103,16 +1103,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li><p><strong>总结一下伪加密题的解法，首先伪加密是指对zip文件的标志位进行修改，然后达到加密的效果，实际上并没有加密。</strong></p>
-<p>一个 ZIP 文件由三个部分组成：<br>　　压缩源文件数据区+压缩源文件目录区+压缩源文件目录结束标志 。</p>
-<p>　　用Winhex工具打开查看其十六进制编码，图如下：<br>　　<img src="http://img-blog.csdnimg.cn/20190325203657619.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</li>
-</ul>
-<p>首先需要了解一下这些16进制数的作用才能知道为什么要这样写，不要只为了做题而做题。</p>
-<p><strong>a.压缩源文件数据区：</strong><br>50 4B 03 04：这是头文件标记（0x04034b50）<br>14 00：解压文件所需 pkware 版本 </p>
-<pre><code>***00 00：全局方式位标记（有无加密）*** 这呢就是伪加密的地方！！！在504B0102的后面。下面有图。</code></pre>
-<p>08 00：压缩方式<br>5A 7E：最后修改文件时间<br>F7 46：最后修改文件日期<br>16 B5 80 14：CRC-32校验（1480B516）<br>19 00 00 00：压缩后尺寸（25）<br>17 00 00 00：未压缩尺寸（23）<br>07 00：文件名长度<br>00 00：扩展记录长度<br>6B65792E7478740BCECC750E71ABCE48CDC9C95728CECC2DC849AD284DAD0500b.压缩源文件目录区:50 4B 01 02：目录中文件文件头标记(0x02014b50)<br>3F 00：压缩使用的 pkware 版本<br>14 00：解压文件所需 pkware 版本<br>00 00：全局方式位标记（有无加密，这个更改这里进行伪加密，改为09 00打开就会提示有密码了）<br>08 00：压缩方式<br>5A 7E：最后修改文件时间<br>F7 46：最后修改文件日期<br>16 B5 80 14：CRC-32校验（1480B516）<br>19 00 00 00：压缩后尺寸（25）<br>17 00 00 00：未压缩尺寸（23）<br>07 00：文件名长度<br>24 00：扩展字段长度<br>00 00：文件注释长度<br>00 00：磁盘开始号<br>00 00：内部文件属性<br>20 00 00 00：外部文件属性<br>00 00 00 00：局部头部偏移量<br>6B65792E7478740A00200000000000010018006558F04A1CC5D001BDEBDD3B1CC5D001BDEBDD3B1CC5D001c.压缩源文件目录结束标志:50 4B 05 06：目录结束标记<br>00 00：当前磁盘编号<br>00 00：目录区开始磁盘编号<br>01 00：本磁盘上纪录总数<br>01 00：目录区中纪录总数<br>59 00 00 00：目录区尺寸大小<br>3E 00 00 00：目录区对第一张磁盘的偏移量<br>00 00 1A：ZIP 文件注释长度<br><strong>b.压缩源文件目录区:50 4B 01 02：目录中文件文件头标记(0x02014b50)</strong><br>3F 00：压缩使用的 pkware 版本<br>14 00：解压文件所需 pkware 版本<br>00 00：全局方式位标记（有无加密，这个更改这里进行伪加密，改为09 00打开就会提示有密码了）<br>08 00：压缩方式<br>5A 7E：最后修改文件时间<br>F7 46：最后修改文件日期<br>16 B5 80 14：CRC-32校验（1480B516）<br>19 00 00 00：压缩后尺寸（25）<br>17 00 00 00：未压缩尺寸（23）<br>07 00：文件名长度<br>24 00：扩展字段长度<br>00 00：文件注释长度<br>00 00：磁盘开始号<br>00 00：内部文件属性<br>20 00 00 00：外部文件属性<br>00 00 00 00：局部头部偏移量<br>6B65792E7478740A00200000000000010018006558F04A1CC5D001BDEBDD3B1CC5D001BDEBDD3B1CC5D001<br><strong>c.压缩源文件目录结束标志:50 4B 05 06：目录结束标记</strong><br>00 00：当前磁盘编号<br>00 00：目录区开始磁盘编号<br>01 00：本磁盘上纪录总数<br>01 00：目录区中纪录总数<br>59 00 00 00：目录区尺寸大小<br>3E 00 00 00：目录区对第一张磁盘的偏移量<br>00 00 1A：ZIP 文件注释长度<br>找到 504B0102 后<img src="http://img-blog.csdnimg.cn/20190325204935609.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>改完另存为文件再打开就可以了！</p>
+        <p>总结一下伪加密题的解法，首先伪加密是指对zip文件的标志位进行修改，然后达到加密的效果，实际上并没有加密。</p>
+<p> 一个 zip 文件由三个部分组成：</p>
+<blockquote>
+<p>压缩源文件数据区+压缩源文件目录区+压缩源文件目录结束标志 </p>
+</blockquote>
+<p>例：有一个伪加密zip文件，用winhex工具打开查看其十六进制编码，如下<br><img src="https://img-blog.csdnimg.cn/20190325203657619.png" alt="在这里插入图片描述"><br>首先需要了解一下这些16进制数的作用才能知道为什么要这样写，不要为了做题而做题。</p>
+<p><strong>压缩源文件数据区</strong>：<br>50 4B 03 04：这是头文件标记（0x04034b50）<br>14 00：解压文件所需 pkware 版本<br>00 00：全局方式位标记（有无加密）<br>08 00：压缩方式<br>5A 7E：最后修改文件时间<br>F7 46：最后修改文件日期<br>16 B5 80 14：CRC-32校验（1480B516）<br>19 00 00 00：压缩后尺寸（25）<br>17 00 00 00：未压缩尺寸（23）<br>07 00：文件名长度<br>00 00：扩展记录长度<br>6B65792E7478740BCECC750E71ABCE48CDC9C95728CECC2DC849AD284DAD0500b</p>
+<p><strong>压缩源文件目录区</strong>：<br>50 4B 01 02：目录中文件文件头标记(0x02014b50)<br>3F 00：压缩使用的 pkware 版本<br>14 00：解压文件所需 pkware 版本 </p>
+<pre><code class="css">00 00：全局方式位标记（有无加密，更改这里进行伪加密，改为09 00打开就会提示有密码了）</code></pre>
+<p>08 00：压缩方式<br>5A 7E：最后修改文件时间<br>F7 46：最后修改文件日期<br>16 B5 80 14：CRC-32校验（1480B516）<br>19 00 00 00：压缩后尺寸（25）<br>17 00 00 00：未压缩尺寸（23）<br>07 00：文件名长度<br>24 00：扩展字段长度<br>00 00：文件注释长度<br>00 00：磁盘开始号<br>00 00：内部文件属性<br>20 00 00 00：外部文件属性<br>00 00 00 00：局部头部偏移量<br>6B65792E7478740A00200000000000010018006558F04A1CC5D001BDEBDD3B1CC5D001BDEBDD3B1CC5D001</p>
+<p><strong>压缩源文件目录结束标志</strong>：<br>50 4B 05 06：目录结束标记<br>00 00：当前磁盘编号<br>00 00：目录区开始磁盘编号<br>01 00：本磁盘上纪录总数<br>01 00：目录区中纪录总数<br>59 00 00 00：目录区尺寸大小<br>3E 00 00 00：目录区对第一张磁盘的偏移量<br>00 00 1A：ZIP 文件注释长度 </p>
+<p>找到 50 4B 01 02<br><img src="https://img-blog.csdnimg.cn/20190325204935609.png" alt="在这里插入图片描述"><br>把 09 改为 00 文件另存为，再打开就无加密了。</p>
+<p><strong>注意</strong>：09 是一个例子，末位为奇数，代表加密，为偶数代表未加密。</p>
+<p><strong>识别真伪加密</strong>：</p>
+<p>无加密：<br>压缩源文件数据区的全局加密应当为00 00<br>且压缩源文件目录区的全局方式位标记应当为00 00</p>
+<p>伪加密：<br>压缩源文件数据区的全局加密应当为00 00<br>且压缩源文件目录区的全局方式位标记应当为09 00</p>
+<p>真加密：<br>压缩源文件数据区的全局加密应当为09 00<br>且压缩源文件目录区的全局方式位标记应当为09 00</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>
