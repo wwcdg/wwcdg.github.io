@@ -169,7 +169,7 @@
       
       <categories>
           
-          <category> CTF刷题 </category>
+          <category> CTF </category>
           
           <category> Web </category>
           
@@ -196,7 +196,7 @@
       
       <categories>
           
-          <category> CTF刷题 </category>
+          <category> CTF </category>
           
           <category> Web </category>
           
@@ -223,7 +223,7 @@
       
       <categories>
           
-          <category> CTF刷题 </category>
+          <category> CTF </category>
           
           <category> Web </category>
           
@@ -275,7 +275,7 @@
       
       <categories>
           
-          <category> CTF刷题 </category>
+          <category> CTF </category>
           
           <category> Web </category>
           
@@ -356,7 +356,9 @@
       
       <categories>
           
-          <category> 密码学分析 </category>
+          <category> CTF </category>
+          
+          <category> Crypto </category>
           
       </categories>
       
@@ -435,7 +437,7 @@
       
       <categories>
           
-          <category> CTF刷题 </category>
+          <category> CTF </category>
           
           <category> MISC </category>
           
@@ -456,7 +458,7 @@
       
       <categories>
           
-          <category> CTF刷题 </category>
+          <category> CTF </category>
           
           <category> MISC </category>
           
@@ -537,7 +539,7 @@
       
       <categories>
           
-          <category> CTF刷题 </category>
+          <category> CTF </category>
           
           <category> MISC </category>
           
@@ -564,7 +566,7 @@
       
       <categories>
           
-          <category> CTF刷题 </category>
+          <category> CTF </category>
           
           <category> Crypto </category>
           
@@ -591,7 +593,7 @@
       
       <categories>
           
-          <category> CTF刷题 </category>
+          <category> CTF </category>
           
           <category> MISC </category>
           
@@ -618,7 +620,7 @@
       
       <categories>
           
-          <category> CTF刷题 </category>
+          <category> CTF </category>
           
           <category> MISC </category>
           
@@ -645,7 +647,7 @@
       
       <categories>
           
-          <category> CTF刷题 </category>
+          <category> CTF </category>
           
           <category> Crypto </category>
           
@@ -672,7 +674,7 @@
       
       <categories>
           
-          <category> CTF刷题 </category>
+          <category> CTF </category>
           
           <category> Crypto </category>
           
@@ -753,7 +755,7 @@
       
       <categories>
           
-          <category> CTF刷题 </category>
+          <category> CTF </category>
           
           <category> MISC </category>
           
@@ -799,7 +801,7 @@
       
       <categories>
           
-          <category> CTF刷题 </category>
+          <category> CTF </category>
           
           <category> MISC </category>
           
@@ -874,7 +876,7 @@
       
       <categories>
           
-          <category> CTF刷题 </category>
+          <category> CTF </category>
           
           <category> MISC </category>
           
@@ -901,7 +903,7 @@
       
       <categories>
           
-          <category> CTF刷题 </category>
+          <category> CTF </category>
           
           <category> MISC </category>
           
@@ -922,7 +924,7 @@
       
       <categories>
           
-          <category> CTF刷题 </category>
+          <category> CTF </category>
           
           <category> MISC </category>
           
@@ -959,6 +961,33 @@
         <tags>
             
             <tag> php </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>分离图片中隐藏文件的方法总结</title>
+      <link href="2019/04/05/%E5%88%86%E7%A6%BB%E5%9B%BE%E7%89%87%E4%B8%AD%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+      <url>2019/04/05/%E5%88%86%E7%A6%BB%E5%9B%BE%E7%89%87%E4%B8%AD%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/</url>
+      
+        <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>CTF中经常会碰见图片隐藏文件的题目，今天就来总结一下分离隐藏文件的几种方法。</p><h4 id="1、图片分析"><a href="#1、图片分析" class="headerlink" title="1、图片分析:"></a>1、图片分析:</h4><p>如图为CTF题目中一个隐藏文件的图片<br><img src="https://img-blog.csdnimg.cn/20210207003838659.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>首先对图片进行分析，这里介绍一个工具binwalk（kali中是自带的，也可以下载到windows中使用）。</p><p>使用方法：binwalk + 文件路径/文件名</p><pre><code class="bash">binwalk 1.jpg</code></pre><p>执行命令后，binwalk就会自动分析这个jpg文件：<br><img src="https://img-blog.csdnimg.cn/20210207004045765.png"><br>从分析的结果看，这个jpg文件隐藏着一个zip文件，从48221块偏移开始就是zip文件。</p><h4 id="2、如何分离："><a href="#2、如何分离：" class="headerlink" title="2、如何分离："></a>2、如何分离：</h4><p>在得到隐藏信息后，改如何把zip文件分离出，下面介绍几种方法：</p><h5 id="2-1、binwalk-分离："><a href="#2-1、binwalk-分离：" class="headerlink" title="2.1、binwalk 分离："></a>2.1、binwalk 分离：</h5><p>还是使用binwalk工具，使用dd命令分离出隐藏文件：</p><pre><code class="bash">dd if=1.jpg of=1.zip skip=48221 bs=1</code></pre><p>解释：if 指定输入文件，of 指定输出文件，skip 指定从输入文件开头跳过48221个块后开始复制，bs设<br>置每次读写块的大小为1字节<br><img src="https://img-blog.csdnimg.cn/20210207214457253.png" alt="在这里插入图片描述"><br>执行后会得到一个1.zip文件。</p><h5 id="2-2、foremost-工具分离："><a href="#2-2、foremost-工具分离：" class="headerlink" title="2.2、foremost 工具分离："></a>2.2、foremost 工具分离：</h5><p>foremost是一个基于文件文件头和尾部信息以及文件的内建数据结构恢复文件的命令行工具，win可以下载使用，Linux可以通过下面命令安装使用：</p><pre><code class="bash"> apt-get install foremost</code></pre><p>Linux下分离文件的命令为：</p><pre><code class="bash"> foremost 1.jpg</code></pre><p>执行命令后，foremost会生成output目录存放分离出的文件。</p><p>Win下是把文件直接拖到 foremost.exe上，也会生成output目录存放分离出的文件。<br><img src="https://img-blog.csdnimg.cn/20210207222004236.png" alt="在这里插入图片描述"></p><h5 id="2-3、hex编辑器分离："><a href="#2-3、hex编辑器分离：" class="headerlink" title="2.3、hex编辑器分离："></a>2.3、hex编辑器分离：</h5><p>hex编辑器有很多，win下有用得较多的winhex、UltraEdit等，linux下有hexeditor等。这里我们以winhex为例来手动分离。</p><p>一个完整的 jpg 文件由 FF D8 开头，FF D9结尾，图片查看器会忽略 FF D9 以后的内容，因此可以在 jpg 文件中加入其他文件。</p><p>经过上面的分析， 知道图片中隐藏了zip文件，zip文件的开头16进制为504B0304，先搜索16进制文本 FFD9，然后后面跟着504B0304，于是就可以从 50 开始，复制到最后（因为这里只有一个zip，所以复制到最后），另存为新文件，就得到了隐藏的压缩包。<br><img src="https://img-blog.csdnimg.cn/20210207233444505.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2021020723351714.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210207233820560.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h5 id="2-4、改后缀名："><a href="#2-4、改后缀名：" class="headerlink" title="2.4、改后缀名："></a>2.4、改后缀名：</h5><p>分析知道隐藏文件是zip后，有一个简单粗暴的方法是直接把图片的后缀改为.zip，然后解压即可（这种方法虽然简单快速，但如果隐写了多个文件时可能会失败）。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF </category>
+          
+          <category> MISC </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> HCIA </tag>
             
         </tags>
       
