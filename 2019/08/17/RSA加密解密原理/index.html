@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>时间盲注详解 Sqli-labs闯关(Less 9—10) | 未完成的歌</title>
-  <meta name="keywords" content=" sql注入 ">
-  <meta name="description" content="时间盲注详解 Sqli-labs闯关(Less 9—10) | 未完成的歌">
+  <title>RSA加密解密原理 | 未完成的歌</title>
+  <meta name="keywords" content=" 密码学 ">
+  <meta name="description" content="RSA加密解密原理 | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="[toc] 前言：简单总结下Google Hacking语法。 一、什么是Google Hacking？ Google Hacking是指使用Google、百度等搜索引擎对某些特定网站主机漏洞（通常是服务器上的脚本漏洞）进行搜索，以达到快速找到漏洞主机或特定主机的漏洞的目的。 对于普通的用户而言，Google只是一款强大的搜索引擎，而对于渗透人员而言，它可能是一款绝佳的渗透工具。正因为Google">
 <meta property="og:type" content="article">
@@ -1038,9 +1038,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-时间盲注详解 Sqli-labs闯关(Less 9—10)" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-RSA加密解密原理" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">时间盲注详解 Sqli-labs闯关(Less 9—10)</h1>
+        <h1 class="article-title">RSA加密解密原理</h1>
     
     <div class="article-meta">
         
@@ -1050,9 +1050,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="漏洞原理">漏洞原理</a> > 
+            <a  data-rel="CTF">CTF</a> > 
             
-            <a  data-rel="漏洞原理&lt;---&gt;Sql注入">Sql注入</a>
+            <a  data-rel="CTF&lt;---&gt;Crypto">Crypto</a>
             
         </span>
         
@@ -1060,19 +1060,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">sql注入</a>
+            <a class="color4">密码学</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-01-20 15:44:03'>2019-09-01 19:59</time>
+            发布时间 : <time class="date" title='最后更新: 2021-02-09 12:40:49'>2019-08-17 00:26</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:762</span>
+        <span>字数:1.5k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1091,7 +1091,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#RSA%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B"><span class="toc-text">RSA算法简介:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="toc-text">1、什么是非对称加密算法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81RSA-%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="toc-text">2、RSA 加密原理：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3%EF%BC%9A"><span class="toc-text">3、RSA加密算法过程详解：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E6%89%BE%E5%87%BA%E8%B4%A8%E6%95%B0-%EF%BC%9A"><span class="toc-text">1、找出质数 ：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E8%AE%A1%E7%AE%97%E5%85%AC%E5%85%B1%E6%A8%A1%E6%95%B0%EF%BC%9A"><span class="toc-text">2、计算公共模数：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E8%AE%A1%E7%AE%97%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0-%CF%86-n-%EF%BC%9A"><span class="toc-text">3、计算欧拉函数 φ(n)：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E8%AE%A1%E7%AE%97%E5%85%AC%E9%92%A5-e%EF%BC%9A"><span class="toc-text">4、计算公钥 e：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E8%AE%A1%E7%AE%97%E7%A7%81%E9%92%A5-d%EF%BC%9A"><span class="toc-text">5、计算私钥 d：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6%E3%80%81%E5%8A%A0%E5%AF%86%E7%94%9F%E6%88%90%E5%AF%86%E6%96%87%EF%BC%9A"><span class="toc-text">6、加密生成密文：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7%E3%80%81%E8%A7%A3%E5%AF%86%E7%94%9F%E6%88%90%E6%98%8E%E6%96%87%EF%BC%9A"><span class="toc-text">7、解密生成明文：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="toc-text">4、示例：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E4%BE%8B%E9%A2%98%EF%BC%9A"><span class="toc-text">5、例题：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81easy-RSA"><span class="toc-text">1、easy_RSA:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81i%E6%98%A5%E7%A7%8B-RSA"><span class="toc-text">2、i春秋 RSA :</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1107,23 +1107,167 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天来总结下时间盲注的知识。<hr></p>
-<p>时间盲注和bool盲注是很像的，区别就是“参照物”不同，基于bool的盲注可以通过页面的一些变化来进行判断结果，但是有时候，执行一些sql语句的测试，页面不会有像布尔盲注的时候直观的变化，这个时候可以在基于布尔的盲注上结合<code>if</code>判断和<code>sleep()</code>函数来得到一个时间上的变换延迟的参照，也就可以让我们进行一些判断。也就是所谓的基于时间的盲注。</p>
-<p>直接看题吧<br><strong>Less-9</strong> 基于时间的单引号盲注<br><img src="http://img-blog.csdnimg.cn/2019072723363099.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>使用<code>if(查询语句,1,sleep(5))</code>，即如果我们的查询语句为真，那么直接返回结果；如果我们的查询语句为假，那么过5秒之后返回页面。所以我们就根据返回页面的时间长短来判断我们的查询语句是否执行正确。</p>
-<ol>
-<li> <code>if(expr1,expr2,expr3)</code>:判断语句 如果第一个语句正确就执行第二个语句如果错误执行第三个语句</li>
-<li><code>sleep(n)</code>：将程序挂起一段时间 n单位为秒<br>根据题目提示，已经知道了为单引号注入。</li>
-</ol>
+        <p><strong>引言</strong>：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CTF密码学类题目中，RSA加密可谓是很重要且常见的加密类型，今天就总结下 RSA加密的原理及解密方法。<hr></p>
+<h3 id="RSA算法简介"><a href="#RSA算法简介" class="headerlink" title="RSA算法简介:"></a>RSA算法简介:</h3><ul>
+<li><p>RSA加密算法是一种 <strong>非对称加密</strong> 算法，RSA算法相比别的算法思路非常清晰，但是想要破解的难度非常大。</p>
 <ul>
-<li>猜测数据库：<br><code>http://127.0.0.1/sqli-labs-master/Less-9/?id=1%27and%20If(ascii(substr(database(),1,1))=115,1,sleep(5))--+</code><br>说明第一位是 s （ascii 码是 115）<br><code>http://127.0.0.1/sqllib/Less-9/?id=1%27and%20If(ascii(substr(database(),2,1))=101,1,sleep(5))--+</code> 说明第二位是 e （ascii 码是 101） …. 以此类推，我们知道了数据库名字是 security</li>
-<li>猜测 security 的数据表：<br><code>http://127.0.0.1/sqllib/Less-9/?id=1&#39;and If(ascii(substr((select table_name from information_s chema.tables where table_schema=&#39;security&#39; limit 0,1),1,1))=101,1,sleep(5))--+</code> </li>
-<li>猜测第一个数据表的第一位是 e,…依次类推，得到 emails<br><code>http://127.0.0.1/sqllib/Less-9/?id=1&#39;and If(ascii(substr((select table_name from information_s chema.tables where table_schema=&#39;security&#39; limit 1,1),1,1))=114,1,sleep(5))--+</code> </li>
-<li>猜测第二个数据表的第一位是 r,…依次类推，得到 referers … 再以此类推，我们可以得到所有的数据表 emails,referers,uagents,users 猜测 users 表的列：<br><code>http://127.0.0.1/sqllib/Less-9/?id=1&#39;and If(ascii(substr((select column_name from information _schema.columns where table_name=&#39;users&#39; limit 0,1),1,1))=105,1,sleep(5))--+</code> </li>
-<li>猜测 users 表的第一个列的第一个字符是 i， 以此类推，我们得到列名是 id，username，password</li>
-<li>猜测 username 的值： <code>http://127.0.0.1/sqllib/Less-9/?id=1&#39;and If(ascii(substr((select username from users limit 0,1), 1,1))=68,1,sleep(5))--+</code> </li>
-<li>猜测 username 的第一行的第一位 以此类推，我们得到数据库 username，password 的所有内容。<br>less10 只是把单引号换成了双引号，其他同理。 </li>
+<li>RSA算法基于一个非常简单的数论事实：两个素数相乘得到一个大数很容易，但是由一个大数分解为两个素数相乘却非常难。</li>
 </ul>
-<p>以上的过程就是我们利用 sleep()函数注入的整个过程。<br>手动注入过程很是繁琐，可以用二分法提高效率，但大部分情况下都会选择我们写脚本注入。</p>
+</li>
+</ul>
+<h4 id="1、什么是非对称加密算法："><a href="#1、什么是非对称加密算法：" class="headerlink" title="1、什么是非对称加密算法："></a>1、什么是非对称加密算法：</h4><ul>
+<li>和 <strong>对称加密</strong> 算法使用同一个密钥进行加密解密的方式不同，<strong>非对称加密</strong> 算法是使用不同密钥进行加密和解密的算法，也称为公私钥加密。</li>
+</ul>
+<p>非对称加密算法实现机密信息交换的基本过程：</p>
+<ul>
+<li>甲方生成 <strong>一对密钥</strong> 并将其中的一把作为 <strong>公钥</strong> 向其它方公开，得到该公钥的乙方使用该密钥对机密信息进行加密后再发送给甲方，甲方再用自己保存的另一把 <strong>私钥</strong> 对加密后的信息进行解密。</li>
+</ul>
+<p>图解：<br><img src="https://img-blog.csdnimg.cn/20201206164925486.png"></p>
+<h4 id="2、RSA-加密原理："><a href="#2、RSA-加密原理：" class="headerlink" title="2、RSA 加密原理："></a>2、RSA 加密原理：</h4><p>了解了非对称加密算法的原理，我们再来说说 RSA 加密算法的基本流程。</p>
+<p>如图：<img src="https://img-blog.csdnimg.cn/20201206172042851.png"></p>
+<h4 id="3、RSA加密算法过程详解："><a href="#3、RSA加密算法过程详解：" class="headerlink" title="3、RSA加密算法过程详解："></a>3、RSA加密算法过程详解：</h4><p>先来了解一下什么是 互质数：</p>
+<ul>
+<li>两个或多个整数的公因数只有1的非0自然数，则两个非0自然数叫做互质数。例如 2 和 3，公因数只有1，所以为互质数。</li>
+</ul>
+<h5 id="1、找出质数-："><a href="#1、找出质数-：" class="headerlink" title="1、找出质数 ："></a>1、找出质数 ：</h5><p>随机找两个质数 p 和 q ，p 与 q 越大，越安全。</p>
+<h5 id="2、计算公共模数："><a href="#2、计算公共模数：" class="headerlink" title="2、计算公共模数："></a>2、计算公共模数：</h5><pre><code class="java"> n = p * q </code></pre>
+<p>假设 p = 65 ，q = 71。计算他们的乘积 n = p * q = 4615 ，转化为二进制为 1001000000111，即该加密算法即为 13 位。位数越长，算法则越难被破解。实际应用中，RSA密钥一般是1024位，重要场合则为2048位。</p>
+<h5 id="3、计算欧拉函数-φ-n-："><a href="#3、计算欧拉函数-φ-n-：" class="headerlink" title="3、计算欧拉函数 φ(n)："></a>3、计算欧拉函数 φ(n)：</h5><pre><code class="java">φ(n) = φ(p*q) = (p-1)(q-1)</code></pre>
+<p>φ(n) 表示：在小于等于 n 的正整数之中，与 n 构成互质关系的数的个数。</p>
+<p>例：</p>
+<p>在 1 到 8 之中，与 8 形成互质关系的是1、3、5、7，所以 φ(n) = 4。 </p>
+<p><strong>计算公式（即欧拉函数）为</strong>：</p>
+<p>前提：P 与 Q 均为质数</p>
+<pre><code class="java">φ(n) = φ(P*Q)= (P-1)(Q-1) </code></pre>
+<p>设：</p>
+<p>P =  65 ，Q = 71  </p>
+<pre><code class="java">φ(n) = 64 * 70 = 4480 </code></pre>
+<p>即有4480 个数与 n（4615）互质。</p>
+<h5 id="4、计算公钥-e："><a href="#4、计算公钥-e：" class="headerlink" title="4、计算公钥 e："></a>4、计算公钥 e：</h5><pre><code class="java">1 &lt; e &lt; φ(n)</code></pre>
+<p>要求：</p>
+<ul>
+<li>e 的取值必须是整数</li>
+<li>e 和 φ(n) 必须是互质数</li>
+</ul>
+<h5 id="5、计算私钥-d："><a href="#5、计算私钥-d：" class="headerlink" title="5、计算私钥 d："></a>5、计算私钥 d：</h5><p>计算公式：</p>
+<pre><code class="java">e * d % m = 1  其中(φ(n) = m)</code></pre>
+<p>即找一个整数 d，使得 <code>(e * d ) % m = 1</code>，等价于 <code>e * d - 1 = y * m ( y 为整数）</code>。</p>
+<p>得到 d ，实质就是对下面二元一次方程求解：</p>
+<p> <code>e * x - m * y = 1</code>  e，m为已知量，求 x，y。</p>
+<p>这个方程可以用 <strong>扩展欧几里得算法</strong> 求解，此处就不详细介绍了，可以看这个了解下： <a target="_blank" rel="noopener" href="https://blog.csdn.net/destiny1507/article/details/81750874">扩展欧几里得算法</a></p>
+<p>得到：</p>
+<ul>
+<li><p>公钥＝(e，n)</p>
+</li>
+<li><p>私钥＝(d，n)</p>
+</li>
+</ul>
+<p>对外，只暴露公钥。</p>
+<h5 id="6、加密生成密文："><a href="#6、加密生成密文：" class="headerlink" title="6、加密生成密文："></a>6、加密生成密文：</h5><p>C ＝ $M^e$ mod n</p>
+<blockquote>
+<p>C：密文 M：明文</p>
+</blockquote>
+<h5 id="7、解密生成明文："><a href="#7、解密生成明文：" class="headerlink" title="7、解密生成明文："></a>7、解密生成明文：</h5><p>M ＝$C^d$ mod n</p>
+<blockquote>
+<p>C：密文 M：明文</p>
+</blockquote>
+<hr>
+
+
+
+<p>下面举一个完整的例子</p>
+<h4 id="4、示例："><a href="#4、示例：" class="headerlink" title="4、示例："></a>4、示例：</h4><p>1、找出质数 p 、q :</p>
+<pre><code class="java">p = 3  
+q = 11</code></pre>
+<p>2、计算公共模数 n：</p>
+<pre><code class="java">n = p * q = 3 * 11 = 33
+n = 33</code></pre>
+<p>3、计算欧拉函数 φ(n)：</p>
+<pre><code class="java">φ(n) = (p-1)(q-1) = 2 * 10 = 20
+φ(n) = 20</code></pre>
+<p>4、计算公钥 e：</p>
+<pre><code class="java">1 &lt; e &lt; φ(n)
+1 &lt; e &lt; 20</code></pre>
+<p>e 的取值范围为： { 3, 7, 9, 11, 13, 17, 19 }</p>
+<p>为了方便测试，我们取最小的值 e =3，3 和 φ(n) = 20 互为质数，满足条件。</p>
+<p>5、计算私钥 d：</p>
+<pre><code class="java">e * d % φ(n) = 1
+3 * d % 20 = 1   </code></pre>
+<p>计算出 d = 7 </p>
+<p>6、公钥加密：</p>
+<blockquote>
+<p>公式：C ＝ $M^e$ mod n</p>
+</blockquote>
+<p>随便拿一个数字，这里方便演示 取 M = 2</p>
+<p>C = $3^3$ % 33 = 8</p>
+<p> “ M = 3 “ 经过RSA加密后变成了 “ C = 8 “</p>
+<p>7、私钥解密：</p>
+<blockquote>
+<p>M ＝$C^d$ mod n</p>
+</blockquote>
+<pre><code class="java">C = 8
+d = 7
+n = 33</code></pre>
+<p>计算：</p>
+<p>M = $8^7$ % 33</p>
+<p>解得： M =  2 <hr></p>
+<p>🆗，简单了解 RSA的基本原理之后，来看几个CTF中的RSA例题。</p>
+<h4 id="5、例题："><a href="#5、例题：" class="headerlink" title="5、例题："></a>5、例题：</h4><h5 id="1、easy-RSA"><a href="#1、easy-RSA" class="headerlink" title="1、easy_RSA:"></a>1、easy_RSA:</h5><p><img src="https://img-blog.csdnimg.cn/20201207201511188.png"><br>打开附件：<br><img src="https://img-blog.csdnimg.cn/20201207201631363.png"><br>这题很简单，就是求参数d 的值，那么如何计算d 呢？也就是如何求 <code>e * x - m * y =1</code> 式子中的 x ？</p>
+<p>步骤：</p>
+<p>1、先计算欧拉函数：<br><img src="https://img-blog.csdnimg.cn/20201207205109633.png"><br>得到 φ(n) = 2135733082216268400</p>
+<p>2、求 d：</p>
+<p>根据加密原理，解密的方法就是：把欧拉函数的值 +1，再除以<code>17 * n</code>（这里 n 先取1）<br><img src="https://img-blog.csdnimg.cn/20201207210721780.png"><br>得到 d =   125631357777427553，尝试提交flag： cyberpeace{125631357777427553} 正确，看来 n 的值确实为 1 。(￣▽￣)”</p>
+<p>提供一个求私钥脚本：</p>
+<pre><code class="python">#!/usr/bin/env python3
+# -*- coding:utf-8 -*-
+import gmpy2
+
+p = 473398607161
+q = 4511491
+e = 17
+
+m = (p-1)*(q-1)
+d = int(gmpy2.invert(e,m)) //invert: 求逆元,返回值是一个 mpz 对象
+print(&#39;私钥为:&#39;,d)</code></pre>
+<p>运行结果（我的python出了点小问题）：<br><img src="https://img-blog.csdnimg.cn/20201207233126519.png"><br>得到 d =  125631357777427553</p>
+<h5 id="2、i春秋-RSA"><a href="#2、i春秋-RSA" class="headerlink" title="2、i春秋 RSA :"></a>2、i春秋 RSA :</h5><p><img src="https://img-blog.csdnimg.cn/20201208133706815.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>打开附件：<br><img src="https://img-blog.csdnimg.cn/20201207233245612.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>可以看到题目给出了 n,e,c 三个值 ，求明文的值。</p>
+<p>首先先对 n 进行因式分解，使用在线网站：<a target="_blank" rel="noopener" href="http://www.factordb.com/index.php">大数分解网站</a></p>
+<p>得到 p ，q ：</p>
+<p><img src="https://img-blog.csdnimg.cn/20201208134248231.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"></p>
+<pre><code class="java">p = 310935513029228809998830208036655366162721470228774287453148308675193510132489142448801010943658159980501154153084396100667001391643762749806500051502679498536716532334917842894939889468693960937309663256592497965458780801192062835123429808
+544757340971089756707788360038227894054989413747980167536893779923551227744017809301855984582408943622461942486239113822841696775958645014753081946441406022729616992302829930205076689399802050792392219242304302303180769915076199603301447453
+07022538024878444458717587446601559546292026245318907293584609320115374632235270795633933755350928537598242214216674496409625928797450473</code></pre>
+<pre><code class="java">q = 310935513029228809998830208036655366162721470228774287453148308675193510132489142448801010943658159980501154153084396100667001391643762749806500051502679498536716532334917842894939889468693960937309663256592497965458780801192062835123429808
+544757340971089756707788360038227894054989413747980167536893779923551227744017809301855984582408943622461942486239113822841696775958645014753081946441406022729616992302829930205076689399802050792392219242304302303180769915076199603301447453
+07022538024878444458717587446601559546292026245318907293584609320115374632235270795633933755350928537598242214216674496409625928997877221</code></pre>
+<p>2、相关参数都已得到，就可以编写脚本求明文信息了：</p>
+<pre><code class="python">#!/usr/bin/env python
+# coding:utf-8
+import gmpy2   
+
+p = gmpy2.mpz(31093551302922880999883020803665536616272147022877428745314830867519351013248914244880101094365815998050115415308439610066700139164376274980650005150267949853671653233491784289493988946869396093730966325659249796545878080119206283512342980854475734097108975670778836003822789405498941374798016753689377992355122774401780930185598458240894362246194248623911382284169677595864501475308194644140602272961699230282993020507668939980205079239221924230430230318076991507619960330144745307022538024878444458717587446601559546292026245318907293584609320115374632235270795633933755350928537598242214216674496409625928997877221)
+q = gmpy2.mpz(31093551302922880999883020803665536616272147022877428745314830867519351013248914244880101094365815998050115415308439610066700139164376274980650005150267949853671653233491784289493988946869396093730966325659249796545878080119206283512342980854475734097108975670778836003822789405498941374798016753689377992355122774401780930185598458240894362246194248623911382284169677595864501475308194644140602272961699230282993020507668939980205079239221924230430230318076991507619960330144745307022538024878444458717587446601559546292026245318907293584609320115374632235270795633933755350928537598242214216674496409625928797450473)
+e = gmpy2.mpz(65537)
+
+#计算私钥d
+m = (p - 1) * (q - 1)
+d = gmpy2.invert(e, m)
+print &quot;private key:&quot;,d
+
+#求密文M
+c = gmpy2.mpz(168502910088858295634315070244377409556567637139736308082186369003227771936407321783557795624279162162305200436446903976385948677897665466290852769877562167487142385308027341639816401055081820497002018908896202860342391029082581621987305533097386652183849657065952062433988387640990383623264405525144003500286531262674315900537001845043225363148359766771033899680111076181672797077410584747509581932045540801777738548872747597899965366950827505529432483779821158152928899947837196391555666165486441878183288008753561108995715961920472927844877569855940505148843530998878113722830427807926679324241141182238903567682042410145345551889442158895157875798990903715105782682083886461661307063583447696168828687126956147955886493383805513557604179029050981678755054945607866353195793654108403939242723861651919152369923904002966873994811826391080318146260416978499377182540684409790357257490816203138499369634490897553227763563553981246891677613446390134477832143175248992161641698011195968792105201847976082322786623390242470226740685822218140263182024226228692159380557661591633072091945077334191987860262448385123599459647228562137369178069072804498049463136233856337817385977990145571042231795332995523988174895432819872832170029690848)
+print &quot;明文:&quot;
+M  =  pow(c,d,p*q)
+print &#39;10进制: &#39;+str(M)
+flag = str(hex(M))[2:]# 从第3位为往后截取
+print &#39;16进制: &#39;+flag
+print &#39;ASCII码: &#39;+flag.decode(&#39;hex&#39;)</code></pre>
+<p> 注释：  </p>
+<ul>
+<li>gmpy2.mpz(x)： 初始化一个大整数x  </li>
+<li>pow( x, y, z): 计算 $x^y$ mod z </li>
+</ul>
+<p>得到 flag：<br><img src="https://img-blog.csdnimg.cn/20201208165148163.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>🆗，关与RSA的总结暂时就到这里了，以后发现好用的方法或解题技巧会接着更新。╰(￣ω￣ｏ)</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>
