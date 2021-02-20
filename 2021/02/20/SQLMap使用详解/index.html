@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SQLMap使用详解 | 未完成的歌</title>
+  <meta name="keywords" content=" sqlmap ">
+  <meta name="description" content="SQLMap使用详解 | 未完成的歌">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="@[toc] 前言：今天来总结一下sqlmap注入神器的详细使用方法。 一、SQLMap介绍1、Sqlmap简介：Sqlmap是一个开源的渗透测试工具，可以用来自动化的检测，利用SQL注入漏洞，获取数据库服务器的权限。它具有功能强大的检测引擎，针对各种不同类型数据库的渗透测试的功能选项，包括获取数据库中存储的数据，访问操作系统文件甚至可以通过外带数据连接的方式执行操作系统命令。 目前支持的数据库有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQLMap使用详解">
+<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2021/02/20/SQLMap%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="未完成的歌">
+<meta property="og:description" content="@[toc] 前言：今天来总结一下sqlmap注入神器的详细使用方法。 一、SQLMap介绍1、Sqlmap简介：Sqlmap是一个开源的渗透测试工具，可以用来自动化的检测，利用SQL注入漏洞，获取数据库服务器的权限。它具有功能强大的检测引擎，针对各种不同类型数据库的渗透测试的功能选项，包括获取数据库中存储的数据，访问操作系统文件甚至可以通过外带数据连接的方式执行操作系统命令。 目前支持的数据库有">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021021723551258.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218160857197.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218165420683.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218165727726.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218170129467.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218171205301.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218171747383.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218185035327.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218185546943.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218221345141.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218221815819.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218222104689.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218222615569.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021021823304973.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210219000331947.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210219001121933.png">
+<meta property="article:published_time" content="2021-02-20T03:34:43.907Z">
+<meta property="article:modified_time" content="2021-02-20T03:38:15.231Z">
+<meta property="article:author" content="未完成的歌">
+<meta property="article:tag" content="sqlmap">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2021021723551258.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/sublime.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>未完成的歌</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/wwcdg"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qq_43531669?spm=1011.2124.3001.5343"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/hfdyhddy"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2058751973&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/#/user/home?id=618338817"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:2058751973@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(50)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="漏洞原理">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        漏洞原理
+                        <small>(9)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="漏洞原理<--->Sql注入">
+                                        
+                                        Sql注入
+                                        
+                                            <small>(4
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="漏洞原理<--->XSS">
+                                        
+                                        XSS
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="漏洞原理<--->命令执行">
+                                        
+                                        命令执行
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="漏洞原理<--->文件上传">
+                                        
+                                        文件上传
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Web开发">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        Web开发
+                        <small>(8)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="Web开发<--->JavaEE">
+                                        
+                                        JavaEE
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Web开发<--->JavaSE">
+                                        
+                                        JavaSE
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Web开发<--->PHP">
+                                        
+                                        PHP
+                                        
+                                            <small>(3
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Web开发<--->前端">
+                                        
+                                        前端
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="CTF">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        CTF
+                        <small>(20)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="CTF<--->Crypto">
+                                        
+                                        Crypto
+                                        
+                                            <small>(5
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="CTF<--->MISC">
+                                        
+                                        MISC
+                                        
+                                            <small>(11
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="CTF<--->Web">
+                                        
+                                        Web
+                                        
+                                            <small>(4
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Blog搭建">
+                        
+                        Blog搭建
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Python">
+                        
+                        Python
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="工具使用">
+                        
+                        工具使用
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="数据库">
+                        
+                        数据库
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="线下赛">
+                        
+                        线下赛
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="鲲鹏HCIA">
+                        
+                        鲲鹏HCIA
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">关于</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="50">
+<input type="hidden" id="yelog_site_word_count" value="102.1k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" />
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>blog</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>crc碰撞</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>crypto</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Crypto</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>css</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Google Hacking</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HCIA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>html</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>javaSE</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LSB</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>misc</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Mybatis</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mysql</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>php</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PHP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringMVC</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>sqlmap</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>sql注入</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>web</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>xss</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>上传漏洞</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>伪加密</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>命令执行</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>密码学</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>暴力破解</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>杂项</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>盲水印</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>隐写</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class="全部文章 工具使用 "
+           href="/2021/02/20/SQLMap%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/"
+           data-tag="sqlmap"
+           data-author="" >
+            <span class="post-title" title="SQLMap使用详解">SQLMap使用详解</span>
+            <span class="post-date" title="2021-02-20 11:34:43">2021/02/20</span>
+        </a>
+        
+        <a  class="全部文章 工具使用 "
+           href="/2021/01/21/Google%20Hacking%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag="Google Hacking"
+           data-author="" >
+            <span class="post-title" title="Google Hacking语法总结">Google Hacking语法总结</span>
+            <span class="post-date" title="2021-01-21 21:54:54">2021/01/21</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 JavaEE "
+           href="/2021/01/20/Java%20EE%E2%80%94%E2%80%94Mybatis%20%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/"
+           data-tag="Mybatis"
+           data-author="" >
+            <span class="post-title" title="Mybatis框架学习">Mybatis框架学习</span>
+            <span class="post-date" title="2021-01-20 22:27:01">2021/01/20</span>
+        </a>
+        
+        <a  class="全部文章 数据库 "
+           href="/2021/01/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%94%EF%BC%89%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="数据库系统（五）——数据库设计">数据库系统（五）——数据库设计</span>
+            <span class="post-date" title="2021-01-02 17:13:52">2021/01/02</span>
+        </a>
+        
+        <a  class="全部文章 数据库 "
+           href="/2021/01/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7%E6%8E%A7%E5%88%B6/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="数据库系统（三）——数据库安全性控制">数据库系统（三）——数据库安全性控制</span>
+            <span class="post-date" title="2021-01-02 15:34:16">2021/01/02</span>
+        </a>
+        
+        <a  class="全部文章 数据库 "
+           href="/2021/01/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E5%92%8C%E8%A7%86%E5%9B%BE/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="数据库系统（二）——数据更新和视图">数据库系统（二）——数据更新和视图</span>
+            <span class="post-date" title="2021-01-01 21:29:15">2021/01/01</span>
+        </a>
+        
+        <a  class="全部文章 数据库 "
+           href="/2021/01/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="数据库系统（一）——数据查询">数据库系统（一）——数据查询</span>
+            <span class="post-date" title="2021-01-01 20:40:24">2021/01/01</span>
+        </a>
+        
+        <a  class="全部文章 数据库 "
+           href="/2020/12/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94%E8%A7%A6%E5%8F%91%E5%99%A8/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="数据库系统（四）——触发器">数据库系统（四）——触发器</span>
+            <span class="post-date" title="2020-12-13 20:07:35">2020/12/13</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 JavaEE "
+           href="/2020/11/03/Java%20EE%E2%80%94%E2%80%94SpringMVC%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/"
+           data-tag="SpringMVC"
+           data-author="" >
+            <span class="post-title" title="SpringMVC框架学习">SpringMVC框架学习</span>
+            <span class="post-date" title="2020-11-03 20:30:54">2020/11/03</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 JavaSE "
+           href="/2020/09/28/Java%20SE%20%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/"
+           data-tag="javaSE"
+           data-author="" >
+            <span class="post-title" title="Java SE重点知识笔记">Java SE重点知识笔记</span>
+            <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
+        </a>
+        
+        <a  class="全部文章 鲲鹏HCIA "
+           href="/2020/04/05/%E5%8D%8E%E4%B8%BA%E9%B2%B2%E9%B9%8F%E4%BA%91HCIA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/"
+           data-tag="HCIA"
+           data-author="" >
+            <span class="post-title" title="华为鲲鹏云HCIA知识总结（一）">华为鲲鹏云HCIA知识总结（一）</span>
+            <span class="post-date" title="2020-04-05 16:19:56">2020/04/05</span>
+        </a>
+        
+        <a  class="全部文章 Python "
+           href="/2019/12/05/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="Python学习笔记（一）">Python学习笔记（一）</span>
+            <span class="post-date" title="2019-12-05 15:13:07">2019/12/05</span>
+        </a>
+        
+        <a  class="全部文章 CTF Web "
+           href="/2019/11/03/i%E6%98%A5%E7%A7%8B%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%20web(%E4%B8%80)/"
+           data-tag="web"
+           data-author="" >
+            <span class="post-title" title="i春秋做题记录 web(一)">i春秋做题记录 web(一)</span>
+            <span class="post-date" title="2019-11-03 17:28:45">2019/11/03</span>
+        </a>
+        
+        <a  class="全部文章 CTF Web "
+           href="/2019/10/15/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%20Web%E8%BF%9B%E9%98%B6(%E4%B8%80)/"
+           data-tag="web"
+           data-author="" >
+            <span class="post-title" title="攻防世界 Web进阶(一)">攻防世界 Web进阶(一)</span>
+            <span class="post-date" title="2019-10-15 21:11:43">2019/10/15</span>
+        </a>
+        
+        <a  class="全部文章 CTF Web "
+           href="/2019/10/05/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%20web%EF%BC%88%E4%BA%8C%EF%BC%89/"
+           data-tag="web"
+           data-author="" >
+            <span class="post-title" title="攻防世界 web（二）">攻防世界 web（二）</span>
+            <span class="post-date" title="2019-10-05 13:51:25">2019/10/05</span>
+        </a>
+        
+        <a  class="全部文章 工具使用 "
+           href="/2019/09/28/Sqlmap%20%E5%85%A5%E9%97%A8%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5/"
+           data-tag="sqlmap"
+           data-author="" >
+            <span class="post-title" title="Sqlmap入门使用攻略">Sqlmap入门使用攻略</span>
+            <span class="post-date" title="2019-09-28 22:45:50">2019/09/28</span>
+        </a>
+        
+        <a  class="全部文章 CTF Web "
+           href="/2019/09/12/Bugku%E2%80%94web%EF%BC%88%E4%B8%80%EF%BC%89/"
+           data-tag="web"
+           data-author="" >
+            <span class="post-title" title="Bugku——web（一）">Bugku——web（一）</span>
+            <span class="post-date" title="2019-09-12 08:07:25">2019/09/12</span>
+        </a>
+        
+        <a  class="全部文章 漏洞原理 Sql注入 "
+           href="/2019/09/01/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8%E8%AF%A6%E8%A7%A3%20Sqli-labs%E9%97%AF%E5%85%B3(Less%209%E2%80%9410)/"
+           data-tag="sql注入"
+           data-author="" >
+            <span class="post-title" title="时间盲注详解 Sqli-labs闯关(Less 9—10)">时间盲注详解 Sqli-labs闯关(Less 9—10)</span>
+            <span class="post-date" title="2019-09-01 19:59:43">2019/09/01</span>
+        </a>
+        
+        <a  class="全部文章 漏洞原理 命令执行 "
+           href="/2019/08/20/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%EF%BC%88Commnd%20Execution%EF%BC%89%E6%80%BB%E7%BB%93/"
+           data-tag="命令执行"
+           data-author="" >
+            <span class="post-title" title="命令执行漏洞（Commnd Execution）总结">命令执行漏洞（Commnd Execution）总结</span>
+            <span class="post-date" title="2019-08-20 17:20:28">2019/08/20</span>
+        </a>
+        
+        <a  class="全部文章 CTF Crypto "
+           href="/2019/08/17/RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E5%8E%9F%E7%90%86/"
+           data-tag="密码学"
+           data-author="" >
+            <span class="post-title" title="RSA加密解密原理">RSA加密解密原理</span>
+            <span class="post-date" title="2019-08-17 00:26:38">2019/08/17</span>
+        </a>
+        
+        <a  class="全部文章 CTF Crypto "
+           href="/2019/08/17/%E5%AF%86%E7%A0%81%E5%AD%A6%E2%80%94RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E8%AF%A6%E8%A7%A3%EF%BC%81/"
+           data-tag="密码学"
+           data-author="" >
+            <span class="post-title" title="密码学—RSA加密解密详解！">密码学—RSA加密解密详解！</span>
+            <span class="post-date" title="2019-08-17 00:26:38">2019/08/17</span>
+        </a>
+        
+        <a  class="全部文章 漏洞原理 文件上传 "
+           href="/2019/08/14/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%20upload-labs%20%E7%BB%83%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/"
+           data-tag="上传漏洞"
+           data-author="" >
+            <span class="post-title" title="上传漏洞 upload-labs 练习（二）">上传漏洞 upload-labs 练习（二）</span>
+            <span class="post-date" title="2019-08-14 13:52:01">2019/08/14</span>
+        </a>
+        
+        <a  class="全部文章 漏洞原理 文件上传 "
+           href="/2019/08/08/%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%20upload-labs%20%E7%BB%83%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/"
+           data-tag="上传漏洞"
+           data-author="" >
+            <span class="post-title" title="上传漏洞 upload-labs 练习（一）">上传漏洞 upload-labs 练习（一）</span>
+            <span class="post-date" title="2019-08-08 22:19:21">2019/08/08</span>
+        </a>
+        
+        <a  class="全部文章 CTF MISC "
+           href="/2019/08/02/%E5%B8%B8%E8%A7%81%E7%9A%8416%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E5%A4%B4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="常见的16进制文件头">常见的16进制文件头</span>
+            <span class="post-date" title="2019-08-02 22:45:27">2019/08/02</span>
+        </a>
+        
+        <a  class="全部文章 CTF MISC "
+           href="/2019/08/01/Bugku%20%E6%9D%82%E9%A1%B9%EF%BC%88%E4%B8%89%EF%BC%89/"
+           data-tag="杂项"
+           data-author="" >
+            <span class="post-title" title="Bugku 杂项（三）">Bugku 杂项（三）</span>
+            <span class="post-date" title="2019-08-01 20:06:27">2019/08/01</span>
+        </a>
+        
+        <a  class="全部文章 漏洞原理 Sql注入 "
+           href="/2019/07/29/Sqli-labs%E9%97%AF%E5%85%B3%20Bool%E7%9B%B2%E6%B3%A8%E8%AF%A6%E8%A7%A3%EF%BC%88Less-8%EF%BC%89/"
+           data-tag="sql注入"
+           data-author="" >
+            <span class="post-title" title="Sqli-labs闯关 Bool盲注详解!（Less-8）">Sqli-labs闯关 Bool盲注详解!（Less-8）</span>
+            <span class="post-date" title="2019-07-29 22:44:56">2019/07/29</span>
+        </a>
+        
+        <a  class="全部文章 漏洞原理 Sql注入 "
+           href="/2019/07/28/Sqli-labs%E9%97%AF%E5%85%B3(Less1%E2%80%948)%20%E8%AF%A6%E7%BB%86%EF%BC%81/"
+           data-tag="sql注入"
+           data-author="" >
+            <span class="post-title" title="Sqli-labs闯关记录(Less1—8) 详细！">Sqli-labs闯关记录(Less1—8) 详细！</span>
+            <span class="post-date" title="2019-07-28 23:23:09">2019/07/28</span>
+        </a>
+        
+        <a  class="全部文章 CTF MISC "
+           href="/2019/07/25/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E9%9A%90%E5%86%99%E6%9C%AF/"
+           data-tag="隐写"
+           data-author="" >
+            <span class="post-title" title="实验吧--隐写术">实验吧--隐写术</span>
+            <span class="post-date" title="2019-07-25 14:15:50">2019/07/25</span>
+        </a>
+        
+        <a  class="全部文章 CTF Crypto "
+           href="/2019/07/21/%E5%AF%86%E7%A0%81%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89/"
+           data-tag="crypto"
+           data-author="" >
+            <span class="post-title" title="密码学（二）">密码学（二）</span>
+            <span class="post-date" title="2019-07-21 16:12:54">2019/07/21</span>
+        </a>
+        
+        <a  class="全部文章 CTF MISC "
+           href="/2019/07/18/Bugku%E6%9D%82%E9%A1%B9%EF%BC%88%E4%BA%8C%EF%BC%89/"
+           data-tag="misc"
+           data-author="" >
+            <span class="post-title" title="Bugku杂项（二）">Bugku杂项（二）</span>
+            <span class="post-date" title="2019-07-18 21:57:30">2019/07/18</span>
+        </a>
+        
+        <a  class="全部文章 CTF MISC "
+           href="/2019/07/14/Bugku%E6%9D%82%E9%A1%B9/"
+           data-tag="misc"
+           data-author="" >
+            <span class="post-title" title="Bugku杂项(一)">Bugku杂项(一)</span>
+            <span class="post-date" title="2019-07-14 18:59:20">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF Crypto "
+           href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF Crypto "
+           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 漏洞原理 XSS "
+           href="/2019/07/13/XSS%E9%97%AF%E5%85%B3%E8%AE%B0%E5%BD%95%20%E8%B6%85%E8%AF%A6%E7%BB%86%EF%BC%81/"
+           data-tag="xss"
+           data-author="" >
+            <span class="post-title" title="XSS闯关记录 超详细！">XSS闯关记录 超详细！</span>
+            <span class="post-date" title="2019-07-13 13:52:42">2019/07/13</span>
+        </a>
+        
+        <a  class="全部文章 漏洞原理 Sql注入 "
+           href="/2019/06/10/Sqli-labs%E7%AC%AC%E4%B8%80%E9%A2%98%E8%AF%A6%E8%A7%A3/"
+           data-tag="sql注入"
+           data-author="" >
+            <span class="post-title" title="Sqli-labs第一题详解">Sqli-labs第一题详解</span>
+            <span class="post-date" title="2019-06-10 19:22:43">2019/06/10</span>
+        </a>
+        
+        <a  class="全部文章 CTF MISC "
+           href="/2019/05/04/CRC%E7%A2%B0%E6%92%9E/"
+           data-tag="crc碰撞"
+           data-author="" >
+            <span class="post-title" title="CRC碰撞">CRC碰撞</span>
+            <span class="post-date" title="2019-05-04 20:47:00">2019/05/04</span>
+        </a>
+        
+        <a  class="全部文章 线下赛 "
+           href="/2019/05/04/%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%9B%A2%E9%98%9F%E5%86%85%E9%83%A8%E6%AF%94%E8%B5%9B%E6%80%BB%E7%BB%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="第一次团队线下赛总结">第一次团队线下赛总结</span>
+            <span class="post-date" title="2019-05-04 20:46:40">2019/05/04</span>
+        </a>
+        
+        <a  class="全部文章 CTF MISC "
+           href="/2019/05/04/misc%20%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/"
+           data-tag="暴力破解"
+           data-author="" >
+            <span class="post-title" title="MISC暴力破解">MISC暴力破解</span>
+            <span class="post-date" title="2019-05-04 20:45:54">2019/05/04</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 PHP "
+           href="/2019/04/28/PHP%20%E2%80%94%20Cookie%20and%20Session%E7%AF%87/"
+           data-tag="PHP"
+           data-author="" >
+            <span class="post-title" title="PHP — Cookie and Session篇">PHP — Cookie and Session篇</span>
+            <span class="post-date" title="2019-04-28 20:28:45">2019/04/28</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 PHP "
+           href="/2019/04/21/HTML+MYSQL+PHP%E6%90%AD%E5%BB%BA%E5%B8%A6%E6%9C%89cookie%E7%9A%84%E7%99%BB%E9%99%86%E9%A1%B5%E9%9D%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML+MYSQL+PHP搭建带有cookie的登录页面">HTML+MYSQL+PHP搭建带有cookie的登录页面</span>
+            <span class="post-date" title="2019-04-21 12:05:48">2019/04/21</span>
+        </a>
+        
+        <a  class="全部文章 CTF MISC "
+           href="/2019/04/16/%E5%8F%8C%E5%9B%BE+%E7%9B%B2%E6%B0%B4%E5%8D%B0/"
+           data-tag="盲水印"
+           data-author="" >
+            <span class="post-title" title="双图+盲水印">双图+盲水印</span>
+            <span class="post-date" title="2019-04-16 15:41:28">2019/04/16</span>
+        </a>
+        
+        <a  class="全部文章 CTF MISC "
+           href="/2019/04/15/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91+%E5%AF%86%E7%A0%81%E9%A2%98+TTL/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="哈夫曼树+TTL+密码题">哈夫曼树+TTL+密码题</span>
+            <span class="post-date" title="2019-04-15 20:24:29">2019/04/15</span>
+        </a>
+        
+        <a  class="全部文章 CTF MISC "
+           href="/2019/04/10/LSB%E9%9A%90%E5%86%99+%E7%94%BB%E5%9B%BE/"
+           data-tag="LSB"
+           data-author="" >
+            <span class="post-title" title="LSB隐写+画图">LSB隐写+画图</span>
+            <span class="post-date" title="2019-04-10 20:20:41">2019/04/10</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 PHP "
+           href="/2019/04/07/PHP%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+           data-tag="php"
+           data-author="" >
+            <span class="post-title" title="PHP学习记录">PHP学习记录</span>
+            <span class="post-date" title="2019-04-07 20:04:51">2019/04/07</span>
+        </a>
+        
+        <a  class="全部文章 CTF MISC "
+           href="/2019/04/05/%E5%88%86%E7%A6%BB%E5%9B%BE%E7%89%87%E4%B8%AD%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag="HCIA"
+           data-author="" >
+            <span class="post-title" title="分离图片中的隐藏文件方法总结">分离图片中的隐藏文件方法总结</span>
+            <span class="post-date" title="2019-04-05 16:19:56">2019/04/05</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 前端 "
+           href="/2019/03/31/CSS%E7%BB%83%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+           data-tag="css"
+           data-author="" >
+            <span class="post-title" title="CSS练习小结">CSS练习小结</span>
+            <span class="post-date" title="2019-03-31 18:00:52">2019/03/31</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 前端 "
+           href="/2019/03/30/html%E7%BB%83%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+           data-tag="html"
+           data-author="" >
+            <span class="post-title" title="HTML练习记录">HTML练习记录</span>
+            <span class="post-date" title="2019-03-30 15:08:19">2019/03/30</span>
+        </a>
+        
+        <a  class="全部文章 漏洞原理 "
+           href="/2019/03/25/zip%E4%BC%AA%E5%8A%A0%E5%AF%86%E5%81%9A%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/"
+           data-tag="伪加密"
+           data-author="" >
+            <span class="post-title" title="zip伪加密做法及原理">zip伪加密做法及原理</span>
+            <span class="post-date" title="2019-03-25 20:52:13">2019/03/25</span>
+        </a>
+        
+        <a  class="全部文章 Blog搭建 "
+           href="/2019/03/22/%E4%BD%BF%E7%94%A8hexo%20%E6%90%AD%E5%BB%BA%20blog%E8%BF%87%E7%A8%8B/"
+           data-tag="blog"
+           data-author="" >
+            <span class="post-title" title="使用hexo搭建blog">使用hexo搭建blog</span>
+            <span class="post-date" title="2019-03-22 15:59:36">2019/03/22</span>
+        </a>
+        
+        <a  class="全部文章 数据库 "
+           href="/2019/01/27/Mysql%20%E8%AF%AD%E5%8F%A5%E7%BB%83%E4%B9%A0/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="Mysql 语句练习">Mysql 语句练习</span>
+            <span class="post-date" title="2019-01-27 12:07:09">2019/01/27</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-SQLMap使用详解" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">SQLMap使用详解</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="工具使用">工具使用</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">sqlmap</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2021-02-20 11:38:15'>2021-02-20 11:34</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:2.6k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81SQLMap%E4%BB%8B%E7%BB%8D"><span class="toc-text">一、SQLMap介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Sqlmap%E7%AE%80%E4%BB%8B%EF%BC%9A"><span class="toc-text">1、Sqlmap简介：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81Sqlmap%E6%94%AF%E6%8C%81%E7%9A%84%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-text">2、Sqlmap支持的注入方式：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81SQLMap%E5%AE%89%E8%A3%85"><span class="toc-text">二、SQLMap安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81SQLMap%E4%BD%BF%E7%94%A8%EF%BC%9A"><span class="toc-text">三、SQLMap使用：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%B3%A8%E5%85%A5%EF%BC%9A"><span class="toc-text">1、判断是否存在注入：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%88%A4%E6%96%AD%E6%96%87%E6%9C%AC%E4%B8%AD%E7%9A%84%E8%AF%B7%E6%B1%82%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%B3%A8%E5%85%A5%EF%BC%9A"><span class="toc-text">2、判断文本中的请求是否存在注入：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E6%9F%A5%E8%AF%A2%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9A"><span class="toc-text">3、查询当前用户下的所有数据库：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E8%A1%A8%E5%90%8D%EF%BC%9A"><span class="toc-text">4、获取数据库中的表名：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E8%8E%B7%E5%8F%96%E8%A1%A8%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%E5%90%8D%EF%BC%9A"><span class="toc-text">5、获取表中的字段名：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6%E3%80%81%E8%8E%B7%E5%8F%96%E5%AD%97%E6%AE%B5%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="toc-text">6、获取字段内容：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7%E3%80%81%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7%EF%BC%9A"><span class="toc-text">7、获取数据库的所有用户：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8%E3%80%81%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E7%94%A8%E6%88%B7%E7%9A%84%E5%AF%86%E7%A0%81%EF%BC%9A"><span class="toc-text">8、获取数据库用户的密码：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#9%E3%80%81%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E7%BD%91%E7%AB%99%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%90%8D%E7%A7%B0%EF%BC%9A"><span class="toc-text">9、获取当前网站数据库的名称：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#10%E3%80%81%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E7%BD%91%E7%AB%99%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D%E7%A7%B0%EF%BC%9A"><span class="toc-text">10、获取当前网站数据库的用户名称：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81SQLMap%E8%BF%9B%E9%98%B6%EF%BC%9A%E5%8F%82%E6%95%B0%E8%AE%B2%E8%A7%A3"><span class="toc-text">四、SQLMap进阶：参数讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E2%80%93-level-5%EF%BC%9A%E6%8E%A2%E6%B5%8B%E7%AD%89%E7%BA%A7"><span class="toc-text">1、– level 5：探测等级</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E2%80%93-is-dba%EF%BC%9A%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7%E6%98%AF%E5%90%A6%E4%B8%BA%E7%AE%A1%E7%90%86%E6%9D%83%E9%99%90"><span class="toc-text">2、– is-dba：当前用户是否为管理权限</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E2%80%93-roles%EF%BC%9A%E5%88%97%E5%87%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E5%91%98%E8%A7%92%E8%89%B2"><span class="toc-text">3、– roles：列出数据库管理员角色</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E2%80%93-referer%EF%BC%9AHTTP-Referer%E5%A4%B4"><span class="toc-text">4、– referer：HTTP Referer头</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E2%80%93-sql-shell%EF%BC%9A%E8%BF%90%E8%A1%8C%E8%87%AA%E5%AE%9A%E4%B9%89SQL%E8%AF%AD%E5%8F%A5"><span class="toc-text">5、– sql-shell：运行自定义SQL语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6%E3%80%81%E2%80%93-os-cmd%EF%BC%8C-%E2%80%93os-shell%EF%BC%9A%E8%BF%90%E8%A1%8C%E4%BB%BB%E6%84%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4"><span class="toc-text">6、– os-cmd， –os-shell：运行任意操作系统命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7%E3%80%81%E2%80%93-file-read%EF%BC%9A%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6"><span class="toc-text">7、– file-read：从数据库服务器中读取文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8%E3%80%81%E2%80%93-file-write-%E2%80%93file-dest%EF%BC%9A%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD"><span class="toc-text">8、– file-write –file-dest：上传文件到数据库服务器中</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>@<div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81SQLMap%E4%BB%8B%E7%BB%8D"><span class="toc-text">一、SQLMap介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Sqlmap%E7%AE%80%E4%BB%8B%EF%BC%9A"><span class="toc-text">1、Sqlmap简介：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81Sqlmap%E6%94%AF%E6%8C%81%E7%9A%84%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-text">2、Sqlmap支持的注入方式：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81SQLMap%E5%AE%89%E8%A3%85"><span class="toc-text">二、SQLMap安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81SQLMap%E4%BD%BF%E7%94%A8%EF%BC%9A"><span class="toc-text">三、SQLMap使用：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%B3%A8%E5%85%A5%EF%BC%9A"><span class="toc-text">1、判断是否存在注入：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%88%A4%E6%96%AD%E6%96%87%E6%9C%AC%E4%B8%AD%E7%9A%84%E8%AF%B7%E6%B1%82%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%B3%A8%E5%85%A5%EF%BC%9A"><span class="toc-text">2、判断文本中的请求是否存在注入：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E6%9F%A5%E8%AF%A2%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9A"><span class="toc-text">3、查询当前用户下的所有数据库：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E8%A1%A8%E5%90%8D%EF%BC%9A"><span class="toc-text">4、获取数据库中的表名：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E8%8E%B7%E5%8F%96%E8%A1%A8%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%E5%90%8D%EF%BC%9A"><span class="toc-text">5、获取表中的字段名：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6%E3%80%81%E8%8E%B7%E5%8F%96%E5%AD%97%E6%AE%B5%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="toc-text">6、获取字段内容：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7%E3%80%81%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7%EF%BC%9A"><span class="toc-text">7、获取数据库的所有用户：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8%E3%80%81%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E7%94%A8%E6%88%B7%E7%9A%84%E5%AF%86%E7%A0%81%EF%BC%9A"><span class="toc-text">8、获取数据库用户的密码：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#9%E3%80%81%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E7%BD%91%E7%AB%99%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%90%8D%E7%A7%B0%EF%BC%9A"><span class="toc-text">9、获取当前网站数据库的名称：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#10%E3%80%81%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E7%BD%91%E7%AB%99%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D%E7%A7%B0%EF%BC%9A"><span class="toc-text">10、获取当前网站数据库的用户名称：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81SQLMap%E8%BF%9B%E9%98%B6%EF%BC%9A%E5%8F%82%E6%95%B0%E8%AE%B2%E8%A7%A3"><span class="toc-text">四、SQLMap进阶：参数讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E2%80%93-level-5%EF%BC%9A%E6%8E%A2%E6%B5%8B%E7%AD%89%E7%BA%A7"><span class="toc-text">1、– level 5：探测等级</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E2%80%93-is-dba%EF%BC%9A%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7%E6%98%AF%E5%90%A6%E4%B8%BA%E7%AE%A1%E7%90%86%E6%9D%83%E9%99%90"><span class="toc-text">2、– is-dba：当前用户是否为管理权限</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E2%80%93-roles%EF%BC%9A%E5%88%97%E5%87%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E5%91%98%E8%A7%92%E8%89%B2"><span class="toc-text">3、– roles：列出数据库管理员角色</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E2%80%93-referer%EF%BC%9AHTTP-Referer%E5%A4%B4"><span class="toc-text">4、– referer：HTTP Referer头</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E2%80%93-sql-shell%EF%BC%9A%E8%BF%90%E8%A1%8C%E8%87%AA%E5%AE%9A%E4%B9%89SQL%E8%AF%AD%E5%8F%A5"><span class="toc-text">5、– sql-shell：运行自定义SQL语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6%E3%80%81%E2%80%93-os-cmd%EF%BC%8C-%E2%80%93os-shell%EF%BC%9A%E8%BF%90%E8%A1%8C%E4%BB%BB%E6%84%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4"><span class="toc-text">6、– os-cmd， –os-shell：运行任意操作系统命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7%E3%80%81%E2%80%93-file-read%EF%BC%9A%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6"><span class="toc-text">7、– file-read：从数据库服务器中读取文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8%E3%80%81%E2%80%93-file-write-%E2%80%93file-dest%EF%BC%9A%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD"><span class="toc-text">8、– file-write –file-dest：上传文件到数据库服务器中</span></a></li></ol></li></ol></div></p>
+<h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><p>今天来总结一下sqlmap注入神器的详细使用方法。<hr></p>
+<h4 id="一、SQLMap介绍"><a href="#一、SQLMap介绍" class="headerlink" title="一、SQLMap介绍"></a>一、SQLMap介绍</h4><h5 id="1、Sqlmap简介："><a href="#1、Sqlmap简介：" class="headerlink" title="1、Sqlmap简介："></a>1、Sqlmap简介：</h5><p>Sqlmap是一个开源的渗透测试工具，可以用来自动化的检测，利用SQL注入漏洞，获取数据库服务器的权限。它具有功能强大的检测引擎，针对各种不同类型数据库的渗透测试的功能选项，包括获取数据库中存储的数据，访问操作系统文件甚至可以通过外带数据连接的方式执行操作系统命令。</p>
+<p>目前支持的数据库有MySQL、Oracle、PostgreSQL、Microsoft SQL Server、Microsoft Access等大多数据库。</p>
+<h5 id="2、Sqlmap支持的注入方式："><a href="#2、Sqlmap支持的注入方式：" class="headerlink" title="2、Sqlmap支持的注入方式："></a>2、Sqlmap支持的注入方式：</h5><p>Sqlmap全面支持六种SQL注入技术：基于布尔的盲注，基于时间的盲注，基于错误，基于UNION查询，堆叠查询和带外。</p>
+<ul>
+<li><p>基于布尔类型的盲注：即可以根据返回页面判断条件真假的注入。</p>
+</li>
+<li><p>基于时间的盲注：即不能根据页面返回的内容判断任何信息，要用条件语句查看时间延迟语句是否已执行(即页面返回时间是否增加)来判断。</p>
+</li>
+<li><p>基于报错注入：即页面会返回错误信息，或者把注入的语句的结果直接返回到页面中。</p>
+</li>
+<li><p>联合查询注入：在可以使用Union的情况下的注入。</p>
+</li>
+<li><p>堆查询注入：可以同时执行多条语句时的注入。</p>
+</li>
+<li><p>带外注入：构造SQL语句，这些语句在呈现给数据库时会触发数据库系统创建与攻击者控制的外部服务器的连接。以这种方式，攻击者可以收集数据或可能控制数据库的行为。</p>
+</li>
+</ul>
+<h4 id="二、SQLMap安装"><a href="#二、SQLMap安装" class="headerlink" title="二、SQLMap安装"></a>二、SQLMap安装</h4><p>Sqlmap官网：<a target="_blank" rel="noopener" href="http://sqlmap.org/">http://sqlmap.org/</a>，sqlmap的安装需要Python环境，最新版可以运行在 Python 2.6, 2.7 和 3.x 版本的任何平台上。</p>
+<p>下载完成后可以添加进环境变量，方便使用（不添加也可以用）<br><img src="https://img-blog.csdnimg.cn/2021021723551258.png" alt="在这里插入图片描述"><br>当出现这个画面时工具即可正常运行了。</p>
+<h4 id="三、SQLMap使用："><a href="#三、SQLMap使用：" class="headerlink" title="三、SQLMap使用："></a>三、SQLMap使用：</h4><h5 id="1、判断是否存在注入："><a href="#1、判断是否存在注入：" class="headerlink" title="1、判断是否存在注入："></a>1、判断是否存在注入：</h5><p>假设目标注入点是 <code>http://127.0.0.1/sqli-labs/Less-1/?id=1</code>，判断其是否存在注入的命令如下：</p>
+<pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1</code></pre>
+<p>结果显示存在注入：<br><img src="https://img-blog.csdnimg.cn/20210218160857197.png" alt="在这里插入图片描述">当注入点后面的参数大于等于两个时,需要加双引号，如下所示。</p>
+<pre><code class="python">sqlmap.py -u &quot;http://127.0.0.1/sqli-labs/Less-1/?id=1&amp;uid=2&quot;</code></pre>
+<p>运行完判断是否存在注入的语句后，“爆出”一大段代码，这里有三处需要选择的地方：第一处的意思为检测到数据库可能是MySQL，是否需要跳过检测其他数据库；第二处的意思是在“level1、risk1”的情况下，是否使用MySQL对应的所有Payload进行检测；第三处的意思是参数<code>id</code>存在漏洞，是否要继续检测其他参数，一般默认按回车键即可。</p>
+<p>可以在语句后面加参数：<code>--beach</code> 会选定默认的选项执行（如上）。</p>
+<h5 id="2、判断文本中的请求是否存在注入："><a href="#2、判断文本中的请求是否存在注入：" class="headerlink" title="2、判断文本中的请求是否存在注入："></a>2、判断文本中的请求是否存在注入：</h5><p>从txt文件中加载HTTP请求，Sqlmap可以从一个文本文件中获取HTTP请求，这样就可以不设置其他参数(如cookie、POST数据等)，txt文件中的内容为Web数据包，如下：<br><img src="https://img-blog.csdnimg.cn/20210218165420683.png" alt="在这里插入图片描述">判断是否存在注入的命令如下，运行后的结果如图所示，<code>-r</code>一般在存在cookie注入时使用。</p>
+<pre><code class="python">sqlmap.py -r 1.txt</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210218165727726.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="3、查询当前用户下的所有数据库："><a href="#3、查询当前用户下的所有数据库：" class="headerlink" title="3、查询当前用户下的所有数据库："></a>3、查询当前用户下的所有数据库：</h5><p>该命令是确定网站存在注入后，用于查询当前用户下的所有数据库，如下所示。如果当前用户有权限读取包含所有数据库列表信息的表，使用该命令就可以列出所有数据库，如图所示：</p>
+<pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --dbs</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210218170129467.png" alt="在这里插入图片描述"><br>从图中可以看到，查询出了10个数据库及所有数据库的库名。当继续注入时，<code>--dbs</code>缩写成<code>-D xxx</code>，其意思是在xxx数据库中继续查询其他数据。</p>
+<h5 id="4、获取数据库中的表名："><a href="#4、获取数据库中的表名：" class="headerlink" title="4、获取数据库中的表名："></a>4、获取数据库中的表名：</h5><p>该命令的作用是查询完数据库后，查询指定数据库中所有的表名，如下所示。如果在该命令中不加入 <code>-D</code>参数来指定某一个具体的数据库，那么Sqlmap会列出数据库中所有库的表。</p>
+<pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 -D security --tables</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210218171205301.png" alt="在这里插入图片描述"><br>从图中可以看到 security 数据库中拥有的4个数据表。当继续注入时，<code>--tables</code>缩写成<code>-T</code>，意思是在某表中继续查询。</p>
+<h5 id="5、获取表中的字段名："><a href="#5、获取表中的字段名：" class="headerlink" title="5、获取表中的字段名："></a>5、获取表中的字段名：</h5><p>该命令的作用是查询完表名后，查询该表中所有的字段名，如下所示。运行该命令的结果如图所示。</p>
+<pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 -D security -T users --columns</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210218171747383.png" alt="在这里插入图片描述"><br>从图中可以看到在 security 数据库中的users表中一共有3个字段。在后续的注入中，<code>--columns</code>缩写成<code>-C</code>。</p>
+<h5 id="6、获取字段内容："><a href="#6、获取字段内容：" class="headerlink" title="6、获取字段内容："></a>6、获取字段内容：</h5><p>该命令是查询完字段名之后，获取该字段中具体的数据信息,如下所示。</p>
+<pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 -D security -T users -C username,password --dump</code></pre>
+<p>这里需要下载的数据是 security 数据库里 users 表中 username和password 的值，如图所示：<br><img src="https://img-blog.csdnimg.cn/20210218185035327.png" alt="在这里插入图片描述"></p>
+<h5 id="7、获取数据库的所有用户："><a href="#7、获取数据库的所有用户：" class="headerlink" title="7、获取数据库的所有用户："></a>7、获取数据库的所有用户：</h5><p>该命令的作用是列出数据库的所有用户，如下所示。在当前用户有权限读取包含所有用户的表的权限时，使用该命令就可以列出所有管理用户。</p>
+<pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --users</code></pre>
+<p>可以看到，当前用户的账号是root，如图所示：<br><img src="https://img-blog.csdnimg.cn/20210218185546943.png" alt="在这里插入图片描述"></p>
+<h5 id="8、获取数据库用户的密码："><a href="#8、获取数据库用户的密码：" class="headerlink" title="8、获取数据库用户的密码："></a>8、获取数据库用户的密码：</h5><p>该命令的作用是列出数据库用户的密码，如下所示。如果当前用户有读取包含用户密码的权限，sqlmap会先列举出用户，然后列出Hash，并尝试破解。</p>
+<pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --passwords</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210218221345141.png" alt="在这里插入图片描述"><br>从图中可以看到，密码使用MySQL5加密，可在网站中自行解密（自带的解密很慢）。<br><img src="https://img-blog.csdnimg.cn/20210218221815819.png" alt="在这里插入图片描述"></p>
+<h5 id="9、获取当前网站数据库的名称："><a href="#9、获取当前网站数据库的名称：" class="headerlink" title="9、获取当前网站数据库的名称："></a>9、获取当前网站数据库的名称：</h5><p>使用该命令可以列出当前网站使用的数据库，如下所示。</p>
+<pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --current-db</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210218222104689.png" alt="在这里插入图片描述"><br>从图中可以看到数据库是security。</p>
+<h5 id="10、获取当前网站数据库的用户名称："><a href="#10、获取当前网站数据库的用户名称：" class="headerlink" title="10、获取当前网站数据库的用户名称："></a>10、获取当前网站数据库的用户名称：</h5><p>使用该命令可以列出当前网站使用的数据库用户，如下所示。</p>
+<pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --current-user</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210218222615569.png" alt="在这里插入图片描述"><br>从图中可以看到，用户是root。</p>
+<h4 id="四、SQLMap进阶：参数讲解"><a href="#四、SQLMap进阶：参数讲解" class="headerlink" title="四、SQLMap进阶：参数讲解"></a>四、SQLMap进阶：参数讲解</h4><h5 id="1、–-level-5：探测等级"><a href="#1、–-level-5：探测等级" class="headerlink" title="1、– level 5：探测等级"></a>1、– level 5：探测等级</h5><p>参数<code>--level 5</code>指需要执行的测试等级，一共有5个等级（1~5），可不加 level，默认是1。Sqlmap 使用的 Payload 可以在<code>xml/payloads.xml</code>中看到，也可以根据相应的格式添加自己的 Payload，其中5级包含的 Payload 最多，会自动破解出 cookie、XFF等头部注入。当然，level 5的运行速度也比较慢。</p>
+<p>这个参数会影响测试的注入点，GET和POST的数据都会进行测试，HTTP cookie 在 level 为2时就会测试，HTTP User-Agent/Referer 头在 level 为3时就会测试。总之，在不确定哪个 Payload 或参数为注入点时，为了保证全面性，建议使用高的 level 值。</p>
+<h5 id="2、–-is-dba：当前用户是否为管理权限"><a href="#2、–-is-dba：当前用户是否为管理权限" class="headerlink" title="2、– is-dba：当前用户是否为管理权限"></a>2、– is-dba：当前用户是否为管理权限</h5><p>该命令用于查看当前账户是否为数据库管理员账户，如下所示,在本案例中输入该命令，会返回Ture，如图所示。</p>
+<pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --is-dba</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/2021021823304973.png" alt="在这里插入图片描述"></p>
+<h5 id="3、–-roles：列出数据库管理员角色"><a href="#3、–-roles：列出数据库管理员角色" class="headerlink" title="3、– roles：列出数据库管理员角色"></a>3、– roles：列出数据库管理员角色</h5><p>该命令用于查看数据库用户的角色。如果当前用户有权限读取包含所有用户的表，输入该命令会列举出每个用户的角色，也可以用<code>-U</code>参数指定想看哪个用户的角色，如图所示。<br><img src="https://img-blog.csdnimg.cn/20210219000331947.png" alt="在这里插入图片描述"></p>
+<h5 id="4、–-referer：HTTP-Referer头"><a href="#4、–-referer：HTTP-Referer头" class="headerlink" title="4、– referer：HTTP Referer头"></a>4、– referer：HTTP Referer头</h5><p>Sqlmap 可以在请求中伪造 HTTP 中的 referer，当<code>--level</code>参数设定为3或3以上时，会尝试对referer注入。可以使用referer命令来欺骗，如<code>--referer http://www.baidu.com</code>。</p>
+<h5 id="5、–-sql-shell：运行自定义SQL语句"><a href="#5、–-sql-shell：运行自定义SQL语句" class="headerlink" title="5、– sql-shell：运行自定义SQL语句"></a>5、– sql-shell：运行自定义SQL语句</h5><p>该命令用于执行指定的SQL语句，如下所示，假设执行<code>select * from users limit 0,1</code>语句，结果如图所示。</p>
+<pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --sql-shell</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210219001121933.png" alt="在这里插入图片描述"></p>
+<h5 id="6、–-os-cmd，-–os-shell：运行任意操作系统命令"><a href="#6、–-os-cmd，-–os-shell：运行任意操作系统命令" class="headerlink" title="6、– os-cmd， –os-shell：运行任意操作系统命令"></a>6、– os-cmd， –os-shell：运行任意操作系统命令</h5><p>在数据库为MySQL、PostgreSQL或Microsoft SQL Server，并且当前用户有权限使用特定的函数时，如果数据库为MySQL、PostgreSQL，SQLMap上传一个二进制库，包含用户自定义的函数<code>sys_exec ()</code> 和<code>sys_eval ()</code>，那么创建的这两个函数就可以执行系统命令。在Microsoft SQL Server中，SQLMap将使用xp_cmdshell存储过程，如果被禁用（在Microsoft SQL Server 2005及以上版本默认被禁制），则SQLMap会重新启用它；如果不存在，会自动创建。</p>
+<p>用<code>--os-shell</code>参数可以模拟一个真实的Shell，输入想执行的命令。当不能执行多语句时(比如PHP或ASP的后端数据库为MySQL)，仍然可以使用INTO OUTFILE写进可写目录，创建一个Web后门。<code>--os-shell</code>支持ASP、ASP.NET、JSP和PHP四种语言（要想执行改参数，需要有数据库管理员权限，也就是<code>--is-dba</code>的值要为True)。</p>
+<h5 id="7、–-file-read：从数据库服务器中读取文件"><a href="#7、–-file-read：从数据库服务器中读取文件" class="headerlink" title="7、– file-read：从数据库服务器中读取文件"></a>7、– file-read：从数据库服务器中读取文件</h5><p>该命令用于读取执行文件，当数据库为MySQL、PostgreSQL或MicrosoftSQL Server，并且当前用户有权限使用特定的函数时，读取的文件可以是文本，也可以是二进制文件。</p>
+<h5 id="8、–-file-write-–file-dest：上传文件到数据库服务器中"><a href="#8、–-file-write-–file-dest：上传文件到数据库服务器中" class="headerlink" title="8、– file-write –file-dest：上传文件到数据库服务器中"></a>8、– file-write –file-dest：上传文件到数据库服务器中</h5><p>该命令用于写入本地文件到服务器中，当数据库为MySQL、PostgreSQL或Microsoft SQL Server，并且当前用户有权限使用特定的函数时，上传的文件可以是文本，也可以是二进制文件。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2019-2020 未完成的歌
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
