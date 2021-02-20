@@ -6,35 +6,24 @@
   <meta name="keywords" content=" 上传漏洞 ">
   <meta name="description" content="上传漏洞 upload-labs 练习（一） | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="@[toc] 前言：今天来总结一下sqlmap注入神器的详细使用方法。 一、SQLMap介绍1、Sqlmap简介：Sqlmap是一个开源的渗透测试工具，可以用来自动化的检测，利用SQL注入漏洞，获取数据库服务器的权限。它具有功能强大的检测引擎，针对各种不同类型数据库的渗透测试的功能选项，包括获取数据库中存储的数据，访问操作系统文件甚至可以通过外带数据连接的方式执行操作系统命令。 目前支持的数据库有">
+<meta name="description" content="前言： &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; XXE漏洞经常出现在CTF中，一直也没有系统的学习过，今天就来总结一波。@[toc] 一、XXE 漏洞是什么：XXE 漏洞全称：XML External Entity Injection，即 XML 外部实体 注入漏洞。XXE 漏洞发生在应用程序解析 XML输入时，没有禁止外部实体的加载，导致可加载恶意外">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SQLMap使用详解">
-<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2021/02/20/SQLMap%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:title" content="未完成的歌">
+<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2021/02/20/XML%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E2%80%94%E2%80%94XXE%E7%AE%80%E5%8D%95%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="未完成的歌">
-<meta property="og:description" content="@[toc] 前言：今天来总结一下sqlmap注入神器的详细使用方法。 一、SQLMap介绍1、Sqlmap简介：Sqlmap是一个开源的渗透测试工具，可以用来自动化的检测，利用SQL注入漏洞，获取数据库服务器的权限。它具有功能强大的检测引擎，针对各种不同类型数据库的渗透测试的功能选项，包括获取数据库中存储的数据，访问操作系统文件甚至可以通过外带数据连接的方式执行操作系统命令。 目前支持的数据库有">
+<meta property="og:description" content="前言： &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; XXE漏洞经常出现在CTF中，一直也没有系统的学习过，今天就来总结一波。@[toc] 一、XXE 漏洞是什么：XXE 漏洞全称：XML External Entity Injection，即 XML 外部实体 注入漏洞。XXE 漏洞发生在应用程序解析 XML输入时，没有禁止外部实体的加载，导致可加载恶意外">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2021021723551258.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218160857197.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218165420683.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218165727726.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218170129467.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218171205301.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218171747383.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218185035327.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218185546943.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218221345141.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218221815819.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218222104689.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210218222615569.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2021021823304973.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210219000331947.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210219001121933.png">
-<meta property="article:published_time" content="2021-02-20T03:34:43.907Z">
-<meta property="article:modified_time" content="2021-02-20T03:38:15.231Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201210125006380.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201210135026804.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201210161421770.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020121219041855.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201212202148819.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201212203240768.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-02-20T03:58:39.807Z">
+<meta property="article:modified_time" content="2021-02-20T03:58:47.012Z">
 <meta property="article:author" content="未完成的歌">
-<meta property="article:tag" content="sqlmap">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2021021723551258.png">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201210125006380.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -168,7 +157,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(50)</small>
+                <small>(53)</small>
             
         </div>
     </li>
@@ -180,11 +169,23 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         漏洞原理
-                        <small>(9)</small>
+                        <small>(11)</small>
                         
                     </div>
                     
                         <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="漏洞原理<--->CSRF">
+                                        
+                                        CSRF
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
                             
                                 <li>
                                     <div data-rel="漏洞原理<--->Sql注入">
@@ -192,6 +193,18 @@
                                         Sql注入
                                         
                                             <small>(4
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="漏洞原理<--->SSRF">
+                                        
+                                        SSRF
+                                        
+                                            <small>(1
                                                 )</small>
                                         
                                     </div>
@@ -398,6 +411,10 @@
     
         
             
+        
+    
+        
+            
                 <li>
                     <div data-rel="Python">
                         
@@ -407,6 +424,10 @@
                     </div>
                     
                 </li>
+            
+        
+    
+        
             
         
     
@@ -510,8 +531,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="50">
-<input type="hidden" id="yelog_site_word_count" value="102.1k">
+<input type="hidden" id="yelog_site_posts_number" value="53">
+<input type="hidden" id="yelog_site_word_count" value="110.7k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -570,6 +591,10 @@
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>Crypto</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>csrf</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -633,6 +658,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ssrf</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>web</a>
             </li>
         
@@ -687,12 +716,36 @@
     
     <nav id="title-list-nav">
         
+        <a  class="全部文章 "
+           href="/2021/02/20/XML%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E2%80%94%E2%80%94XXE%E7%AE%80%E5%8D%95%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2021-02-20 11:58:39">2021/02/20</span>
+        </a>
+        
         <a  class="全部文章 工具使用 "
            href="/2021/02/20/SQLMap%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/"
            data-tag="sqlmap"
            data-author="" >
             <span class="post-title" title="SQLMap使用详解">SQLMap使用详解</span>
             <span class="post-date" title="2021-02-20 11:34:43">2021/02/20</span>
+        </a>
+        
+        <a  class="全部文章 漏洞原理 SSRF "
+           href="/2021/02/03/SSRF%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/"
+           data-tag="ssrf"
+           data-author="" >
+            <span class="post-title" title="SSRF漏洞原理解析">SSRF漏洞原理解析</span>
+            <span class="post-date" title="2021-02-03 21:14:13">2021/02/03</span>
+        </a>
+        
+        <a  class="全部文章 漏洞原理 CSRF "
+           href="/2021/02/02/%E4%BB%8ECSRF%E5%8E%9F%E7%90%86%E5%88%B0CMS%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/"
+           data-tag="csrf"
+           data-author="" >
+            <span class="post-title" title="从CSRF原理到CMS漏洞利用">从CSRF原理到CMS漏洞利用</span>
+            <span class="post-date" title="2021-02-02 20:43:51">2021/02/02</span>
         </a>
         
         <a  class="全部文章 工具使用 "
@@ -936,18 +989,18 @@
         </a>
         
         <a  class="全部文章 CTF Crypto "
-           href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF Crypto "
            href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF Crypto "
+           href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
