@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>未完成的歌</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="未完成的歌">
+  <title>数据库系统（四）——触发器 | 未完成的歌</title>
+  <meta name="keywords" content=" 数据库 ">
+  <meta name="description" content="数据库系统（四）——触发器 | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="@[toc] 前言：今天来总结一下sqlmap注入神器的详细使用方法。 一、SQLMap介绍1、Sqlmap简介：Sqlmap是一个开源的渗透测试工具，可以用来自动化的检测，利用SQL注入漏洞，获取数据库服务器的权限。它具有功能强大的检测引擎，针对各种不同类型数据库的渗透测试的功能选项，包括获取数据库中存储的数据，访问操作系统文件甚至可以通过外带数据连接的方式执行操作系统命令。 目前支持的数据库有">
 <meta property="og:type" content="article">
@@ -74,7 +74,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -712,6 +712,14 @@
         </a>
         
         <a  class="全部文章 数据库 "
+           href="/2021/01/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94%E8%A7%A6%E5%8F%91%E5%99%A8/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="数据库系统（四）——触发器">数据库系统（四）——触发器</span>
+            <span class="post-date" title="2021-01-03 20:07:35">2021/01/03</span>
+        </a>
+        
+        <a  class="全部文章 数据库 "
            href="/2021/01/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%94%EF%BC%89%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/"
            data-tag="数据库"
            data-author="" >
@@ -741,14 +749,6 @@
            data-author="" >
             <span class="post-title" title="数据库系统（一）——数据查询">数据库系统（一）——数据查询</span>
             <span class="post-date" title="2021-01-01 20:40:24">2021/01/01</span>
-        </a>
-        
-        <a  class="全部文章 数据库 "
-           href="/2020/12/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94%E8%A7%A6%E5%8F%91%E5%99%A8/"
-           data-tag="数据库"
-           data-author="" >
-            <span class="post-title" title="数据库系统（四）——触发器">数据库系统（四）——触发器</span>
-            <span class="post-date" title="2020-12-13 20:07:35">2020/12/13</span>
         </a>
         
         <a  class="全部文章 Web开发 JavaEE "
@@ -840,18 +840,18 @@
         </a>
         
         <a  class="全部文章 CTF Crypto "
-           href="/2019/08/17/RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E5%8E%9F%E7%90%86/"
-           data-tag="密码学"
-           data-author="" >
-            <span class="post-title" title="RSA加密解密原理">RSA加密解密原理</span>
-            <span class="post-date" title="2019-08-17 00:26:38">2019/08/17</span>
-        </a>
-        
-        <a  class="全部文章 CTF Crypto "
            href="/2019/08/17/%E5%AF%86%E7%A0%81%E5%AD%A6%E2%80%94RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E8%AF%A6%E8%A7%A3%EF%BC%81/"
            data-tag="密码学"
            data-author="" >
             <span class="post-title" title="密码学—RSA加密解密详解！">密码学—RSA加密解密详解！</span>
+            <span class="post-date" title="2019-08-17 00:26:38">2019/08/17</span>
+        </a>
+        
+        <a  class="全部文章 CTF Crypto "
+           href="/2019/08/17/RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E5%8E%9F%E7%90%86/"
+           data-tag="密码学"
+           data-author="" >
+            <span class="post-title" title="RSA加密解密原理">RSA加密解密原理</span>
             <span class="post-date" title="2019-08-17 00:26:38">2019/08/17</span>
         </a>
         
@@ -936,18 +936,18 @@
         </a>
         
         <a  class="全部文章 CTF Crypto "
-           href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF Crypto "
            href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF Crypto "
+           href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
@@ -1102,12 +1102,60 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-数据库系统（四）——触发器" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">对博客的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%9C%AA%E5%AE%8C%E6%88%90%E7%9A%84%E6%AD%8C"><span class="toc-text">关于未完成的歌</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">数据库系统（四）——触发器</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="数据库">数据库</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">数据库</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2021-02-20 11:43:24'>2021-01-03 20:07</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:1k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84%EF%BC%9A"><span class="toc-text">一、实验目的：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-%EF%BC%9A"><span class="toc-text">二、实验内容 ：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%A2%98%E7%9B%AE%EF%BC%9A"><span class="toc-text">三、题目：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-text">四、实验过程：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AE%9E%E9%AA%8C%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">五、实验小结：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1120,36 +1168,130 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
-<blockquote>
-<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
-</blockquote>
-<blockquote>
-<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
-</blockquote>
-<blockquote>
-<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
-</blockquote>
-<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
-<p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
-<h2 id="关于未完成的歌"><a href="#关于未完成的歌" class="headerlink" title="关于未完成的歌"></a>关于未完成的歌</h2><p>此站点是<strong>未完成的歌</strong>的个人博客。</p>
-<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主题 <a href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
-<p>主要功能：</p>
-<ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad/手机等移动端适配</li>
-<li>页面全局快捷键 <a target="_blank" rel="noopener" href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
-</ul>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="一、实验目的："><a href="#一、实验目的：" class="headerlink" title="一、实验目的："></a>一、实验目的：</h4><ol>
+<li><p>熟悉通过SQL对数据进行完整性控制；</p>
+</li>
+<li><p>练习实际应用中完整性控制方法；</p>
+</li>
+<li><p>练习触发器的创建和使用。</p>
+</li>
+</ol>
+<h4 id="二、实验内容-："><a href="#二、实验内容-：" class="headerlink" title="二、实验内容 ："></a>二、实验内容 ：</h4><p>基于某员工管理数据库，使用触发器实现数据完整性控制，完成以下功能：</p>
+<ol>
+<li><p>创建触发器实现员工入职时，记录员工初始部门和工资信息到变动历史表中；</p>
+</li>
+<li><p>创建触发器实现员工信息变更时，记录员工的部门或工资变动情况到变动历史表中；</p>
+</li>
+<li><p>创建触发器实现员工离职时，自动备份离职前的工资到变动历史表中。</p>
+</li>
+</ol>
+<h4 id="三、题目："><a href="#三、题目：" class="headerlink" title="三、题目："></a>三、题目：</h4><p>某员工信息管理系统中，当员工入职、离职、调动部门或工资变动时，需将变动信息记入变动历史中，请使用触发器完成此功能。变动历史包含部门变动历史和工资变动历史，分别使用部门变动历史表和工资变动历史表记录对应信息。</p>
+<p>参考表结构如下：</p>
+<ol>
+<li><p>员工表：employee(eid,ename,dept,salary,uptime,stutus)<br>其中eid为员工编号，ename为员工姓名，dept为所在部门，salary为工资，uptime为修改时间，stutus为状态（1表示在职，0表示离职）。</p>
+</li>
+<li><p>部门变动历史表：dept_history(dhid, eid, old, new, uptime)<br>其中dhid为部门变动编号（自动增长，无需赋值），eid为员工编号，old为调动前的部门（新入职的员工old值记为NULL），new为调动后的部门，uptime为修改时间。</p>
+</li>
+<li><p>工资变动历史表：sal_history(shid, eid, old, new, uptime)<br>其中shid为工资变动编号（自动增长，无需赋值），eid为员工编号，old为变动前的工资，new为变动后的工资，uptime为修改时间。</p>
+</li>
+</ol>
+<p>触发器要求如下：</p>
+<ol>
+<li><p>当新职工入职时，员工信息表将插入1条数据。同时，触发器在部门变动历史中增加1条记录，其中old值为null；在工资变动历史中增加1条记录，其中old值为0。</p>
+</li>
+<li><p>当新职工部门或工资发生变化时，触发器执行以下操作。若部门发生变动，则在变动历史中增加1条记录；若工资发生变动，则在工资变动历史中增加1条记录。</p>
+</li>
+</ol>
+<h4 id="四、实验过程："><a href="#四、实验过程：" class="headerlink" title="四、实验过程："></a>四、实验过程：</h4><p>创建数据库：</p>
+<pre><code class="sql">CREATE DATABASE emp;
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+-- 创建员工表
+CREATE TABLE employee (
+eid CHAR (6) PRIMARY KEY,
+ename VARCHAR (10) UNIQUE,
+dept VARCHAR (10) UNIQUE,
+salary INT,
+uptime datetime,
+status char(1)
+) 
+
+--插入数据
+INSERT INTO employee VALUES( &#39;1001&#39;, &#39;zs&#39;, &#39;软开&#39;, 3000, CURRENT_TIMESTAMP, &#39;1&#39; );
+
+-- 创建部门变动历史表
+CREATE TABLE dept_history (
+    dhid INT PRIMARY KEY AUTO_INCREMENT,
+    eid CHAR (6),
+    old VARCHAR (10),
+    new VARCHAR (10),
+    uptime datetime 
+) 
+
+-- 创建工资变动历史表
+CREATE TABLE sal_history ( 
+shid INT PRIMARY KEY AUTO_INCREMENT, 
+eid CHAR (6), 
+old INT, 
+new INT, 
+uptime datetime 
+)</code></pre>
+<p>问题一：当新职工入职时，员工信息表将插入1条数据。同时，触发器在部门变动历史中增加1条记录，其中olddept值为null；在工资变动历史中增加1条记录，其中oldsal值为0。</p>
+<p>创建insert触发器：</p>
+<pre><code class="sql">DELIMITER $
+CREATE TRIGGER emp_insert
+AFTER INSERT ON employee
+FOR EACH ROW
+BEGIN
+INSERT INTO dept_history ( eid, old, new, uptime )
+    VALUES( new.eid, NULL, new.dept, new.uptime );
+    INSERT INTO sal_history ( eid, old, new, uptime )
+    VALUES( new.eid, 0, new.salary, new.uptime );
+END$
+DELIMITER ;</code></pre>
+<p>问题二：当新职工部门或工资发生变化时，触发器执行以下操作。若部门发生变动，则在变动历史中增加1条记录；若工资发生变动，则在工资变动历史中增加1条记录。</p>
+<p>创建update触发器：</p>
+<pre><code class="sql">DELIMITER $
+CREATE TRIGGER emp_update
+AFTER UPDATE ON employee
+FOR EACH ROW
+BEGIN
+     IF
+    (old.dept != new.dept) THEN
+    INSERT INTO dept_history ( eid, old, new, uptime )
+    VALUES(new.eid, old.dept, new.dept, new.uptime );
+    END IF;
+    IF
+    (old.salary != new.salary) THEN
+    INSERT INTO sal_history ( eid, old, new, uptime )
+    VALUES(new.eid, old.salary, new.salary, new.uptime );    
+    END IF;
+END$
+DELIMITER ;</code></pre>
+<h4 id="五、实验小结："><a href="#五、实验小结：" class="headerlink" title="五、实验小结："></a>五、实验小结：</h4><p>触发器触发时间分为 before和 after，顾名思义，before代表触发器里面的命令在修改数据之前执行，after代表触发器里面的命令在修改数据命令之后执行。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -1158,11 +1300,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>
