@@ -178,7 +178,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         漏洞原理
-                        <small>(11)</small>
+                        <small>(12)</small>
                         
                     </div>
                     
@@ -224,6 +224,18 @@
                                     <div data-rel="漏洞原理<--->XSS">
                                         
                                         XSS
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="漏洞原理<--->XXE">
+                                        
+                                        XXE
                                         
                                             <small>(1
                                                 )</small>
@@ -462,6 +474,10 @@
     
         
             
+        
+    
+        
+            
                 <li>
                     <div data-rel="工具使用">
                         
@@ -541,7 +557,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="54">
-<input type="hidden" id="yelog_site_word_count" value="111.7k">
+<input type="hidden" id="yelog_site_word_count" value="111.6k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -683,6 +699,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>xxe</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>上传漏洞</a>
             </li>
         
@@ -737,14 +757,6 @@
             <span class="post-date" title="2021-03-02 16:57:06">2021/03/02</span>
         </a>
         
-        <a  class="全部文章 "
-           href="/2021/02/20/XML%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E2%80%94%E2%80%94XXE%E7%AE%80%E5%8D%95%E5%88%86%E6%9E%90/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title=""></span>
-            <span class="post-date" title="2021-02-20 11:58:39">2021/02/20</span>
-        </a>
-        
         <a  class="全部文章 工具使用 "
            href="/2021/02/20/SQLMap%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/"
            data-tag="sqlmap"
@@ -767,6 +779,14 @@
            data-author="" >
             <span class="post-title" title="从CSRF原理到CMS漏洞利用">从CSRF原理到CMS漏洞利用</span>
             <span class="post-date" title="2021-02-02 20:43:51">2021/02/02</span>
+        </a>
+        
+        <a  class="全部文章 漏洞原理 XXE "
+           href="/2021/02/01/XML%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E2%80%94%E2%80%94XXE%E7%AE%80%E5%8D%95%E5%88%86%E6%9E%90/"
+           data-tag="xxe"
+           data-author="" >
+            <span class="post-title" title="XML外部实体注入漏洞——XXE简单分析·">XML外部实体注入漏洞——XXE简单分析·</span>
+            <span class="post-date" title="2021-02-01 20:33:03">2021/02/01</span>
         </a>
         
         <a  class="全部文章 工具使用 "
@@ -1207,12 +1227,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-02-07 23:51:49'>2019-07-18 21:57</time>
+            发布时间 : <time class="date" title='最后更新: 2021-03-06 21:54:57'>2019-07-18 21:57</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:623</span>
+        <span>字数:600</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1247,10 +1267,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1、又一张图片，还单纯吗<br>2、隐写2<br>3、细心的大象<br>4、爆照(08067CTF)</p>
-<a id="more"></a>
-
-<p><strong>1、又一张图片，还单纯吗</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589962073058_201104351_H1920.png" alt="在这里插入图片描述"><br>链接地址：<a target="_blank" rel="noopener" href="http://123.206.87.240:8002/misc/2.jpg">http://123.206.87.240:8002/misc/2.jpg</a><br>打开一看是一张图<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963366997_201104351_H800.jpg" alt="在这里插入图片描述"><br>先查看一下图片详细信息，不能在吃了上次的亏；emm…没发现啥信息,直接用刚得到的神器binwalk一下(～￣▽￣)～<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963593089_201104351_H1920.png" alt="在这里插入图片描述"><br>哇哦<del>，竟然藏着这么多图片，唉，按顺序一个个分离吧；<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589961454236_201104351_H800.png" alt="在这里插入图片描述"><br>哦吼</del>第一张打开一看竟然就是flag吗，提交试试—对了，真好。<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589969713368_201104351_H800.png" alt="在这里插入图片描述"><br><strong>2、隐写2</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964857928_201104351_H800.png" alt="在这里插入图片描述"><br>打开是一张表情包：<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589966810932_201104351_H800.jpg" alt="在这里插入图片描述"><br>B数，自在人心(●’◡’●)  先用winhex看看 ，额 在之最后面发现了可疑的信息(⊙_⊙)？<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589961327786_201104351_H800.png" alt="在这里插入图片描述"><br>尝试把后缀名改了，果然 打开后有一个压缩包和一张图片<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967894562_201104351_H800.png" alt="在这里插入图片描述"><br>打开提示：<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967797359_201104351_H800.jpg" alt="在这里插入图片描述"><br>这里提示信息已将很明显了， 国王是K ；女神是Q ；骑士是J   不知道的可以百度下；尝试输入KQJ解密，但是失败了，看看提示发现密码是三个数字， 没看清 大意了╰(￣ω￣ｏ)<br>既然只有三位数直接暴力破解好了；很快得到密码：<strong>871</strong> ；其实对照键盘也是可以猜出来的<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967169776_201104351_H800.png" alt="在这里插入图片描述"><br>打开是这样的一张图，emmm… 再次丢进winhex里面<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963700206_201104351_H800.jpg" alt="在这里插入图片描述"><br>在末尾发现了flag^o^/：<code>f1@g&#123;eTB1IEFyZSBhIGhAY2tlciE=&#125;</code><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589961432233_201104351_W120.png" alt="在这里插入图片描述"><br>然而提交失败╯︿╰，观察发现 这个flag应该被base加密了，拿去base64解密后得到<br>flag：<code>fl@g&#123;y0u Are a h@cker!&#125;</code>，再次提交，成功。<br><strong>3、细心的大象</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964833676_201104351_H1920.png" alt="在这里插入图片描述"><br>打开是一张图片：<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963096230_201104351_H800.jpg" alt="在这里插入图片描述"><br>先看下图片详细信息<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963395800_201104351_H800.png" alt="在这里插入图片描述"><br>额…看着应该是base64；拿去解下密：<code>MSDS456ASD123zz</code><br>不用说了，图片肯定隐藏着压缩包，直接用<strong>foremost</strong>分离出来<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963300232_201104351_H800.png" alt="在这里插入图片描述"><br>输入解出来密码，额，又是杂项（一）隐写的那题，下面的步骤就不写了(●’◡’●)<br><strong>4、爆照(08067CTF)</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964884809_201104351_H800.png" alt="在这里插入图片描述"><br>打开是一张妹子的照片：<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967249183_201104351_H800.jpg" alt="在这里插入图片描述"><br>先看下图片详细信息，啥也没有，直接binwalk吧<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967647360_201104351_H800.png" alt="在这里插入图片描述"><br>哦吼~好多压缩包，直接用foremost分离吧，分离出一个压缩包，打开<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589965269995_201104351_H800.png" alt="在这里插入图片描述"><br>额 ＞︿＜ 没思路啊，直接拿去binwalk吧<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964923678_201104351_H800.png" alt="在这里插入图片描述"><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589966736129_201104351_H800.png" alt="在这里插入图片描述"><br>可以看到88/888/8888里有图片，8888里还有一个压缩包，全都提取出来。<br>88：<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964822191_201104351_H800.jpg" alt="在这里插入图片描述"><br>扫描二维码：bilibili<br>888：<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967020918_201104351_H800.jpg" alt="在这里插入图片描述"><br>没啥东西，查看下详细信息：果然有东西<code>c2lsaXNpbGk=</code><br>拿去base64解码：<code>silisili</code><br>8888：图片<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963015826_201104351_H800.jpg" alt="在这里插入图片描述"><br>没啥信息；<br>zip打开有张二维码：<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589962413249_201104351_H800.png" alt="在这里插入图片描述"><br>扫描得：panama<br>多番尝试提交得到flag{bilibili_silisili_panama}<br>不得不说，这题真狗！！！<br>好，日后继续更新ヾ(≧▽≦*)o</p>
+        <p><strong>1、又一张图片，还单纯吗</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589962073058_201104351_H1920.png" alt="在这里插入图片描述"><br>链接地址：<a target="_blank" rel="noopener" href="http://123.206.87.240:8002/misc/2.jpg">http://123.206.87.240:8002/misc/2.jpg</a><br>打开一看是一张图<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963366997_201104351_H800.jpg" alt="在这里插入图片描述"><br>先查看一下图片详细信息，不能在吃了上次的亏；emm…没发现啥信息,直接用刚得到的神器binwalk一下(～￣▽￣)～<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963593089_201104351_H1920.png" alt="在这里插入图片描述"><br>哇哦<del>，竟然藏着这么多图片，唉，按顺序一个个分离吧；<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589961454236_201104351_H800.png" alt="在这里插入图片描述"><br>哦吼</del>第一张打开一看竟然就是flag吗，提交试试—对了，真好。<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589969713368_201104351_H800.png" alt="在这里插入图片描述"><br><strong>2、隐写2</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964857928_201104351_H800.png" alt="在这里插入图片描述"><br>打开是一张表情包：<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589966810932_201104351_H800.jpg" alt="在这里插入图片描述"><br>B数，自在人心(●’◡’●)  先用winhex看看 ，额 在之最后面发现了可疑的信息(⊙_⊙)？<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589961327786_201104351_H800.png" alt="在这里插入图片描述"><br>尝试把后缀名改了，果然 打开后有一个压缩包和一张图片<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967894562_201104351_H800.png" alt="在这里插入图片描述"><br>打开提示：<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967797359_201104351_H800.jpg" alt="在这里插入图片描述"><br>这里提示信息已将很明显了， 国王是K ；女神是Q ；骑士是J   不知道的可以百度下；尝试输入KQJ解密，但是失败了，看看提示发现密码是三个数字， 没看清 大意了╰(￣ω￣ｏ)<br>既然只有三位数直接暴力破解好了；很快得到密码：<strong>871</strong> ；其实对照键盘也是可以猜出来的<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967169776_201104351_H800.png" alt="在这里插入图片描述"><br>打开是这样的一张图，emmm… 再次丢进winhex里面<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963700206_201104351_H800.jpg" alt="在这里插入图片描述"><br>在末尾发现了flag^o^/：<code>f1@g&#123;eTB1IEFyZSBhIGhAY2tlciE=&#125;</code><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589961432233_201104351_W120.png" alt="在这里插入图片描述"><br>然而提交失败╯︿╰，观察发现 这个flag应该被base加密了，拿去base64解密后得到<br>flag：<code>fl@g&#123;y0u Are a h@cker!&#125;</code>，再次提交，成功。<br><strong>3、细心的大象</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964833676_201104351_H1920.png" alt="在这里插入图片描述"><br>打开是一张图片：<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963096230_201104351_H800.jpg" alt="在这里插入图片描述"><br>先看下图片详细信息<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963395800_201104351_H800.png" alt="在这里插入图片描述"><br>额…看着应该是base64；拿去解下密：<code>MSDS456ASD123zz</code><br>不用说了，图片肯定隐藏着压缩包，直接用<strong>foremost</strong>分离出来<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963300232_201104351_H800.png" alt="在这里插入图片描述"><br>输入解出来密码，额，又是杂项（一）隐写的那题，下面的步骤就不写了(●’◡’●)<br><strong>4、爆照(08067CTF)</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964884809_201104351_H800.png" alt="在这里插入图片描述"><br>打开是一张妹子的照片：<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967249183_201104351_H800.jpg" alt="在这里插入图片描述"><br>先看下图片详细信息，啥也没有，直接binwalk吧<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967647360_201104351_H800.png" alt="在这里插入图片描述"><br>哦吼~好多压缩包，直接用foremost分离吧，分离出一个压缩包，打开<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589965269995_201104351_H800.png" alt="在这里插入图片描述"><br>额 ＞︿＜ 没思路啊，直接拿去binwalk吧<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964923678_201104351_H800.png" alt="在这里插入图片描述"><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589966736129_201104351_H800.png" alt="在这里插入图片描述"><br>可以看到88/888/8888里有图片，8888里还有一个压缩包，全都提取出来。<br>88：<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964822191_201104351_H800.jpg" alt="在这里插入图片描述"><br>扫描二维码：bilibili<br>888：<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967020918_201104351_H800.jpg" alt="在这里插入图片描述"><br>没啥东西，查看下详细信息：果然有东西<code>c2lsaXNpbGk=</code><br>拿去base64解码：<code>silisili</code><br>8888：图片<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963015826_201104351_H800.jpg" alt="在这里插入图片描述"><br>没啥信息；<br>zip打开有张二维码：<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589962413249_201104351_H800.png" alt="在这里插入图片描述"><br>扫描得：panama<br>多番尝试提交得到flag{bilibili_silisili_panama}<br>不得不说，这题真狗！！！<br>好，日后继续更新ヾ(≧▽≦*)o</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>

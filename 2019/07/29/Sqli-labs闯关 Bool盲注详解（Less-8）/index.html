@@ -178,7 +178,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         漏洞原理
-                        <small>(11)</small>
+                        <small>(12)</small>
                         
                     </div>
                     
@@ -224,6 +224,18 @@
                                     <div data-rel="漏洞原理<--->XSS">
                                         
                                         XSS
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="漏洞原理<--->XXE">
+                                        
+                                        XXE
                                         
                                             <small>(1
                                                 )</small>
@@ -462,6 +474,10 @@
     
         
             
+        
+    
+        
+            
                 <li>
                     <div data-rel="工具使用">
                         
@@ -541,7 +557,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="54">
-<input type="hidden" id="yelog_site_word_count" value="111.7k">
+<input type="hidden" id="yelog_site_word_count" value="111.6k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -683,6 +699,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>xxe</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>上传漏洞</a>
             </li>
         
@@ -737,14 +757,6 @@
             <span class="post-date" title="2021-03-02 16:57:06">2021/03/02</span>
         </a>
         
-        <a  class="全部文章 "
-           href="/2021/02/20/XML%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E2%80%94%E2%80%94XXE%E7%AE%80%E5%8D%95%E5%88%86%E6%9E%90/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title=""></span>
-            <span class="post-date" title="2021-02-20 11:58:39">2021/02/20</span>
-        </a>
-        
         <a  class="全部文章 工具使用 "
            href="/2021/02/20/SQLMap%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/"
            data-tag="sqlmap"
@@ -767,6 +779,14 @@
            data-author="" >
             <span class="post-title" title="从CSRF原理到CMS漏洞利用">从CSRF原理到CMS漏洞利用</span>
             <span class="post-date" title="2021-02-02 20:43:51">2021/02/02</span>
+        </a>
+        
+        <a  class="全部文章 漏洞原理 XXE "
+           href="/2021/02/01/XML%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E2%80%94%E2%80%94XXE%E7%AE%80%E5%8D%95%E5%88%86%E6%9E%90/"
+           data-tag="xxe"
+           data-author="" >
+            <span class="post-title" title="XML外部实体注入漏洞——XXE简单分析·">XML外部实体注入漏洞——XXE简单分析·</span>
+            <span class="post-date" title="2021-02-01 20:33:03">2021/02/01</span>
         </a>
         
         <a  class="全部文章 工具使用 "
@@ -1207,12 +1227,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-01-20 16:34:41'>2019-07-29 22:44</time>
+            发布时间 : <time class="date" title='最后更新: 2021-03-06 21:56:29'>2019-07-29 22:44</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:2.7k</span>
+        <span>字数:2.6k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1247,10 +1267,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>介绍了bool盲注的原理，以及使用脚本盲注，关于burp抓包，过段时间会补上。</p>
-<a id="more"></a>
-
-<p>   前篇write up介绍了Less8的上传木马，连接菜刀的做法；那这次记录下这题关于盲注的做法；先来简单介绍下盲注。</p>
+        <p>   前篇write up介绍了Less8的上传木马，连接菜刀的做法；那这次记录下这题关于盲注的做法；先来简单介绍下盲注。</p>
 <p>何为盲注？盲注就是在 sql 注入过程中，sql 语句执行的选择后，选择的数据不能回显到前端页面。此时，我们需要利用一些方法进行判断或者尝试，这个过程称之为盲注。盲注主要分为三类</p>
 <blockquote>
 <p>•基于布尔 SQL 盲注<br>•基于时间的 SQL 盲注<br>•基于报错的 SQL 盲注</p>
