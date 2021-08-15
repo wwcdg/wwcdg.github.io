@@ -6,20 +6,37 @@
   <meta name="keywords" content=" 密码学 ">
   <meta name="description" content="密码学—RSA加密解密详解 | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言：总结一下遇到的充满哲学的小句子 &#x3D;￣ω￣&#x3D;  花有重开日，人无再少年 人无千日好，花无百日红人穷志短，马瘦毛长">
+<meta name="description" content="[toc] 一、Docker 安装 Nginx：1、搜索镜像 searchdocker search nginx  2、拉取镜像 pulldocker pull nginx 这里直接拉的最新版的。镜像拉取成功 3、创建容器并运行docker run -d --name nginx01 -p 3344:80 nginx # -d 后台运行 # --name 给容器命名 # -p 宿主机端口:容器内部">
 <meta property="og:type" content="article">
-<meta property="og:title" content="生活俗语摘录">
-<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2021/05/04/%E7%94%9F%E6%B4%BB%E4%BF%97%E8%AF%AD%E6%91%98%E5%BD%95/index.html">
+<meta property="og:title" content="Docker练习(一)——搭建web服务">
+<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2021/08/15/Docker%20%E7%BB%83%E4%B9%A0(%E4%B8%80)%E2%80%94%E2%80%94%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1/index.html">
 <meta property="og:site_name" content="未完成的歌">
-<meta property="og:description" content="前言：总结一下遇到的充满哲学的小句子 &#x3D;￣ω￣&#x3D;  花有重开日，人无再少年 人无千日好，花无百日红人穷志短，马瘦毛长">
+<meta property="og:description" content="[toc] 一、Docker 安装 Nginx：1、搜索镜像 searchdocker search nginx  2、拉取镜像 pulldocker pull nginx 这里直接拉的最新版的。镜像拉取成功 3、创建容器并运行docker run -d --name nginx01 -p 3344:80 nginx # -d 后台运行 # --name 给容器命名 # -p 宿主机端口:容器内部">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210504120259497.jpg">
-<meta property="article:published_time" content="2021-05-04T04:04:06.438Z">
-<meta property="article:modified_time" content="2021-05-05T04:06:38.903Z">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/b63cdef302f3418cbc20c342b4c92ef8.png">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/9b73d87c2afa4c2e80d79a2a33551894.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/ae5b2cd452ad445f8f67bf3dfc47e568.png">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/01ae28d21801482e952ca135fbb715bc.png">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/3d444537707244ebb46b133df61e07bc.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/59efabd381df4759b3d65e2612b71d71.png">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/a2154500bca84012b246bb736ffd2056.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/3e16fb0f6ac142399115700129067731.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c830401b9f4245dcbe88042b4a9da530.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/f685cc31c5294d76ac2140c9d7c980fa.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/70c781930d464efb8a2855b5948148a2.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/f71a19380db64716b55bc42284d73837.png">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/7d710d91eefd4438858ada1533c93b5f.png">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/c02593da745e4f3eaacb04ffdc7a1d72.png">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/54ce698e72bf478695535f7474275f05.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/9c6c04bc45094708b09b989799c5c4ea.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/2b1f2dd86d454a90ae702467d4445a15.png">
+<meta property="og:image" content="http://img-blog.csdnimg.cn/1a1fce5fb5704644864030d9b2a36477.png">
+<meta property="article:published_time" content="2021-08-15T12:54:09.209Z">
+<meta property="article:modified_time" content="2021-08-15T13:50:21.381Z">
 <meta property="article:author" content="未完成的歌">
-<meta property="article:tag" content="俗语摘录">
+<meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210504120259497.jpg">
+<meta name="twitter:image" content="http://img-blog.csdnimg.cn/b63cdef302f3418cbc20c342b4c92ef8.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -153,7 +170,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(55)</small>
+                <small>(57)</small>
             
         </div>
     </li>
@@ -407,6 +424,20 @@
     
         
             
+                <li>
+                    <div data-rel="Docker">
+                        
+                        Docker
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
         
     
         
@@ -557,8 +588,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="55">
-<input type="hidden" id="yelog_site_word_count" value="111.5k">
+<input type="hidden" id="yelog_site_posts_number" value="57">
+<input type="hidden" id="yelog_site_word_count" value="115.5k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -625,6 +656,10 @@
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>css</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -753,6 +788,22 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Docker "
+           href="/2021/08/15/Docker%20%E7%BB%83%E4%B9%A0(%E4%B8%80)%E2%80%94%E2%80%94%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="Docker练习(一)——搭建web服务">Docker练习(一)——搭建web服务</span>
+            <span class="post-date" title="2021-08-15 20:54:09">2021/08/15</span>
+        </a>
+        
+        <a  class="全部文章 Docker "
+           href="/2021/08/15/Docker%E5%AE%B9%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="Docker容器学习(一)">Docker容器学习(一)</span>
+            <span class="post-date" title="2021-08-15 20:53:56">2021/08/15</span>
+        </a>
         
         <a  class="全部文章 生活随笔 "
            href="/2021/05/04/%E7%94%9F%E6%B4%BB%E4%BF%97%E8%AF%AD%E6%91%98%E5%BD%95/"
