@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Bugku杂项(二) | 未完成的歌</title>
-  <meta name="keywords" content=" misc ">
-  <meta name="description" content="Bugku杂项(二) | 未完成的歌">
+  <title>未完成的歌</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="title:渗透测试之信息收集篇categories:工具使用tags:信息收集  [toc] 前言：信息收集是进行渗透测试的第一步，也是非常重要的一步。正所谓 “知己知彼，方能百战不殆”，因此在这个阶段，我们要尽可能地收集目标组织的信息。信息收集的重要性在这学期的护网行动中深有体会，一开始找不到目标资产，一度以为没有资产信息，后来转变了思路才发现原来资产有这么多。 因此通过篇文章来系统的总结下">
 <meta property="og:type" content="article">
@@ -1257,41 +1257,22 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Bugku 杂项（二）" class="article article-type-post" itemscope itemprop="blogPost">
-    
-        <h1 class="article-title">Bugku杂项(二)</h1>
+        <article id="post-渗透测试之信息收集篇" class="article article-type-post" itemscope itemprop="blogPost">
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="CTF">CTF</a> > 
-            
-            <a  data-rel="CTF&lt;---&gt;MISC">MISC</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color5">misc</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-05-04 11:55:27'>2019-07-18 21:57</time>
+            发布时间 : <time class="date" title='最后更新: 2021-09-06 16:43:52'>2021-09-06 16:36</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:600</span>
+        <span>字数:4.7k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1310,7 +1291,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9F%9F%E5%90%8D%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%EF%BC%9A"><span class="toc-text">一、域名信息收集：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Whois%E6%9F%A5%E8%AF%A2%EF%BC%9A"><span class="toc-text">1、Whois查询：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%A4%87%E6%A1%88%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2%EF%BC%9A"><span class="toc-text">2、备案信息查询：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%EF%BC%9A"><span class="toc-text">二、敏感信息收集：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Google-Hacking%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="toc-text">1、Google Hacking语法：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81FOFA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%A9%BA%E9%97%B4%E6%90%9C%E7%B4%A2%EF%BC%9A"><span class="toc-text">2、FOFA网络安全空间搜索：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81Github%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%EF%BC%9A"><span class="toc-text">3、Github信息泄露：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AD%90%E5%9F%9F%E5%90%8D%E6%94%B6%E9%9B%86%EF%BC%9A"><span class="toc-text">三、子域名收集：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E5%AD%90%E5%9F%9F%E5%90%8D%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%EF%BC%9A"><span class="toc-text">1、子域名检测工具：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%88%A9%E7%94%A8%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%8F%91%E7%8E%B0%E5%AD%90%E5%9F%9F%EF%BC%9A"><span class="toc-text">2、利用搜索引擎发现子域：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E9%80%9A%E8%BF%87%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7%E6%90%9C%E9%9B%86"><span class="toc-text">3、通过在线工具搜集:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%AB%AF%E5%8F%A3%E6%8E%A2%E6%B5%8B%EF%BC%9A"><span class="toc-text">四、端口探测：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Nmap%EF%BC%9A"><span class="toc-text">1、Nmap：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81Masscan%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7%EF%BC%9A"><span class="toc-text">2、Masscan扫描工具：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99%EF%BC%9A"><span class="toc-text">3、在线网站：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%8A%E5%85%B6%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="toc-text">常见的端口及其说明：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E3%80%81CMS%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%EF%BC%9A"><span class="toc-text">五、CMS指纹识别：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99%EF%BC%9A"><span class="toc-text">1、在线网站：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7%EF%BC%9A"><span class="toc-text">2、指纹识别工具：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81CMS%E6%BC%8F%E6%B4%9E%E6%9F%A5%E8%AF%A2%EF%BC%9A"><span class="toc-text">3、CMS漏洞查询：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%9F%A5%E6%89%BE%E7%9C%9F%E5%AE%9EIP%EF%BC%9A"><span class="toc-text">六、查找真实IP：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFCDN%EF%BC%9A"><span class="toc-text">1、什么是CDN：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E7%9B%AE%E6%A0%87%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BD%BF%E7%94%A8%E4%BA%86CDN%EF%BC%9A"><span class="toc-text">2、如何判断目标服务器使用了CDN：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E5%A6%82%E4%BD%95%E5%AF%BB%E6%89%BE%E7%9C%9F%E5%AE%9EIP%EF%BC%9A"><span class="toc-text">3、如何寻找真实IP：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%95%8F%E6%84%9F%E7%9B%AE%E5%BD%95-%E6%96%87%E4%BB%B6%E6%94%B6%E9%9B%86%EF%BC%9A"><span class="toc-text">七、敏感目录&#x2F;文件收集：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81dirsearch%EF%BC%9A"><span class="toc-text">1、dirsearch：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%BE%A1%E5%89%91%E5%90%8E%E5%8F%B0%E6%89%AB%E6%8F%8F%EF%BC%9A"><span class="toc-text">2、御剑后台扫描：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6%EF%BC%9A"><span class="toc-text">八、社会工程学：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%EF%BC%9A"><span class="toc-text">最后：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1326,7 +1307,135 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>1、又一张图片，还单纯吗</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589962073058_201104351_H1920.png" alt="在这里插入图片描述"><br>链接地址：<a target="_blank" rel="noopener" href="http://123.206.87.240:8002/misc/2.jpg">http://123.206.87.240:8002/misc/2.jpg</a><br>打开一看是一张图<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963366997_201104351_H800.jpg" alt="在这里插入图片描述"><br>先查看一下图片详细信息，不能在吃了上次的亏；emm…没发现啥信息,直接用刚得到的神器binwalk一下(～￣▽￣)～<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963593089_201104351_H1920.png" alt="在这里插入图片描述"><br>哇哦<del>，竟然藏着这么多图片，唉，按顺序一个个分离吧；<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589961454236_201104351_H800.png" alt="在这里插入图片描述"><br>哦吼</del>第一张打开一看竟然就是flag吗，提交试试—对了，真好。<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589969713368_201104351_H800.png" alt="在这里插入图片描述"><br><strong>2、隐写2</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964857928_201104351_H800.png" alt="在这里插入图片描述"><br>打开是一张表情包：<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589966810932_201104351_H800.jpg" alt="在这里插入图片描述"><br>B数，自在人心(●’◡’●)  先用winhex看看 ，额 在之最后面发现了可疑的信息(⊙_⊙)？<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589961327786_201104351_H800.png" alt="在这里插入图片描述"><br>尝试把后缀名改了，果然 打开后有一个压缩包和一张图片<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967894562_201104351_H800.png" alt="在这里插入图片描述"><br>打开提示：<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967797359_201104351_H800.jpg" alt="在这里插入图片描述"><br>这里提示信息已将很明显了， 国王是K ；女神是Q ；骑士是J   不知道的可以百度下；尝试输入KQJ解密，但是失败了，看看提示发现密码是三个数字， 没看清 大意了╰(￣ω￣ｏ)<br>既然只有三位数直接暴力破解好了；很快得到密码：<strong>871</strong> ；其实对照键盘也是可以猜出来的<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967169776_201104351_H800.png" alt="在这里插入图片描述"><br>打开是这样的一张图，emmm… 再次丢进winhex里面<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963700206_201104351_H800.jpg" alt="在这里插入图片描述"><br>在末尾发现了flag^o^/：<code>f1@g&#123;eTB1IEFyZSBhIGhAY2tlciE=&#125;</code><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589961432233_201104351_W120.png" alt="在这里插入图片描述"><br>然而提交失败╯︿╰，观察发现 这个flag应该被base加密了，拿去base64解密后得到<br>flag：<code>fl@g&#123;y0u Are a h@cker!&#125;</code>，再次提交，成功。<br><strong>3、细心的大象</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964833676_201104351_H1920.png" alt="在这里插入图片描述"><br>打开是一张图片：<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963096230_201104351_H800.jpg" alt="在这里插入图片描述"><br>先看下图片详细信息<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963395800_201104351_H800.png" alt="在这里插入图片描述"><br>额…看着应该是base64；拿去解下密：<code>MSDS456ASD123zz</code><br>不用说了，图片肯定隐藏着压缩包，直接用<strong>foremost</strong>分离出来<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963300232_201104351_H800.png" alt="在这里插入图片描述"><br>输入解出来密码，额，又是杂项（一）隐写的那题，下面的步骤就不写了(●’◡’●)<br><strong>4、爆照(08067CTF)</strong><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964884809_201104351_H800.png" alt="在这里插入图片描述"><br>打开是一张妹子的照片：<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967249183_201104351_H800.jpg" alt="在这里插入图片描述"><br>先看下图片详细信息，啥也没有，直接binwalk吧<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967647360_201104351_H800.png" alt="在这里插入图片描述"><br>哦吼~好多压缩包，直接用foremost分离吧，分离出一个压缩包，打开<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589965269995_201104351_H800.png" alt="在这里插入图片描述"><br>额 ＞︿＜ 没思路啊，直接拿去binwalk吧<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964923678_201104351_H800.png" alt="在这里插入图片描述"><br><img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589966736129_201104351_H800.png" alt="在这里插入图片描述"><br>可以看到88/888/8888里有图片，8888里还有一个压缩包，全都提取出来。<br>88：<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589964822191_201104351_H800.jpg" alt="在这里插入图片描述"><br>扫描二维码：bilibili<br>888：<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589967020918_201104351_H800.jpg" alt="在这里插入图片描述"><br>没啥东西，查看下详细信息：果然有东西<code>c2lsaXNpbGk=</code><br>拿去base64解码：<code>silisili</code><br>8888：图片<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589963015826_201104351_H800.jpg" alt="在这里插入图片描述"><br>没啥信息；<br>zip打开有张二维码：<img src="http://img1002-c.pocoimg.cn/image/poco/works/28/2019/0718/22/15634589962413249_201104351_H800.png" alt="在这里插入图片描述"><br>扫描得：panama<br>多番尝试提交得到flag{bilibili_silisili_panama}<br>不得不说，这题真狗！！！<br>好，日后继续更新ヾ(≧▽≦*)o</p>
+        <hr>
+<p>title:渗透测试之信息收集篇<br>categories:工具使用<br>tags:信息收集</p>
+<hr>
+<p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9F%9F%E5%90%8D%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%EF%BC%9A"><span class="toc-text">一、域名信息收集：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Whois%E6%9F%A5%E8%AF%A2%EF%BC%9A"><span class="toc-text">1、Whois查询：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%A4%87%E6%A1%88%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2%EF%BC%9A"><span class="toc-text">2、备案信息查询：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%EF%BC%9A"><span class="toc-text">二、敏感信息收集：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Google-Hacking%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="toc-text">1、Google Hacking语法：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81FOFA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%A9%BA%E9%97%B4%E6%90%9C%E7%B4%A2%EF%BC%9A"><span class="toc-text">2、FOFA网络安全空间搜索：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81Github%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%EF%BC%9A"><span class="toc-text">3、Github信息泄露：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AD%90%E5%9F%9F%E5%90%8D%E6%94%B6%E9%9B%86%EF%BC%9A"><span class="toc-text">三、子域名收集：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E5%AD%90%E5%9F%9F%E5%90%8D%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%EF%BC%9A"><span class="toc-text">1、子域名检测工具：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%88%A9%E7%94%A8%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%8F%91%E7%8E%B0%E5%AD%90%E5%9F%9F%EF%BC%9A"><span class="toc-text">2、利用搜索引擎发现子域：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E9%80%9A%E8%BF%87%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7%E6%90%9C%E9%9B%86"><span class="toc-text">3、通过在线工具搜集:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%AB%AF%E5%8F%A3%E6%8E%A2%E6%B5%8B%EF%BC%9A"><span class="toc-text">四、端口探测：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Nmap%EF%BC%9A"><span class="toc-text">1、Nmap：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81Masscan%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7%EF%BC%9A"><span class="toc-text">2、Masscan扫描工具：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99%EF%BC%9A"><span class="toc-text">3、在线网站：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%8A%E5%85%B6%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="toc-text">常见的端口及其说明：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E3%80%81CMS%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%EF%BC%9A"><span class="toc-text">五、CMS指纹识别：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99%EF%BC%9A"><span class="toc-text">1、在线网站：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7%EF%BC%9A"><span class="toc-text">2、指纹识别工具：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81CMS%E6%BC%8F%E6%B4%9E%E6%9F%A5%E8%AF%A2%EF%BC%9A"><span class="toc-text">3、CMS漏洞查询：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%9F%A5%E6%89%BE%E7%9C%9F%E5%AE%9EIP%EF%BC%9A"><span class="toc-text">六、查找真实IP：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFCDN%EF%BC%9A"><span class="toc-text">1、什么是CDN：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E7%9B%AE%E6%A0%87%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BD%BF%E7%94%A8%E4%BA%86CDN%EF%BC%9A"><span class="toc-text">2、如何判断目标服务器使用了CDN：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E5%A6%82%E4%BD%95%E5%AF%BB%E6%89%BE%E7%9C%9F%E5%AE%9EIP%EF%BC%9A"><span class="toc-text">3、如何寻找真实IP：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%95%8F%E6%84%9F%E7%9B%AE%E5%BD%95-%E6%96%87%E4%BB%B6%E6%94%B6%E9%9B%86%EF%BC%9A"><span class="toc-text">七、敏感目录&#x2F;文件收集：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81dirsearch%EF%BC%9A"><span class="toc-text">1、dirsearch：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%BE%A1%E5%89%91%E5%90%8E%E5%8F%B0%E6%89%AB%E6%8F%8F%EF%BC%9A"><span class="toc-text">2、御剑后台扫描：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6%EF%BC%9A"><span class="toc-text">八、社会工程学：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%EF%BC%9A"><span class="toc-text">最后：</span></a></li></ol></div></p>
+<h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><p>信息收集是进行渗透测试的第一步，也是非常重要的一步。正所谓 “知己知彼，方能百战不殆”，因此在这个阶段，我们要尽可能地收集目标组织的信息。信息收集的重要性在这学期的护网行动中深有体会，一开始找不到目标资产，一度以为没有资产信息，后来转变了思路才发现原来资产有这么多。</p>
+<p>因此通过篇文章来系统的总结下信息收集的大致内容和常用方法，话不多说，开干。 (ง •_•)ง</p>
+<h4 id="一、域名信息收集："><a href="#一、域名信息收集：" class="headerlink" title="一、域名信息收集："></a>一、域名信息收集：</h4><p>首先，在得到一个目标的域名后，我们要做的第一件事就是去获取域名的注册信息，即该域名的DNS服务器信息和注册人的个人信息等。</p>
+<p>域名信息收集的常用方法有以下几种：</p>
+<h5 id="1、Whois查询："><a href="#1、Whois查询：" class="headerlink" title="1、Whois查询："></a>1、Whois查询：</h5><p>Whois是一个标准的互联网协议，可用于查询域名是否被注册，以及注册域名的详细信息(如域名所有人、域名注册商等)。通过Whois查询得到注册人的姓名和邮箱信息对测试个人站点非常有用，因为我们可以通过搜索引擎和社交网络挖掘出域名所有人的很多信息。对中小站点而言，域名所有人很可能就是管理员。</p>
+<p><strong>使用方法</strong>：</p>
+<p>1、通过在线网站：</p>
+<p>站长之家：<a target="_blank" rel="noopener" href="https://whois.chinaz.com/">https://whois.chinaz.com/</a><br><img src="https://img-blog.csdnimg.cn/20210116145519737.png"></p>
+<p>阿里云域名信息查询：<a target="_blank" rel="noopener" href="https://whois.aliyun.com/">https://whois.aliyun.com</a></p>
+<p><img src="https://img-blog.csdnimg.cn/20210116145625550.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>2、通过kali自带的whois查询工具：<br><img src="https://img-blog.csdnimg.cn/20210116145208292.png"><br>也可以在windows下安装使用 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zhcn/sysinternals/downloads/whois">下载链接</a>，安装方法可以参考这篇文章：<a target="_blank" rel="noopener" href="https://wangdalao.com/2865.html">链接</a>，安装完成后使用方法和kali的一样。</p>
+<h5 id="2、备案信息查询："><a href="#2、备案信息查询：" class="headerlink" title="2、备案信息查询："></a>2、备案信息查询：</h5><p>网站备案是根据国家法律法规规定，需要网站的所有者向国家有关部门申请的备案，这是国家信息产业部对网站的一种管理，为了防止在网上从事非法的网站经营活动的发生。主要针对国内网站，如果网站搭建在其他国家，则不需要进行备案。</p>
+<p>常用的查询网站有：</p>
+<p>ICP备案查询：<a target="_blank" rel="noopener" href="http://icp.chinaz.com/">http://icp.chinaz.com/</a><br><img src="https://img-blog.csdnimg.cn/2021011615160852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>天眼查：<a target="_blank" rel="noopener" href="https://beian.tianyancha.com/">https://beian.tianyancha.com/</a><br><img src="https://img-blog.csdnimg.cn/20210116151810287.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210116193556860.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"></p>
+<h4 id="二、敏感信息收集："><a href="#二、敏感信息收集：" class="headerlink" title="二、敏感信息收集："></a>二、敏感信息收集：</h4><p>面对某些安全做得很好的目标，直接通过技术层面很难完成渗透测试。在这种情况下，可以利用搜索引擎对目标暴露在互联网上的关联信息进行搜集。例如：数据库文件、SQL注入、服务配置信息，甚至是通过Git找到站点泄露源代码，以及Redis等未授权访问、Robots.txt等敏感信息，从而达到渗透目的。</p>
+<p>收集敏感信息的常用方法：</p>
+<h5 id="1、Google-Hacking语法："><a href="#1、Google-Hacking语法：" class="headerlink" title="1、Google Hacking语法："></a>1、Google Hacking语法：</h5><p>Google Hack是指使用Google、百度等搜索引擎对某些特定网站主机漏洞（通常是服务器上的脚本漏洞）进行搜索，以达到快速找到漏洞主机或特定主机的漏洞的目的。</p>
+<p>对于普通的用户而言，Google只是一款强大的搜索引擎，而对于渗透人员而言，它可能是一款绝佳的黑客工具。正因为Google的检索能力强大，我们可以构造特殊的关键字语法来搜索互联网上的的相关敏感信息。</p>
+<p><strong>常用语法</strong>：</p>
+<pre><code>Site：找到与指定网站有联系的URL。例如输入“Site：family.chinaok.com”。所有和这个网站有联系的URL都会被显示。
+
+Intitle：搜索网页标题中包含有特定字符的网页。例如输入“intitle: cbi”，这样网页标题中带有cbi的网页都会被搜索出来。
+
+Inurl：搜索包含有特定字符的URL。例如输入“inurl:cbi”，则可以找到带有cbi字符的URL。
+
+Intext：搜索网页正文内容中的指定字符，例如输入“intext:cbi”。这个语法类似我们平时在某些网站中使用的“文章内容搜索”功能。
+
+Filetype：搜索指定类型的文件。例如输入“filetype:cbi”，将返回所有以cbi结尾的文件URL。</code></pre>
+<p>这些就是Google的常用语法，也是Google Hack的必用语法。虽然这只是Google语法中很小的部分，但是合理使用这些语法将产生意想不到的效果。</p>
+<p>例：当我们想获取一些政府网站的后台页面时，可通过构关键字 <code>site:gov.cn intext:后台管理</code>来实现搜集，意思是搜索网页正文中含有“后台管理”并且域名后缀是 gov.cn的网站。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210116233826494.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">可以看到利用Google Hacking语法搜索，可以很高效地得到我们想要的信息，还可以用它来收集数据库文件、SQL注入、配置信息、源代码泄露、未授权访问和robots.txt等敏感信息。（更详细的Google Hacking语法介绍可以看这篇文章：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/H4ck3R-XiX/p/12489218.html">传送门</a>）</p>
+<p>接下来介绍另一款资产信息搜集神器：fofa</p>
+<h5 id="2、FOFA网络安全空间搜索："><a href="#2、FOFA网络安全空间搜索：" class="headerlink" title="2、FOFA网络安全空间搜索："></a>2、FOFA网络安全空间搜索：</h5><p>链接：<a target="_blank" rel="noopener" href="https://fofa.so/">https://fofa.so/</a><br><img src="https://img-blog.csdnimg.cn/20210117000509845.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>FOFA网络安全空间搜索 是专为渗透人员设计的一款搜索引擎，其相对于Google 的知名度相对低了一些，但是对于渗透人员这是款信息收集的神器。用途大致和Google一样，就不多介绍了。</p>
+<p>来简单说下其查询语法：<br><img src="https://img-blog.csdnimg.cn/20210117001213245.png"><br><img src="https://img-blog.csdnimg.cn/20210117001241160.png"><br>官方上给的很清楚，这里简单演示下如何使用：</p>
+<p>需要注意，在fofa中，多条件查询是用<code>&amp;&amp;</code>和<code>||</code>来连接的，什么意思就不解释了。</p>
+<p>例：查找一些后台管理且地点在杭州的资产信息：构造语法：<code>title =&quot;后台管理&quot;&amp;&amp;city=&quot;Hangzhou</code><br><img src="https://img-blog.csdnimg.cn/20210117224356203.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>还可以查找指定开放的端口网站，例：查找开放了3389 端口的后台管理系统：<code>port=&quot;3389&quot;&amp;&amp;title=&quot;后台管理&quot;</code><br><img src="https://img-blog.csdnimg.cn/20210117230648463.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>篇幅有限，更多骚操作可以看这篇文章：<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/84865">https://www.anquanke.com/post/id/84865</a></p>
+<h5 id="3、Github信息泄露："><a href="#3、Github信息泄露：" class="headerlink" title="3、Github信息泄露："></a>3、Github信息泄露：</h5><p><img src="https://img-blog.csdnimg.cn/20210118135823644.png"><br>GitHub作为一款应用最广的开源代码平台，给程序员提供了很多便利，但如果使用不当，比如将包含了账号密码、密钥等配置文件的代码上传了，导致攻击者能发现并进一步利用这些泄露的信息，就是一个典型的GitHub敏感信息泄露漏洞，再如开发人员在开发时，常常会先把源码提交到github，最后再从远程托管网站把源码pull到服务器的web目录下，如果忘记把.git文件删除，就造成此漏洞。利用.git文件恢复网站的源码，而源码里可能会有数据库的信息。</p>
+<p>很多网站及系统都会使用pop3和smtp发送来邮件，不少开发者由于安全意识不足会把相关的配置文件信息也放到Github上，这时配合我们的Google搜索语法，就能把这些敏感信息给找出来了。</p>
+<pre><code class="css">site:Github.com smtp
+site:Github.com smtp @qq.com
+site:Github.com smtp @126.com
+site:Github.com smtp @163.com
+site:Github.com smtp @sina.com.cn</code></pre>
+<p>例：<br><img src="https://img-blog.csdnimg.cn/20210118140103758.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210118140145640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>可以看到，很容易就能得到这些敏感数据信息。</p>
+<p>获取数据库信息泄露：</p>
+<pre><code class="css">site:Github.com sa password
+site:Github.com root password</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210118140908307.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"></p>
+<h4 id="三、子域名收集："><a href="#三、子域名收集：" class="headerlink" title="三、子域名收集："></a>三、子域名收集：</h4><p>子域名也就是二级，是指顶级域名下的域名。如果目标的网络规模比较大，直接从主域入手显然是很不理智的，因为一般其主域都是重点防护区域，这种情况下可以选择“曲线渗透”，即先进入目标的某个子域，然后再想办法迂回接近真正的目标。</p>
+<p>搜集目标子域常用的方法有以下这几种：</p>
+<h5 id="1、子域名检测工具："><a href="#1、子域名检测工具：" class="headerlink" title="1、子域名检测工具："></a>1、子域名检测工具：</h5><p>Layer子域名挖掘机：</p>
+<ul>
+<li>Layer子域名挖掘机使用很简单，直接输入域名就可以进行扫描，它的显示界面也很全面，有域名、解析IP、Web服务器和网站状态，使用起来非常方便，强推这个工具！</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20210118205816205.png"><br>subDomainsBrute：</p>
+<ul>
+<li><p>是一款基于python语言开发的，高并发的DNS暴力枚举工具，可以用于二级域名收集。支持Python3.5+和Python2.7，推荐使用Python3.5+以上版本。</p>
+</li>
+<li><p> Python3环境下运行需 安装aiodns库。(aiodns环境 Kali自带，推荐在Kali下使用，windows下aiodns环境很难安装😣)</p>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20210118222536640.png"><br>扫描的速度很快，完成后会输出一个文件：<br><img src="https://img-blog.csdnimg.cn/20210118222736145.png"></p>
+<h5 id="2、利用搜索引擎发现子域："><a href="#2、利用搜索引擎发现子域：" class="headerlink" title="2、利用搜索引擎发现子域："></a>2、利用搜索引擎发现子域：</h5><p>我们同样可以利用Google语法 来搜索子域名，假如想要获得qq的子域名，可构造关键词：”site:qq.com”<br><img src="https://img-blog.csdnimg.cn/20210118181051749.png"><br>不得不说，Google是真的好用！👍</p>
+<h5 id="3、通过在线工具搜集"><a href="#3、通过在线工具搜集" class="headerlink" title="3、通过在线工具搜集:"></a>3、通过在线工具搜集:</h5><p>几个好用的在线网站：</p>
+<p>1、DNSdumpster：<a target="_blank" rel="noopener" href="https://dnsdumpster.com/">https://dnsdumpster.com/</a><br><img src="https://img-blog.csdnimg.cn/20210118233012206.png"><br><img src="https://img-blog.csdnimg.cn/20210118233028110.png"></p>
+<p>2、子域名爆破：<a target="_blank" rel="noopener" href="https://phpinfo.me/domain/">https://phpinfo.me/domain/</a><br><img src="https://img-blog.csdnimg.cn/20210118232754511.png"><br>使用非常方便，而且速度 “很快啊”。</p>
+<h4 id="四、端口探测："><a href="#四、端口探测：" class="headerlink" title="四、端口探测："></a>四、端口探测：</h4><p>在渗透测试中，哪些端口是开放的，对于渗透测试员尤为重要。通过扫描服务器开放的端口可以获得该服务器上存在的服务，从而可以对其进行精准打击。</p>
+<h5 id="1、Nmap："><a href="#1、Nmap：" class="headerlink" title="1、Nmap："></a>1、Nmap：</h5><p>说起端口扫描，那就不得不说Nmap这款工具，Nmap是被专业人员广泛使用的一款功能全面的端口扫描工具。强烈推荐！<br><img src="https://img-blog.csdnimg.cn/2021011900255693.png"><br><strong>基本使用</strong>：</p>
+<p>最简单的使用就是：<code>nmap  域名/ip</code> 就可以扫描出端口的开放信息：<br><img src="https://img-blog.csdnimg.cn/20210119003431914.png"><br>可以看到服务器 80、443等端口是开放的。 </p>
+<p>还可以使用命令：<code>nmap -p 端口 IP(域名)</code>，判断ip是否开放指定端口：<br><img src="https://img-blog.csdnimg.cn/20210119004003597.png"><br>可以看到 B站 80端口是开放的，8080是关闭的。更多nmap骚操作请看这篇文章：<a target="_blank" rel="noopener" href="https://crayon-xin.github.io/2018/08/12/nmap%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">传送门</a></p>
+<h5 id="2、Masscan扫描工具："><a href="#2、Masscan扫描工具：" class="headerlink" title="2、Masscan扫描工具："></a>2、Masscan扫描工具：</h5><p>Masscan号称是最快的互联网端口扫描器，最快可以在六分钟内扫遍互联网。而且，masscan更加灵活，它允许自定义任意的地址范和端口范围。<br>由于使用工具通常会在目标网站留下痕迹，接下来提供一种在线网站探测方法。</p>
+<h5 id="3、在线网站："><a href="#3、在线网站：" class="headerlink" title="3、在线网站："></a>3、在线网站：</h5><p>因为使用工具通常会在目标网站留下痕迹，因此推荐几个在线的端口扫描网站：</p>
+<p>站长工具（老熟人了）：<a target="_blank" rel="noopener" href="http://tool.chinaz.com/port/">http://tool.chinaz.com/port/</a></p>
+<p><img src="https://img-blog.csdnimg.cn/20210119005455162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"></p>
+<p>ThreatScan在线网站：<a target="_blank" rel="noopener" href="https://scan.top15.cn/web/portscan">https://scan.top15.cn/web/portscan</a><br><img src="https://img-blog.csdnimg.cn/202101190055127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>🆗，知道了这些，端口的信息收集是不成问题了，但作为一个测试人员只知道如何扫描是不够的，还应知道开放端口所对应的服务，下面简单列举下：</p>
+<h5 id="常见的端口及其说明："><a href="#常见的端口及其说明：" class="headerlink" title="常见的端口及其说明："></a>常见的端口及其说明：</h5><p>远程连接服务端口：<br><img src="https://img-blog.csdnimg.cn/20210119010007347.png"><br>文件共享服务端口：<br><img src="https://img-blog.csdnimg.cn/20210119010036153.png"><br>Web应用服务端口：<br><img src="https://img-blog.csdnimg.cn/20210119010233230.png"><br>邮件服务端口：<br><img src="https://img-blog.csdnimg.cn/20210119010430932.png"><br>网络常见协议端口：<br><img src="https://img-blog.csdnimg.cn/20210119010449262.png"><br>特殊服务端口：<br><img src="https://img-blog.csdnimg.cn/20210119010515511.png"></p>
+<h4 id="五、CMS指纹识别："><a href="#五、CMS指纹识别：" class="headerlink" title="五、CMS指纹识别："></a>五、CMS指纹识别：</h4><p>CMS（Content Management System）又称为整站系统或文章系统，用于网站内容管理。用户只需要下载对应的CMS软件包，完成部署搭建，就能直接利用CMS。</p>
+<p>因为各类CMS都有其独特的结构命名规则和特定的文件内容，因此可以利用这些内容来判断一个CMS类型信息，这就叫CMS指纹识别。</p>
+<p>在渗透测试中，对目标站点进行指纹识别是很有必要的，如果识别出目标站点对应的CMS，则可以查找与该CMS相关的漏洞，方便对目标的进一步的渗透。</p>
+<p>常见的CMS有：</p>
+<ul>
+<li><p>门户：dedecms(织梦)、phpcms、帝国cms</p>
+</li>
+<li><p>博客：WordPress、zblog、emlog</p>
+</li>
+<li><p>社区：Discuz、PHPWind</p>
+</li>
+<li><p>商城：shopex、ECShop</p>
+</li>
+</ul>
+<p>下面介绍几款经典的识别工具。</p>
+<h5 id="1、在线网站："><a href="#1、在线网站：" class="headerlink" title="1、在线网站："></a>1、在线网站：</h5><p>1、在线cms指纹识别：<a target="_blank" rel="noopener" href="http://whatweb.bugscaner.com/look/">http://whatweb.bugscaner.com/look/</a><br><img src="https://img-blog.csdnimg.cn/20210119160343569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>2、云悉指纹识别：<a target="_blank" rel="noopener" href="http://www.yunsee.cn/info.html">http://www.yunsee.cn/info.html</a><br><img src="https://img-blog.csdnimg.cn/20210119161345925.png"></p>
+<h5 id="2、指纹识别工具："><a href="#2、指纹识别工具：" class="headerlink" title="2、指纹识别工具："></a>2、指纹识别工具：</h5><p>常用的本地工具有：御剑Web指纹识别、大禹CMS识别程序等。下面简单演示下御剑这款工具使用：</p>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/share/link?shareid=437376&uk=3526832374">下载链接</a>：<br><img src="https://img-blog.csdnimg.cn/20210119170241807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>右键添加域名/IP。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210119170343208.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>可以看到成功解析到了域名，这款工具速度还可以，而且支持自定义关键字和正则匹配两种模式、使用起来还可以。缺点就是目前指纹的配置库偏少。</p>
+<h5 id="3、CMS漏洞查询："><a href="#3、CMS漏洞查询：" class="headerlink" title="3、CMS漏洞查询："></a>3、CMS漏洞查询：</h5><p>对于查询到的CMS，可以在漏洞库网站查询对应的漏洞，进行进一步的渗透。推荐两个好用的漏洞库：</p>
+<p>1、乌云漏洞库：<a target="_blank" rel="noopener" href="https://wooyun.x10sec.org/">https://wooyun.x10sec.org/</a><br><img src="https://img-blog.csdnimg.cn/20210119162818445.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>例：对织梦CMS进行漏洞查询：<br><img src="https://img-blog.csdnimg.cn/20210119162721266.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>2、安全客漏洞库：<a target="_blank" rel="noopener" href="https://www.anquanke.com/vul">https://www.anquanke.com/vul</a><br><img src="https://img-blog.csdnimg.cn/20210119171605103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"></p>
+<h4 id="六、查找真实IP："><a href="#六、查找真实IP：" class="headerlink" title="六、查找真实IP："></a>六、查找真实IP：</h4><p>说到查找真实IP，需要先知道什么是CDN？</p>
+<h5 id="1、什么是CDN："><a href="#1、什么是CDN：" class="headerlink" title="1、什么是CDN："></a>1、什么是CDN：</h5><p>CDN全称 Content Delivery Network，即内容分发网络。指一种通过互联网连接的电脑网络系统，利用最靠近每位用户的服务器，更快、更可靠地将音乐、图片、视频、应用程序及其他文件发送给用户，来提供高性能、可扩展性及低成本的网络内容传递给用户。</p>
+<p>因此，如果目标服务器使用了CDN服务，那么我们直接查询到的IP并不是真正的目标服务器的IP，而是一台离你最近的目标节点的CDN服务器，这就导致了我们没法直接得到目标服务器的真实IP。</p>
+<h5 id="2、如何判断目标服务器使用了CDN："><a href="#2、如何判断目标服务器使用了CDN：" class="headerlink" title="2、如何判断目标服务器使用了CDN："></a>2、如何判断目标服务器使用了CDN：</h5><p>我们可以直接ping目标域名，通过返回的域名可以判断是否为真实ip，我们来ping百度官网看一下：<br><img src="https://img-blog.csdnimg.cn/20210119215637165.png"><br>可以看到，ping的解析域名发生了改变，不再是 “<a target="_blank" rel="noopener" href="http://www.baidu.com”了,出现这种就代表大概率使用了cdn.这时直接访问/">www.baidu.com”了，出现这种就代表大概率使用了CDN。这时直接访问</a> ping出来的域名或ip是无服务的，因为这台服务器只是做了数据转接，并没有web服务。</p>
+<p>我们再来ping一下域名：“baidu.com”<br><img src="https://img-blog.csdnimg.cn/20210119220923222.png"><br>可以看到，这次的解析域名没有改变，这时访问 ip：39.156.66.14，发现也可以直接访问的到，出现这种情况说明 baidu.com域名可能并没有使用CDN，ip 39.156.66.14就有可能是真实ip。<br><img src="https://img-blog.csdnimg.cn/20210119223713606.png"></p>
+<p>还可以使用在线网站进行检测，这里推荐一些很好用的网站：</p>
+<p>1、全球Ping测试：<a target="_blank" rel="noopener" href="https://www.wepcc.com/">https://www.wepcc.com</a><br><img src="https://img-blog.csdnimg.cn/20210119231936669.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br>2、17CE：<a target="_blank" rel="noopener" href="https://www.17ce.com/">https://www.17ce.com</a><br><img src="https://img-blog.csdnimg.cn/20210119231852844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210119232406528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210119232151632.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"></p>
+<p>3、站长之家ping检测（没错又是它）：<a target="_blank" rel="noopener" href="http://ping.chinaz.com/">http://ping.chinaz.com/</a><br><img src="https://img-blog.csdnimg.cn/20210119231956332.png"><br><img src="https://img-blog.csdnimg.cn/20210119232026504.png"></p>
+<h5 id="3、如何寻找真实IP："><a href="#3、如何寻找真实IP：" class="headerlink" title="3、如何寻找真实IP："></a>3、如何寻找真实IP：</h5><p><strong>1、子域名查找法</strong>：</p>
+<p>因为CDN和反向代理是需要成本的，有的网站只比较常用的域名使用cdn或反向代理，所以可以通过通过查找子域名来查找网站的真实IP。</p>
+<p><strong>2、 查询主域</strong>:</p>
+<p>很多网站只对 www域名使用了cdn，秃域名不使用，为的是在维护网站时更方便，不用等cdn缓存。所以可以试着把目标网站的www去掉，ping一下看ip是不是变了，这个上面的百度 baidu.com就是这样的。<br><img src="https://img-blog.csdnimg.cn/20210119220923222.png"></p>
+<p><strong>3、查看域名历史解析</strong>：</p>
+<p>可能目标之前没有使用CDN，所以可能会存在使用 CDN 前的记录。通过平台以前收集到的ip与域名绑定历史记录进行查询。 </p>
+<p><strong>4、通过邮件服务器</strong>：</p>
+<p>一般的邮件系统都在内部，没有经过CDN的解析，通过目标网站用户注册或者RSS订阅功能，查看邮件，寻找邮件头中的邮件服务器域名IP，ping这个邮件服务器的域名，就可以获得目标的真实IP(必须是目标自己内部的邮件服务器，第三方或者公共邮件服务器是没有用的)。</p>
+<p><strong>5、从国外访问</strong>：</p>
+<p>国内的CDN往往只对国内用户的访问加速，而对国外的访问就不一定了。此时我们使用国外的主机直接访问可能就能获取到真实P。</p>
+<h4 id="七、敏感目录-文件收集："><a href="#七、敏感目录-文件收集：" class="headerlink" title="七、敏感目录/文件收集："></a>七、敏感目录/文件收集：</h4><p>在渗透测试中，探测Web目录结构和隐藏的敏感文件是一个必不可少的环节，从中可以获取网站的后台管理、文件上传等重要页面，甚至可能扫描出网站的源代码。</p>
+<p>目录扫描工具有非常多种，如：御剑后台扫描工具、wwwscan命令行工具、dirb命令工具、dirbuster扫描工具；其原理大致相同，都是对网站进行暴力枚举扫描，下面介绍下个人觉得非常好用的工具：</p>
+<h5 id="1、dirsearch："><a href="#1、dirsearch：" class="headerlink" title="1、dirsearch："></a>1、dirsearch：</h5><p>dirsearch是一个功能强大，且非常经典的工具，基于python开发，旨在暴力扫描页面结构，包括网页中的目录和文件。<a href="https://github.com/maurosoria/dirsearch">下载链接</a></p>
+<p>使用方法：<code>-u url -e 开发语言</code>（可以不指定语言，即 *）<br><img src="https://img-blog.csdnimg.cn/20210118125755426.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"></p>
+<h5 id="2、御剑后台扫描："><a href="#2、御剑后台扫描：" class="headerlink" title="2、御剑后台扫描："></a>2、御剑后台扫描：</h5><p> 这款工具是一款可视化的程序，支持用户自定义的字典，用起来比较方便。<br><img src="https://img-blog.csdnimg.cn/20210118130607176.png"></p>
+<h4 id="八、社会工程学："><a href="#八、社会工程学：" class="headerlink" title="八、社会工程学："></a>八、社会工程学：</h4><p><img src="https://img-blog.csdnimg.cn/20210118173352256.jpg"><br>信息收集的最高境界大概就是社会工程学了，社会工程学（Social Engineering）是一种通过人际交流的方式获得信息的非技术渗透手段。社会工程学在渗透测试中起着不小的作用，利用社会工程学，攻击者可以从一名员工的口中挖掘出本应该是秘密的信息。</p>
+<p>社会工程学协助渗透测试的例子数不胜数，渗透某个网站遇到困难时，给网站的呼叫人员打电话，往往能解决很多问题。此外，许多服务器的登录密码与该服务器的管理者有关，密码总是有个人痕迹，因此利用社会工程学获得服务器管理者的信息后，进行服务器渗透测试要简单得多。</p>
+<h4 id="最后："><a href="#最后：" class="headerlink" title="最后："></a>最后：</h4><p>俗话说“渗透的本质也就是信息收集”，信息收集的深度，直接关系到渗透测试的成败。在信息收集阶段应尽可能多的获取目标站点的各种信息，可大大提高渗透测试的成功率。🆗，关于信息收集的总结到这里就结束了，以后发现新的好用的东西会接着补充，如果本文有哪些不对的地方，欢迎各位大佬补充更正🤞<font  color=red>❤</font>。</p>
+<hr>
+
+<p>参考文章：<br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/215182.html">https://www.freebuf.com/articles/web/215182.html</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1685126">https://cloud.tencent.com/developer/article/1685126</a><br><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/84865">https://www.anquanke.com/post/id/84865</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/H4ck3R-XiX/p/12489218.html">https://www.cnblogs.com/H4ck3R-XiX/p/12489218.html</a><br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/215182.html">https://www.freebuf.com/articles/web/215182.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42320142/article/details/102679143">https://blog.csdn.net/weixin_42320142/article/details/102679143</a><br><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/163348">https://www.anquanke.com/post/id/163348</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>
