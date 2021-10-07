@@ -6,73 +6,29 @@
   <meta name="keywords" content=" sql注入 ">
   <meta name="description" content="Sqli-labs第一题详解 | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="[toc] 前言：信息收集是进行渗透测试的第一步，也是非常重要的一步。正所谓 “知己知彼，方能百战不殆”，因此在这个阶段，我们要尽可能地收集目标组织的信息。信息收集的重要性在这学期的护网行动中深有体会，一开始找不到目标资产，一度以为没有资产信息，后来转变了思路才发现原来资产有这么多。 因此通过篇文章来系统的总结下信息收集的大致内容和常用方法，话不多说，开干。 (ง •_•)ง 一、域名信息收集：首">
+<meta name="description" content="[toc] 前言：最近在看sqlmap，发现--os-shell这个命令很厉害，所以来研究一下。 一、os-shell执行原理对于 Mysql 数据库来说，--os-shell的本质就是写入两个 php 文件，其中的一个可以让我们用来执行命令，而另外一个可以让我们可以上传文件。 说到写入文件，就要说一下上传文件的两个前提条件，首先我们要知道网站的绝对路径(我们的文件写入到哪里)，然后要有导入导出的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="渗透测试之信息收集篇">
-<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2021/09/06/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%AF%87/index.html">
+<meta property="og:title" content="sqlmap —— os-shell参数分析">
+<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2021/10/07/sqlmap%20%E2%80%94%E2%80%94%20os-shell%E5%8F%82%E6%95%B0%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="未完成的歌">
-<meta property="og:description" content="[toc] 前言：信息收集是进行渗透测试的第一步，也是非常重要的一步。正所谓 “知己知彼，方能百战不殆”，因此在这个阶段，我们要尽可能地收集目标组织的信息。信息收集的重要性在这学期的护网行动中深有体会，一开始找不到目标资产，一度以为没有资产信息，后来转变了思路才发现原来资产有这么多。 因此通过篇文章来系统的总结下信息收集的大致内容和常用方法，话不多说，开干。 (ง •_•)ง 一、域名信息收集：首">
+<meta property="og:description" content="[toc] 前言：最近在看sqlmap，发现--os-shell这个命令很厉害，所以来研究一下。 一、os-shell执行原理对于 Mysql 数据库来说，--os-shell的本质就是写入两个 php 文件，其中的一个可以让我们用来执行命令，而另外一个可以让我们可以上传文件。 说到写入文件，就要说一下上传文件的两个前提条件，首先我们要知道网站的绝对路径(我们的文件写入到哪里)，然后要有导入导出的">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210116145519737.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210116145625550.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210116145208292.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2021011615160852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210116151810287.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210116193556860.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210116233826494.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210117000509845.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210117001213245.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210117001241160.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210117224356203.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210117230648463.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118135823644.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118140103758.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118140145640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118140908307.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118205816205.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118222536640.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118222736145.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118181051749.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118233012206.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118233028110.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118232754511.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2021011900255693.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119003431914.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119004003597.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119005455162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/202101190055127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119010007347.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119010036153.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119010233230.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119010430932.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119010449262.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119010515511.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119160343569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119161345925.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119170241807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119170343208.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119162818445.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119162721266.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119171605103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119215637165.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119220923222.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119223713606.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119231936669.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119231852844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119232406528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119232151632.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119231956332.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119232026504.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119220923222.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118125755426.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118130607176.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118173352256.jpg">
-<meta property="article:published_time" content="2021-09-06T08:36:04.695Z">
-<meta property="article:modified_time" content="2021-09-06T08:46:35.227Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f322e58003b144678af1531ed1b58093.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/991b851ec8e0435c8042cb89543da337.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e7d1687d01ed4f6bac2c7b207a06882a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2108380cc69a49d581233ccd127b53c4.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/eb660709f524454382dbeaf01d79a60d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/654d8220e4e5445aa713d4bc99eb66ae.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/08f5057b975142139af707ea14291347.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/080187e99012405fb6ee45e087576478.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2249a500ea6a47a899771a689aadd241.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/7843b166430e4a79885fb55011ca6611.png">
+<meta property="article:published_time" content="2021-10-07T13:56:14.381Z">
+<meta property="article:modified_time" content="2021-10-07T13:59:28.542Z">
 <meta property="article:author" content="未完成的歌">
-<meta property="article:tag" content="信息收集">
+<meta property="article:tag" content="sqlmap">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210116145519737.png">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/f322e58003b144678af1531ed1b58093.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -206,7 +162,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(55)</small>
+                <small>(56)</small>
             
         </div>
     </li>
@@ -536,7 +492,7 @@
                     <div data-rel="工具使用">
                         
                         工具使用
-                        <small>(4)</small>
+                        <small>(5)</small>
                         
                     </div>
                     
@@ -596,8 +552,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="55">
-<input type="hidden" id="yelog_site_word_count" value="112.3k">
+<input type="hidden" id="yelog_site_posts_number" value="56">
+<input type="hidden" id="yelog_site_word_count" value="113.3k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -798,6 +754,14 @@
     <nav id="title-list-nav">
         
         <a  class="全部文章 工具使用 "
+           href="/2021/10/07/sqlmap%20%E2%80%94%E2%80%94%20os-shell%E5%8F%82%E6%95%B0%E5%88%86%E6%9E%90/"
+           data-tag="sqlmap"
+           data-author="" >
+            <span class="post-title" title="sqlmap —— os-shell参数分析">sqlmap —— os-shell参数分析</span>
+            <span class="post-date" title="2021-10-07 21:56:14">2021/10/07</span>
+        </a>
+        
+        <a  class="全部文章 工具使用 "
            href="/2021/09/06/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%AF%87/"
            data-tag="信息收集"
            data-author="" >
@@ -990,18 +954,18 @@
         </a>
         
         <a  class="全部文章 CTF Crypto "
-           href="/2019/08/17/RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E5%8E%9F%E7%90%86/"
-           data-tag="密码学"
-           data-author="" >
-            <span class="post-title" title="RSA加密解密原理">RSA加密解密原理</span>
-            <span class="post-date" title="2019-08-17 00:26:38">2019/08/17</span>
-        </a>
-        
-        <a  class="全部文章 CTF Crypto "
            href="/2019/08/17/%E5%AF%86%E7%A0%81%E5%AD%A6%E2%80%94%E2%80%94RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E8%AF%A6%E8%A7%A3/"
            data-tag="密码学"
            data-author="" >
             <span class="post-title" title="密码学—RSA加密解密详解">密码学—RSA加密解密详解</span>
+            <span class="post-date" title="2019-08-17 00:26:38">2019/08/17</span>
+        </a>
+        
+        <a  class="全部文章 CTF Crypto "
+           href="/2019/08/17/RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E5%8E%9F%E7%90%86/"
+           data-tag="密码学"
+           data-author="" >
+            <span class="post-title" title="RSA加密解密原理">RSA加密解密原理</span>
             <span class="post-date" title="2019-08-17 00:26:38">2019/08/17</span>
         </a>
         

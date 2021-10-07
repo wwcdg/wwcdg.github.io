@@ -6,73 +6,29 @@
   <meta name="keywords" content=" sqlmap ">
   <meta name="description" content="SQLMap使用详解 | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="[toc] 前言：信息收集是进行渗透测试的第一步，也是非常重要的一步。正所谓 “知己知彼，方能百战不殆”，因此在这个阶段，我们要尽可能地收集目标组织的信息。信息收集的重要性在这学期的护网行动中深有体会，一开始找不到目标资产，一度以为没有资产信息，后来转变了思路才发现原来资产有这么多。 因此通过篇文章来系统的总结下信息收集的大致内容和常用方法，话不多说，开干。 (ง •_•)ง 一、域名信息收集：首">
+<meta name="description" content="[toc] 前言：最近在看sqlmap，发现--os-shell这个命令很厉害，所以来研究一下。 一、os-shell执行原理对于 Mysql 数据库来说，--os-shell的本质就是写入两个 php 文件，其中的一个可以让我们用来执行命令，而另外一个可以让我们可以上传文件。 说到写入文件，就要说一下上传文件的两个前提条件，首先我们要知道网站的绝对路径(我们的文件写入到哪里)，然后要有导入导出的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="渗透测试之信息收集篇">
-<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2021/09/06/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%AF%87/index.html">
+<meta property="og:title" content="sqlmap —— os-shell参数分析">
+<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2021/10/07/sqlmap%20%E2%80%94%E2%80%94%20os-shell%E5%8F%82%E6%95%B0%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="未完成的歌">
-<meta property="og:description" content="[toc] 前言：信息收集是进行渗透测试的第一步，也是非常重要的一步。正所谓 “知己知彼，方能百战不殆”，因此在这个阶段，我们要尽可能地收集目标组织的信息。信息收集的重要性在这学期的护网行动中深有体会，一开始找不到目标资产，一度以为没有资产信息，后来转变了思路才发现原来资产有这么多。 因此通过篇文章来系统的总结下信息收集的大致内容和常用方法，话不多说，开干。 (ง •_•)ง 一、域名信息收集：首">
+<meta property="og:description" content="[toc] 前言：最近在看sqlmap，发现--os-shell这个命令很厉害，所以来研究一下。 一、os-shell执行原理对于 Mysql 数据库来说，--os-shell的本质就是写入两个 php 文件，其中的一个可以让我们用来执行命令，而另外一个可以让我们可以上传文件。 说到写入文件，就要说一下上传文件的两个前提条件，首先我们要知道网站的绝对路径(我们的文件写入到哪里)，然后要有导入导出的">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210116145519737.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210116145625550.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210116145208292.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2021011615160852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210116151810287.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210116193556860.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210116233826494.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210117000509845.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210117001213245.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210117001241160.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210117224356203.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210117230648463.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118135823644.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118140103758.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118140145640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118140908307.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118205816205.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118222536640.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118222736145.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118181051749.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118233012206.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118233028110.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118232754511.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2021011900255693.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119003431914.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119004003597.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119005455162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/202101190055127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119010007347.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119010036153.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119010233230.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119010430932.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119010449262.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119010515511.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119160343569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119161345925.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119170241807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119170343208.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119162818445.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119162721266.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119171605103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119215637165.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119220923222.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119223713606.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119231936669.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119231852844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119232406528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119232151632.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119231956332.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119232026504.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210119220923222.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118125755426.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118130607176.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210118173352256.jpg">
-<meta property="article:published_time" content="2021-09-06T08:36:04.695Z">
-<meta property="article:modified_time" content="2021-09-06T08:46:35.227Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f322e58003b144678af1531ed1b58093.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/991b851ec8e0435c8042cb89543da337.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e7d1687d01ed4f6bac2c7b207a06882a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2108380cc69a49d581233ccd127b53c4.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/eb660709f524454382dbeaf01d79a60d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/654d8220e4e5445aa713d4bc99eb66ae.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/08f5057b975142139af707ea14291347.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/080187e99012405fb6ee45e087576478.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2249a500ea6a47a899771a689aadd241.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/7843b166430e4a79885fb55011ca6611.png">
+<meta property="article:published_time" content="2021-10-07T13:56:14.381Z">
+<meta property="article:modified_time" content="2021-10-07T13:59:28.542Z">
 <meta property="article:author" content="未完成的歌">
-<meta property="article:tag" content="信息收集">
+<meta property="article:tag" content="sqlmap">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210116145519737.png">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/f322e58003b144678af1531ed1b58093.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -206,7 +162,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(55)</small>
+                <small>(56)</small>
             
         </div>
     </li>
@@ -536,7 +492,7 @@
                     <div data-rel="工具使用">
                         
                         工具使用
-                        <small>(4)</small>
+                        <small>(5)</small>
                         
                     </div>
                     
@@ -596,8 +552,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="55">
-<input type="hidden" id="yelog_site_word_count" value="112.3k">
+<input type="hidden" id="yelog_site_posts_number" value="56">
+<input type="hidden" id="yelog_site_word_count" value="113.3k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -798,6 +754,14 @@
     <nav id="title-list-nav">
         
         <a  class="全部文章 工具使用 "
+           href="/2021/10/07/sqlmap%20%E2%80%94%E2%80%94%20os-shell%E5%8F%82%E6%95%B0%E5%88%86%E6%9E%90/"
+           data-tag="sqlmap"
+           data-author="" >
+            <span class="post-title" title="sqlmap —— os-shell参数分析">sqlmap —— os-shell参数分析</span>
+            <span class="post-date" title="2021-10-07 21:56:14">2021/10/07</span>
+        </a>
+        
+        <a  class="全部文章 工具使用 "
            href="/2021/09/06/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%AF%87/"
            data-tag="信息收集"
            data-author="" >
@@ -990,18 +954,18 @@
         </a>
         
         <a  class="全部文章 CTF Crypto "
-           href="/2019/08/17/RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E5%8E%9F%E7%90%86/"
-           data-tag="密码学"
-           data-author="" >
-            <span class="post-title" title="RSA加密解密原理">RSA加密解密原理</span>
-            <span class="post-date" title="2019-08-17 00:26:38">2019/08/17</span>
-        </a>
-        
-        <a  class="全部文章 CTF Crypto "
            href="/2019/08/17/%E5%AF%86%E7%A0%81%E5%AD%A6%E2%80%94%E2%80%94RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E8%AF%A6%E8%A7%A3/"
            data-tag="密码学"
            data-author="" >
             <span class="post-title" title="密码学—RSA加密解密详解">密码学—RSA加密解密详解</span>
+            <span class="post-date" title="2019-08-17 00:26:38">2019/08/17</span>
+        </a>
+        
+        <a  class="全部文章 CTF Crypto "
+           href="/2019/08/17/RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E5%8E%9F%E7%90%86/"
+           data-tag="密码学"
+           data-author="" >
+            <span class="post-title" title="RSA加密解密原理">RSA加密解密原理</span>
             <span class="post-date" title="2019-08-17 00:26:38">2019/08/17</span>
         </a>
         
@@ -1281,7 +1245,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-10-07 13:17:03'>2021-02-19 00:29</time>
+            发布时间 : <time class="date" title='最后更新: 2021-10-07 21:59:12'>2021-02-19 00:29</time>
         
     </div>
     <div class="article-meta">
@@ -1353,51 +1317,51 @@
 <p>如果想看到 Sqlmap 发送的测试 payload 最好的等级就是3，例：</p>
 <pre><code class="python">sqlmap.py -v 3 -u &quot;http://www.xxx.com/a.php?id=x&quot;</code></pre>
 <h4 id="二、SQLMap安装"><a href="#二、SQLMap安装" class="headerlink" title="二、SQLMap安装"></a>二、SQLMap安装</h4><p>Sqlmap官网：<a target="_blank" rel="noopener" href="http://sqlmap.org/">http://sqlmap.org/</a>，Sqlmap的安装需要Python环境，最新版可以运行在 Python 2.6, 2.7 和 3.x 版本的任何平台上。</p>
-<p>下载完成后可以添加进环境变量，方便使用（不添加也可以用）<br><img src="https://img-blog.csdnimg.cn/2021021723551258.png" alt="在这里插入图片描述"><br>当出现这个画面时工具即可正常运行了。</p>
+<p>下载完成后可以添加进环境变量，方便使用（不添加也可以用）<br><img src="https://img-blog.csdnimg.cn/2021021723551258.png"><br>当出现这个画面时工具即可正常运行了。</p>
 <h4 id="三、SQLMap使用："><a href="#三、SQLMap使用：" class="headerlink" title="三、SQLMap使用："></a>三、SQLMap使用：</h4><h5 id="1、判断是否存在注入："><a href="#1、判断是否存在注入：" class="headerlink" title="1、判断是否存在注入："></a>1、判断是否存在注入：</h5><p>假设目标注入点是 <code>http://127.0.0.1/sqli-labs/Less-1/?id=1</code>，判断其是否存在注入的命令如下：</p>
 <pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1</code></pre>
-<p>结果显示存在注入：<br><img src="https://img-blog.csdnimg.cn/20210218160857197.png" alt="在这里插入图片描述">当注入点后面的参数大于等于两个时,需要加双引号，如下所示。</p>
+<p>结果显示存在注入：<br><img src="https://img-blog.csdnimg.cn/20210218160857197.png">当注入点后面的参数大于等于两个时,需要加双引号，如下所示。</p>
 <pre><code class="python">sqlmap.py -u &quot;http://127.0.0.1/sqli-labs/Less-1/?id=1&amp;uid=2&quot;</code></pre>
 <p>运行完判断是否存在注入的语句后，爆出一大段代码，这里有三处需要选择的地方：第一处的意思为检测到数据库可能是MySQL，是否需要跳过检测其他数据库；第二处的意思是在“level1、risk1”的情况下，是否使用MySQL对应的所有Payload进行检测；第三处的意思是参数<code>id</code>存在漏洞，是否要继续检测其他参数，一般默认按回车键即可。</p>
 <p>可以在语句后面加参数：<code>--beach</code> 会选定默认的选项执行（如上）。</p>
-<h5 id="2、判断文本中的请求是否存在注入："><a href="#2、判断文本中的请求是否存在注入：" class="headerlink" title="2、判断文本中的请求是否存在注入："></a>2、判断文本中的请求是否存在注入：</h5><p>从txt文件中加载HTTP请求，Sqlmap可以从一个文本文件中获取HTTP请求，这样就可以不设置其他参数(如cookie、POST数据等)，txt文件中的内容为Web数据包，如下：<br><img src="https://img-blog.csdnimg.cn/20210218165420683.png" alt="在这里插入图片描述">判断是否存在注入的命令如下，运行后的结果如图所示，<code>-r</code>一般在存在cookie注入时使用。</p>
+<h5 id="2、判断文本中的请求是否存在注入："><a href="#2、判断文本中的请求是否存在注入：" class="headerlink" title="2、判断文本中的请求是否存在注入："></a>2、判断文本中的请求是否存在注入：</h5><p>从txt文件中加载HTTP请求，Sqlmap可以从一个文本文件中获取HTTP请求，这样就可以不设置其他参数(如cookie、POST数据等)，txt文件中的内容为Web数据包，如下：<br><img src="https://img-blog.csdnimg.cn/20210218165420683.png">判断是否存在注入的命令如下，运行后的结果如图所示，<code>-r</code>一般在存在cookie注入时使用。</p>
 <pre><code class="python">sqlmap.py -r 1.txt</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210218165727726.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20210218165727726.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70"></p>
 <h5 id="3、查询当前用户下的所有数据库："><a href="#3、查询当前用户下的所有数据库：" class="headerlink" title="3、查询当前用户下的所有数据库："></a>3、查询当前用户下的所有数据库：</h5><p>该命令是确定网站存在注入后，用于查询当前用户下的所有数据库，如下所示。如果当前用户有权限读取包含所有数据库列表信息的表，使用该命令就可以列出所有数据库，如图所示：</p>
 <pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --dbs</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210218170129467.png" alt="在这里插入图片描述"><br>从图中可以看到，查询出了10个数据库及所有数据库的库名。当继续注入时，<code>--dbs</code>缩写成<code>-D xxx</code>，其意思是在xxx数据库中继续查询其他数据。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210218170129467.png"><br>从图中可以看到，查询出了10个数据库及所有数据库的库名。当继续注入时，<code>--dbs</code>缩写成<code>-D xxx</code>，其意思是在xxx数据库中继续查询其他数据。</p>
 <h5 id="4、获取数据库中的表名："><a href="#4、获取数据库中的表名：" class="headerlink" title="4、获取数据库中的表名："></a>4、获取数据库中的表名：</h5><p>该命令的作用是查询完数据库后，查询指定数据库中所有的表名，如下所示。如果在该命令中不加入 <code>-D</code>参数来指定某一个具体的数据库，那么Sqlmap会列出数据库中所有库的表。</p>
 <pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 -D security --tables</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210218171205301.png" alt="在这里插入图片描述"><br>从图中可以看到 security 数据库中拥有的4个数据表。当继续注入时，<code>--tables</code>缩写成<code>-T</code>，意思是在某表中继续查询。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210218171205301.png"><br>从图中可以看到 security 数据库中拥有的4个数据表。当继续注入时，<code>--tables</code>缩写成<code>-T</code>，意思是在某表中继续查询。</p>
 <h5 id="5、获取表中的字段名："><a href="#5、获取表中的字段名：" class="headerlink" title="5、获取表中的字段名："></a>5、获取表中的字段名：</h5><p>该命令的作用是查询完表名后，查询该表中所有的字段名，如下所示。运行该命令的结果如图所示。</p>
 <pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 -D security -T users --columns</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210218171747383.png" alt="在这里插入图片描述"><br>从图中可以看到在 security 数据库中的users表中一共有3个字段。在后续的注入中，<code>--columns</code>缩写成<code>-C</code>。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210218171747383.png"><br>从图中可以看到在 security 数据库中的users表中一共有3个字段。在后续的注入中，<code>--columns</code>缩写成<code>-C</code>。</p>
 <h5 id="6、获取字段内容："><a href="#6、获取字段内容：" class="headerlink" title="6、获取字段内容："></a>6、获取字段内容：</h5><p>该命令是查询完字段名之后，获取该字段中具体的数据信息,如下所示。</p>
 <pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 -D security -T users -C username,password --dump</code></pre>
-<p>这里需要下载的数据是 security 数据库里 users 表中 username和password 的值，如图所示：<br><img src="https://img-blog.csdnimg.cn/20210218185035327.png" alt="在这里插入图片描述"></p>
+<p>这里需要下载的数据是 security 数据库里 users 表中 username和password 的值，如图所示：<br><img src="https://img-blog.csdnimg.cn/20210218185035327.png"></p>
 <h5 id="7、获取数据库的所有用户："><a href="#7、获取数据库的所有用户：" class="headerlink" title="7、获取数据库的所有用户："></a>7、获取数据库的所有用户：</h5><p>该命令的作用是列出数据库的所有用户，如下所示。在当前用户有权限读取包含所有用户的表的权限时，使用该命令就可以列出所有管理用户。</p>
 <pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --users</code></pre>
-<p>可以看到，当前用户的账号是root，如图所示：<br><img src="https://img-blog.csdnimg.cn/20210218185546943.png" alt="在这里插入图片描述"></p>
+<p>可以看到，当前用户的账号是root，如图所示：<br><img src="https://img-blog.csdnimg.cn/20210218185546943.png"></p>
 <h5 id="8、获取数据库用户的密码："><a href="#8、获取数据库用户的密码：" class="headerlink" title="8、获取数据库用户的密码："></a>8、获取数据库用户的密码：</h5><p>该命令的作用是列出数据库用户的密码，如下所示。如果当前用户有读取包含用户密码的权限，sqlmap会先列举出用户，然后列出Hash，并尝试破解。</p>
 <pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --passwords</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210218221345141.png" alt="在这里插入图片描述"><br>从图中可以看到，密码使用MySQL5加密，可在网站中自行解密（自带的解密很慢）。<br><img src="https://img-blog.csdnimg.cn/20210218221815819.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20210218221345141.png"><br>从图中可以看到，密码使用MySQL5加密，可在网站中自行解密（自带的解密很慢）。<br><img src="https://img-blog.csdnimg.cn/20210218221815819.png"></p>
 <h5 id="9、获取当前网站数据库的名称："><a href="#9、获取当前网站数据库的名称：" class="headerlink" title="9、获取当前网站数据库的名称："></a>9、获取当前网站数据库的名称：</h5><p>使用该命令可以列出当前网站使用的数据库，如下所示。</p>
 <pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --current-db</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210218222104689.png" alt="在这里插入图片描述"><br>从图中可以看到数据库是security。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210218222104689.png"><br>从图中可以看到数据库是security。</p>
 <h5 id="10、获取当前网站数据库的用户名称："><a href="#10、获取当前网站数据库的用户名称：" class="headerlink" title="10、获取当前网站数据库的用户名称："></a>10、获取当前网站数据库的用户名称：</h5><p>使用该命令可以列出当前网站使用的数据库用户，如下所示。</p>
 <pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --current-user</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210218222615569.png" alt="在这里插入图片描述"><br>从图中可以看到，用户是root。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210218222615569.png"><br>从图中可以看到，用户是root。</p>
 <h4 id="四、SQLMap进阶：参数讲解"><a href="#四、SQLMap进阶：参数讲解" class="headerlink" title="四、SQLMap进阶：参数讲解"></a>四、SQLMap进阶：参数讲解</h4><h5 id="1、-level-5：探测等级"><a href="#1、-level-5：探测等级" class="headerlink" title="1、--level 5：探测等级"></a>1、<code>--level 5</code>：探测等级</h5><p>参数<code>--level 5</code>指需要执行的测试等级，一共有5个等级（1~5），不加 level 默认是1。5级包含的 Payload 最多，会自动破解出 cookie、XFF等头部注入。当然，level 5的运行速度也比较慢。</p>
 <p>这个参数会影响测试的注入点，GET和POST的数据都会进行测试，HTTP cookie 在 level 为2时就会测试，HTTP User-Agent/Referer 头在 level 为3时就会测试。总之，在不确定哪个 payload 或参数为注入点时，为了保证全面性，建议使用高的 level 值。</p>
 <h5 id="2、-is-dba：当前用户是否为管理权限"><a href="#2、-is-dba：当前用户是否为管理权限" class="headerlink" title="2、--is-dba：当前用户是否为管理权限"></a>2、<code>--is-dba</code>：当前用户是否为管理权限</h5><p>该命令用于查看当前账户是否为数据库管理员账户，如下所示：</p>
 <pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --is-dba</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/2021021823304973.png" alt="在这里插入图片描述"></p>
-<h5 id="3、-roles：列出数据库管理员角色"><a href="#3、-roles：列出数据库管理员角色" class="headerlink" title="3、--roles：列出数据库管理员角色"></a>3、<code>--roles</code>：列出数据库管理员角色</h5><p>该命令用于查看数据库用户的角色。如果当前用户有权限读取包含所有用户的表，输入该命令会列举出每个用户的角色，也可以用<code>-U</code>参数指定想看哪个用户的角色，如图所示：<br><img src="https://img-blog.csdnimg.cn/20210219000331947.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/2021021823304973.png"></p>
+<h5 id="3、-roles：列出数据库管理员角色"><a href="#3、-roles：列出数据库管理员角色" class="headerlink" title="3、--roles：列出数据库管理员角色"></a>3、<code>--roles</code>：列出数据库管理员角色</h5><p>该命令用于查看数据库用户的角色。如果当前用户有权限读取包含所有用户的表，输入该命令会列举出每个用户的角色，也可以用<code>-U</code>参数指定想看哪个用户的角色，如图所示：<br><img src="https://img-blog.csdnimg.cn/20210219000331947.png"></p>
 <h5 id="4、-referer：HTTP-referer头"><a href="#4、-referer：HTTP-referer头" class="headerlink" title="4、--referer：HTTP referer头"></a>4、<code>--referer</code>：HTTP referer头</h5><p>Sqlmap 可以在请求中伪造 HTTP 中的 referer，当<code>--level</code>参数设定为3或3以上时，会尝试对referer注入。可以使用referer命令来欺骗，例：</p>
 <pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --referer http://www.baidu.com</code></pre>
 <h5 id="5、-sql-shell：运行自定义SQL语句"><a href="#5、-sql-shell：运行自定义SQL语句" class="headerlink" title="5、--sql-shell：运行自定义SQL语句"></a>5、<code>--sql-shell</code>：运行自定义SQL语句</h5><p>该命令用于执行指定的SQL语句，如下所示，假设执行<code>select * from users limit 0,1</code>语句，如下所示：</p>
 <pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --sql-shell</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210219001121933.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20210219001121933.png"></p>
 <h5 id="6、-os-cmd，-os-shell：运行任意操作系统命令"><a href="#6、-os-cmd，-os-shell：运行任意操作系统命令" class="headerlink" title="6、--os-cmd，--os-shell：运行任意操作系统命令"></a>6、<code>--os-cmd</code>，<code>--os-shell</code>：运行任意操作系统命令</h5><p>在当前用户有权限使用特定的函数的前提下，如果数据库为MySQL、PostgreSQL，Sqlmap会上传一个二进制库，包含用户自定义的函数<code>sys_exec ()</code> 和<code>sys_eval ()</code>，那么创建的这两个函数就可以执行系统命令。</p>
 <p>如果数据库是微软 SQL Server时，Sqlmap通过存储过程 xp_cmdshell 来执行任意命令，如果 xp_cmdshell 被禁用(SQL Server 2005及以上版本默认被禁用)，则Sqlmap会重新启用它；如果不存在，会自动创建。</p>
 <p>用<code>--os-shell</code>参数可以模拟一个真实的Shell，输入想执行的命令。当不能执行多语句时(如PHP或ASP+Mysql)，仍然可以使用 INTO OUTFILE写进可写目录，创建一个Web后门。</p>
@@ -1411,10 +1375,10 @@
 <p>执行命令后会在网站根目录上传两个文件：tmpbxbxz.php、tmpuoiuz.php(此文件为上传页面)</p>
 <h5 id="7、-file-read：从数据库服务器中读取文件"><a href="#7、-file-read：从数据库服务器中读取文件" class="headerlink" title="7、--file-read：从数据库服务器中读取文件"></a>7、<code>--file-read</code>：从数据库服务器中读取文件</h5><p>该命令用于读取执行文件，当数据库为MySQL、PostgreSQL或MicrosoftSQL Server，并且当前用户有权限使用特定的函数时，读取的文件可以是文本，也可以是二进制文件。</p>
 <pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --file-read &quot;C:/11.txt&quot;</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/589fd4ad3a3e4c4495b0aa805a95584f.png" alt="在这里插入图片描述"><br>执行完会把文件保存到本地目录下<br><img src="https://img-blog.csdnimg.cn/8ff51affc6f74c309dafcbfdbe8943dc.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/589fd4ad3a3e4c4495b0aa805a95584f.png"><br>执行完会把文件保存到本地目录下<br><img src="https://img-blog.csdnimg.cn/8ff51affc6f74c309dafcbfdbe8943dc.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
 <h5 id="8、-file-write-file-dest：上传文件到数据库服务器中"><a href="#8、-file-write-file-dest：上传文件到数据库服务器中" class="headerlink" title="8、--file-write --file-dest：上传文件到数据库服务器中"></a>8、<code>--file-write --file-dest</code>：上传文件到数据库服务器中</h5><p>该命令用于写入本地文件到服务器中，当数据库为MySQL、PostgreSQL或Microsoft SQL Server，并且当前用户有权限使用特定的函数时，上传的文件可以是文本，也可以是二进制文件。</p>
 <pre><code class="python">sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=1 --file-write &quot;C:/1.txt&quot; --file-dest &quot;C:/windows/Temp/1.php&quot;</code></pre>
-<p>执行结束即可把本地的1.txt 文件上传到目标服务器下<br><img src="https://img-blog.csdnimg.cn/7f133d2c16514d8396026789f8e9aa2f.png" alt="在这里插入图片描述"></p>
+<p>执行结束即可把本地的1.txt 文件上传到目标服务器下<br><img src="https://img-blog.csdnimg.cn/7f133d2c16514d8396026789f8e9aa2f.png"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>
