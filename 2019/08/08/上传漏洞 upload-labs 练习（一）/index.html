@@ -6,29 +6,31 @@
   <meta name="keywords" content=" 上传漏洞 ">
   <meta name="description" content="上传漏洞 upload-labs 练习（一） | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="[toc] 前言：最近在看sqlmap，发现--os-shell这个命令很厉害，所以来研究一下。 一、os-shell执行原理对于 Mysql 数据库来说，--os-shell的本质就是写入两个 php 文件，其中的一个可以让我们用来执行命令，而另外一个可以让我们可以上传文件。 说到写入文件，就要说一下上传文件的两个前提条件，首先我们要知道网站的绝对路径(我们的文件写入到哪里)，然后要有导入导出的">
+<meta name="description" content="在DVWA页面中选择 SQL Injection 一、首先肯定是要判断是否有注入漏洞，在输入框输入1，返回 ID: 1 First name: admin Surname: admin 返回正常； 再次输入1&#39;，报错，返回 You have an error in your SQL syntax; check the manual that corresponds to your Mari">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sqlmap —— os-shell参数分析">
-<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2021/10/07/sqlmap%20%E2%80%94%E2%80%94%20os-shell%E5%8F%82%E6%95%B0%E5%88%86%E6%9E%90/index.html">
+<meta property="og:title" content="DVWA——Sqlmap练习">
+<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2021/12/16/DVWA%E2%80%94%E2%80%94Sqlmap%E7%BB%83%E4%B9%A0/index.html">
 <meta property="og:site_name" content="未完成的歌">
-<meta property="og:description" content="[toc] 前言：最近在看sqlmap，发现--os-shell这个命令很厉害，所以来研究一下。 一、os-shell执行原理对于 Mysql 数据库来说，--os-shell的本质就是写入两个 php 文件，其中的一个可以让我们用来执行命令，而另外一个可以让我们可以上传文件。 说到写入文件，就要说一下上传文件的两个前提条件，首先我们要知道网站的绝对路径(我们的文件写入到哪里)，然后要有导入导出的">
+<meta property="og:description" content="在DVWA页面中选择 SQL Injection 一、首先肯定是要判断是否有注入漏洞，在输入框输入1，返回 ID: 1 First name: admin Surname: admin 返回正常； 再次输入1&#39;，报错，返回 You have an error in your SQL syntax; check the manual that corresponds to your Mari">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/f322e58003b144678af1531ed1b58093.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/991b851ec8e0435c8042cb89543da337.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/e7d1687d01ed4f6bac2c7b207a06882a.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2108380cc69a49d581233ccd127b53c4.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/eb660709f524454382dbeaf01d79a60d.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/654d8220e4e5445aa713d4bc99eb66ae.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/08f5057b975142139af707ea14291347.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/080187e99012405fb6ee45e087576478.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2249a500ea6a47a899771a689aadd241.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/7843b166430e4a79885fb55011ca6611.png">
-<meta property="article:published_time" content="2021-10-07T13:56:14.381Z">
-<meta property="article:modified_time" content="2021-10-07T13:59:28.542Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105173214418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105174614243.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105204730652.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020110520533660.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105210027467.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105210545491.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105212241569.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105214939645.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105215718669.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105221313664.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020110522281247.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020110523301156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2021-12-16T05:19:01.144Z">
+<meta property="article:modified_time" content="2021-12-16T05:26:39.862Z">
 <meta property="article:author" content="未完成的歌">
-<meta property="article:tag" content="sqlmap">
+<meta property="article:tag" content="sql注入">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/f322e58003b144678af1531ed1b58093.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201105173214418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -162,7 +164,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(56)</small>
+                <small>(73)</small>
             
         </div>
     </li>
@@ -174,7 +176,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         漏洞原理
-                        <small>(11)</small>
+                        <small>(12)</small>
                         
                     </div>
                     
@@ -197,7 +199,7 @@
                                         
                                         Sql注入
                                         
-                                            <small>(4
+                                            <small>(5
                                                 )</small>
                                         
                                     </div>
@@ -277,18 +279,30 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Web开发
-                        <small>(8)</small>
+                        <small>(19)</small>
                         
                     </div>
                     
                         <ul class="sub hide">
                             
                                 <li>
+                                    <div data-rel="Web开发<--->Java Web">
+                                        
+                                        Java Web
+                                        
+                                            <small>(9
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
                                     <div data-rel="Web开发<--->JavaEE">
                                         
                                         JavaEE
                                         
-                                            <small>(2
+                                            <small>(4
                                                 )</small>
                                         
                                     </div>
@@ -344,7 +358,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         CTF
-                        <small>(21)</small>
+                        <small>(22)</small>
                         
                     </div>
                     
@@ -367,7 +381,7 @@
                                         
                                         MISC
                                         
-                                            <small>(12
+                                            <small>(13
                                                 )</small>
                                         
                                     </div>
@@ -438,6 +452,38 @@
     
         
             
+                <li>
+                    <div data-rel="JavaSE">
+                        
+                        JavaSE
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Liunx">
+                        
+                        Liunx
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
         
     
         
@@ -450,7 +496,7 @@
                     <div data-rel="Python">
                         
                         Python
-                        <small>(1)</small>
+                        <small>(2)</small>
                         
                     </div>
                     
@@ -532,6 +578,20 @@
             
         
     
+        
+            
+                <li>
+                    <div data-rel="网络协议">
+                        
+                        网络协议
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -552,8 +612,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="56">
-<input type="hidden" id="yelog_site_word_count" value="113.3k">
+<input type="hidden" id="yelog_site_posts_number" value="73">
+<input type="hidden" id="yelog_site_word_count" value="138.8k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -639,7 +699,27 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>http</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java web</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>javase</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>javaSE</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jsp</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>liunx</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -752,6 +832,30 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 漏洞原理 Sql注入 "
+           href="/2021/12/16/DVWA%E2%80%94%E2%80%94Sqlmap%E7%BB%83%E4%B9%A0/"
+           data-tag="sql注入"
+           data-author="" >
+            <span class="post-title" title="DVWA——Sqlmap练习">DVWA——Sqlmap练习</span>
+            <span class="post-date" title="2021-12-16 13:19:01">2021/12/16</span>
+        </a>
+        
+        <a  class="全部文章 网络协议 "
+           href="/2021/12/16/HTTP%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/"
+           data-tag="http"
+           data-author="" >
+            <span class="post-title" title="HTTP协议详解">HTTP协议详解</span>
+            <span class="post-date" title="2021-12-16 13:18:39">2021/12/16</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 JavaEE "
+           href="/2021/12/16/SpringMVC%20%E5%AE%9E%E7%8E%B0%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95/"
+           data-tag="SpringMVC"
+           data-author="" >
+            <span class="post-title" title="SpringMVC 实现注册登录">SpringMVC 实现注册登录</span>
+            <span class="post-date" title="2021-12-16 13:16:44">2021/12/16</span>
+        </a>
         
         <a  class="全部文章 工具使用 "
            href="/2021/10/07/sqlmap%20%E2%80%94%E2%80%94%20os-shell%E5%8F%82%E6%95%B0%E5%88%86%E6%9E%90/"
@@ -889,12 +993,116 @@
             <span class="post-date" title="2020-11-03 20:30:54">2020/11/03</span>
         </a>
         
+        <a  class="全部文章 Web开发 JavaEE "
+           href="/2020/11/03/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AASpring%20MVC%E7%A8%8B%E5%BA%8F/"
+           data-tag="SpringMVC"
+           data-author="" >
+            <span class="post-title" title="我的第一个Spring MVC程序">我的第一个Spring MVC程序</span>
+            <span class="post-date" title="2020-11-03 20:30:54">2020/11/03</span>
+        </a>
+        
+        <a  class="全部文章 JavaSE "
+           href="/2020/09/28/Java%E2%80%94%E2%80%94%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0/"
+           data-tag="javase"
+           data-author="" >
+            <span class="post-title" title="Java web—Servlet过滤器(Filter)">Java web—Servlet过滤器(Filter)</span>
+            <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
+        </a>
+        
+        <a  class="全部文章 Liunx "
+           href="/2020/09/28/Linux%E4%B8%8Btar%E5%91%BD%E4%BB%A4%E7%AE%80%E4%BB%8B/"
+           data-tag="liunx"
+           data-author="" >
+            <span class="post-title" title="Linux下tar命令简介">Linux下tar命令简介</span>
+            <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 Java Web "
+           href="/2020/09/28/JDBC%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8EMysql%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"
+           data-tag="java web"
+           data-author="" >
+            <span class="post-title" title="JDBC——基于Mysql的基本操作">JDBC——基于Mysql的基本操作</span>
+            <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 Java Web "
+           href="/2020/09/28/JSP%E2%80%94%E2%80%94JSTL%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag="jsp"
+           data-author="" >
+            <span class="post-title" title="JSP——JSTL语法总结">JSP——JSTL语法总结</span>
+            <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 Java Web "
+           href="/2020/09/28/JSP%E2%80%94%E2%80%94JavaBean%E5%BA%94%E7%94%A8/"
+           data-tag="jsp"
+           data-author="" >
+            <span class="post-title" title="JSP——JavaBean应用">JSP——JavaBean应用</span>
+            <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 Java Web "
+           href="/2020/09/28/JSP%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E7%89%B9%E6%AE%8A%E5%AF%B9%E8%B1%A1/"
+           data-tag="jsp"
+           data-author="" >
+            <span class="post-title" title="JSP作用域与特殊对象">JSP作用域与特殊对象</span>
+            <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 Java Web "
+           href="/2020/09/28/JSP%E5%8A%A8%E4%BD%9C%E5%92%8C%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1/"
+           data-tag="jsp"
+           data-author="" >
+            <span class="post-title" title="JSP动作和内置对象">JSP动作和内置对象</span>
+            <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 Java Web "
+           href="/2020/09/28/JSP%E8%84%9A%E6%9C%AC%E4%B8%8E%E6%8C%87%E4%BB%A4%E5%85%83%E7%B4%A0/"
+           data-tag="jsp"
+           data-author="" >
+            <span class="post-title" title="JSP脚本与指令元素">JSP脚本与指令元素</span>
+            <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 Java Web "
+           href="/2020/09/28/Java%20web%E2%80%94Cookie%E4%B8%8ESession%E5%AF%B9%E8%B1%A1/"
+           data-tag="java web"
+           data-author="" >
+            <span class="post-title" title="Java web—Cookie与Session对象">Java web—Cookie与Session对象</span>
+            <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 Java Web "
+           href="/2020/09/28/JSP%E2%80%94%E2%80%94EL%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag="jsp"
+           data-author="" >
+            <span class="post-title" title="JSP——EL语法总结">JSP——EL语法总结</span>
+            <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 Java Web "
+           href="/2020/09/28/Java%20web%E2%80%94Servlet%E8%BF%87%E6%BB%A4%E5%99%A8(Filter)/"
+           data-tag="java web"
+           data-author="" >
+            <span class="post-title" title="Java web—Servlet过滤器(Filter)">Java web—Servlet过滤器(Filter)</span>
+            <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
+        </a>
+        
         <a  class="全部文章 Web开发 JavaSE "
            href="/2020/09/28/Java%20SE%20%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/"
            data-tag="javaSE"
            data-author="" >
             <span class="post-title" title="Java SE重点知识笔记">Java SE重点知识笔记</span>
             <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
+        </a>
+        
+        <a  class="全部文章 Python "
+           href="/2019/12/05/Python%20%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="Python 爬虫学习（一）">Python 爬虫学习（一）</span>
+            <span class="post-date" title="2019-12-05 15:13:07">2019/12/05</span>
         </a>
         
         <a  class="全部文章 Python "
@@ -929,6 +1137,14 @@
             <span class="post-date" title="2019-10-05 13:51:25">2019/10/05</span>
         </a>
         
+        <a  class="全部文章 CTF MISC "
+           href="/2019/09/12/BUU%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94Misc(%E4%B8%80)/"
+           data-tag="misc"
+           data-author="" >
+            <span class="post-title" title="BUU刷题记录——Misc(一)">BUU刷题记录——Misc(一)</span>
+            <span class="post-date" title="2019-09-12 08:07:25">2019/09/12</span>
+        </a>
+        
         <a  class="全部文章 CTF Web "
            href="/2019/09/12/Bugku%E2%80%94%E2%80%94web(%E4%B8%80)/"
            data-tag="web"
@@ -954,18 +1170,18 @@
         </a>
         
         <a  class="全部文章 CTF Crypto "
-           href="/2019/08/17/%E5%AF%86%E7%A0%81%E5%AD%A6%E2%80%94%E2%80%94RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E8%AF%A6%E8%A7%A3/"
-           data-tag="密码学"
-           data-author="" >
-            <span class="post-title" title="密码学—RSA加密解密详解">密码学—RSA加密解密详解</span>
-            <span class="post-date" title="2019-08-17 00:26:38">2019/08/17</span>
-        </a>
-        
-        <a  class="全部文章 CTF Crypto "
            href="/2019/08/17/RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E5%8E%9F%E7%90%86/"
            data-tag="密码学"
            data-author="" >
             <span class="post-title" title="RSA加密解密原理">RSA加密解密原理</span>
+            <span class="post-date" title="2019-08-17 00:26:38">2019/08/17</span>
+        </a>
+        
+        <a  class="全部文章 CTF Crypto "
+           href="/2019/08/17/%E5%AF%86%E7%A0%81%E5%AD%A6%E2%80%94%E2%80%94RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E8%AF%A6%E8%A7%A3/"
+           data-tag="密码学"
+           data-author="" >
+            <span class="post-title" title="密码学—RSA加密解密详解">密码学—RSA加密解密详解</span>
             <span class="post-date" title="2019-08-17 00:26:38">2019/08/17</span>
         </a>
         
