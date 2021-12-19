@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>双图+盲水印 | 未完成的歌</title>
-  <meta name="keywords" content=" 盲水印 ">
-  <meta name="description" content="双图+盲水印 | 未完成的歌">
+  <title>Cookie与Session对象 | 未完成的歌</title>
+  <meta name="keywords" content=" javaweb ">
+  <meta name="description" content="Cookie与Session对象 | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="在DVWA页面中选择 SQL Injection 一、首先肯定是要判断是否有注入漏洞，在输入框输入1，返回 ID: 1 First name: admin Surname: admin 返回正常； 再次输入1&#39;，报错，返回 You have an error in your SQL syntax; check the manual that corresponds to your Mari">
 <meta property="og:type" content="article">
@@ -1332,9 +1332,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-双图+盲水印" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Java web—Cookie与Session对象" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">双图+盲水印</h1>
+        <h1 class="article-title">Cookie与Session对象</h1>
     
     <div class="article-meta">
         
@@ -1344,9 +1344,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="CTF">CTF</a> > 
+            <a  data-rel="Web开发">Web开发</a> > 
             
-            <a  data-rel="CTF&lt;---&gt;MISC">MISC</a>
+            <a  data-rel="Web开发&lt;---&gt;JavaWeb">JavaWeb</a>
             
         </span>
         
@@ -1354,19 +1354,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">盲水印</a>
+            <a class="color3">javaweb</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-12-16 13:53:39'>2019-04-16 15:41</time>
+            发布时间 : <time class="date" title='最后更新: 2021-12-19 21:43:13'>2020-09-28 20:07</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:237</span>
+        <span>字数:1.9k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1385,7 +1385,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BC%9A%E8%AF%9D%E4%BB%8B%E7%BB%8D"><span class="toc-text">一、会话介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E4%BC%9A%E8%AF%9D%EF%BC%9F"><span class="toc-text">1、什么是会话？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E4%BC%9A%E8%AF%9D%E7%9A%84%E7%89%B9%E6%80%A7"><span class="toc-text">2、会话的特性:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF%EF%BC%9A"><span class="toc-text">3、会话管理技术：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Cookie-%E6%8A%80%E6%9C%AF%EF%BC%9A%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8A%80%E6%9C%AF"><span class="toc-text">二、Cookie 技术：客户端技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81Session%E6%8A%80%E6%9C%AF%EF%BC%9A%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8A%80%E6%9C%AF"><span class="toc-text">三、Session技术：服务器技术</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1401,11 +1401,198 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>1.双图</strong><br>打开压缩包，发现有两张图片 first1和second.png，使用Stegsolve打开first1.png进行一次异或处理</p>
-<p><img src="https://github.com/weiwanchengdege/photos/blob/master/20190408201207778.png?raw=true" alt="在这里插入图片描述"><br>然后分析选择结合second.png得到<br><img src="https://github.com/weiwanchengdege/photos/blob/master/20190408201646144.png?raw=true" alt="在这里插入图片描述"><br>用stegslove对二维码进行运算得到三张二维码</p>
-<p><img src="https://github.com/weiwanchengdege/photos/blob/master/20190408201910360.png?raw=true" alt="在这里插入图片描述"><br><img src="https://github.com/weiwanchengdege/photos/blob/master/201904082020166.png?raw=true" alt="在这里插入图片描述"><br><img src="https://github.com/weiwanchengdege/photos/blob/master/20190408202109348.png?raw=true" alt="在这里插入图片描述"><br>扫描结果是DES 6XaMMbM7<br>和一长串字符，很显然是des加密，秘钥是6XaMMbM7，然后对长串字符进行DES解密，得到flag。<br><strong>2.盲水印</strong><br>据提示为盲水印题打开有两张图片<br><img src="https://github.com/weiwanchengdege/photos/blob/master/20190408202952565.png?raw=true" alt="在这里插入图片描述"><br>所以使用bwm脚本（python2）bwm脚本的<a href="https://github.com/chishaxie/BlindWaterMark">github</a>,如果没有cv2这个模块，使用下面的命令安装cv2</p>
-<pre><code>pip install opencv-python</code></pre>
-<p>然后运行<code>python bwm.py decode 1.png 2.png flag.png</code><br>其中1.png和2.png是解压所得图片，flag.png是所分离出来的水印。<br>由于加密方式不同，所以未能得到水印图。<br>于是推测为软件添加的水印使用watermark工具进行破解<a target="_blank" rel="noopener" href="https://www.anxz.com/down/10929.html">软件下载</a><br>得到水印图：<img src="https://github.com/weiwanchengdege/photos/blob/master/20190408204103908.png?raw=true"></p>
+        <p>接着上篇的Servlet总结，本篇文章来总结下 Cookie 和 Session<hr></p>
+<h4 id="一、会话介绍"><a href="#一、会话介绍" class="headerlink" title="一、会话介绍"></a>一、会话介绍</h4><h5 id="1、什么是会话？"><a href="#1、什么是会话？" class="headerlink" title="1、什么是会话？"></a>1、什么是会话？</h5><p>从打开浏览器，到访问页面，到最终关闭浏览器 ，整个过程就是一次会话  </p>
+<h5 id="2、会话的特性"><a href="#2、会话的特性" class="headerlink" title="2、会话的特性:"></a>2、会话的特性:</h5><ul>
+<li>一个会话中可能包含多个请求</li>
+<li>一次完整的会话只针对一个用户</li>
+</ul>
+<h5 id="3、会话管理技术："><a href="#3、会话管理技术：" class="headerlink" title="3、会话管理技术："></a>3、会话管理技术：</h5><ul>
+<li>Cookie 技术：客户端技术 </li>
+<li>Session技术：服务器技术  </li>
+</ul>
+<h4 id="二、Cookie-技术：客户端技术"><a href="#二、Cookie-技术：客户端技术" class="headerlink" title="二、Cookie 技术：客户端技术"></a>二、Cookie 技术：客户端技术</h4><p><strong>1、什么是Cookie</strong>？</p>
+<ul>
+<li>Cookie是HTTP协议的规范之一，它是服务器和客户端之间传输的小数据。</li>
+<li>Cookie就是服务器保存在客户端的数据！（类似于会员卡，保存在用户手中（客户端））</li>
+<li>Cookie是一个键值对！</li>
+</ul>
+<p><strong>2、Cookie的常用用途</strong>：</p>
+<ul>
+<li>站点跟踪特定访问者访问的次数，最后访问的时间以及访问者进入站点的路径；</li>
+<li>帮助站点统计用户个人资料以实现各种各样的个性化服务。</li>
+<li>实现自动登录功能</li>
+</ul>
+<p><strong>3、Cookie的执行原理</strong>：</p>
+<ul>
+<li>第一次访问服务器，服务器会增加Set-Cookie头字段，将Cookie信息发送给浏览器，并保存在客户端。</li>
+<li>当后续访问服务器时，会在请求消息中将用户信息以Cookie的形式发送给服务器，从而使服务器端分辨出当前请求是由哪个用户发出的。</li>
+</ul>
+<p><strong>类 javax.servlet.http.Cookie 表示cookie</strong></p>
+<p>获取Cookie信息的方法: </p>
+<pre><code class="java">getName()名称, 
+getValue()值, 
+getPath()cookie所在的目录, 
+getDomain()有效域 
+getMaxAge()有效时间, 
+getSecure()只能使用安全的协议</code></pre>
+<p>设置Cookie信息的方法: </p>
+<pre><code class="java">setValue(), 
+setPath(), 
+setDomain(), 
+setMaxAge()设置在客户端硬盘上保存的最大时间，单位为秒</code></pre>
+<p>从请求中获取Cookie:</p>
+<pre><code class="java"> Cookie[] HttpServletRequest.getCookies( ) </code></pre>
+<p>向响应中添加cookie:</p>
+<pre><code class="java">HttpServletResponse.addCookie(&quot;name&quot;,&quot;value&quot;)</code></pre>
+<p><strong>4、向客户端写入Cookie</strong>：</p>
+<p>1、创建Cookie</p>
+<pre><code class="java">Cookie c=new Cookie(&quot;name&quot;, &quot;value&quot;);</code></pre>
+<p>2、设置Cookie的属性</p>
+<pre><code class="java">c.setMaxAge(60*60*24); 
+c.setDomain(&quot;pdsu.edu.cn&quot;)
+c.setPath(&quot;/&quot;)</code></pre>
+<p>3、调用 response 的 addCookie 方法将其写入到客户端</p>
+<pre><code class="java">response.addCookie(c)</code></pre>
+<p><strong>5、读取Cookie的步骤</strong>：</p>
+<p>从客户端读取所有能够被本服务器读取的Cookie:</p>
+<pre><code class="java">Cookie[] cookies=request.getCookies();</code></pre>
+<p>从中找出需要的Cookie:</p>
+<pre><code class="java">for(int i=0;i&lt;cookies.length;i++) &#123;
+if( cookies[i].getName().equals(“wanted”) )&#123;
+      ......
+   &#125;
+&#125;</code></pre>
+<p><strong>例</strong>：使用Cookie对象实现欢迎信息，当用户第一次访问应用时显示欢迎信息，并提示第1次访问，依次类推。</p>
+<p>代码如下：</p>
+<pre><code class="java">package cn.servlet;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class IndexServlet extends HttpServlet &#123;
+    private static final long serialVersionUID = 1L;
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException &#123;
+        response.setContentType(&quot;text/html;charset=utf-8&quot;);
+        Cookie[] cookies = request.getCookies();
+        Integer integer = 0;
+        if (cookies != null) &#123;
+            for (int i = 0; i &lt; cookies.length; i++) &#123;
+                if (&quot;A&quot;.equals(cookies[i].getName())) &#123;
+                    integer = Integer.parseInt(cookies[i].getValue());
+                &#125;
+            &#125;
+        &#125;
+        integer++;
+        Cookie cookie = new Cookie(&quot;A&quot;, integer + &quot;&quot;);
+        if (integer &lt;= 1) &#123;
+            response.getWriter().append(&quot;欢迎A&quot;).append(&quot;首次访问本网站&quot;);
+        &#125; else &#123;
+            response.getWriter().append(&quot;欢迎A第&quot;).append(integer + &quot;&quot;).append(&quot;次访问本网站&quot;);
+        &#125;
+        cookie.setMaxAge(10);
+        response.addCookie(cookie);
+
+    &#125;
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException &#123;
+        doGet(request, response);
+    &#125;
+
+&#125;
+</code></pre>
+<h4 id="三、Session技术：服务器技术"><a href="#三、Session技术：服务器技术" class="headerlink" title="三、Session技术：服务器技术"></a>三、Session技术：服务器技术</h4><p><strong>1、什么是Session技术</strong>？</p>
+<ul>
+<li>一种会话管理技术，将会话中的数据保存到服务器端。</li>
+<li>是基于会话级别的cookie实现的。</li>
+<li>通俗的讲session技术就好比医院发放给病人的就医卡和医院为每个病人保留病例档案的过程，病人去医院看病，只需要出示就医卡，医生根据卡号可以查到病人的就诊信息。</li>
+<li>当浏览器访问服务器时，Servlet容器就会创建一个Session对象和ID属性，其中，Session对象就相当于病历档案，ID就相当于就医卡号，在后续访问时，只要将标识号传递给服务器，就能判断出是哪个客户端发送的，从而选择与之对应的Session对象为其服务， 通常情况下Session是借助Cookie技术来传递ID属性的。</li>
+</ul>
+<p><strong>2、Session实现原理</strong>：</p>
+<p>图解：<br><img src="https://img-blog.csdnimg.cn/20200420222056115.png" alt="在这里插入图片描述"></p>
+<hr/>
+
+<ul>
+<li><p>session中的数据可以被一个用户在一次会话中共享。</p>
+</li>
+<li><p>每个人的session是不同的。<br><img src="https://img-blog.csdnimg.cn/20200420222218865.png" alt="在这里插入图片描述"></p>
+<hr>
+</li>
+<li><p>session_id的检索和创建：<br><img src="https://img-blog.csdnimg.cn/20200420222453205.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<p><strong>3、Session会话</strong>：</p>
+<p>1、什么是会话跟踪技术？</p>
+<ul>
+<li>HTTP是无状态协议，也就是没有记忆力的协议，每个请求之间无法共享数据。这就无法知道会话什么时候开始，什么时候结束，也无法确定发出请求的用户身份。这说明需要使用额外的手段来跟踪会话！</li>
+<li>在一个会话中共享数据即会话跟踪技术</li>
+</ul>
+<p>2、会话追踪过程可划分为：<br><img src="https://img-blog.csdnimg.cn/20200420223630839.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3、常用的会话追踪机制有：</p>
+<ol>
+<li><p>Cookies<br>特点：最常用<br>原理：引擎把用户会话ID保存在cookie中，保存到客户端，在以后的请求中把这个cookie发送给服务器</p>
+</li>
+<li><p>URL重写<br>特点：性能最低<br>使用情况：客户端不能接受cookie时<br>原理：把session id写入URL中，这样的URL会被引擎解析和某个session相关联<br>例子：<code>http://www.myser.com/catalog/index.htm;jsessionid=1234 </code></p>
+</li>
+</ol>
+<ol start="3">
+<li>表单隐藏<br>原理：利用HTML内hidden的属性，把客户端的信息，在用户不察觉的情形下，偷偷地随着请求一起传送给到服务器处理<br>使用：<br><code>  &lt;input type=&quot;hidden&quot; name=&quot;userID&quot; value=&quot;15&quot;&gt;</code><br>优点：session数据传送到服务器端时，不会将session数据暴露在URL之上<br>缺点：用户直接观看HTML的源文件，session数据将会暴露无疑</li>
+</ol>
+<p>4、会话追踪机制比较：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200420224122383.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>5、会话管理机制：</p>
+<ol>
+<li>创建会话：</li>
+</ol>
+<ul>
+<li><code>HttpServletRequest</code>的<code>getSession( )</code>方法，若有会话则返回当前会话，没有则创建新会话</li>
+<li><code>getSession(true)</code> 和上面执行同样的功能。</li>
+<li><code>getSession(false)</code>访问一个现有的会话、而不是新创建一个会话，如果没有合法的会话则返回null</li>
+</ul>
+<p>例：</p>
+<pre><code class="java">  HttpSession session=request.getSession(true)</code></pre>
+<ol start="2">
+<li>存储和访问会话属性：</li>
+</ol>
+<ul>
+<li>标准会话属性包括：会话标识符、数据、创建时间、上次访问时间等，都以<code>“名-值”对</code>形式保存</li>
+<li>HttpSession提供了一种把对象存储到内存、在同一用户的后继请求中提取这些对象的标准办法</li>
+<li>在会话中保存数据的方法：<code>setAttribute(String s, Object o)</code></li>
+<li>从会话提取原来所保存对象的方法: <code>getAttribute(String  s)</code></li>
+</ul>
+<ol start="3">
+<li>关闭会话：</li>
+</ol>
+<p>1.显式关闭：<code>HttpSession.invalidate( )</code> </p>
+<p>2.隐式关闭—会话超时(等待超时自动操作)</p>
+<ul>
+<li>默认的超时时间间隔是1800秒</li>
+<li>无效之前，可以使用setInactiveInterval(int seconds)方法在客户请求之间控制这个时间间隔。</li>
+<li>设置负值可以确保会话永远不会超时</li>
+</ul>
+<p><strong>4、Session常用方法</strong>：</p>
+<pre><code class="java">getAttribute()从session中获取以前存储的值
+setAttribute()将键与值关联起来，存储进session
+removeAttribute()删除session中存储的对应键的值
+invalidate()删除整个session及其存储的键值
+logout()注销当前用户
+getId()获取每个session对应的唯一ID
+getCreationTime()获取session创建的时间
+getLastAccessedTime()获取session最后被访问的时间
+getMaxInactiveInterval()在用户没有访问的情况下，会话在被自动废弃之前应该保持多长时间
+getAttributeNames()返回session中所有属性的名称</code></pre>
+<p><strong>5、Session监听器：</strong></p>
+<p>作用：监听对象的动作（创建、销毁等）和状态</p>
+<ul>
+<li>创建的新的session对象</li>
+<li>销毁session对象</li>
+</ul>
+<p>要实现session监听器, 需要实现 <code>javax.servlet.http.HttpSessionListener</code> 接口</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>
