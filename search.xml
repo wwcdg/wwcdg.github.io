@@ -545,32 +545,7 @@
     
     
     <entry>
-      <title>Linux下tar命令简介</title>
-      <link href="2020/09/28/Linux%E4%B8%8Btar%E5%91%BD%E4%BB%A4%E7%AE%80%E4%BB%8B/"/>
-      <url>2020/09/28/Linux%E4%B8%8Btar%E5%91%BD%E4%BB%A4%E7%AE%80%E4%BB%8B/</url>
-      
-        <content type="html"><![CDATA[<p>总结一下Linux中tar命令的用法。<hr/><br><strong>tar命令的参数：</strong></p><ol><li>这五个参数是独立的和别的命令连用时只能使用其中一个。<br>```</li></ol><p>-c: 创建一个打包文件(create)<br>-x：解压<br>-t：查看内容<br>-r：向压缩归档文件末尾追加文件<br>-u：更新原压缩包中的文件</p><pre><code>2. 根据需要在压缩或解压档案时可选参数。</code></pre><p>-z: 使用zip进行解压或压缩<br>-j: 使用bzip2进行解压或压缩<br>-v: 压缩的过程中显示文件<br>-f: 必须命令，用于指定文件名；这个参数必须是最后一个参数且后面只能文件名！<br>-Z：有compress属性的（这个不常见）</p><pre><code>**范例：**1. 查看`tar -tf a.tar.gz`   在不解压的情况下查看压缩包的内容2. 仅打包 `tar -cvf a.tar /etc`   把/etc目录下的所有文件打包，不压缩！3. 压缩 `tar -zcvf a.tar.gz /etc`    打包后，以 gzip 格式压缩`tar -jcvf a.tar.bz2 /etc`  打包后，以 bzip2 格式压缩4. 解压`tar –xvf a.tar` 解压 tar包`tar -xzvf a.tar.gz` 解压tar.gz`tar -xjvf a.tar.bz2` 解压 tar.bz2`tar –xZvf file.tar.Z` 解压tar.Z🆗，以上就是tar命令常用的选项了。</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> Liunx </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> liunx </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>JavaSE 重点知识笔记</title>
+      <title>JavaSE重点知识笔记</title>
       <link href="2020/09/28/Java%20SE%20%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/"/>
       <url>2020/09/28/Java%20SE%20%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/</url>
       
@@ -589,6 +564,31 @@
         <tags>
             
             <tag> javase </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux下tar命令简介</title>
+      <link href="2020/09/28/Linux%E4%B8%8Btar%E5%91%BD%E4%BB%A4%E7%AE%80%E4%BB%8B/"/>
+      <url>2020/09/28/Linux%E4%B8%8Btar%E5%91%BD%E4%BB%A4%E7%AE%80%E4%BB%8B/</url>
+      
+        <content type="html"><![CDATA[<p>总结一下Linux中tar命令的用法。<hr/><br><strong>tar命令的参数：</strong></p><ol><li>这五个参数是独立的和别的命令连用时只能使用其中一个。<br>```</li></ol><p>-c: 创建一个打包文件(create)<br>-x：解压<br>-t：查看内容<br>-r：向压缩归档文件末尾追加文件<br>-u：更新原压缩包中的文件</p><pre><code>2. 根据需要在压缩或解压档案时可选参数。</code></pre><p>-z: 使用zip进行解压或压缩<br>-j: 使用bzip2进行解压或压缩<br>-v: 压缩的过程中显示文件<br>-f: 必须命令，用于指定文件名；这个参数必须是最后一个参数且后面只能文件名！<br>-Z：有compress属性的（这个不常见）</p><pre><code>**范例：**1. 查看`tar -tf a.tar.gz`   在不解压的情况下查看压缩包的内容2. 仅打包 `tar -cvf a.tar /etc`   把/etc目录下的所有文件打包，不压缩！3. 压缩 `tar -zcvf a.tar.gz /etc`    打包后，以 gzip 格式压缩`tar -jcvf a.tar.bz2 /etc`  打包后，以 bzip2 格式压缩4. 解压`tar –xvf a.tar` 解压 tar包`tar -xzvf a.tar.gz` 解压tar.gz`tar -xjvf a.tar.bz2` 解压 tar.bz2`tar –xZvf file.tar.Z` 解压tar.Z🆗，以上就是tar命令常用的选项了。</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Liunx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> liunx </tag>
             
         </tags>
       
@@ -728,33 +728,6 @@
     
     
     <entry>
-      <title>Bugku web(一)</title>
-      <link href="2019/09/12/Bugku%E2%80%94%E2%80%94web(%E4%B8%80)/"/>
-      <url>2019/09/12/Bugku%E2%80%94%E2%80%94web(%E4%B8%80)/</url>
-      
-        <content type="html"><![CDATA[<p>前言：<br>最近做了几个bugku的web题，感觉挺有意思的，学到了不少东西；顺便总结下。（=￣ω￣=）<hr></p><p><strong>1、你必须让他停下</strong>：<br><img src="https://img-blog.csdnimg.cn/20190903210137651.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开链接，发现有个一直在闪的页面，时不时还会出现张图片；这是用了 js的<code>setTimeout</code>函数，只需在设置中禁用js,然后手动刷新界面直到出现图片，然后再查看源代码flag就会flag出来了。</p><ul><li>谷歌游览器关闭<strong>JavaScrip</strong>：设置→高级→隐私设置→网站设置，找到并关闭。<br><img src="https://img-blog.csdnimg.cn/20190904192547427.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>还有就是可以用抓包工具（burp），<code>Send to Repeater</code>,然后多点几次send，就能得到flag了。<br><img src="https://img-blog.csdnimg.cn/20190904193636341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li></ul><p><strong>2、web5</strong> :<img src="https://img-blog.csdnimg.cn/20190903204530749.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开链接，是一个表单提交页面，无论你输入什么，都会给你提示：再好好看看（还是错别字2333…），右键查看下源码：<br><img src="https://img-blog.csdnimg.cn/2019090520260490.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>百度发现是jother编码。然后将它复制粘贴到console中回车，出现了flag<br><img src="https://img-blog.csdnimg.cn/20190904194434274.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>提交<br><img src="https://img-blog.csdnimg.cn/20190905202756507.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>看下格式，应该是大写<br><img src="https://img-blog.csdnimg.cn/20190905203027603.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>退出去提交，成功。</p><p><strong>3、头等舱</strong><br><img src="https://img-blog.csdnimg.cn/20190905203128976.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开发现什么也没有…，查看源码也啥也没有。没什么好说的了，抓包！<br>Send to repeater →send发包<br>得到flag。<br><img src="https://img-blog.csdnimg.cn/20190905203725971.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>4、网站被黑</strong><br><img src="https://img-blog.csdnimg.cn/20190905204738646.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如题所说，这题没什么技术含量，但实战中经常用到；打开：<br><img src="https://img-blog.csdnimg.cn/20190905204657691.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这个页面挺好玩，感觉前端好NB。<br>直接御剑扫描下<br><img src="https://img-blog.csdnimg.cn/20190905205838694.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>得到两个链接，打开后缀为shell.php的<br><img src="https://img-blog.csdnimg.cn/20190905210305649.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>接下来就去爆破密码，使用的工具是Burp（想要的同学可以私信我）<br>在shell.php里随便输入一个密码，抓包，设置变量<br><img src="https://img-blog.csdnimg.cn/20190905211006428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Add from list 那选为password 这是一个burp pro里自带的一个字典<br><img src="https://img-blog.csdnimg.cn/20190905211104895.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>点击Start attack 开始爆破。<br><img src="https://img-blog.csdnimg.cn/20190905211303913.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">第一个即为密码，输入密码得到flag<br><img src="https://img-blog.csdnimg.cn/20190905211542446.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>5、管理员系统</strong><br><img src="https://img-blog.csdnimg.cn/20190908191607434.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开链接，是一个表单提交页面：<br><img src="https://img-blog.csdnimg.cn/2019090819175197.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现我无论输入什么，都会得到一句反馈：IP禁止访问，请联系本地管理员登陆，IP已被记录.<br>查看源码，在最后一行发现一串编码：<code>&lt;!-- dGVzdDEyMw== --&gt;</code> 一看就是base64编码，解码得到：<code>test123</code>，这里盲猜usename为：admin ，将<code>test123</code>作为密码，<br>根据“IP禁止访问，请联系本地管理员登陆，IP已被记录.”这句得到新思路：伪装成本地访问：<br>　　抓包；改包：Headers中增添一对键值对：<code>X-Forwarded-For : 127.0.0.1</code><br>　　得到flag<br>　　<img src="https://img-blog.csdnimg.cn/20190911225704754.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> CTF </category>
-          
-          <category> Web </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> web </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>BUU刷题记录——Misc(一)</title>
       <link href="2019/09/12/BUU%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94Misc(%E4%B8%80)/"/>
       <url>2019/09/12/BUU%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94Misc(%E4%B8%80)/</url>
@@ -774,6 +747,33 @@
         <tags>
             
             <tag> misc </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bugku web(一)</title>
+      <link href="2019/09/12/Bugku%E2%80%94%E2%80%94web(%E4%B8%80)/"/>
+      <url>2019/09/12/Bugku%E2%80%94%E2%80%94web(%E4%B8%80)/</url>
+      
+        <content type="html"><![CDATA[<p>前言：<br>最近做了几个bugku的web题，感觉挺有意思的，学到了不少东西；顺便总结下。（=￣ω￣=）<hr></p><p><strong>1、你必须让他停下</strong>：<br><img src="https://img-blog.csdnimg.cn/20190903210137651.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开链接，发现有个一直在闪的页面，时不时还会出现张图片；这是用了 js的<code>setTimeout</code>函数，只需在设置中禁用js,然后手动刷新界面直到出现图片，然后再查看源代码flag就会flag出来了。</p><ul><li>谷歌游览器关闭<strong>JavaScrip</strong>：设置→高级→隐私设置→网站设置，找到并关闭。<br><img src="https://img-blog.csdnimg.cn/20190904192547427.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>还有就是可以用抓包工具（burp），<code>Send to Repeater</code>,然后多点几次send，就能得到flag了。<br><img src="https://img-blog.csdnimg.cn/20190904193636341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li></ul><p><strong>2、web5</strong> :<img src="https://img-blog.csdnimg.cn/20190903204530749.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开链接，是一个表单提交页面，无论你输入什么，都会给你提示：再好好看看（还是错别字2333…），右键查看下源码：<br><img src="https://img-blog.csdnimg.cn/2019090520260490.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>百度发现是jother编码。然后将它复制粘贴到console中回车，出现了flag<br><img src="https://img-blog.csdnimg.cn/20190904194434274.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>提交<br><img src="https://img-blog.csdnimg.cn/20190905202756507.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>看下格式，应该是大写<br><img src="https://img-blog.csdnimg.cn/20190905203027603.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>退出去提交，成功。</p><p><strong>3、头等舱</strong><br><img src="https://img-blog.csdnimg.cn/20190905203128976.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开发现什么也没有…，查看源码也啥也没有。没什么好说的了，抓包！<br>Send to repeater →send发包<br>得到flag。<br><img src="https://img-blog.csdnimg.cn/20190905203725971.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>4、网站被黑</strong><br><img src="https://img-blog.csdnimg.cn/20190905204738646.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如题所说，这题没什么技术含量，但实战中经常用到；打开：<br><img src="https://img-blog.csdnimg.cn/20190905204657691.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这个页面挺好玩，感觉前端好NB。<br>直接御剑扫描下<br><img src="https://img-blog.csdnimg.cn/20190905205838694.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>得到两个链接，打开后缀为shell.php的<br><img src="https://img-blog.csdnimg.cn/20190905210305649.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>接下来就去爆破密码，使用的工具是Burp（想要的同学可以私信我）<br>在shell.php里随便输入一个密码，抓包，设置变量<br><img src="https://img-blog.csdnimg.cn/20190905211006428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Add from list 那选为password 这是一个burp pro里自带的一个字典<br><img src="https://img-blog.csdnimg.cn/20190905211104895.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>点击Start attack 开始爆破。<br><img src="https://img-blog.csdnimg.cn/20190905211303913.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">第一个即为密码，输入密码得到flag<br><img src="https://img-blog.csdnimg.cn/20190905211542446.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>5、管理员系统</strong><br><img src="https://img-blog.csdnimg.cn/20190908191607434.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开链接，是一个表单提交页面：<br><img src="https://img-blog.csdnimg.cn/2019090819175197.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现我无论输入什么，都会得到一句反馈：IP禁止访问，请联系本地管理员登陆，IP已被记录.<br>查看源码，在最后一行发现一串编码：<code>&lt;!-- dGVzdDEyMw== --&gt;</code> 一看就是base64编码，解码得到：<code>test123</code>，这里盲猜usename为：admin ，将<code>test123</code>作为密码，<br>根据“IP禁止访问，请联系本地管理员登陆，IP已被记录.”这句得到新思路：伪装成本地访问：<br>　　抓包；改包：Headers中增添一对键值对：<code>X-Forwarded-For : 127.0.0.1</code><br>　　得到flag<br>　　<img src="https://img-blog.csdnimg.cn/20190911225704754.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF </category>
+          
+          <category> Web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web </tag>
             
         </tags>
       
@@ -1154,11 +1154,11 @@
     
     
     <entry>
-      <title>实验吧--密码学</title>
-      <link href="2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
-      <url>2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/</url>
+      <title>Bugku密码学（一）</title>
+      <link href="2019/07/14/Bugku%20%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"/>
+      <url>2019/07/14/Bugku%20%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/</url>
       
-        <content type="html"><![CDATA[<p>1、围在栅栏中的爱<br>2、古典密码<br>3、奇妙的音乐</p><a id="more"></a><p><strong>1、围在栅栏中的爱</strong></p><p>最近一直在好奇一个问题，QWE到底等不等于ABC？</p><pre><code>-.- .. --.- .-.. .-- - ..-. -.-. --.- --. -. ... --- --- </code></pre><p>flag格式：CTF{xxx}<br>emm… 密文一看就是摩斯密码，拿去解下密→<a href="https://www.jb51.net/tools/morse.htm">在线工具</a><br><img src="http://img-blog.csdnimg.cn/20190725152439836.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>解密结果<code>KIQLWTFCQGNSOO </code>  没思路了，翻了翻别人的blog知道了要进行<strong>QWE</strong>解密；<br><strong>QWE加密：</strong><br>从电脑键盘上的字母从Q开始数，顺序是Q W E R T Y U I。。。对应的字母顺序依次是A B C D E F G H 也就是说Q=A,W=B,E=C，依次类推。<br>拿去解密 →<a href="https://www.zjslove.com/3.decode/qwe/index.html">在线工具</a><br><img src="http://img-blog.csdnimg.cn/20190725154828273.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>接下来既然题目说了有关栅栏，那就拿去解下密<br><img src="http://img-blog.csdnimg.cn/20190725155139938.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>仔细观察 发现第一个解密内容是有信息的，去倒叙解密下：</p><pre><code>iloveshiyanbar</code></pre><p>OK  flag:<code>CTF&#123;iloveshiyanbar&#125;</code></p><p><strong>2、古典密码</strong><br>密文内容如下{79 67 85 123 67 70 84 69 76 88 79 85 89 68 69 67 84 78 71 65 72 79 72 82 78 70 73 69 78 77 125 73 79 84 65}<br>请对其进行解密<br>提示：<br>    1.加解密方法就在谜面中<br>    2.利用key值的固定结构</p><p>格式：CTF{ } <hr><br>这题挺有意思的；先将这些数字转换为ascii码字符：<code>OCU&#123;CFTELXOUYDECTNGAHOHRNFIENM&#125;IOTA</code><br>古典密码中最基础的加密法：<strong>列置换加密</strong>：将明文按固定长m分组，即每行m个字母，在密钥控制下按某一顺序交换列，最后按列优先的顺序依次读出，产生了密文。<br>例： ABCDEFGHIJKL  共12位 将它们列为4行3列（当然也可以是2x6，有多种可能）</p><pre><code>1 2 3 4A B C DE F G HI J K L</code></pre><p>改变一下列的顺序</p><pre><code>2 1 4 3B A D CF E H GJ I L K</code></pre><p>就是这样，解密的话只需要找出列的顺序还原下就好了。这题提示了 <strong>利用key值的固定结构</strong>即根据CTF三个首字符找出顺序<br>密文一共35位 那就有两种排列方式7x5 或 5x7<br>先来试试7x5<br>得到如下结果：</p><pre><code>1 2 3 4 5 6 7O C U &#123; C F TE L X O U Y DE C T N G A HO H R N F I EN M &#125; I O T A</code></pre><p> key值的固定结构为CTF{}<br>故第2列打头或第5列打头，接下来是第7列，然后是第6列，考虑到“{”是第4列，考虑到“}”是最后一列<br>尝试后得到<br><strong>1234567</strong>列转换为<strong>2764513</strong><br>即为：</p><pre><code>2 7 6 4 5 1 3C T F &#123; C O UL D Y O U E XC H A N G E TH E I N F O R M A T I O N &#125;</code></pre><blockquote><p>CTF{COULDYOUEXCHANGETHEINFORMATION}</p></blockquote><p> could you exchange the information ？为有意义的句子，提交flag正确。<br> 至于另一种，5x7情况下，因为CTF三个字符没在在首列，所以排除这种情况！</p><pre><code>  12345  OCU&#123;C  FTELX  OUYDE  CTNGA  HOHRN  FIENM  &#125;IOTA</code></pre><p><strong>3、奇妙的音乐</strong><br>据说flag就藏在这段音乐中，请仔细听。</p><p>格式：CTF{}</p><p>解题链接： <a href="http://ctf5.shiyanbar.com/crypto/123.zip">http://ctf5.shiyanbar.com/crypto/123.zip</a><br>这题很简单，本来不想写的，但还是记录下比较好<br>点击链接 下载一个压缩包，打开里面一张图片和一段加密音频文件<br><img src="http://img-blog.csdnimg.cn/20190725231236174.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开图片：<br><img src="http://img-blog.csdnimg.cn/20190725231300356.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>下面有很多小点，因为海伦•凯勒是聋哑人，所以下面应该是盲文，百度找找盲文对照表<br><img src="http://img-blog.csdnimg.cn/20190725231912276.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>对照表密文为 <code>kmdonowg</code> 成功打开音频文件，听了一下，应该是摩斯密码<br>用Au打开，查看音谱图<br><img src="http://img-blog.csdnimg.cn/20190726132809508.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里把界面调窄一点的话会更清楚，即<br><img src="http://img-blog.csdnimg.cn/20190726133033572.png" alt="在这里插入图片描述"><br>手动打出密文：<code>-.-.  -  ..-.  .--   .--. .   ..  -----   ---..   --...   ...--   ..---  ..--..   ..---   ...--  -..  --..   </code><br>解码得：<code>CTFWPEI08732?23DZ</code>  大写提交不通过，换成小写flag：<code>CTF&#123;wpei08732?23dz&#125;</code></p>]]></content>
+        <content type="html"><![CDATA[<h5 id="1、滴答-滴"><a href="#1、滴答-滴" class="headerlink" title="1、滴答~滴"></a>1、滴答~滴</h5><p><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731171838583_201104351_H800.png" alt="在这里插入图片描述"><br>这题一看就是摩斯密码，直接用morse密码的在线工具 <a href="https://www.jb51.net/tools/morse.htm">工具地址</a><br>提交得flag （￣︶￣）↗　</p><h5 id="2、聪明的小羊"><a href="#2、聪明的小羊" class="headerlink" title="2、聪明的小羊"></a>2、聪明的小羊</h5><p><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731173061215_201104351_H800.png" alt="在这里插入图片描述"><br>看题目中的提示应该是栅栏密码，且偏移量为二，直接使用Bugku里的工具解密，得到flag。</p><h5 id="3、OK"><a href="#3、OK" class="headerlink" title="3、OK"></a>3、OK</h5><p><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731171042226_201104351_H800.png" alt="在这里插入图片描述">直接用bugku的ook解密工具<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731176840145_201104351_H800.png" alt="在这里插入图片描述"></p><h5 id="4、这不是摩斯密码"><a href="#4、这不是摩斯密码" class="headerlink" title="4、这不是摩斯密码"></a>4、这不是摩斯密码</h5><p><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731171214035_201104351_H800.png" alt="在这里插入图片描述"><br>打开是这样的：<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731174803938_201104351_H800.png" alt="在这里插入图片描述"><br>百度得知这是brainfuck的东西，然后接着使用bugku的工具<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731174435705_201104351_H800.png" alt="在这里插入图片描述"></p><h5 id="5、简单加密"><a href="#5、简单加密" class="headerlink" title="5、简单加密"></a>5、简单加密</h5><p><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731179839622_201104351_H800.png" alt="在这里插入图片描述"><br>这题乍一看没啥头绪，但是最后两位字符是我联想到了base64 加密，<code>A</code>的ASCII码为65，<code>=</code>的ASCII码为61，即需要先左移4位；<br>将字符转换为ASCII码：</p><pre><code>101,54,90,57,105,126,93,56,82,126,85,126,81,72,69,123,82,110,89,123,81,88,103,126,81,110,81,123,94,88,86,108,82,88,108,112,94,88,73,53,81,54,81,54,83,75,89,56,106,85,65,65</code></pre><p>再写个Python脚本解密</p><pre><code>import base64m=[101,54,90,57,105,126,93,56,82,126,85,126,81,72,69,123,82,110,89,123,81,88,103,126,81,110,81,123,94,88,86,108,82,88,108,112,94,88,73,53,81,54,81,54,83,75,89,56,106,85,65,65]flag=&#39;&#39;i=4for j in m:    flag+=chr(j-i)flag=base64.b64decode(flag).decode()print(flag)</code></pre><p>Ok，得到flag</p><h5 id="6、散乱的密文"><a href="#6、散乱的密文" class="headerlink" title="6、散乱的密文"></a>6、散乱的密文</h5><p><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731174029626_201104351_H800.png" alt="在这里插入图片描述">打开题目，嗯…密文确实挺散乱的，但还是感觉flag就在这里面，重点看第二句话“一张纸条上凌乱的写着2 1 6 5 3 4”，看到这，我们就能想起来，在古典密码中，有一种特使的加密方式是分组置换加密，嗯，没错，这题就是，而且这道题已经把分组的顺序告诉了我们。下面看解题过程：</p><p>|2 |1| 6| 5| 3| 4|<br>|–|–|–|–|–|–|–|<br>|l |f |5 |{ |a |g|<br>|0 | 2| 4|c |4 |8|<br>|3 | 5| 4|9 |d |7|<br>|f | d| @|@ |1 |}|<br>然后按照顺序读出来得到：flag{52048c453d794df1}@@<br>测试知后面@@应删去。</p>]]></content>
       
       
       <categories>
@@ -1181,11 +1181,11 @@
     
     
     <entry>
-      <title>Bugku密码学（一）</title>
-      <link href="2019/07/14/Bugku%20%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/"/>
-      <url>2019/07/14/Bugku%20%E5%AF%86%E7%A0%81%E5%AD%A6(%E4%B8%80)/</url>
+      <title>实验吧--密码学</title>
+      <link href="2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+      <url>2019/07/14/%E5%AE%9E%E9%AA%8C%E5%90%A7--%E5%AF%86%E7%A0%81%E5%AD%A6/</url>
       
-        <content type="html"><![CDATA[<h5 id="1、滴答-滴"><a href="#1、滴答-滴" class="headerlink" title="1、滴答~滴"></a>1、滴答~滴</h5><p><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731171838583_201104351_H800.png" alt="在这里插入图片描述"><br>这题一看就是摩斯密码，直接用morse密码的在线工具 <a href="https://www.jb51.net/tools/morse.htm">工具地址</a><br>提交得flag （￣︶￣）↗　</p><h5 id="2、聪明的小羊"><a href="#2、聪明的小羊" class="headerlink" title="2、聪明的小羊"></a>2、聪明的小羊</h5><p><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731173061215_201104351_H800.png" alt="在这里插入图片描述"><br>看题目中的提示应该是栅栏密码，且偏移量为二，直接使用Bugku里的工具解密，得到flag。</p><h5 id="3、OK"><a href="#3、OK" class="headerlink" title="3、OK"></a>3、OK</h5><p><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731171042226_201104351_H800.png" alt="在这里插入图片描述">直接用bugku的ook解密工具<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731176840145_201104351_H800.png" alt="在这里插入图片描述"></p><h5 id="4、这不是摩斯密码"><a href="#4、这不是摩斯密码" class="headerlink" title="4、这不是摩斯密码"></a>4、这不是摩斯密码</h5><p><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731171214035_201104351_H800.png" alt="在这里插入图片描述"><br>打开是这样的：<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731174803938_201104351_H800.png" alt="在这里插入图片描述"><br>百度得知这是brainfuck的东西，然后接着使用bugku的工具<br><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731174435705_201104351_H800.png" alt="在这里插入图片描述"></p><h5 id="5、简单加密"><a href="#5、简单加密" class="headerlink" title="5、简单加密"></a>5、简单加密</h5><p><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731179839622_201104351_H800.png" alt="在这里插入图片描述"><br>这题乍一看没啥头绪，但是最后两位字符是我联想到了base64 加密，<code>A</code>的ASCII码为65，<code>=</code>的ASCII码为61，即需要先左移4位；<br>将字符转换为ASCII码：</p><pre><code>101,54,90,57,105,126,93,56,82,126,85,126,81,72,69,123,82,110,89,123,81,88,103,126,81,110,81,123,94,88,86,108,82,88,108,112,94,88,73,53,81,54,81,54,83,75,89,56,106,85,65,65</code></pre><p>再写个Python脚本解密</p><pre><code>import base64m=[101,54,90,57,105,126,93,56,82,126,85,126,81,72,69,123,82,110,89,123,81,88,103,126,81,110,81,123,94,88,86,108,82,88,108,112,94,88,73,53,81,54,81,54,83,75,89,56,106,85,65,65]flag=&#39;&#39;i=4for j in m:    flag+=chr(j-i)flag=base64.b64decode(flag).decode()print(flag)</code></pre><p>Ok，得到flag</p><h5 id="6、散乱的密文"><a href="#6、散乱的密文" class="headerlink" title="6、散乱的密文"></a>6、散乱的密文</h5><p><img src="http://img1002-c.pocoimg.cn/image/poco/works/69/2019/0714/10/15630731174029626_201104351_H800.png" alt="在这里插入图片描述">打开题目，嗯…密文确实挺散乱的，但还是感觉flag就在这里面，重点看第二句话“一张纸条上凌乱的写着2 1 6 5 3 4”，看到这，我们就能想起来，在古典密码中，有一种特使的加密方式是分组置换加密，嗯，没错，这题就是，而且这道题已经把分组的顺序告诉了我们。下面看解题过程：</p><p>|2 |1| 6| 5| 3| 4|<br>|–|–|–|–|–|–|–|<br>|l |f |5 |{ |a |g|<br>|0 | 2| 4|c |4 |8|<br>|3 | 5| 4|9 |d |7|<br>|f | d| @|@ |1 |}|<br>然后按照顺序读出来得到：flag{52048c453d794df1}@@<br>测试知后面@@应删去。</p>]]></content>
+        <content type="html"><![CDATA[<p>1、围在栅栏中的爱<br>2、古典密码<br>3、奇妙的音乐</p><a id="more"></a><p><strong>1、围在栅栏中的爱</strong></p><p>最近一直在好奇一个问题，QWE到底等不等于ABC？</p><pre><code>-.- .. --.- .-.. .-- - ..-. -.-. --.- --. -. ... --- --- </code></pre><p>flag格式：CTF{xxx}<br>emm… 密文一看就是摩斯密码，拿去解下密→<a href="https://www.jb51.net/tools/morse.htm">在线工具</a><br><img src="http://img-blog.csdnimg.cn/20190725152439836.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>解密结果<code>KIQLWTFCQGNSOO </code>  没思路了，翻了翻别人的blog知道了要进行<strong>QWE</strong>解密；<br><strong>QWE加密：</strong><br>从电脑键盘上的字母从Q开始数，顺序是Q W E R T Y U I。。。对应的字母顺序依次是A B C D E F G H 也就是说Q=A,W=B,E=C，依次类推。<br>拿去解密 →<a href="https://www.zjslove.com/3.decode/qwe/index.html">在线工具</a><br><img src="http://img-blog.csdnimg.cn/20190725154828273.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>接下来既然题目说了有关栅栏，那就拿去解下密<br><img src="http://img-blog.csdnimg.cn/20190725155139938.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>仔细观察 发现第一个解密内容是有信息的，去倒叙解密下：</p><pre><code>iloveshiyanbar</code></pre><p>OK  flag:<code>CTF&#123;iloveshiyanbar&#125;</code></p><p><strong>2、古典密码</strong><br>密文内容如下{79 67 85 123 67 70 84 69 76 88 79 85 89 68 69 67 84 78 71 65 72 79 72 82 78 70 73 69 78 77 125 73 79 84 65}<br>请对其进行解密<br>提示：<br>    1.加解密方法就在谜面中<br>    2.利用key值的固定结构</p><p>格式：CTF{ } <hr><br>这题挺有意思的；先将这些数字转换为ascii码字符：<code>OCU&#123;CFTELXOUYDECTNGAHOHRNFIENM&#125;IOTA</code><br>古典密码中最基础的加密法：<strong>列置换加密</strong>：将明文按固定长m分组，即每行m个字母，在密钥控制下按某一顺序交换列，最后按列优先的顺序依次读出，产生了密文。<br>例： ABCDEFGHIJKL  共12位 将它们列为4行3列（当然也可以是2x6，有多种可能）</p><pre><code>1 2 3 4A B C DE F G HI J K L</code></pre><p>改变一下列的顺序</p><pre><code>2 1 4 3B A D CF E H GJ I L K</code></pre><p>就是这样，解密的话只需要找出列的顺序还原下就好了。这题提示了 <strong>利用key值的固定结构</strong>即根据CTF三个首字符找出顺序<br>密文一共35位 那就有两种排列方式7x5 或 5x7<br>先来试试7x5<br>得到如下结果：</p><pre><code>1 2 3 4 5 6 7O C U &#123; C F TE L X O U Y DE C T N G A HO H R N F I EN M &#125; I O T A</code></pre><p> key值的固定结构为CTF{}<br>故第2列打头或第5列打头，接下来是第7列，然后是第6列，考虑到“{”是第4列，考虑到“}”是最后一列<br>尝试后得到<br><strong>1234567</strong>列转换为<strong>2764513</strong><br>即为：</p><pre><code>2 7 6 4 5 1 3C T F &#123; C O UL D Y O U E XC H A N G E TH E I N F O R M A T I O N &#125;</code></pre><blockquote><p>CTF{COULDYOUEXCHANGETHEINFORMATION}</p></blockquote><p> could you exchange the information ？为有意义的句子，提交flag正确。<br> 至于另一种，5x7情况下，因为CTF三个字符没在在首列，所以排除这种情况！</p><pre><code>  12345  OCU&#123;C  FTELX  OUYDE  CTNGA  HOHRN  FIENM  &#125;IOTA</code></pre><p><strong>3、奇妙的音乐</strong><br>据说flag就藏在这段音乐中，请仔细听。</p><p>格式：CTF{}</p><p>解题链接： <a href="http://ctf5.shiyanbar.com/crypto/123.zip">http://ctf5.shiyanbar.com/crypto/123.zip</a><br>这题很简单，本来不想写的，但还是记录下比较好<br>点击链接 下载一个压缩包，打开里面一张图片和一段加密音频文件<br><img src="http://img-blog.csdnimg.cn/20190725231236174.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开图片：<br><img src="http://img-blog.csdnimg.cn/20190725231300356.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>下面有很多小点，因为海伦•凯勒是聋哑人，所以下面应该是盲文，百度找找盲文对照表<br><img src="http://img-blog.csdnimg.cn/20190725231912276.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>对照表密文为 <code>kmdonowg</code> 成功打开音频文件，听了一下，应该是摩斯密码<br>用Au打开，查看音谱图<br><img src="http://img-blog.csdnimg.cn/20190726132809508.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里把界面调窄一点的话会更清楚，即<br><img src="http://img-blog.csdnimg.cn/20190726133033572.png" alt="在这里插入图片描述"><br>手动打出密文：<code>-.-.  -  ..-.  .--   .--. .   ..  -----   ---..   --...   ...--   ..---  ..--..   ..---   ...--  -..  --..   </code><br>解码得：<code>CTFWPEI08732?23DZ</code>  大写提交不通过，换成小写flag：<code>CTF&#123;wpei08732?23dz&#125;</code></p>]]></content>
       
       
       <categories>
