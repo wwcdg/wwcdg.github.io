@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Bugku杂项(三) | 未完成的歌</title>
-  <meta name="keywords" content=" 杂项 ">
-  <meta name="description" content="Bugku杂项(三) | 未完成的歌">
+  <title>Servlet过滤器(Filter) | 未完成的歌</title>
+  <meta name="keywords" content=" javaweb ">
+  <meta name="description" content="Servlet过滤器(Filter) | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="在DVWA页面中选择 SQL Injection 一、首先肯定是要判断是否有注入漏洞，在输入框输入1，返回 ID: 1 First name: admin Surname: admin 返回正常； 再次输入1&#39;，报错，返回 You have an error in your SQL syntax; check the manual that corresponds to your Mari">
 <meta property="og:type" content="article">
@@ -1340,9 +1340,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Bugku 杂项（三）" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Java web—Servlet过滤器(Filter)" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Bugku杂项(三)</h1>
+        <h1 class="article-title">Servlet过滤器(Filter)</h1>
     
     <div class="article-meta">
         
@@ -1352,9 +1352,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="CTF">CTF</a> > 
+            <a  data-rel="Web开发">Web开发</a> > 
             
-            <a  data-rel="CTF&lt;---&gt;MISC">MISC</a>
+            <a  data-rel="Web开发&lt;---&gt;JavaWeb">JavaWeb</a>
             
         </span>
         
@@ -1362,19 +1362,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color3">杂项</a>
+            <a class="color3">javaweb</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-05-04 11:55:18'>2019-08-01 20:06</time>
+            发布时间 : <time class="date" title='最后更新: 2021-12-19 22:32:20'>2020-09-28 20:07</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:727</span>
+        <span>字数:1.7k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1393,7 +1393,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A6%96%E5%85%88%E6%9D%A5%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%87%E6%BB%A4%E5%99%A8%EF%BC%9A"><span class="toc-text">一、首先来了解一下什么是过滤器：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Filter%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-text">二、Filter特点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="toc-text">三、过滤器的实现：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AF%B9%E8%AF%B7%E6%B1%82%E4%BF%A1%E6%81%AF%E7%9A%84%E8%BF%87%E6%BB%A4%EF%BC%9A"><span class="toc-text">四、对请求信息的过滤：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AF%B9%E5%93%8D%E5%BA%94%E4%BF%A1%E6%81%AF%E7%9A%84%E8%BF%87%E6%BB%A4%EF%BC%9A"><span class="toc-text">五、对响应信息的过滤：</span></a>
     
 <style>
     .left-col .switch-btn,
@@ -1409,15 +1409,130 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这周接着扳bugku上的题，话说暑假真的好无聊啊╯︿╰，希望赶紧开学。。。<hr><br><strong>1、旋转跳跃</strong><br><img src="http://img-blog.csdnimg.cn/20190730164612158.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这题没啥难度，就是考会不会用<strong>MP3Stego</strong>这个工具；放个福利吧，为了让更多的小白免受找工具之苦 下载地址：<a target="_blank" rel="noopener" href="http://www.petitcolas.net/fabien/software/">http://www.petitcolas.net/fabien/software/</a><br><strong>常用命令：</strong></p>
-<blockquote>
-<p>加密：-X -P 123456 test.mp3  （123456 是密码，test.mp3待解密文件）<br> 加密：-E hidden.txt  -P 123456 test.mp3 （ hidden.txt 是隐藏文档，123456是密码 test.mp3待加密文件）</p>
-</blockquote>
-<p>开始做题，这题已经给了提示密文：<code>syclovergeek</code> 等会解密会用到，先把这题要分析的文件放进<code>MP3Stego</code>文件目录下，可以在<code>MP3Stego</code>的目录下打开Powershell窗口（ps：这里我在<code>MP3Stego</code>的目录下直接<code>get base here</code> 显示无法找到文件，不知道为啥）<br><img src="http://img-blog.csdnimg.cn/2019073018001427.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后直接把<code>decode.exe</code>文件拖进黑框界面里 然后输入 <code>-X -P 密码 文件名</code><br><img src="http://img-blog.csdnimg.cn/20190730180141177.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>解密成功<br><img src="http://img-blog.csdnimg.cn/20190730180204398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开txt文档 得到flag<br><img src="http://img-blog.csdnimg.cn/20190730180401502.png" alt="在这里插入图片描述"><br><strong>2、论剑</strong><br><img src="http://img-blog.csdnimg.cn/20190730221305476.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这题也挺有意思的，下载文件打开是张图：<br><img src="http://img-blog.csdnimg.cn/20190731170714189.jpg" alt="在这里插入图片描述"><br>老套路，先右键查看详细信息， Stegsolve里看下，没啥信息；再WinHex里查看下，发现一串二进制数<br><img src="http://img-blog.csdnimg.cn/20190731171453940.png" alt="在这里插入图片描述"><br>8个一组转成ASCII码值，得到<code>mynameiskey!!!hhh</code>   先留着肯定有用；binwalk里跑一波 ，也没啥东西<br><img src="http://img-blog.csdnimg.cn/20190731210932937.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>去修改下文件宽高看看， 右键查看详细信息<br><img src="http://img-blog.csdnimg.cn/20190731211304882.png" alt="在这里插入图片描述"><br>JPG图片<code>FFC2</code>后面三个字节即为高与宽（注意是高与宽哦），然后再winhex里<strong>Ctrl+Alt+x</strong> 搜索16进制文件找到<code>FFC2</code>（小白提醒，搜索的时候要大写字母）<br><img src="https://img-blog.csdnimg.cn/20190731222234592.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190731222655375.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>将781转换为16进制为<code>030D</code>，66转换为16进制为<code>42</code>，找到后把0042改为030D保存打开<br><img src="http://img-blog.csdnimg.cn/20190731222850211.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>emm… 发现有些地方被遮住了，继续找吧，肯定还有线索；无奈看了下别人的blog，才知道那串二进制后面的数值是7Z文件的文件头，不过要修复下<br><img src="http://img-blog.csdnimg.cn/20190731230519799.png" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/2019073123041266.png" alt="在这里插入图片描述"><br>将38改为37 7B改成7A，保存，在用binwalk跑一波，发现果然有了个压缩包<br><img src="http://img-blog.csdnimg.cn/20190731231218431.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>dd命令分离<br><img src="http://img-blog.csdnimg.cn/20190731231736435.png" alt="在这里插入图片描述"><br>打开是一张加密的图，那先前解出来应该就是密码，输入密码，成功打开<br><img src="http://img-blog.csdnimg.cn/20190731231744452.jpg" alt="在这里插入图片描述">再次更改高度查看，得到：<br><img src="http://img-blog.csdnimg.cn/20190731231857871.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>合在一起为<code>f666C61677B6D795F6E616D655F482121487D</code> 目测为base16 解码得：<code>flag&#123;my_name_H!!H&#125;</code>，啊，好累啊，写完睡觉。。。</p>
-<p><strong>3、图穷匕见</strong><br><img src="http://img-blog.csdnimg.cn/20190801192229654.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>下载打开是张图，先看下详细信息，发现了这个：<br><img src="http://img-blog.csdnimg.cn/20190801192339178.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>画图题？，接着放进winhex里查看，这里可以看到有很多16进制数。把他们复制下来（全选然后双击）<br><img src="http://img-blog.csdnimg.cn/20190801195504794.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后再notepad++里hex→ascii<br><img src="http://img-blog.csdnimg.cn/20190801200007455.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>得到一串坐标，之后就好办了，把括号和逗号替换掉，保存。<img src="http://img-blog.csdnimg.cn/20190801200233616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>另存为txt文件，接下来使用一个画图工具：gnuplot（自己百度吧 下载地址很多的）把txt文件拖进bin目录下，然后执行命令：<br>plot”文件名.txt”</p>
-<p><img src="http://img-blog.csdnimg.cn/20190801200402664.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>回车：</p>
-<p><img src="http://img-blog.csdnimg.cn/20190801200446697.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>扫描二维码得到<code>flag&#123;40fc0a979f759c8892f4dc045e28b820&#125;</code></p>
+        <p>前言：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;过滤器是Servlet中一个非常重要的组成部分，进行WEB开发时无不用到过滤器；因此这篇blog来单独总结下关于过滤器的知识点。<hr/></p>
+<h6 id="一、首先来了解一下什么是过滤器："><a href="#一、首先来了解一下什么是过滤器：" class="headerlink" title="一、首先来了解一下什么是过滤器："></a>一、首先来了解一下什么是过滤器：</h6><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xdp-gacl/p/3948353.html">下面这句话引自这篇文章</a><br>　　Filte即过滤器，它是Servlet技术中最激动人心的技术，WEB开发人员通过Filter技术，对web服务器管理的<strong>所有web资源</strong>：例如Jsp, Servlet, 静态图片文件或静态 html 文件等进行拦截，从而实现一些特殊的功能。例如实现URL级别的权限访问控制、过滤敏感词汇、压缩响应信息等一些高级功能。<br>　　Servlet API中提供了一个Filter接口，如果编写的Java类实现了这个接口，则把这个java类称之为过滤器Filter。通过Filter技术，开发人员可以实现用户在访问某个目标资源之前，对访问的请求和响应进行拦截，如下：<br>　　<img src="https://img-blog.csdnimg.cn/20200422000020988.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="二、Filter特点："><a href="#二、Filter特点：" class="headerlink" title="二、Filter特点："></a>二、Filter特点：</h5><ul>
+<li>Servlet过滤器可以检查和修改ServletRequest和ServletResponse对象。</li>
+<li>Servlet过滤器可以被指定和特定的URL关联，且不能独立执行，只有当客户请求访问该URL时，才会触发过滤器。</li>
+<li>Servlet过滤器可以被串联在一起，形成管道效应，协同修改请求和响应对象（过滤器链）。<br><img src="https://img-blog.csdnimg.cn/20200422001954640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h5 id="三、过滤器的实现："><a href="#三、过滤器的实现：" class="headerlink" title="三、过滤器的实现："></a>三、过滤器的实现：</h5>建立一个过滤器涉及下列五个步骤:</li>
+</ul>
+<ol>
+<li>建立一个实现Filter接口的类；</li>
+<li>在doFilter方法中实现过滤行为；</li>
+<li>调用FilterChain对象的doFilter方法；</li>
+<li>对相应的servlet和JSP页面注册过滤器；</li>
+<li>禁用激活器servlet；</li>
+</ol>
+<p><strong>1、建立一个实现Filter接口的类</strong>：</p>
+<ul>
+<li>Servlet过滤器类必须实现javax.servlet.Filter</li>
+<li>这个接口含有3个过滤器类必须实现的方法：</li>
+</ul>
+<pre><code class="java">    init( )
+    doFilter( )
+    destroy( )</code></pre>
+<ul>
+<li><code>public void init(FilterConfig config)   thows ServletException</code>只在此过滤器第一次初始化时执行</li>
+<li>简单过滤器可提供此方法的空体，两种情况使用init:</li>
+</ul>
+<ol>
+<li>FilterConfig对象提供对servlet环境及web.xml文件中指派的过滤器名的访问。利用init将FilterConfig对象存放在一个字段中，以便doFilter方法能够访问servlet环境或过滤器名。</li>
+<li>FilterConfig对象具有一个getInitParameter方法，它能够访问部署描述符文件（web.xml）中分配的过滤器初始化参数。 </li>
+</ol>
+<p><strong>2、在doFilter方法中实现过滤行为：</strong></p>
+<ul>
+<li>重要方法：<pre><code class="java">   public void doFilter(ServletRequset request, ServletResponse response,FilterChain chain)   </code></pre>
+</li>
+</ul>
+<p><strong>3、调用FilterChain对象的doFilter方法：</strong></p>
+<ul>
+<li>最后一个参数FilterChain对象。对此对象调用以激活与servlet或JSP相关的下一个过滤器。如果没有另一个相关的过滤器，则对doFilter的调用激活servlet或JSP本身</li>
+</ul>
+<p><strong>4、对相应的servlet和JSP页面注册过滤器：</strong></p>
+<ul>
+<li>web.xml中用于过滤器的元素:<br><code>filter</code>：元素向系统注册一个过滤对象<br><code>filter-mapping</code>：元素指定该过滤对象所应用的URL<br><code>&lt;filter-name&gt;</code>必需元素，必须与用filter元素声明时给予过滤器的名称相匹配<br><code>&lt;url-pattern&gt;</code>必需元素，此元素声明一个以斜杠<code>&quot;/&quot;</code>开始的模式，它指定过滤器应用的URL。</li>
+</ul>
+<p><strong>例：</strong><br>要求：利用filter和filter-mapping指示名为SomeFilter的过滤器应用到名为SomeServlet的servlet。</p>
+<p>web.xml应配置为：</p>
+<pre><code class="java">&lt;filter&gt;
+   &lt;filter-name&gt;SomeFilter&lt;/filter-name&gt;
+   &lt;filter-class&gt;sPackage.SFilterClass&lt;/filter-class&gt;
+&lt;/filter&gt;
+&lt;filter-mapping&gt; 
+   &lt;filter-name&gt;SomeFilter&lt;/filter-name&gt;
+   &lt;servlet-name&gt;SomeServlet&lt;/servlet-name&gt;
+&lt;/filter-mapping&gt;</code></pre>
+<p><strong>5、禁用激活器servlet：</strong></p>
+<ul>
+<li>在对资源应用过滤器时，可通过指定要应用过滤器的URL模式或servlet名来完成。</li>
+<li>如果提供servlet名，则此名称必须与web.xml的servlet元素中给出的名称相匹配。</li>
+<li>如果使用应用到一个serlvet的URL模式，则此模式必须与利用web.xml的元素servlet-mapping指定的模式相匹配。</li>
+<li>防止用户利用缺省servlet URL绕过过滤器设置 。</li>
+</ul>
+<h5 id="四、对请求信息的过滤："><a href="#四、对请求信息的过滤：" class="headerlink" title="四、对请求信息的过滤："></a>四、对请求信息的过滤：</h5><p>对请求信息的过滤大致分为下列5个步骤：</p>
+<ol>
+<li>Servlet容器创建一个过滤器实例。</li>
+<li>过滤器实例调用init方法，读取过滤器初始化参数。</li>
+<li>过滤器实例调用doFilter方法，根据初始化参数的值判断该请求是否合法。</li>
+<li>如果该请求不合法则阻塞该请求。</li>
+<li>如果该请求合法则调用chain.doFilter方法将该请求向后续传递。 </li>
+</ol>
+<p>因为Servlet对中文支持不好，用户提交的表单信息会产生乱码问题，会给后台的数据查询和记录（数据库存储）等功能造成影响，因此需要对请求信息进行转码。</p>
+<p> <strong>解决方法一：</strong><br> 直接在Servlet中转码</p>
+<p>处理get请求：：</p>
+<pre><code class="java">    String name = request.getParameter(param_name);
+    name = new String( name.getBytes(&quot;ISO8859_1&quot;) );</code></pre>
+<p>处理post请求：</p>
+<pre><code class="java">request.setCharacterEncoding(&quot;utf-8&quot;);</code></pre>
+<p>直接在servlet里处理的缺点是从request中取出的每个中文变量都要转换，且不能动态的改变编码。</p>
+<p> <strong>解决方法二：</strong><br>在过滤器中进行转码，且在一个动态web项目里设置完成后就可以不用在单个Servlet中一一设置了。<br><strong>例：</strong><br>Filter类：</p>
+<pre><code class="java">public class MyFilter  implements Filter
+&#123;  private String tarEncoding = &quot;gb2312&quot;;
+    protected FilterConfig filterConfig;
+    public void init(FilterConfig config) throws ServletException 
+    &#123;   this.filterConfig = config;    
+        this.tarEncoding =    config.getInitParameter(&quot;encoding&quot;); 
+     &#125;    
+    public void doFilter( ServletRequest srequest, ServletResponse sresponse, FilterChain chain) throws IOException, ServletException 
+    &#123;
+    HttpServletRequest request =   (HttpServletRequest)srequest;
+    HttpServletResponse response = (HttpServletResponse)sresponse;
+    //把请求用指定的方式编码     
+    request.setCharacterEncoding(targetEncoding);
+  //把响应用指定的方式编码
+    response.setCharacterEncoding(targetEncoding);
+  // 把处理发送到下一个过滤器     
+    chain.doFilter(srequest,sresponse); 
+    &#125;    
+    public void destroy() 
+    &#123;    this.filterConfig=null; &#125;     
+&#125;
+</code></pre>
+<p>过滤器部署描述：</p>
+<pre><code class="java">&lt;filter&gt;
+    &lt;filter-name&gt;encod&lt;/filter-name&gt;
+    &lt;filter-class&gt;pdsu.edu.cn.chu.MyFilter&lt;/filter-class&gt;
+    &lt;init-param&gt;
+        &lt;param-name&gt;encoding&lt;/param-name&gt;
+        &lt;param-value&gt;gb2312&lt;/param-value&gt;
+    &lt;/init-param&gt;
+ &lt;/filter&gt;
+&lt;filter-mapping&gt;
+     &lt;filter-name&gt;encod&lt;/filter-name&gt;
+      &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;filter-mapping&gt;</code></pre>
+<p>过滤器只能解决Post提交的中文乱码问题，Get提交中文乱码解决方法为：  </p>
+<p>修改tomcat配置文件下的server.xml，找到对8080端口进行服务的Connector组件的设置部分，为Connector添加属性<code>URIEncoding=&quot;GBK&quot;</code><br><img src="https://img-blog.csdnimg.cn/20200422215757800.png" alt="在这里插入图片描述"></p>
+<h5 id="五、对响应信息的过滤："><a href="#五、对响应信息的过滤：" class="headerlink" title="五、对响应信息的过滤："></a>五、对响应信息的过滤：</h5><ol>
+<li>过滤器截获客户端的请求.</li>
+<li>重新封装ServletResponse，在封装后的ServletResponse中提供用户自定义的输出流；即：<br><img src="https://img-blog.csdnimg.cn/20200422221449696.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></li>
+<li>将请求向后续传递。</li>
+<li>Web组件产生响应。</li>
+<li>从封装后的ServletResponse中获取用户自定义的输出流。</li>
+<li>将响应内容通过用户自定义的输出流写入到缓冲流。</li>
+<li>在缓冲流中修改响应的内容后清空缓冲流，输出响应内容。</li>
+</ol>
+<p>🆗，关于Filter的总结暂时就这么多。 =￣ω￣=</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>
