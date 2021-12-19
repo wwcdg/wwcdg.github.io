@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>i春秋做题记录 web(一) | 未完成的歌</title>
-  <meta name="keywords" content=" web ">
-  <meta name="description" content="i春秋做题记录 web(一) | 未完成的歌">
+  <title>JavaSE——多线程学习 | 未完成的歌</title>
+  <meta name="keywords" content=" javase ">
+  <meta name="description" content="JavaSE——多线程学习 | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="在DVWA页面中选择 SQL Injection 一、首先肯定是要判断是否有注入漏洞，在输入框输入1，返回 ID: 1 First name: admin Surname: admin 返回正常； 再次输入1&#39;，报错，返回 You have an error in your SQL syntax; check the manual that corresponds to your Mari">
 <meta property="og:type" content="article">
@@ -1316,9 +1316,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-i春秋做题记录 web(一)" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Java SE——多线程学习" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">i春秋做题记录 web(一)</h1>
+        <h1 class="article-title">JavaSE——多线程学习</h1>
     
     <div class="article-meta">
         
@@ -1328,9 +1328,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="CTF">CTF</a> > 
+            <a  data-rel="Web开发">Web开发</a> > 
             
-            <a  data-rel="CTF&lt;---&gt;Web">Web</a>
+            <a  data-rel="Web开发&lt;---&gt;JavaSE">JavaSE</a>
             
         </span>
         
@@ -1338,19 +1338,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">web</a>
+            <a class="color2">javase</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-02-07 23:52:53'>2019-11-03 17:28</time>
+            发布时间 : <time class="date" title='最后更新: 2021-12-19 22:22:30'>2020-09-28 20:07</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1k</span>
+        <span>字数:2.8k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1369,7 +1369,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E6%83%B3%E6%80%8E%E4%B9%88%E4%BC%A0%E5%B0%B1%E6%80%8E%E4%B9%88%E4%BC%A0%EF%BC%8C%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E4%BB%BB%E6%80%A7%E3%80%82"><span class="toc-text">1、想怎么传就怎么传，就是这么任性。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%87%BA%E9%A2%98%E4%BA%BA%E5%B0%B1%E5%91%8A%E8%AF%89%E4%BD%A0%E8%BF%99%E6%98%AF%E4%B8%AA%E6%B3%A8%E5%85%A5%EF%BC%8C%E6%9C%89%E7%A7%8D%E5%88%AB%E8%B5%B0%EF%BC%81"><span class="toc-text">2、出题人就告诉你这是个注入，有种别走！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E8%BF%99%E4%B8%AA%E7%9C%9F%E7%9A%84%E6%98%AF%E7%88%86%E7%A0%B4%E3%80%82"><span class="toc-text">3、这个真的是爆破。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E6%B2%A1%E9%94%99%EF%BC%81%E5%B0%B1%E6%98%AF%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E"><span class="toc-text">4、没错！就是文件包含漏洞</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E5%85%88%E6%9D%A5%E8%AF%B4%E4%B8%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="toc-text">1、先来说下多线程的概念：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BC%98%E7%82%B9%EF%BC%9A"><span class="toc-text">2、多线程的优点：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1385,55 +1385,311 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前言：<br>时间过的真快呀，一转眼半学期就过去了(￣m￣）；攻防世界上的题差不多刷完了(剩下的都是不会的T_T)，这周就来做做 i春秋的题，顺便记录下。<hr></p>
-<a id="more"></a>
-<h3 id="1、想怎么传就怎么传，就是这么任性。"><a href="#1、想怎么传就怎么传，就是这么任性。" class="headerlink" title="1、想怎么传就怎么传，就是这么任性。"></a>1、想怎么传就怎么传，就是这么任性。</h3><p>题型：    Web Upload<br><img src="http://img-blog.csdnimg.cn/20191030162630590.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这题就是一个简单的文件上传题目；先用一个普通的php小马试一下：<code>&lt;?php @eval($_POST[&#39;smk&#39;]);?&gt;</code><br>然后发现文件是上传成功了，但是<code>&lt;? php</code>被过滤掉了<br>于是在网上找到另一个一句话，将php用大写绕过 修改后如下：<br><code>&lt;script language=&quot;pHp&quot;&gt;@eval($_POST[&#39;smk&#39;])&lt;/script&gt;</code><br>然后连接菜刀就能看到flag了。<br><img src="http://img-blog.csdnimg.cn/20191103172707128.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="2、出题人就告诉你这是个注入，有种别走！"><a href="#2、出题人就告诉你这是个注入，有种别走！" class="headerlink" title="2、出题人就告诉你这是个注入，有种别走！"></a>2、出题人就告诉你这是个注入，有种别走！</h3><p>题型：    Web Sql<br><img src="http://img-blog.csdnimg.cn/20191030162853663.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开题目：<br><img src="http://img-blog.csdnimg.cn/20191103162535997.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>看到题目的url就知道要对id注入。首先试一下order by，发现错误，可能是关键字过滤。试了试<code>/**/</code>还是不行，改用<code>&lt;&gt;</code>发现可以了，如图：<br><img src="http://img-blog.csdnimg.cn/2019110316284923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>测试得字段数为3，接下来就没啥好说的了，按顺序，爆库爆表爆字段<br><img src="http://img-blog.csdnimg.cn/20191103163918156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20191103164216508.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20191103164928944.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20191103165117879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>得到flag。</p>
-<h3 id="3、这个真的是爆破。"><a href="#3、这个真的是爆破。" class="headerlink" title="3、这个真的是爆破。"></a>3、这个真的是爆破。</h3><p>题型：Misc    Web<br><img src="http://img-blog.csdnimg.cn/20191030195146808.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开题目，看到一段php语句：</p>
-<pre><code>error_reporting(0);// 关闭错误报告
-session_start();//启动会话
-require(&#39;./flag.php&#39;);
-if(!isset($_SESSION[&#39;nums&#39;]))&#123;//isset() — 检测变量是否设置。
-  $_SESSION[&#39;nums&#39;] = 0;
-  $_SESSION[&#39;time&#39;] = time();//返回当前时间的 Unix 时间戳
-  $_SESSION[&#39;whoami&#39;] = &#39;ea&#39;;
-&#125;
-
-if($_SESSION[&#39;time&#39;]+120&lt;time())&#123;
-  session_destroy();//session_destroy — 销毁一个会话中的全部数据
-&#125;//120s后会话结束
-
-$value = $_REQUEST[&#39;value&#39;];
-$str_rand = range(&#39;a&#39;, &#39;z&#39;);//range创建一个包含从 &quot;a&quot; 到 &quot;z&quot; 之间的元素范围的数组
-$str_rands = $str_rand[mt_rand(0,25)].$str_rand[mt_rand(0,25)];//mt_rand() 使用 Mersenne Twister 算法返回0到25之间的随机整数。$str_rand[mt_rand(0,25)]返回&quot;a&quot; 到 &quot;z&quot;之间任意字母。$str_rand[mt_rand(0,25)].$str_rand[mt_rand(0,25)]是两任意字母相连
-
-if($_SESSION[&#39;whoami&#39;]==($value[0].$value[1]) &amp;&amp; substr(md5($value),5,4)==0)&#123;//substr(string,start,length)。===是包括变量值与类型完全相等。==只是比较两个数的值是否相等，由于substr是字符串，和数字比较的时候会强制转化成数字0，自然和0相等。
-  $_SESSION[&#39;nums&#39;]++;
-  $_SESSION[&#39;whoami&#39;] = $str_rands;
-  echo $str_rands;
-&#125;
-
-if($_SESSION[&#39;nums&#39;]&gt;=10)&#123;//循环10次输出flag，暴力破解
-  echo $flag;
-&#125;
-
-show_source(__FILE__);
-?&gt;</code></pre>
-<p>因为md5不能对数组进行处理，MD5()计算数组会返回null，里面的判断是用==所以我们用数组传值那么<code>substr(md5($value),5,4)==0</code>这个条件恒成立。<br>因为我刚访问由于这段代码<code>$_SESSION[&#39;whoami&#39;] = &#39;ea&#39;;</code> 我们要先传入<code>?value[]=ea</code> </p>
-<p>那么nums就会自增，<code>$_SEESION[&#39;whoami&#39;] = 随机2个字母</code> </p>
-<p>并同时输出到页面上，我们再根据输出的字符修改<code>$value[0].$value[1]</code>的值即可，只要操作大于等于10次，就可以出flag 。<br><img src="http://img-blog.csdnimg.cn/20191103170830809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>综上所述循环10次后输出flag：<br><img src="http://img-blog.csdnimg.cn/20191030175352961.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="4、没错！就是文件包含漏洞"><a href="#4、没错！就是文件包含漏洞" class="headerlink" title="4、没错！就是文件包含漏洞"></a>4、没错！就是文件包含漏洞</h3><p>题型：Web Upload<br>知识点：<br>1、当php开启allow_url_include的时候，可以用php://input伪协议包含文件<br>2、php中的system命令执行函数<br><img src="http://img-blog.csdnimg.cn/20191031202054697.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>这题也挺简单，利用了<strong>php伪协议</strong> ：</p>
-<ol>
-<li>php://input<br>构造场景：本地web服务器根目录下有文件<code>phpinput_server.php</code>，代码如下：<pre><code>&lt;?php
-  $a = $_GET[&#39;a&#39;];
-  $raw_post_data = file_get_contents($a,&#39;r&#39;);//&#39;php://input&#39;
-  echo $raw_post_data;
-?&gt;</code></pre>
+        <h5 id="1、先来说下多线程的概念："><a href="#1、先来说下多线程的概念：" class="headerlink" title="1、先来说下多线程的概念："></a>1、先来说下多线程的概念：</h5><ul>
+<li><p>多线程：一个进程如果有多条执行路径，则称为多线程程序。</p>
+<p>简单来说就是原来是一条路径执行（只有一个CPU的情况下），现在是多条路径执行。就相当于一条公路，原来是一条路，为提高使用效率，充分使用这条道路，在路中间加了一些线，变成了多车道(仍是单向的)。</p>
 </li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200929204106500.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h5 id="2、多线程的优点："><a href="#2、多线程的优点：" class="headerlink" title="2、多线程的优点："></a>2、多线程的优点：</h5><ol>
+<li>资源利用率更高</li>
+<li>程序设计在某些情况下更简单</li>
+<li>程序响应更快</li>
 </ol>
-<p>在浏览器中按照如下方式访问：<br>地址栏输入的是：<code>http://localhost/phpinput_server.php?a=php://input</code><br>post框直接输入一段数据<br>Excute后，脚本会在页面中输出这段数据。<br><img src="http://img-blog.csdnimg.cn/20191031203305913.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>总结：此种方式可以用来获取post数据，但不能获取get数据。</p>
-<p>既然题目是文件包含，我们来看下关键性函数的状态<br>allow_url_include<br><img src="http://img-blog.csdnimg.cn/20191031205339435.png" alt="在这里插入图片描述"><br>当<code>allow_url_include</code>为On而<code>allow_url_fopen</code>为Off的时候，我们可以用用<strong>php://input</strong>伪协议进行包含<br><img src="https://img-blog.csdnimg.cn/20191031205614164.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>可以看到目录下有三个文件，flag是在第一个文件里<br>查看dle345aae.php：<br><img src="http://img-blog.csdnimg.cn/20191031212358170.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">右键查看源码：得到flag<br><img src="http://img-blog.csdnimg.cn/20191031201323703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>1、关于资源利用率更高：</p>
+<ul>
+<li>假如一个应用程序需要从磁盘中读取和处理文件。从磁盘读取一个文件需要5秒，处理一个文件需要2秒。那么处理这样的两个文件则需要</li>
+</ul>
+<pre><code class="java">5秒读取文件A
+2秒处理文件A
+5秒读取文件B
+2秒处理文件B
+---------------------
+总共需要14秒</code></pre>
+<ul>
+<li>从磁盘中读取文件的时候，大部分的CPU时间用于等待磁盘去读取数据。在这段时间里CPU处于空闲状态。它可以做一些别的事情。通过改变操作的顺序，就能够更好的使用CPU资源。看下面的顺序：</li>
+</ul>
+<pre><code class="java">5秒读取文件A
+5秒读取文件B + 2秒处理文件A
+2秒处理文件B
+---------------------
+总共需要12秒</code></pre>
+<ul>
+<li>CPU等待第一个文件被读取完。然后开始读取第二个文件。当第二文件在被读取的时候（IO读取，CPU处于空闲），CPU会去处理第一个文件。在等待磁盘读取文件的时候，CPU大部分时间是空闲的。</li>
+</ul>
+<p>总的说来，CPU能够在等待IO的时候做一些其他的事情。这个不一定就是磁盘IO。它也可以是网络的IO，或者用户输入。通常情况下，网络和磁盘的IO比内存的IO慢的多。</p>
+<p>2、程序设计更简单：</p>
+<ul>
+<li>在单线程应用程序中，如果你想编写程序手动处理上面所提到的读取和处理的顺序，你必须记录每个文件读取和处理的状态。</li>
+<li>相反，你可以启动两个线程，每个线程分别运行一个文件的读取和处理。线程会在等待磁盘读取文件的过程中被阻塞。在等待的时候，其他的线程能够使用CPU去处理已经读取完的文件。</li>
+<li>其结果就是，磁盘总是在繁忙地读取不同的文件到内存中。这会带来磁盘和CPU利用率的提升。而且每个线程只需要记录一个文件，因此这种方式也很容易编程实现。</li>
+</ul>
+<p>3、 程序响应更快：</p>
+<ul>
+<li>如果一个请求需要占用大量的时间来处理，在这段时间内客户端就无法发送新的请求给服务端。只有服务器在监听的时候，请求才能被接收。</li>
+<li>另一种设计是，监听线程把请求传递给工作者线程(worker thread)，然后立刻返回去监听。而工作者线程则能够处理这个请求并发送一个回复给客户端。</li>
+<li>这样就大大提高了程序的响应速度。</li>
+</ul>
+<p>以下是一个多线程实现买票的例子：<hr></p>
+<p><strong>1、案例需求</strong>：</p>
+<ul>
+<li>某电影院目前正在上映国产大片，共有100张票，而它有3个窗口卖票，请设计一个程序模拟该电影院卖票。</li>
+</ul>
+<p>实现步骤：</p>
+<ol>
+<li>定义一个类SellTicket实现Runnable接口，里面定义一个成员变量：private int tickets = 100;</li>
+<li>在SellTicket类中重写run()方法实现卖票，代码步骤如下</li>
+<li>判断票数大于0，就卖票，并告知是哪个窗口卖的</li>
+<li>卖了票之后，总票数要减1</li>
+<li>票没有了，也可能有人来问，所以这里用死循环让卖票的动作一直执行</li>
+<li>定义一个测试类SellTicketDemo，里面有main方法，代码步骤如下</li>
+<li>创建SellTicket类的对象</li>
+<li>创建三个Thread类的对象，把SellTicket对象作为构造方法的参数，并给出对应的窗口名称</li>
+<li>启动线程</li>
+</ol>
+<p>代码实现：</p>
+<pre><code class="java">public class SellTicket implements Runnable &#123;
+    private int tickets = 100;
+
+    //在SellTicket类中重写run()方法实现卖票，代码步骤如下
+    @Override
+    public void run() &#123;
+    while (true) &#123;
+        if (tickets &gt; 0) &#123;
+            System.out.println(Thread.currentThread().getName() + &quot;正在出售第&quot; +tickets + &quot;张票&quot;);
+            tickets--;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<pre><code class="java">public class SellTicketDemo &#123;
+    public static void main(String[] args) &#123;
+        //创建SellTicket类的对象
+        SellTicket st = new SellTicket();
+
+        //创建三个Thread类的对象，把SellTicket对象作为构造方法的参数，并给出对应的窗口名称
+        Thread t1 = new Thread(st,&quot;窗口1&quot;);
+        Thread t2 = new Thread(st,&quot;窗口2&quot;);
+        Thread t3 = new Thread(st,&quot;窗口3&quot;);
+
+        //启动线程
+        t1.start();
+        t2.start();
+        t3.start();
+    &#125;
+&#125;</code></pre>
+<p>执行结果：<br><img src="https://img-blog.csdnimg.cn/2020092821013040.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>可以看到票数出现了异常，出现了重复的票，甚至还有可能出现负数的票。</p>
+<p><strong>2、卖票案例的问题</strong>：</p>
+<p>问题产生原因：</p>
+<ul>
+<li>线程执行的随机性导致的</li>
+</ul>
+<p>详细解析：</p>
+<p>相同的票出现了多次:</p>
+<pre><code class="java">public class SellTicket implements Runnable &#123;
+    private int tickets = 100;
+
+    @Override
+    public void run() &#123;
+         while (true) &#123;
+             //tickets = 100;
+             //t1,t2,t3
+             //假设t1线程抢到CPU的执行权
+             if (tickets &gt; 0) &#123;
+                 //通过sleep()方法来模拟出票时间
+                 try &#123;
+                     Thread.sleep(100);
+                     //t1线程休息100毫秒
+                     //t2线程抢到了CPU的执行权，t2线程就开始执行，执行到这里的时候，t2线程休息100毫秒
+                     //t3线程抢到了CPU的执行权，t3线程就开始执行，执行到这里的时候，t3线程休息100毫秒
+                 &#125; catch (InterruptedException e) &#123;
+                     e.printStackTrace();
+                 &#125;
+                //假设线程按照顺序醒过来
+                 //t1抢到CPU的执行权，在控制台输出：窗口1正在出售第100张票
+                 System.out.println(Thread.currentThread().getName() + &quot;正在出售第&quot;+tickets + &quot;张票&quot;);
+                 //t2抢到CPU的执行权，在控制台输出：窗口2正在出售第100张票
+                 //t3抢到CPU的执行权，在控制台输出：窗口3正在出售第100张票
+                 tickets--;
+                 //如果这三个线程还是按照顺序来，这里就执行了3次--的操作，最终票就变成了97
+             &#125;
+         &#125;
+    &#125;
+&#125;</code></pre>
+<p>出现了负数的票：</p>
+<pre><code class="java">
+public class SellTicket implements Runnable &#123;
+    private int tickets = 100;
+
+    public void run() &#123;
+        while (true) &#123;
+        //tickets = 1;
+        //t1,t2,t3
+        //假设t1线程抢到CPU的执行权
+        if (tickets &gt; 0) &#123;
+            //通过sleep()方法来模拟出票时间
+            try &#123;
+                Thread.sleep(100);
+                //t1线程休息100毫秒
+                //t2线程抢到了CPU的执行权，t2线程就开始执行，执行到这里的时候，t2线程休息100毫秒
+                //t3线程抢到了CPU的执行权，t3线程就开始执行，执行到这里的时候，t3线程休息100毫秒
+                &#125; catch (InterruptedException e) &#123;
+                    e.printStackTrace();
+                &#125;
+                //假设线程按照顺序醒过来
+                //t1抢到了CPU的执行权，在控制台输出：窗口1正在出售第1张票
+                //假设t1继续拥有CPU的执行权，就会执行tickets--;操作，tickets = 0;
+                //t2抢到了CPU的执行权，在控制台输出：窗口1正在出售第0张票
+                //假设t2继续拥有CPU的执行权，就会执行tickets--;操作，tickets = -1;
+                //t3抢到了CPU的执行权，在控制台输出：窗口3正在出售第-1张票
+                //假设t2继续拥有CPU的执行权，就会执行tickets--;操作，tickets = -2;
+                System.out.println(Thread.currentThread().getName() + &quot;正在出售第&quot; +tickets + &quot;张票&quot;);
+                tickets--;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p><strong>3、同步代码块解决数据安全问题</strong>：</p>
+<p>安全问题出现的条件：</p>
+<ol>
+<li>是多线程环境</li>
+<li>有共享数据</li>
+<li>有多条语句操作共享数据</li>
+</ol>
+<p>如何解决多线程安全问题呢?</p>
+<ul>
+<li>基本思想：让程序没有安全问题的环境</li>
+</ul>
+<p>如何实现?</p>
+<ul>
+<li>把多条语句操作共享数据的代码给锁起来，让任意时刻只能有一个线程执行即可。</li>
+</ul>
+<p>Java提供了同步代码块的方式来解决：</p>
+<p>同步代码块格式：</p>
+<pre><code class="java">synchronized(任意对象) &#123;
+    多条语句操作共享数据的代码
+&#125;</code></pre>
+<p>synchronized(任意对象)：就相当于给代码加锁了，任意对象就可以看成是一把锁。</p>
+<p>同步的好处和弊端：</p>
+<ul>
+<li>好处：解决了多线程的数据安全问题</li>
+<li>弊端：当线程很多时，因为每个线程都会去判断同步上的锁，这是很耗费资源的，无形中会降低程序的运行效率。</li>
+</ul>
+<p>代码演示：</p>
+<pre><code class="java">package sellticket;
+
+public class SellTicket implements Runnable &#123;
+    private int tickets = 100;
+    private Object obj = new Object();//使用同一个对象加锁，相当于使用同一把锁
+
+    @Override
+    public void run() &#123;
+        while (true) &#123;
+            //tickets = 100;
+            //t1,t2,t3
+            //假设t1抢到了CPU的执行权
+            //假设t2抢到了CPU的执行权
+            synchronized (obj) &#123;
+               //t1进来后，就会把这段代码给锁起来
+                if (tickets &gt; 0) &#123;
+                    try &#123;
+                        Thread.sleep(100);
+                        //t1休息100毫秒
+                    &#125; catch (InterruptedException e) &#123;
+                        e.printStackTrace();
+                    &#125;
+                    //窗口1正在出售第100张票
+                    System.out.println(Thread.currentThread().getName() + &quot;正在出售第&quot; + tickets + &quot; 张票&quot;);
+                    tickets--; //tickets = 99;
+                &#125;
+            &#125;
+            //t1出来了，这段代码的锁就被释放了
+        &#125;
+    &#125;
+&#125;</code></pre>
+<pre><code class="java">public class SellTicketDemo &#123;
+    public static void main(String[] args) &#123;
+        SellTicket st = new SellTicket();
+
+        Thread t1 = new Thread(st, &quot;窗口1&quot;);
+        Thread t2 = new Thread(st, &quot;窗口2&quot;);
+        Thread t3 = new Thread(st, &quot;窗口3&quot;);
+
+        t1.start();
+        t2.start();
+        t3.start();
+    &#125;
+&#125;</code></pre>
+<p><strong>4、同步方法解决数据安全问题</strong>：</p>
+<p>同步方法：就是把synchronized关键字加到方法上。</p>
+<pre><code class="java">修饰符 synchronized 返回值类型 方法名(方法参数) &#123;
+    方法体；
+&#125;</code></pre>
+<p>同步方法的锁对象是：<strong>this</strong></p>
+<p>静态同步方法：</p>
+<ul>
+<li>同步静态方法：就是把synchronized关键字加到静态方法上</li>
+</ul>
+<p>例：</p>
+<p> 同步方法:</p>
+<pre><code class="java"> private synchronized void sellTicket() &#123;
+    if (tickets &gt; 0) &#123;
+         try &#123;
+             Thread.sleep(100);
+         &#125; catch (InterruptedException e) &#123;
+             e.printStackTrace();
+         &#125;
+         System.out.println(Thread.currentThread().getName() + &quot;正在出售第&quot; + tickets + &quot;张票&quot;);
+         tickets--;
+     &#125;
+ &#125;</code></pre>
+<p>静态同步方法:</p>
+<pre><code class="java">private static synchronized void sellTicket() &#123;
+    if (tickets &gt; 0) &#123;
+        try &#123;
+            Thread.sleep(100);
+            &#125; catch (InterruptedException e) &#123;
+                e.printStackTrace();
+            &#125;
+            System.out.println(Thread.currentThread().getName() + &quot;正在出售第&quot; +tickets + &quot;张票&quot;);
+            tickets--;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p><strong>5、Lock锁</strong>：</p>
+<p>虽然我们可以理解同步代码块和同步方法的锁对象问题，但是我们并没有直接看到在哪里加上了锁，在哪里释放了锁，为了更清晰的表达如何加锁和释放锁，JDK5以后提供了一个新的锁对象Lock</p>
+<ul>
+<li>Lock是接口不能直接实例化，采用它的实现类ReentrantLock来实例化。</li>
+</ul>
+<p>ReentrantLock构造方法：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200929194444712.png#pic_center" alt="在这里插入图片描述"><br>加锁解锁方法：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200929194507222.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>例：</p>
+<pre><code class="java">public class SellTicket implements Runnable &#123;
+    private int tickets = 100;
+    private Lock lock = new ReentrantLock();
+
+    @Override
+    public void run() &#123;
+        while (true) &#123;
+            try &#123;
+                lock.lock();
+                if (tickets &gt; 0) &#123;
+                    try &#123;
+                        Thread.sleep(100);
+                    &#125; catch (InterruptedException e) &#123;
+                        e.printStackTrace();
+                    &#125;
+                    System.out.println(Thread.currentThread().getName() + &quot;正在出售第&quot; + tickets + &quot; 张票&quot;);
+                    tickets--;
+                &#125;
+            &#125; finally &#123;
+                lock.unlock();
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p>关于java多线程的总结暂时就这些了。</p>
+<p>参考文章：<a target="_blank" rel="noopener" href="https://www.jb51.net/article/127443.htm">https://www.jb51.net/article/127443.htm</a><hr></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>
