@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>数据库系统（五）——数据库设计 | 未完成的歌</title>
-  <meta name="keywords" content=" 数据库 ">
-  <meta name="description" content="数据库系统（五）——数据库设计 | 未完成的歌">
+  <title>JavaSE——多线程学习 | 未完成的歌</title>
+  <meta name="keywords" content=" javase ">
+  <meta name="description" content="JavaSE——多线程学习 | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="在DVWA页面中选择 SQL Injection 一、首先肯定是要判断是否有注入漏洞，在输入框输入1，返回 ID: 1 First name: admin Surname: admin 返回正常； 再次输入1&#39;，报错，返回 You have an error in your SQL syntax; check the manual that corresponds to your Mari">
 <meta property="og:type" content="article">
@@ -1316,9 +1316,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-数据库系统（五）——数据库设计" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Java SE——多线程学习" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">数据库系统（五）——数据库设计</h1>
+        <h1 class="article-title">JavaSE——多线程学习</h1>
     
     <div class="article-meta">
         
@@ -1328,7 +1328,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="数据库">数据库</a>
+            <a  data-rel="Web开发">Web开发</a> > 
+            
+            <a  data-rel="Web开发&lt;---&gt;JavaSE">JavaSE</a>
             
         </span>
         
@@ -1336,19 +1338,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">数据库</a>
+            <a class="color2">javase</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-02-25 15:19:39'>2021-01-03 21:13</time>
+            发布时间 : <time class="date" title='最后更新: 2021-12-20 09:59:38'>2020-09-28 20:07</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1.6k</span>
+        <span>字数:2.8k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1367,7 +1369,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84%EF%BC%9A"><span class="toc-text">一、实验目的：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9"><span class="toc-text">二、实验内容:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%A2%98%E7%9B%AE%EF%BC%9ANewspaper-DataBase-Design"><span class="toc-text">三、题目：Newspaper DataBase Design</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81ER%E5%9B%BE%EF%BC%9A"><span class="toc-text">四、ER图：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E4%BD%93%E5%85%B3%E7%B3%BB%E8%AE%BE%E8%AE%A1%EF%BC%9A"><span class="toc-text">五、数据库实体关系设计：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%AE%9E%E9%AA%8C%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">六、实验小结：</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E5%85%88%E6%9D%A5%E8%AF%B4%E4%B8%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="toc-text">1、先来说下多线程的概念：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BC%98%E7%82%B9%EF%BC%9A"><span class="toc-text">2、多线程的优点：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1383,137 +1385,311 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84%EF%BC%9A"><span class="toc-text">一、实验目的：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9"><span class="toc-text">二、实验内容:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%A2%98%E7%9B%AE%EF%BC%9ANewspaper-DataBase-Design"><span class="toc-text">三、题目：Newspaper DataBase Design</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81ER%E5%9B%BE%EF%BC%9A"><span class="toc-text">四、ER图：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E4%BD%93%E5%85%B3%E7%B3%BB%E8%AE%BE%E8%AE%A1%EF%BC%9A"><span class="toc-text">五、数据库实体关系设计：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%AE%9E%E9%AA%8C%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">六、实验小结：</span></a></li></ol></div></p>
-<h4 id="一、实验目的："><a href="#一、实验目的：" class="headerlink" title="一、实验目的："></a>一、实验目的：</h4><ol>
-<li><p>熟悉数据库设计基本步骤；</p>
+        <h5 id="1、先来说下多线程的概念："><a href="#1、先来说下多线程的概念：" class="headerlink" title="1、先来说下多线程的概念："></a>1、先来说下多线程的概念：</h5><ul>
+<li><p>多线程：一个进程如果有多条执行路径，则称为多线程程序。</p>
+<p>简单来说就是原来是一条路径执行（只有一个CPU的情况下），现在是多条路径执行。就相当于一条公路，原来是一条路，为提高使用效率，充分使用这条道路，在路中间加了一些线，变成了多车道(仍是单向的)。</p>
 </li>
-<li><p>练习数据库需求分析方法，并能给出数据字典；</p>
-</li>
-<li><p>练习 ER 图建模，掌握 ER 模型向关系模式的转化。</p>
-</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200929204106500.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h5 id="2、多线程的优点："><a href="#2、多线程的优点：" class="headerlink" title="2、多线程的优点："></a>2、多线程的优点：</h5><ol>
+<li>资源利用率更高</li>
+<li>程序设计在某些情况下更简单</li>
+<li>程序响应更快</li>
 </ol>
-<h4 id="二、实验内容"><a href="#二、实验内容" class="headerlink" title="二、实验内容:"></a>二、实验内容:</h4><ol>
-<li><p>从用户需求出发，按照数据库设计步骤，分别完成如下内容：概念结构设计（ER 模型），给出满足需求的最终全局 ER 图，要求模型尽量精简，消除不必要的冗余，并给出理由或说明；</p>
-</li>
-<li><p>逻辑结构设计（关系模式），把 ER 模型转换成适当的关系模式，并进行适当地规范化，设计相关完整性约束。</p>
-</li>
+<p>1、关于资源利用率更高：</p>
+<ul>
+<li>假如一个应用程序需要从磁盘中读取和处理文件。从磁盘读取一个文件需要5秒，处理一个文件需要2秒。那么处理这样的两个文件则需要</li>
+</ul>
+<pre><code class="java">5秒读取文件A
+2秒处理文件A
+5秒读取文件B
+2秒处理文件B
+---------------------
+总共需要14秒</code></pre>
+<ul>
+<li>从磁盘中读取文件的时候，大部分的CPU时间用于等待磁盘去读取数据。在这段时间里CPU处于空闲状态。它可以做一些别的事情。通过改变操作的顺序，就能够更好的使用CPU资源。看下面的顺序：</li>
+</ul>
+<pre><code class="java">5秒读取文件A
+5秒读取文件B + 2秒处理文件A
+2秒处理文件B
+---------------------
+总共需要12秒</code></pre>
+<ul>
+<li>CPU等待第一个文件被读取完。然后开始读取第二个文件。当第二文件在被读取的时候（IO读取，CPU处于空闲），CPU会去处理第一个文件。在等待磁盘读取文件的时候，CPU大部分时间是空闲的。</li>
+</ul>
+<p>总的说来，CPU能够在等待IO的时候做一些其他的事情。这个不一定就是磁盘IO。它也可以是网络的IO，或者用户输入。通常情况下，网络和磁盘的IO比内存的IO慢的多。</p>
+<p>2、程序设计更简单：</p>
+<ul>
+<li>在单线程应用程序中，如果你想编写程序手动处理上面所提到的读取和处理的顺序，你必须记录每个文件读取和处理的状态。</li>
+<li>相反，你可以启动两个线程，每个线程分别运行一个文件的读取和处理。线程会在等待磁盘读取文件的过程中被阻塞。在等待的时候，其他的线程能够使用CPU去处理已经读取完的文件。</li>
+<li>其结果就是，磁盘总是在繁忙地读取不同的文件到内存中。这会带来磁盘和CPU利用率的提升。而且每个线程只需要记录一个文件，因此这种方式也很容易编程实现。</li>
+</ul>
+<p>3、 程序响应更快：</p>
+<ul>
+<li>如果一个请求需要占用大量的时间来处理，在这段时间内客户端就无法发送新的请求给服务端。只有服务器在监听的时候，请求才能被接收。</li>
+<li>另一种设计是，监听线程把请求传递给工作者线程(worker thread)，然后立刻返回去监听。而工作者线程则能够处理这个请求并发送一个回复给客户端。</li>
+<li>这样就大大提高了程序的响应速度。</li>
+</ul>
+<p>以下是一个多线程实现买票的例子：<hr></p>
+<p><strong>1、案例需求</strong>：</p>
+<ul>
+<li>某电影院目前正在上映国产大片，共有100张票，而它有3个窗口卖票，请设计一个程序模拟该电影院卖票。</li>
+</ul>
+<p>实现步骤：</p>
+<ol>
+<li>定义一个类SellTicket实现Runnable接口，里面定义一个成员变量：private int tickets = 100;</li>
+<li>在SellTicket类中重写run()方法实现卖票，代码步骤如下</li>
+<li>判断票数大于0，就卖票，并告知是哪个窗口卖的</li>
+<li>卖了票之后，总票数要减1</li>
+<li>票没有了，也可能有人来问，所以这里用死循环让卖票的动作一直执行</li>
+<li>定义一个测试类SellTicketDemo，里面有main方法，代码步骤如下</li>
+<li>创建SellTicket类的对象</li>
+<li>创建三个Thread类的对象，把SellTicket对象作为构造方法的参数，并给出对应的窗口名称</li>
+<li>启动线程</li>
 </ol>
-<h4 id="三、题目：Newspaper-DataBase-Design"><a href="#三、题目：Newspaper-DataBase-Design" class="headerlink" title="三、题目：Newspaper DataBase Design"></a>三、题目：Newspaper DataBase Design</h4><p>Newspaper System<br>报纸系统</p>
-<p>A newspaper is setting up a website where people can write, read and comment on news stories. Your job is to design a database that can record the information needed for the website to work.<br>一家报纸正在建立一个网站，人们可以在那里撰写、阅读和评论新闻报道。你的工作是设计一个数据库，可以记录网站工作所需的信息。</p>
-<p>The website lists a number of stories, each classified within one of about 10 sections (‘Local news’, ‘World news’,‘Opinion’, ‘Sport’, ‘Technology’ etc).<br>该网站列出了许多故事，每一个故事都被归入10个栏目(“本地新闻”、“世界新闻”、“观点”、“体育”、“科技”等)中的一个栏目里。</p>
-<p>Each content of each story consists of a piece of text (the manager would prefer there to be no limit on the size) as well as a headline and a short “lede” (a lede is a sentence of 10 to 20 words that summarizes the story).<br>每个故事的每一个内容都由一段文字（经理希望没有大小限制）以及一个标题和一个简短的 “lede”（lede是一个10到20个单词的句子，用来总结故事）。</p>
-<p>Each story is written by one or more of our authors, who submit the story to our database on a particular date.<br>每个故事都是由我们的一个或多个作者撰写的，他们在特定日期将故事提交到我们的数据库。</p>
-<p>If a story is considered worthy, it is edited by one of our editors, assigned to a section, and then published on a particular date.<br>如果一个故事被认为是有价值的，它将由我们的一位编辑编辑，分配到一个部分，然后在一个特定的日期出版。</p>
-<p>Authors and editors are staff members.<br>作者和编辑都是工作人员。</p>
-<p>It is not possible to be both an author and an editor.<br>既当作家又当编辑是不可能的。</p>
-<p>About each staff member we store their name and when they join (and later leave) the newspaper.<br>关于每一位员工，我们会保存他们的名字，以及他们何时加入(后来离开)报纸。</p>
-<p>We want to organize the website so that readers can click on a section, or an author’s name, and see a list of all the relevant stories.<br>我们希望组织网站，这样读者可以点击某个部分或作者的名字，并看到所有相关故事的列表。</p>
-<p>On the main page we list each story’s title (shown as a headline) and lede.<br>在主页上，我们列出每个故事的标题(作为标题显示)和lede。</p>
-<p>Then if the reader clicks on the headline, we display the entire story.<br>然后，如果读者点击标题，我们就会显示整个故事。</p>
-<p>Our readers, if they wish, can choose to register themselves in our database, recording a username and password (they do not need to record their real name).<br>我们的读者，如果他们愿意，可以选择在我们的数据库中注册，记录用户名和密码(他们不需要记录他们的真实姓名)。</p>
-<p>Readers who register can then comment on stories, and on other readers’ comments.<br>注册的读者可以对故事和其他读者的评论进行评论。</p>
-<p>They can also click “Like” on a story – and if they change their mind later, they can “Unlike” it.<br>他们还可以点击某个故事的“喜欢”按钮——如果他们后来改变了主意，他们可以“不喜欢”这个故事。</p>
-<p>When we display a story we show the number of Likes the story has received and list out the comments below it.<br>当我们显示一个故事时，我们会显示这个故事收到的赞数，并在下面列出评论。</p>
-<p>With each comment we show the username of the person who commented, and the time they commented.<br>在每条评论中，我们都会显示评论人的用户名以及他们评论的时间。</p>
-<p>We aim for brevity in comments, and restrict them to 1024 characters.<br>我们的目标是在评论中保持简洁，限制在1024个字符以内。</p>
-<h4 id="四、ER图："><a href="#四、ER图：" class="headerlink" title="四、ER图："></a>四、ER图：</h4><p>根据题意，画出 ER图：<br><img src="https://img-blog.csdnimg.cn/20201213183916912.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>其中关系模式如下：</p>
+<p>代码实现：</p>
+<pre><code class="java">public class SellTicket implements Runnable &#123;
+    private int tickets = 100;
+
+    //在SellTicket类中重写run()方法实现卖票，代码步骤如下
+    @Override
+    public void run() &#123;
+    while (true) &#123;
+        if (tickets &gt; 0) &#123;
+            System.out.println(Thread.currentThread().getName() + &quot;正在出售第&quot; +tickets + &quot;张票&quot;);
+            tickets--;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<pre><code class="java">public class SellTicketDemo &#123;
+    public static void main(String[] args) &#123;
+        //创建SellTicket类的对象
+        SellTicket st = new SellTicket();
+
+        //创建三个Thread类的对象，把SellTicket对象作为构造方法的参数，并给出对应的窗口名称
+        Thread t1 = new Thread(st,&quot;窗口1&quot;);
+        Thread t2 = new Thread(st,&quot;窗口2&quot;);
+        Thread t3 = new Thread(st,&quot;窗口3&quot;);
+
+        //启动线程
+        t1.start();
+        t2.start();
+        t3.start();
+    &#125;
+&#125;</code></pre>
+<p>执行结果：<br><img src="https://img-blog.csdnimg.cn/2020092821013040.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>可以看到票数出现了异常，出现了重复的票，甚至还有可能出现负数的票。</p>
+<p><strong>2、卖票案例的问题</strong>：</p>
+<p>问题产生原因：</p>
 <ul>
-<li>员工（姓名，加入日期，离开日期）</li>
-<li>新闻（标题，文本，简介）</li>
-<li>读者（用户名，密码）</li>
-<li>提交（提交日期，员工姓名，新闻）</li>
-<li>分类（栏目，新闻）</li>
-<li>评论（评论时间，新闻，读者用户名）</li>
-<li>评论评论（评论时间，评论，读者用户名）</li>
-<li>点赞（新闻，读者）</li>
+<li>线程执行的随机性导致的</li>
 </ul>
-<p>每个关系模式的主码、外码如下：</p>
+<p>详细解析：</p>
+<p>相同的票出现了多次:</p>
+<pre><code class="java">public class SellTicket implements Runnable &#123;
+    private int tickets = 100;
+
+    @Override
+    public void run() &#123;
+         while (true) &#123;
+             //tickets = 100;
+             //t1,t2,t3
+             //假设t1线程抢到CPU的执行权
+             if (tickets &gt; 0) &#123;
+                 //通过sleep()方法来模拟出票时间
+                 try &#123;
+                     Thread.sleep(100);
+                     //t1线程休息100毫秒
+                     //t2线程抢到了CPU的执行权，t2线程就开始执行，执行到这里的时候，t2线程休息100毫秒
+                     //t3线程抢到了CPU的执行权，t3线程就开始执行，执行到这里的时候，t3线程休息100毫秒
+                 &#125; catch (InterruptedException e) &#123;
+                     e.printStackTrace();
+                 &#125;
+                //假设线程按照顺序醒过来
+                 //t1抢到CPU的执行权，在控制台输出：窗口1正在出售第100张票
+                 System.out.println(Thread.currentThread().getName() + &quot;正在出售第&quot;+tickets + &quot;张票&quot;);
+                 //t2抢到CPU的执行权，在控制台输出：窗口2正在出售第100张票
+                 //t3抢到CPU的执行权，在控制台输出：窗口3正在出售第100张票
+                 tickets--;
+                 //如果这三个线程还是按照顺序来，这里就执行了3次--的操作，最终票就变成了97
+             &#125;
+         &#125;
+    &#125;
+&#125;</code></pre>
+<p>出现了负数的票：</p>
+<pre><code class="java">
+public class SellTicket implements Runnable &#123;
+    private int tickets = 100;
+
+    public void run() &#123;
+        while (true) &#123;
+        //tickets = 1;
+        //t1,t2,t3
+        //假设t1线程抢到CPU的执行权
+        if (tickets &gt; 0) &#123;
+            //通过sleep()方法来模拟出票时间
+            try &#123;
+                Thread.sleep(100);
+                //t1线程休息100毫秒
+                //t2线程抢到了CPU的执行权，t2线程就开始执行，执行到这里的时候，t2线程休息100毫秒
+                //t3线程抢到了CPU的执行权，t3线程就开始执行，执行到这里的时候，t3线程休息100毫秒
+                &#125; catch (InterruptedException e) &#123;
+                    e.printStackTrace();
+                &#125;
+                //假设线程按照顺序醒过来
+                //t1抢到了CPU的执行权，在控制台输出：窗口1正在出售第1张票
+                //假设t1继续拥有CPU的执行权，就会执行tickets--;操作，tickets = 0;
+                //t2抢到了CPU的执行权，在控制台输出：窗口1正在出售第0张票
+                //假设t2继续拥有CPU的执行权，就会执行tickets--;操作，tickets = -1;
+                //t3抢到了CPU的执行权，在控制台输出：窗口3正在出售第-1张票
+                //假设t2继续拥有CPU的执行权，就会执行tickets--;操作，tickets = -2;
+                System.out.println(Thread.currentThread().getName() + &quot;正在出售第&quot; +tickets + &quot;张票&quot;);
+                tickets--;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p><strong>3、同步代码块解决数据安全问题</strong>：</p>
+<p>安全问题出现的条件：</p>
+<ol>
+<li>是多线程环境</li>
+<li>有共享数据</li>
+<li>有多条语句操作共享数据</li>
+</ol>
+<p>如何解决多线程安全问题呢?</p>
 <ul>
-<li>员工（主码是姓名，无外码）</li>
-<li>新闻（主码是标题和文本，无外码）</li>
-<li>读者（主码是用户名，无外码）</li>
-<li>提交（主码是员工的姓名和新闻，外码是员工的姓名）</li>
-<li>分类（主码是栏目和新闻，无外码）</li>
-<li>评论（主码是新闻和读者用户名，外码是读者用户名）</li>
-<li>评论评论（主码是评论和读者用户名，外码是读者用户名）</li>
-<li>点赞（主码是新闻和读者用户名，外码是读者用户名）</li>
+<li>基本思想：让程序没有安全问题的环境</li>
 </ul>
-<h4 id="五、数据库实体关系设计："><a href="#五、数据库实体关系设计：" class="headerlink" title="五、数据库实体关系设计："></a>五、数据库实体关系设计：</h4><pre><code class="sql">create table staff
-(
-Name varchar(10) primary key,
-Join_date date,
-Leave_date date
-);
-
-create table story
-(
-Headline VARCHAR(10),
-Text varchar(100),
-Lede varchar(50),
-primary key(Headline,Text)
-);
-
-create table reader
-(
-Username varchar(20) primary key,
-Password varchar(20)
-);
-
-
-create table submit
-(
-Submit_date date,
-Name VARCHAR(5),
-Headline VARCHAR(10),
-primary key (Name,Headline),
-foreign key (Name) references staff(Name)
-);
-
-create table class
-(
-Section varchar(5),
-Headline VARCHAR(10),
-primary key (Section,Headline)
-);
-
-create table comment
-(
-Comtime date,
-Headline VARCHAR(10),
-Name varchar(10),
-primary key (Headline,Name),
-foreign key(Name) references staff(Name)
-);
-
-create table comment_comment
-(
-Comtime date,
-Comment varchar(50),
-Name varchar(10),
-primary key (Comment,Name),
-foreign key(Name) references staff(Name)
-);
-
-create table praise
-(
-Headline VARCHAR(10),
-Name varchar(10),
-primary key (Headline,Name),
-foreign key(Name) references staff(Name)
-);</code></pre>
-<p>设计好的数据库模型如下：</p>
-<p><img src="https://img-blog.csdnimg.cn/20201213200440946.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="六、实验小结："><a href="#六、实验小结：" class="headerlink" title="六、实验小结："></a>六、实验小结：</h4><p>应用数据库设计的范式理论对初始关系模型进行优化。数据库设计的三大范式如下：</p>
+<p>如何实现?</p>
 <ul>
-<li><p>第一范式：每一个分类必须是一个不可分的数据项。属性不可再分，确保每列的原子性。</p>
-</li>
-<li><p>第二范式：要求每个表只描述一件事情，每条记录有唯一标识列。</p>
-</li>
-<li><p>第三范式：数据库表中不包含已在其它表中已包含的非主关键字信息。</p>
-</li>
+<li>把多条语句操作共享数据的代码给锁起来，让任意时刻只能有一个线程执行即可。</li>
 </ul>
-<p>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/COCO56/article/details/103470262">https://blog.csdn.net/COCO56/article/details/103470262</a></p>
+<p>Java提供了同步代码块的方式来解决：</p>
+<p>同步代码块格式：</p>
+<pre><code class="java">synchronized(任意对象) &#123;
+    多条语句操作共享数据的代码
+&#125;</code></pre>
+<p>synchronized(任意对象)：就相当于给代码加锁了，任意对象就可以看成是一把锁。</p>
+<p>同步的好处和弊端：</p>
+<ul>
+<li>好处：解决了多线程的数据安全问题</li>
+<li>弊端：当线程很多时，因为每个线程都会去判断同步上的锁，这是很耗费资源的，无形中会降低程序的运行效率。</li>
+</ul>
+<p>代码演示：</p>
+<pre><code class="java">package sellticket;
+
+public class SellTicket implements Runnable &#123;
+    private int tickets = 100;
+    private Object obj = new Object();//使用同一个对象加锁，相当于使用同一把锁
+
+    @Override
+    public void run() &#123;
+        while (true) &#123;
+            //tickets = 100;
+            //t1,t2,t3
+            //假设t1抢到了CPU的执行权
+            //假设t2抢到了CPU的执行权
+            synchronized (obj) &#123;
+               //t1进来后，就会把这段代码给锁起来
+                if (tickets &gt; 0) &#123;
+                    try &#123;
+                        Thread.sleep(100);
+                        //t1休息100毫秒
+                    &#125; catch (InterruptedException e) &#123;
+                        e.printStackTrace();
+                    &#125;
+                    //窗口1正在出售第100张票
+                    System.out.println(Thread.currentThread().getName() + &quot;正在出售第&quot; + tickets + &quot; 张票&quot;);
+                    tickets--; //tickets = 99;
+                &#125;
+            &#125;
+            //t1出来了，这段代码的锁就被释放了
+        &#125;
+    &#125;
+&#125;</code></pre>
+<pre><code class="java">public class SellTicketDemo &#123;
+    public static void main(String[] args) &#123;
+        SellTicket st = new SellTicket();
+
+        Thread t1 = new Thread(st, &quot;窗口1&quot;);
+        Thread t2 = new Thread(st, &quot;窗口2&quot;);
+        Thread t3 = new Thread(st, &quot;窗口3&quot;);
+
+        t1.start();
+        t2.start();
+        t3.start();
+    &#125;
+&#125;</code></pre>
+<p><strong>4、同步方法解决数据安全问题</strong>：</p>
+<p>同步方法：就是把synchronized关键字加到方法上。</p>
+<pre><code class="java">修饰符 synchronized 返回值类型 方法名(方法参数) &#123;
+    方法体；
+&#125;</code></pre>
+<p>同步方法的锁对象是：<strong>this</strong></p>
+<p>静态同步方法：</p>
+<ul>
+<li>同步静态方法：就是把synchronized关键字加到静态方法上</li>
+</ul>
+<p>例：</p>
+<p> 同步方法:</p>
+<pre><code class="java"> private synchronized void sellTicket() &#123;
+    if (tickets &gt; 0) &#123;
+         try &#123;
+             Thread.sleep(100);
+         &#125; catch (InterruptedException e) &#123;
+             e.printStackTrace();
+         &#125;
+         System.out.println(Thread.currentThread().getName() + &quot;正在出售第&quot; + tickets + &quot;张票&quot;);
+         tickets--;
+     &#125;
+ &#125;</code></pre>
+<p>静态同步方法:</p>
+<pre><code class="java">private static synchronized void sellTicket() &#123;
+    if (tickets &gt; 0) &#123;
+        try &#123;
+            Thread.sleep(100);
+            &#125; catch (InterruptedException e) &#123;
+                e.printStackTrace();
+            &#125;
+            System.out.println(Thread.currentThread().getName() + &quot;正在出售第&quot; +tickets + &quot;张票&quot;);
+            tickets--;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p><strong>5、Lock锁</strong>：</p>
+<p>虽然我们可以理解同步代码块和同步方法的锁对象问题，但是我们并没有直接看到在哪里加上了锁，在哪里释放了锁，为了更清晰的表达如何加锁和释放锁，JDK5以后提供了一个新的锁对象Lock</p>
+<ul>
+<li>Lock是接口不能直接实例化，采用它的实现类ReentrantLock来实例化。</li>
+</ul>
+<p>ReentrantLock构造方法：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200929194444712.png#pic_center" alt="在这里插入图片描述"><br>加锁解锁方法：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200929194507222.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>例：</p>
+<pre><code class="java">public class SellTicket implements Runnable &#123;
+    private int tickets = 100;
+    private Lock lock = new ReentrantLock();
+
+    @Override
+    public void run() &#123;
+        while (true) &#123;
+            try &#123;
+                lock.lock();
+                if (tickets &gt; 0) &#123;
+                    try &#123;
+                        Thread.sleep(100);
+                    &#125; catch (InterruptedException e) &#123;
+                        e.printStackTrace();
+                    &#125;
+                    System.out.println(Thread.currentThread().getName() + &quot;正在出售第&quot; + tickets + &quot; 张票&quot;);
+                    tickets--;
+                &#125;
+            &#125; finally &#123;
+                lock.unlock();
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p>关于java多线程的总结暂时就这些了。</p>
+<p>参考文章：<a target="_blank" rel="noopener" href="https://www.jb51.net/article/127443.htm">https://www.jb51.net/article/127443.htm</a><hr></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>
