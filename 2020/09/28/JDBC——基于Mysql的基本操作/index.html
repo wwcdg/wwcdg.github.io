@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>SpringMVC 实现注册登录 | 未完成的歌</title>
-  <meta name="keywords" content=" SpringMVC ">
-  <meta name="description" content="SpringMVC 实现注册登录 | 未完成的歌">
+  <title>JDBC——基于Mysql的基本操作 | 未完成的歌</title>
+  <meta name="keywords" content=" javaweb ">
+  <meta name="description" content="JDBC——基于Mysql的基本操作 | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="在DVWA页面中选择 SQL Injection 一、首先肯定是要判断是否有注入漏洞，在输入框输入1，返回 ID: 1 First name: admin Surname: admin 返回正常； 再次输入1&#39;，报错，返回 You have an error in your SQL syntax; check the manual that corresponds to your Mari">
 <meta property="og:type" content="article">
@@ -1360,9 +1360,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-SpringMVC 实现注册登录" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-JDBC——基于Mysql的基本操作" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">SpringMVC 实现注册登录</h1>
+        <h1 class="article-title">JDBC——基于Mysql的基本操作</h1>
     
     <div class="article-meta">
         
@@ -1374,7 +1374,7 @@
             
             <a  data-rel="Web开发">Web开发</a> > 
             
-            <a  data-rel="Web开发&lt;---&gt;JavaEE">JavaEE</a>
+            <a  data-rel="Web开发&lt;---&gt;JavaWeb">JavaWeb</a>
             
         </span>
         
@@ -1382,19 +1382,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">SpringMVC</a>
+            <a class="color3">javaweb</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-12-16 13:35:38'>2021-12-16 13:16</time>
+            发布时间 : <time class="date" title='最后更新: 2021-12-20 10:23:45'>2020-09-28 21:07</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1.5k</span>
+        <span>字数:1.9k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1413,7 +1413,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%96%B0%E5%BB%BA%E5%8A%A8%E6%80%81Dynamic-Web-Project%EF%BC%9A"><span class="toc-text">一、新建动态Dynamic Web Project：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%85%8D%E7%BD%AEweb-xml%EF%BC%9A"><span class="toc-text">二、配置web.xml：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%88%9B%E5%BB%BAjsp%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-text">三、创建jsp文件：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%BC%96%E5%86%99java%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-text">四、编写java文件：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%85%8D%E7%BD%AEspringmvc-config-xml"><span class="toc-text">五、配置springmvc-config.xml:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%B5%8B%E8%AF%95%EF%BC%9A"><span class="toc-text">六、测试：</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81JDBC%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%936%E4%B8%AA%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-text">一、JDBC连接数据库6个步骤：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8ResultSet%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE"><span class="toc-text">二、使用ResultSet更新数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%A2%84%E7%BC%96%E8%AF%91%E8%AF%AD%E5%8F%A5%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0"><span class="toc-text">三、预编译语句实现数据更新</span></a>
     
 <style>
     .left-col .switch-btn,
@@ -1429,253 +1429,287 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>记录一下SpringMVC实现注册登录功能这个小程序。<hr></p>
-<h4 id="一、新建动态Dynamic-Web-Project："><a href="#一、新建动态Dynamic-Web-Project：" class="headerlink" title="一、新建动态Dynamic Web Project："></a>一、新建动态Dynamic Web Project：</h4><ol>
-<li>新建Dynamic Web Project，项目名为LoginSpringMVC</li>
-<li>导入相应的JAR包：<br><img src="https://img-blog.csdnimg.cn/20201017162838161.png" alt="在这里插入图片描述"></li>
-<li>项目整体结构：<br><img src="https://img-blog.csdnimg.cn/20201017163009117.png" alt="在这里插入图片描述"></li>
+        <h4 id="一、JDBC连接数据库6个步骤："><a href="#一、JDBC连接数据库6个步骤：" class="headerlink" title="一、JDBC连接数据库6个步骤："></a>一、JDBC连接数据库6个步骤：</h4><p><img src="https://img-blog.csdnimg.cn/20200326183126282.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>1、加载并注册驱动程序</strong></p>
+<p> 在连接数据库之前，首先要加载想要连接的数据库的驱动到JVM（Java虚拟机），通过java.lang.Class类的静态方法forName(String  className)实现。<br>    例：  </p>
+<pre><code class="java">   try&#123;//加载MySql的驱动类    
+         Class.forName(&quot;com.mysql.jdbc.Driver&quot;) ;    
+    &#125;catch(ClassNotFoundException e)&#123;    
+         System.out.println(&quot;找不到驱动程序类 ，加载驱动失败！&quot;);    
+         e.printStackTrace() ;    
+    &#125;    </code></pre>
+<p>成功加载后，会将Driver类的实例注册到DriverManager类中。    </p>
+<p><strong>2、创建数据库的连接</strong>    </p>
+<ul>
+<li><p>数据库，需要向java.sql.DriverManager请求并获得Connection对象，该对象就代表一个数据库的连接。    </p>
+</li>
+<li><p>使用DriverManager的getConnectin(String url , String username ,  String password )方法传入指定的欲连接的数据库的路径、数据库的用户名和密码来获得。    </p>
+<p>例：    </p>
+</li>
+</ul>
+<pre><code class="java">  //连接MySql数据库   
+     String url = &quot;jdbc:mysql://127.0.0.1:3306/student&quot;;
+        String user = &quot;root&quot;;
+        String password = &quot;&quot;;
+        try &#123;
+            Connection con = DriverManager.getConnection(url, user, password);
+        &#125; catch (SQLException e) &#123;
+            System.out.println(&quot;数据库连接失败！&quot;);    
+            e.printStackTrace();
+        &#125;</code></pre>
+<p><strong>3、创建一个Statement</strong>  </p>
+<p>要执行SQL语句，必须获得java.sql.Statement实例，Statement实例分为以下3 种类型：    </p>
+<ol>
+<li><p>执行静态SQL语句。通常通过Statement实例实现。    </p>
+</li>
+<li><p>执行动态SQL语句。通常通过PreparedStatement实例实现。    </p>
+<p>具体的实现方式：    </p>
+<pre><code class="java">Statement stmt = con.createStatement() ;    
+PreparedStatement pstmt = con.prepareStatement(sql) ;  </code></pre>
+</li>
 </ol>
-<h4 id="二、配置web-xml："><a href="#二、配置web-xml：" class="headerlink" title="二、配置web.xml："></a>二、配置web.xml：</h4><pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;web-app xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-    xmlns=&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;
-    xsi:schemaLocation=&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd&quot;
-    id=&quot;WebApp_ID&quot; version=&quot;4.0&quot;&gt;
-    &lt;display-name&gt;LoginSpringMVC&lt;/display-name&gt;
-
-    &lt;servlet&gt;
-        &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
-        &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
-            &lt;param-value&gt;classpath:springmvc-config.xml&lt;/param-value&gt;
-        &lt;/init-param&gt;
-        &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
-    &lt;/servlet&gt;
-
-    &lt;servlet-mapping&gt;
-        &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
-        &lt;url-pattern&gt;/&lt;/url-pattern&gt;
-    &lt;/servlet-mapping&gt;
-
-
-      &lt;!--字符编码过滤器 --&gt;
-      &lt;filter&gt;  
-        &lt;filter-name&gt;characterEncodingFilter&lt;/filter-name&gt;  
-        &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt;  
-        &lt;init-param&gt;  
-            &lt;param-name&gt;encoding&lt;/param-name&gt;  
-            &lt;param-value&gt;UTF-8&lt;/param-value&gt;  
-        &lt;/init-param&gt;  
-
-        &lt;!-- 是否强制设在request编码 --&gt;
-        &lt;init-param&gt;  
-            &lt;param-name&gt;forceEncoding&lt;/param-name&gt;  
-            &lt;param-value&gt;true&lt;/param-value&gt;  
-        &lt;/init-param&gt;  
-    &lt;/filter&gt;  
-    &lt;filter-mapping&gt;  
-        &lt;filter-name&gt;characterEncodingFilter&lt;/filter-name&gt;  
-        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;  
-    &lt;/filter-mapping&gt; 
-&lt;/web-app&gt;</code></pre>
-<h4 id="三、创建jsp文件："><a href="#三、创建jsp文件：" class="headerlink" title="三、创建jsp文件："></a>三、创建jsp文件：</h4><p><strong>loginFrom.jsp：</strong></p>
-<pre><code class="java">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;
-    pageEncoding=&quot;UTF-8&quot;%&gt;
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;UTF-8&quot;&gt;
-&lt;title&gt;登录页面&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h3&gt;登录页面&lt;/h3&gt;
-    &lt;br&gt;
-    &lt;form action=&quot;login&quot; method=&quot;post&quot;&gt;
-        &lt;table&gt;
-            &lt;tr&gt;
-                &lt;td&gt;&lt;label&gt;登录名：&lt;/label&gt;&lt;/td&gt;
-                &lt;td&gt;&lt;input type=&quot;text&quot; id=&quot;loginname&quot; name=&quot;loginname&quot;&gt;&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;&lt;label&gt;密码：&lt;/label&gt;&lt;/td&gt;
-                &lt;td&gt;&lt;input type=&quot;password&quot; id=&quot;password&quot; name=&quot;password&quot;&gt;&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;&lt;input id=&quot;submit&quot; type=&quot;submit&quot; value=&quot;登录&quot;&gt;&lt;/td&gt;
-            &lt;/tr&gt;
-        &lt;/table&gt;
-    &lt;/form&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p><strong>registerFrom.jsp:</strong></p>
-<pre><code class="java">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;
-    pageEncoding=&quot;UTF-8&quot;%&gt;
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;UTF-8&quot;&gt;
-&lt;title&gt;注册页面&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h3&gt;注册页面&lt;/h3&gt;
-    &lt;br&gt;
-    &lt;form action=&quot;register&quot; method=&quot;post&quot;&gt;
-        &lt;table&gt;
-            &lt;tr&gt;
-                &lt;td&gt;&lt;label&gt;登录名：&lt;/label&gt;&lt;/td&gt;
-                &lt;td&gt;&lt;input type=&quot;text&quot; id=&quot;loginname&quot; name=&quot;loginname&quot;&gt;&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;&lt;label&gt;密码：&lt;/label&gt;&lt;/td&gt;
-                &lt;td&gt;&lt;input type=&quot;password&quot; id=&quot;password&quot; name=&quot;password&quot;&gt;&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;&lt;label&gt;真实姓名：&lt;/label&gt;&lt;/td&gt;
-                &lt;td&gt;&lt;input type=&quot;text&quot; id=&quot;username&quot; name=&quot;username&quot;&gt;&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;&lt;input id=&quot;submit&quot; type=&quot;submit&quot; value=&quot;注册&quot;&gt;&lt;/td&gt;
-            &lt;/tr&gt;
-        &lt;/table&gt;
-    &lt;/form&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p><strong>welcome.jsp:</strong></p>
-<pre><code class="java">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;
-    pageEncoding=&quot;UTF-8&quot;%&gt;
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;UTF-8&quot;&gt;
-&lt;title&gt;登陆成功页面&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h3&gt;欢迎$&#123;requestScope.user.username &#125;登录&lt;/h3&gt;
-    &lt;br&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<h4 id="四、编写java文件："><a href="#四、编写java文件：" class="headerlink" title="四、编写java文件："></a>四、编写java文件：</h4><p><strong>User.java :</strong></p>
-<pre><code class="java">package com.smk.domain;
-
-public class User &#123;
-    private String loginname;
-    private String password;
-    private String username;
-
-    public String getLoginname() &#123;
-        return loginname;
-    &#125;
-
-    public void setLoginname(String loginname) &#123;
-        this.loginname = loginname;
-    &#125;
-
-    public String getPassword() &#123;
-        return password;
-    &#125;
-
-    public void setPassword(String password) &#123;
-        this.password = password;
-    &#125;
-
-    public String getUsername() &#123;
-        return username;
-    &#125;
-
-    public void setUsername(String username) &#123;
-        this.username = username;
-    &#125;
+<p><strong>4、执行SQL语句</strong>    </p>
+<p>Statement接口提供了三种执行SQL语句的方法：executeQuery 、executeUpdate和execute    </p>
+<ol>
+<li>（类型不定，一般会同时有很多种类型）executeQuery(String sqlString)：执行查询数据库的SQL语句，返回一个结果集（ResultSet）对象。    <ol start="2">
+<li> （int型）executeUpdate(String sqlString)：用于执行INSERT、UPDATE或 DELETE语句以及SQL DDL语句，如：CREATE TABLE和DROP TABLE等    </li>
+<li>（boolean型）execute(sqlString)：用于执行返回多个结果集、多个更新计数或二者组合的语句。    </li>
+</ol>
+</li>
+</ol>
+<p>具体实现的代码：    </p>
+<pre><code class="java"> ResultSet rs = stmt.executeQuery(sql) ;    
+     int rows = stmt.executeUpdate(sql) ;    
+ boolean flag = stmt.execute(sql) ;    </code></pre>
+<p><strong>5、遍历结果集</strong>    </p>
+<p>   两种情况：    </p>
+<ol>
+<li><p>执行更新返回的是本次操作影响到的记录数。    </p>
+</li>
+<li><p>执行查询返回的结果是一个ResultSet对象。    </p>
+<p>ResultSet包含符合SQL语句中条件的所有行，并且它通过一套get方法提供了对这些 行中数据的访问。<br>使用结果集（ResultSet）对象的访问方法获取数据：    </p>
+</li>
+</ol>
+<pre><code class="java">while(rs.next())&#123;    
+     String name = rs.getString(&quot;name&quot;) ;    
+     String pass = rs.getString(1) ; // 此方法比较高效    
+ &#125;    </code></pre>
+<p>（列是从左到右编号的，并且从列1开始）    </p>
+<p><strong>6、关闭JDBC对象资源</strong>     </p>
+<p>操作完成以后要把所有使用的JDBC对象全都关闭，以释放JDBC资源，关闭顺序和声明顺序相反：    </p>
+<ol>
+<li>先关闭resultSet    </li>
+<li>再关闭preparedStatement    </li>
+<li>最后关闭连接对象connection      </li>
+</ol>
+<p>例：</p>
+<pre><code class="java">if(rs !=null)&#123;   // 关闭结果集    
+   try &#123;
+      rs.close();
+   &#125; catch (SQLException e) &#123;
+      e.printStackTrace();
+   &#125;
+&#125;    
+  if(stmt !=null)&#123;   // 关闭声明    
+   try &#123;
+      stmt.close();
+   &#125; catch (SQLException e) &#123;
+      e.printStackTrace();
+   &#125;
 &#125;
-</code></pre>
-<p><strong>UserController.java：</strong></p>
-<pre><code class="java">import java.util.ArrayList;
-import java.util.List;
-import com.smk.domain.User;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+if(conn !=null)&#123;  // 关闭连接对象    
+   try &#123;
+      conn.close();
+   &#125; catch (SQLException e) &#123;
+      e.printStackTrace();
+   &#125;
+&#125;</code></pre>
+<hr>
 
-@Controller
-@RequestMapping(value = &quot;/user&quot;)
-public class UserController &#123;
-    // 静态List&lt;User&gt;集合，此处代替数据库用来保存注册的用户信息
-    private static List&lt;User&gt; userList;
+<p><strong>1、查询：</strong></p>
+<pre><code class="java">package jdbc1;
 
-    // UserController类的构造器，初始化List&lt;User&gt;集合
-    public UserController() &#123;
-        super();
-        userList = new ArrayList&lt;User&gt;();
-    &#125;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.management.RuntimeErrorException;
+import com.mysql.cj.jdbc.Driver;
 
-    @RequestMapping(value = &quot;/register&quot;, method = RequestMethod.GET)
-    public String registerForm() &#123;
-        return &quot;registerForm&quot;;
-    &#125;
+public class JDBC1 &#123;
+    public static void main(String[] args) &#123;
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        try &#123;
+            // 1、注册并加载驱动
+            //Driver driver = new Driver();
+            //DriverManager.registerDriver(driver);//这种注册方式会注册两次，推荐使用下面那种
+            Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);
+            // 2、获取连接对象
+            String url = &quot;jdbc:mysql://127.0.0.1:3306/student&quot;;
+            String user = &quot;root&quot;;
+            String password = &quot;&quot;;
+            con = DriverManager.getConnection(url, user, password);
+            // 3、获取操作数据库的对象
+            stmt = con.createStatement();
+            // 4、向数据库发送查询语句
+            String sql = &quot;select * from student &quot;;
+            rs = stmt.executeQuery(sql);
+            // 5、遍历结果集，获取查询对象
+            while (rs.next()) &#123;// 遍历一行后，才会跳转到下一行
+                int sno = rs.getInt(&quot;sno&quot;);//
+                String sname = rs.getString(2);// 和上一行不同的写法
+                String sex = rs.getString(3);
+                System.out.println(sno + &quot; &quot; + &quot;&quot; + sname + &quot; &quot; + sex);
+            &#125;
+        &#125; catch (Exception e) &#123;
+            throw new RuntimeException(e);
+        &#125; finally &#123;
 
-    @RequestMapping(value = &quot;/register&quot;, method = RequestMethod.POST)
-    public String register(@RequestParam(&quot;loginname&quot;) String loginname, 
-                           @RequestParam(&quot;password&quot;) String password,
-                           @RequestParam(&quot;username&quot;) String username) &#123;
-
-        // 创建user对象
-        User user = new User();
-        user.setLoginname(loginname);
-        user.setPassword(password);
-        user.setUsername(username);
-        // 模拟数据库存储User信息
-        userList.add(user);
-        return &quot;loginForm&quot;;
-    &#125;
-
-    // 登录
-    @RequestMapping(&quot;/login&quot;)
-    public String login(@RequestParam(&quot;loginname&quot;) String loginname, 
-                        @RequestParam(&quot;password&quot;) String password,
-                        Model model) &#123;
-        // 到集合中查找用户是否存在，此处用来模拟数据库验证
-        for (User user : userList) &#123;
-            if (user.getLoginname().equals(loginname) &amp;&amp; user.getPassword().equals(password)) &#123;
-                model.addAttribute(&quot;user&quot;, user);
-                return &quot;welcome&quot;;
+            // 6.关闭连接，释放资源
+            if (rs != null) &#123;
+                try &#123;
+                    rs.close();
+                &#125; catch (SQLException e) &#123;
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                &#125;
+            &#125;
+            if (stmt != null) &#123;
+                try &#123;
+                    stmt.close();
+                &#125; catch (SQLException e) &#123;
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                &#125;
+            &#125;
+            if (con != null) &#123;
+                try &#123;
+                    con.close();
+                &#125; catch (SQLException e) &#123;
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                &#125;
             &#125;
         &#125;
-        return &quot;loginForm&quot;;
+
     &#125;
-&#125;
-</code></pre>
-<h4 id="五、配置springmvc-config-xml"><a href="#五、配置springmvc-config-xml" class="headerlink" title="五、配置springmvc-config.xml:"></a>五、配置springmvc-config.xml:</h4><pre><code class="java">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-    xmlns:p=&quot;http://www.springframework.org/schema/p&quot;
-    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
-    xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot;
-    xsi:schemaLocation=&quot;
-    http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-    http://www.springframework.org/schema/context
-    http://www.springframework.org/schema/context/spring-context-3.0.xsd
-    http://www.springframework.org/schema/mvc 
-    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd&quot;&gt;
+&#125;</code></pre>
+<p><strong>2、更新：</strong></p>
+<pre><code class="java">package jdbc1;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
-    &lt;!--默认的注解映射的支持 --&gt;
-    &lt;mvc:annotation-driven /&gt;
+public class JDBC1 &#123;
+    public static void main(String[] args) &#123;
+        Connection con = null;
+        Statement stmt = null;
+        try &#123;
+            Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);
+            // 2、获取连接对象
+            String url = &quot;jdbc:mysql://127.0.0.1:3306/student&quot;;
+            String user = &quot;root&quot;;
+            String password = &quot;&quot;;
+            con = DriverManager.getConnection(url, user, password);
+            // 3、获取操作数据库的对象
+            stmt = con.createStatement();
+            // 3.创建SQL语句
+            String sql = &quot;insert into student values(121530601,&#39;张三&#39;,&#39;女&#39;,16,6)&quot;;
+            // 4. 执行SQL语句
+            int row = stmt.executeUpdate(sql);
+            System.out.println(row);
+        &#125; catch (Exception e) &#123;
+        &#125; finally &#123;
+            // 5. 释放资源
+            if (stmt != null) &#123;
+                try &#123;
+                    stmt.close();
+                &#125; catch (Exception e) &#123;
+                    e.printStackTrace(); // 打印异常
+                &#125;
+            &#125;
+            if (con != null) &#123;
+                try &#123;
+                    con.close();
+                &#125; catch (Exception e) &#123;
+                    e.printStackTrace(); // 打印异常
+                &#125;
+            &#125;
 
-    &lt;!--启用自动扫描 --&gt;
-    &lt;context:component-scan base-package=&quot;com.smk.controller&quot; /&gt;
-
-    &lt;bean
-        class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;
-        &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/content/&quot; /&gt;
-        &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot; /&gt;
-    &lt;/bean&gt;
-&lt;/beans&gt;</code></pre>
-<h4 id="六、测试："><a href="#六、测试：" class="headerlink" title="六、测试："></a>六、测试：</h4><p>访问 <a target="_blank" rel="noopener" href="http://localhost:8080/LoginSpringMVC/user/register">http://localhost:8080/LoginSpringMVC/user/register</a></p>
-<p><img src="https://img-blog.csdnimg.cn/20201017230932613.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201017231024801.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>输入注册数据会自动跳转到 Login 页面</p>
-<p><img src="https://img-blog.csdnimg.cn/20201017231230814.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>完成登录：</p>
-<p><img src="https://img-blog.csdnimg.cn/20201017231313587.png" alt="在这里插入图片描述"></p>
+        &#125;
+    &#125;
+&#125;</code></pre>
+<h3 id="二、使用ResultSet更新数据"><a href="#二、使用ResultSet更新数据" class="headerlink" title="二、使用ResultSet更新数据"></a>二、使用ResultSet更新数据</h3><ul>
+<li>ResultSet是否滚动<br><img src="https://img-blog.csdnimg.cn/20200331153550187.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>ResultSet是否可更新<br><img src="https://img-blog.csdnimg.cn/20200331153710541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+</ul>
+<p>查询学号为121530602的学生的基本信息输出后修改其姓名：</p>
+<pre><code class="java">            // 3、获取操作数据库的对象
+            stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            // 4、向数据库发送查询语句
+            String sql = &quot;select * from student where sno=121530602&quot;;
+            rs = stmt.executeQuery(sql);
+            // 5、遍历结果集，获取查询对象
+            System.out.println(&quot;学号&quot;+&quot;\t\t&quot;+&quot;姓名&quot;+&quot;\t\t&quot;+&quot;性别&quot;+&quot;\t\t&quot;+&quot;年龄&quot;+&quot;\t\t&quot;+&quot;班级&quot;);
+            while (rs.next()) &#123;// 遍历一行后，才会跳转到下一行
+                int sno = rs.getInt(&quot;sno&quot;);//
+                String sname = rs.getString(2);// 和上一行不同的写法
+                String sex = rs.getString(3);
+                String age = rs.getString(4);
+                String Class = rs.getString(5);
+                System.out.println(sno + &quot;&quot; + &quot;\t\t&quot; + sname + &quot;\t\t&quot; + sex+&quot;\t\t&quot;+age+&quot;\t\t&quot;+Class);
+            &#125;
+            rs.absolute(1); 
+            rs.updateString(&quot;sname&quot;,&quot;赵四&quot;); 
+            rs.updateRow(); //将当更新保存到数据库</code></pre>
+<p> 输出所有学生的所有信息，然后添加一名新学生：</p>
+<pre><code class="java">            // 3、获取操作数据库的对象
+            stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            // 4、向数据库发送查询语句
+            String sql = &quot;select * from student&quot;;
+            rs = stmt.executeQuery(sql);
+            // 5、遍历结果集，获取查询对象
+            System.out.println(&quot;学              号&quot;+&quot;\t\t&quot;+&quot;姓名&quot;+&quot;\t\t&quot;+&quot;性别&quot;+&quot;\t\t&quot;+&quot;年龄&quot;+&quot;\t\t&quot;+&quot;班级&quot;);
+            while (rs.next()) &#123;// 遍历一行后，才会跳转到下一行
+                int sno = rs.getInt(&quot;sno&quot;);//
+                String sname = rs.getString(2);// 和上一行不同的写法
+                String sex = rs.getString(3);
+                String age = rs.getString(4);
+                String Class = rs.getString(5);
+                System.out.println(sno + &quot;&quot; + &quot;\t\t&quot; + sname + &quot;\t\t&quot; + sex+&quot;\t\t&quot;+age+&quot;\t\t&quot;+Class);
+            &#125;
+               rs.moveToInsertRow(); 
+               rs.updateString(&quot;sno&quot;,&quot;121530605&quot;);  
+               rs.updateString(&quot;sname&quot;,&quot;老八&quot;);  
+               rs.updateString(&quot;sex&quot;,&quot;男&quot; );  
+               rs.updateInt(&quot;age&quot;, 26); 
+               rs.updateInt(&quot;Class&quot;,8);                 
+               rs.insertRow();</code></pre>
+<h3 id="三、预编译语句实现数据更新"><a href="#三、预编译语句实现数据更新" class="headerlink" title="三、预编译语句实现数据更新"></a>三、预编译语句实现数据更新</h3><ul>
+<li>添加数据：</li>
+</ul>
+<pre><code class="java">PreparedStatement pStmt = con.prepareStatement(&quot;insert  into student (name,pwd,email) values(?,?,?)&quot;);
+pStmt.setString(1,&quot;dream&quot;);
+pStmt.setString(2,&quot;111&quot;);
+pStmt.setString(3, &quot;dd@a.com&quot;);
+int rtn= pStmt.executeUpdate();</code></pre>
+<ul>
+<li>修改数据：</li>
+</ul>
+<pre><code class="java">PreparedStatement pStmt = con.prepareStatement(&quot;update student set pwd=?,email=? where name=?&quot;);
+pStmt.setString(1,“222&quot;);
+pStmt.setString(2,“a@a.c&quot;);
+pStmt.setString(3,“dream&quot;);
+int rtn= pStmt.executeUpdate();</code></pre>
+<ul>
+<li>删除数据：</li>
+</ul>
+<pre><code class="java">PreparedStatement pStmt = con.prepareStatement(&quot;delete  from student where name=?&quot;);
+pStmt.setString(1,&quot;dream&quot;);
+int rtn= pStmt.executeUpdate();</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>

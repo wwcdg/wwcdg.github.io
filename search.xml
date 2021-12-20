@@ -545,6 +545,33 @@
     
     
     <entry>
+      <title>JDBC——基于Mysql的基本操作</title>
+      <link href="2020/09/28/JDBC%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8EMysql%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
+      <url>2020/09/28/JDBC%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8EMysql%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
+      
+        <content type="html"><![CDATA[<h4 id="一、JDBC连接数据库6个步骤："><a href="#一、JDBC连接数据库6个步骤：" class="headerlink" title="一、JDBC连接数据库6个步骤："></a>一、JDBC连接数据库6个步骤：</h4><p><img src="https://img-blog.csdnimg.cn/20200326183126282.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>1、加载并注册驱动程序</strong></p><p> 在连接数据库之前，首先要加载想要连接的数据库的驱动到JVM（Java虚拟机），通过java.lang.Class类的静态方法forName(String  className)实现。<br>    例：  </p><pre><code class="java">   try&#123;//加载MySql的驱动类             Class.forName(&quot;com.mysql.jdbc.Driver&quot;) ;        &#125;catch(ClassNotFoundException e)&#123;             System.out.println(&quot;找不到驱动程序类 ，加载驱动失败！&quot;);             e.printStackTrace() ;        &#125;    </code></pre><p>成功加载后，会将Driver类的实例注册到DriverManager类中。    </p><p><strong>2、创建数据库的连接</strong>    </p><ul><li><p>数据库，需要向java.sql.DriverManager请求并获得Connection对象，该对象就代表一个数据库的连接。    </p></li><li><p>使用DriverManager的getConnectin(String url , String username ,  String password )方法传入指定的欲连接的数据库的路径、数据库的用户名和密码来获得。    </p><p>例：    </p></li></ul><pre><code class="java">  //连接MySql数据库        String url = &quot;jdbc:mysql://127.0.0.1:3306/student&quot;;        String user = &quot;root&quot;;        String password = &quot;&quot;;        try &#123;            Connection con = DriverManager.getConnection(url, user, password);        &#125; catch (SQLException e) &#123;            System.out.println(&quot;数据库连接失败！&quot;);                e.printStackTrace();        &#125;</code></pre><p><strong>3、创建一个Statement</strong>  </p><p>要执行SQL语句，必须获得java.sql.Statement实例，Statement实例分为以下3 种类型：    </p><ol><li><p>执行静态SQL语句。通常通过Statement实例实现。    </p></li><li><p>执行动态SQL语句。通常通过PreparedStatement实例实现。    </p><p>具体的实现方式：    </p><pre><code class="java">Statement stmt = con.createStatement() ;    PreparedStatement pstmt = con.prepareStatement(sql) ;  </code></pre></li></ol><p><strong>4、执行SQL语句</strong>    </p><p>Statement接口提供了三种执行SQL语句的方法：executeQuery 、executeUpdate和execute    </p><ol><li>（类型不定，一般会同时有很多种类型）executeQuery(String sqlString)：执行查询数据库的SQL语句，返回一个结果集（ResultSet）对象。    <ol start="2"><li> （int型）executeUpdate(String sqlString)：用于执行INSERT、UPDATE或 DELETE语句以及SQL DDL语句，如：CREATE TABLE和DROP TABLE等    </li><li>（boolean型）execute(sqlString)：用于执行返回多个结果集、多个更新计数或二者组合的语句。    </li></ol></li></ol><p>具体实现的代码：    </p><pre><code class="java"> ResultSet rs = stmt.executeQuery(sql) ;         int rows = stmt.executeUpdate(sql) ;     boolean flag = stmt.execute(sql) ;    </code></pre><p><strong>5、遍历结果集</strong>    </p><p>   两种情况：    </p><ol><li><p>执行更新返回的是本次操作影响到的记录数。    </p></li><li><p>执行查询返回的结果是一个ResultSet对象。    </p><p>ResultSet包含符合SQL语句中条件的所有行，并且它通过一套get方法提供了对这些 行中数据的访问。<br>使用结果集（ResultSet）对象的访问方法获取数据：    </p></li></ol><pre><code class="java">while(rs.next())&#123;         String name = rs.getString(&quot;name&quot;) ;         String pass = rs.getString(1) ; // 此方法比较高效     &#125;    </code></pre><p>（列是从左到右编号的，并且从列1开始）    </p><p><strong>6、关闭JDBC对象资源</strong>     </p><p>操作完成以后要把所有使用的JDBC对象全都关闭，以释放JDBC资源，关闭顺序和声明顺序相反：    </p><ol><li>先关闭resultSet    </li><li>再关闭preparedStatement    </li><li>最后关闭连接对象connection      </li></ol><p>例：</p><pre><code class="java">if(rs !=null)&#123;   // 关闭结果集       try &#123;      rs.close();   &#125; catch (SQLException e) &#123;      e.printStackTrace();   &#125;&#125;      if(stmt !=null)&#123;   // 关闭声明       try &#123;      stmt.close();   &#125; catch (SQLException e) &#123;      e.printStackTrace();   &#125;&#125;if(conn !=null)&#123;  // 关闭连接对象       try &#123;      conn.close();   &#125; catch (SQLException e) &#123;      e.printStackTrace();   &#125;&#125;</code></pre><hr><p><strong>1、查询：</strong></p><pre><code class="java">package jdbc1;import java.sql.Connection;import java.sql.DriverManager;import java.sql.ResultSet;import java.sql.SQLException;import java.sql.Statement;import javax.management.RuntimeErrorException;import com.mysql.cj.jdbc.Driver;public class JDBC1 &#123;    public static void main(String[] args) &#123;        Connection con = null;        Statement stmt = null;        ResultSet rs = null;        try &#123;            // 1、注册并加载驱动            //Driver driver = new Driver();            //DriverManager.registerDriver(driver);//这种注册方式会注册两次，推荐使用下面那种            Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);            // 2、获取连接对象            String url = &quot;jdbc:mysql://127.0.0.1:3306/student&quot;;            String user = &quot;root&quot;;            String password = &quot;&quot;;            con = DriverManager.getConnection(url, user, password);            // 3、获取操作数据库的对象            stmt = con.createStatement();            // 4、向数据库发送查询语句            String sql = &quot;select * from student &quot;;            rs = stmt.executeQuery(sql);            // 5、遍历结果集，获取查询对象            while (rs.next()) &#123;// 遍历一行后，才会跳转到下一行                int sno = rs.getInt(&quot;sno&quot;);//                String sname = rs.getString(2);// 和上一行不同的写法                String sex = rs.getString(3);                System.out.println(sno + &quot; &quot; + &quot;&quot; + sname + &quot; &quot; + sex);            &#125;        &#125; catch (Exception e) &#123;            throw new RuntimeException(e);        &#125; finally &#123;            // 6.关闭连接，释放资源            if (rs != null) &#123;                try &#123;                    rs.close();                &#125; catch (SQLException e) &#123;                    // TODO Auto-generated catch block                    e.printStackTrace();                &#125;            &#125;            if (stmt != null) &#123;                try &#123;                    stmt.close();                &#125; catch (SQLException e) &#123;                    // TODO Auto-generated catch block                    e.printStackTrace();                &#125;            &#125;            if (con != null) &#123;                try &#123;                    con.close();                &#125; catch (SQLException e) &#123;                    // TODO Auto-generated catch block                    e.printStackTrace();                &#125;            &#125;        &#125;    &#125;&#125;</code></pre><p><strong>2、更新：</strong></p><pre><code class="java">package jdbc1;import java.sql.Connection;import java.sql.DriverManager;import java.sql.ResultSet;import java.sql.Statement;public class JDBC1 &#123;    public static void main(String[] args) &#123;        Connection con = null;        Statement stmt = null;        try &#123;            Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);            // 2、获取连接对象            String url = &quot;jdbc:mysql://127.0.0.1:3306/student&quot;;            String user = &quot;root&quot;;            String password = &quot;&quot;;            con = DriverManager.getConnection(url, user, password);            // 3、获取操作数据库的对象            stmt = con.createStatement();            // 3.创建SQL语句            String sql = &quot;insert into student values(121530601,&#39;张三&#39;,&#39;女&#39;,16,6)&quot;;            // 4. 执行SQL语句            int row = stmt.executeUpdate(sql);            System.out.println(row);        &#125; catch (Exception e) &#123;        &#125; finally &#123;            // 5. 释放资源            if (stmt != null) &#123;                try &#123;                    stmt.close();                &#125; catch (Exception e) &#123;                    e.printStackTrace(); // 打印异常                &#125;            &#125;            if (con != null) &#123;                try &#123;                    con.close();                &#125; catch (Exception e) &#123;                    e.printStackTrace(); // 打印异常                &#125;            &#125;        &#125;    &#125;&#125;</code></pre><h3 id="二、使用ResultSet更新数据"><a href="#二、使用ResultSet更新数据" class="headerlink" title="二、使用ResultSet更新数据"></a>二、使用ResultSet更新数据</h3><ul><li>ResultSet是否滚动<br><img src="https://img-blog.csdnimg.cn/20200331153550187.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>ResultSet是否可更新<br><img src="https://img-blog.csdnimg.cn/20200331153710541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li></ul><p>查询学号为121530602的学生的基本信息输出后修改其姓名：</p><pre><code class="java">            // 3、获取操作数据库的对象            stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);            // 4、向数据库发送查询语句            String sql = &quot;select * from student where sno=121530602&quot;;            rs = stmt.executeQuery(sql);            // 5、遍历结果集，获取查询对象            System.out.println(&quot;学号&quot;+&quot;\t\t&quot;+&quot;姓名&quot;+&quot;\t\t&quot;+&quot;性别&quot;+&quot;\t\t&quot;+&quot;年龄&quot;+&quot;\t\t&quot;+&quot;班级&quot;);            while (rs.next()) &#123;// 遍历一行后，才会跳转到下一行                int sno = rs.getInt(&quot;sno&quot;);//                String sname = rs.getString(2);// 和上一行不同的写法                String sex = rs.getString(3);                String age = rs.getString(4);                String Class = rs.getString(5);                System.out.println(sno + &quot;&quot; + &quot;\t\t&quot; + sname + &quot;\t\t&quot; + sex+&quot;\t\t&quot;+age+&quot;\t\t&quot;+Class);            &#125;            rs.absolute(1);             rs.updateString(&quot;sname&quot;,&quot;赵四&quot;);             rs.updateRow(); //将当更新保存到数据库</code></pre><p> 输出所有学生的所有信息，然后添加一名新学生：</p><pre><code class="java">            // 3、获取操作数据库的对象            stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);            // 4、向数据库发送查询语句            String sql = &quot;select * from student&quot;;            rs = stmt.executeQuery(sql);            // 5、遍历结果集，获取查询对象            System.out.println(&quot;学              号&quot;+&quot;\t\t&quot;+&quot;姓名&quot;+&quot;\t\t&quot;+&quot;性别&quot;+&quot;\t\t&quot;+&quot;年龄&quot;+&quot;\t\t&quot;+&quot;班级&quot;);            while (rs.next()) &#123;// 遍历一行后，才会跳转到下一行                int sno = rs.getInt(&quot;sno&quot;);//                String sname = rs.getString(2);// 和上一行不同的写法                String sex = rs.getString(3);                String age = rs.getString(4);                String Class = rs.getString(5);                System.out.println(sno + &quot;&quot; + &quot;\t\t&quot; + sname + &quot;\t\t&quot; + sex+&quot;\t\t&quot;+age+&quot;\t\t&quot;+Class);            &#125;               rs.moveToInsertRow();                rs.updateString(&quot;sno&quot;,&quot;121530605&quot;);                 rs.updateString(&quot;sname&quot;,&quot;老八&quot;);                 rs.updateString(&quot;sex&quot;,&quot;男&quot; );                 rs.updateInt(&quot;age&quot;, 26);                rs.updateInt(&quot;Class&quot;,8);                                rs.insertRow();</code></pre><h3 id="三、预编译语句实现数据更新"><a href="#三、预编译语句实现数据更新" class="headerlink" title="三、预编译语句实现数据更新"></a>三、预编译语句实现数据更新</h3><ul><li>添加数据：</li></ul><pre><code class="java">PreparedStatement pStmt = con.prepareStatement(&quot;insert  into student (name,pwd,email) values(?,?,?)&quot;);pStmt.setString(1,&quot;dream&quot;);pStmt.setString(2,&quot;111&quot;);pStmt.setString(3, &quot;dd@a.com&quot;);int rtn= pStmt.executeUpdate();</code></pre><ul><li>修改数据：</li></ul><pre><code class="java">PreparedStatement pStmt = con.prepareStatement(&quot;update student set pwd=?,email=? where name=?&quot;);pStmt.setString(1,“222&quot;);pStmt.setString(2,“a@a.c&quot;);pStmt.setString(3,“dream&quot;);int rtn= pStmt.executeUpdate();</code></pre><ul><li>删除数据：</li></ul><pre><code class="java">PreparedStatement pStmt = con.prepareStatement(&quot;delete  from student where name=?&quot;);pStmt.setString(1,&quot;dream&quot;);int rtn= pStmt.executeUpdate();</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web开发 </category>
+          
+          <category> JavaWeb </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> javaweb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Cookie与Session对象</title>
       <link href="2020/09/28/Java%20web%E2%80%94Cookie%E4%B8%8ESession%E5%AF%B9%E8%B1%A1/"/>
       <url>2020/09/28/Java%20web%E2%80%94Cookie%E4%B8%8ESession%E5%AF%B9%E8%B1%A1/</url>
@@ -564,6 +591,31 @@
         <tags>
             
             <tag> javaweb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux下tar命令简介</title>
+      <link href="2020/09/28/Linux%E4%B8%8Btar%E5%91%BD%E4%BB%A4%E7%AE%80%E4%BB%8B/"/>
+      <url>2020/09/28/Linux%E4%B8%8Btar%E5%91%BD%E4%BB%A4%E7%AE%80%E4%BB%8B/</url>
+      
+        <content type="html"><![CDATA[<p>总结一下Linux中tar命令的用法。<hr/><br><strong>tar命令的参数：</strong></p><ol><li>这五个参数是独立的和别的命令连用时只能使用其中一个。<br>```</li></ol><p>-c: 创建一个打包文件(create)<br>-x：解压<br>-t：查看内容<br>-r：向压缩归档文件末尾追加文件<br>-u：更新原压缩包中的文件</p><pre><code>2. 根据需要在压缩或解压档案时可选参数。</code></pre><p>-z: 使用zip进行解压或压缩<br>-j: 使用bzip2进行解压或压缩<br>-v: 压缩的过程中显示文件<br>-f: 必须命令，用于指定文件名；这个参数必须是最后一个参数且后面只能文件名！<br>-Z：有compress属性的（这个不常见）</p><pre><code>**范例：**1. 查看`tar -tf a.tar.gz`   在不解压的情况下查看压缩包的内容2. 仅打包 `tar -cvf a.tar /etc`   把/etc目录下的所有文件打包，不压缩！3. 压缩 `tar -zcvf a.tar.gz /etc`    打包后，以 gzip 格式压缩`tar -jcvf a.tar.bz2 /etc`  打包后，以 bzip2 格式压缩4. 解压`tar –xvf a.tar` 解压 tar包`tar -xzvf a.tar.gz` 解压tar.gz`tar -xjvf a.tar.bz2` 解压 tar.bz2`tar –xZvf file.tar.Z` 解压tar.Z🆗，以上就是tar命令常用的选项了。</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Liunx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> liunx </tag>
             
         </tags>
       
@@ -618,31 +670,6 @@
         <tags>
             
             <tag> javase </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Linux下tar命令简介</title>
-      <link href="2020/09/28/Linux%E4%B8%8Btar%E5%91%BD%E4%BB%A4%E7%AE%80%E4%BB%8B/"/>
-      <url>2020/09/28/Linux%E4%B8%8Btar%E5%91%BD%E4%BB%A4%E7%AE%80%E4%BB%8B/</url>
-      
-        <content type="html"><![CDATA[<p>总结一下Linux中tar命令的用法。<hr/><br><strong>tar命令的参数：</strong></p><ol><li>这五个参数是独立的和别的命令连用时只能使用其中一个。<br>```</li></ol><p>-c: 创建一个打包文件(create)<br>-x：解压<br>-t：查看内容<br>-r：向压缩归档文件末尾追加文件<br>-u：更新原压缩包中的文件</p><pre><code>2. 根据需要在压缩或解压档案时可选参数。</code></pre><p>-z: 使用zip进行解压或压缩<br>-j: 使用bzip2进行解压或压缩<br>-v: 压缩的过程中显示文件<br>-f: 必须命令，用于指定文件名；这个参数必须是最后一个参数且后面只能文件名！<br>-Z：有compress属性的（这个不常见）</p><pre><code>**范例：**1. 查看`tar -tf a.tar.gz`   在不解压的情况下查看压缩包的内容2. 仅打包 `tar -cvf a.tar /etc`   把/etc目录下的所有文件打包，不压缩！3. 压缩 `tar -zcvf a.tar.gz /etc`    打包后，以 gzip 格式压缩`tar -jcvf a.tar.bz2 /etc`  打包后，以 bzip2 格式压缩4. 解压`tar –xvf a.tar` 解压 tar包`tar -xzvf a.tar.gz` 解压tar.gz`tar -xjvf a.tar.bz2` 解压 tar.bz2`tar –xZvf file.tar.Z` 解压tar.Z🆗，以上就是tar命令常用的选项了。</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> Liunx </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> liunx </tag>
             
         </tags>
       
