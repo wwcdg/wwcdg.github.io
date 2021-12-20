@@ -836,33 +836,6 @@
     
     
     <entry>
-      <title>BUU刷题记录——Misc(一)</title>
-      <link href="2019/09/12/BUU%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94Misc(%E4%B8%80)/"/>
-      <url>2019/09/12/BUU%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94Misc(%E4%B8%80)/</url>
-      
-        <content type="html"><![CDATA[<p>[toc]</p><h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><p>最近学习之余在BUU上刷了几道misc题，有一些没接触过的知识，挺有意思的，顺便来记录下。<hr></p><h5 id="1、九连环"><a href="#1、九连环" class="headerlink" title="1、九连环"></a>1、九连环</h5><p>涉及到的知识点：</p><ul><li>steghide的使用</li></ul><p>打开附件，是一张图片<br><img src="https://img-blog.csdnimg.cn/20210213113213717.jpg" alt="在这里插入图片描述"><br>丢winhex里看一下，搜索jpg文件尾 FF D9，发现后面有压缩包，<br><img src="https://img-blog.csdnimg.cn/20210214150209264.png" alt="在这里插入图片描述"><br>用foremost分离出一个压缩包且存在伪加密<br><img src="https://img-blog.csdnimg.cn/20210214151342639.png" alt="在这里插入图片描述"><br>把01改为00后，打开压缩包 里面有一张图片和压缩包<br><img src="https://img-blog.csdnimg.cn/20210214152049918.png" alt="在这里插入图片描述"><br>这个压缩包也是加密的，密码大概率是在图片中的，对着图片分析了一圈没什么发现，在查看wp之后知道需要用到 Steghide工具。<a href="https://blog.csdn.net/Blood_Seeker/article/details/81837571">工具介绍</a></p><p> <strong>工具使用</strong>：</p><p>Steghide是一款开源的隐写术软件，可以在一张图片或者音频文件中隐藏信息，同时也可以提取在图片或音频中的隐藏信息。</p><p>kali下steghide的安装：</p><pre><code class="bash">apt-get install steghide</code></pre><p>使用：<br><img src="https://img-blog.csdnimg.cn/20210214155028491.png" alt="在这里插入图片描述"><br>隐藏信息没有设置密码，直接回车即可。得到隐藏文件，打开<br><img src="https://img-blog.csdnimg.cn/20210214155458703.png" alt="在这里插入图片描述"><br>使用密码打开压缩包，得到flag<br><img src="https://img-blog.csdnimg.cn/20210214155614270.png" alt="在这里插入图片描述"></p><h5 id="2、面具下的flag"><a href="#2、面具下的flag" class="headerlink" title="2、面具下的flag"></a>2、面具下的flag</h5><p>打开附件，是一张jpg格式的图片<br><img src="https://img-blog.csdnimg.cn/20210214161947870.jpg" alt="在这里插入图片描述"><br>winhex看一下，发现图片尾后有zip文件<br><img src="https://img-blog.csdnimg.cn/20210214162423279.png" alt="在这里插入图片描述"><br>foremost分离出压缩包，且存在伪加密，09 改为 00 解除伪加密，压缩包里面是一个vmdk类型的文件<br><img src="https://img-blog.csdnimg.cn/20210214223238305.png" alt="在这里插入图片描述"><br>之前没见过这种类型的文件，百度了一下，知道这种文件可以用 7z 进行解压提取，在kali中使用 7z 解压：<br><img src="https://img-blog.csdnimg.cn/20210214224646275.png" alt="在这里插入图片描述"><br>得到几个文件夹，其中 key_part_one 和 key_part_two 中含有Brainfuck与Ook!的加密文本 ，解密后将得到的字符串前拼接起来就得到了flag。</p><p>在线网站：<a href="https://www.splitbrain.org/services/ook">https://www.splitbrain.org/services/ook</a><br><img src="https://img-blog.csdnimg.cn/20210214225655176.png" alt="在这里插入图片描述"></p><h5 id="3、刷新过的图片"><a href="#3、刷新过的图片" class="headerlink" title="3、刷新过的图片"></a>3、刷新过的图片</h5><p>打开附件，是一张图片<br><img src="https://img-blog.csdnimg.cn/20210214230352744.jpg" alt="在这里插入图片描述"><br>各种尝试都没发现什么东西，百度了才知道这题用到了F5隐写。</p><p>kali下安装 F5-steganography：</p><pre><code class="bash">git clone https://github.com/matthewgao/F5-steganography</code></pre><p>安装完成后如下<br><img src="https://img-blog.csdnimg.cn/2021021423211023.png" alt="在这里插入图片描述"></p><p>使用方法：</p><pre><code class="bash">java Extract 图片路径 [-p 密码]</code></pre><p><img src="https://img-blog.csdnimg.cn/20210214231942390.png" alt="在这里插入图片描述"><br>得到out.text文件，很明显是一个zip文件<br><img src="https://img-blog.csdnimg.cn/20210214232211376.png" alt="在这里插入图片描述"><br>后缀名改为zip，发现有伪加密，修改之后再解压就可以得到 flag.txt<br><img src="https://img-blog.csdnimg.cn/20210214232425793.png" alt="在这里插入图片描述"></p><h5 id="4、snake"><a href="#4、snake" class="headerlink" title="4、snake"></a>4、snake</h5><p>附件是一张蛇的图片，图就不放了 有点吓人。</p><p>binwalk分析出有压缩文件<br><img src="https://img-blog.csdnimg.cn/20210214233331322.png" alt="在这里插入图片描述">分离出一个压缩包，里面有 key和cipher 文件，key文件中是base64加密的密文：</p><pre><code class="bash">V2hhdCBpcyBOaWNraSBNaW5haidzIGZhdm9yaXRlIHNvbmcgdGhhdCByZWZlcnMgdG8gc25ha2VzPwo=</code></pre><p>解密得到：What is Nicki Minaj’s favorite song that refers to snakes? （尼基·米纳吉最喜欢的关于蛇的歌是什么？）</p><p>百度了一下，这首歌应该是 Anaconda ，即 key应该就是 Anaconda<br><img src="https://img-blog.csdnimg.cn/20210214234126976.png" alt="在这里插入图片描述"><br>但是 cipher 不知道是什么文件。百度了一下才知道，对于蛇这个名词，在英语中还有一个翻译：Serpent。</p><p>Serpent是一个加密算法，于是对 cipher文件进行 Serpent解密</p><p>在线网站：<a href="http://serpent.online-domain-tools.com/">http://serpent.online-domain-tools.com/</a></p><p>key是 anaconda<br><img src="https://img-blog.csdnimg.cn/20210215000531120.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>得到flag<br><img src="https://img-blog.csdnimg.cn/20210215001043502.png" alt="在这里插入图片描述"></p><h5 id="5、-BJDCTF-2nd-圣火昭昭"><a href="#5、-BJDCTF-2nd-圣火昭昭" class="headerlink" title="5、[BJDCTF 2nd]圣火昭昭"></a>5、[BJDCTF 2nd]圣火昭昭</h5><p>打开附件，是一张喵图<br><img src="https://img-blog.csdnimg.cn/20210215001222799.jpg" alt="在这里插入图片描述"><br>在图片属性备注里可以看到<br><img src="https://img-blog.csdnimg.cn/20210215150707913.png" alt="在这里插入图片描述"><br>新佛曰 在线解密 <a href="http://hi.pcmoe.net/buddha.html">http://hi.pcmoe.net/buddha.html</a><br><img src="https://img-blog.csdnimg.cn/20210215150845879.png" alt="在这里插入图片描述"><br>题目说了com是多余的，所以解出来应该是 gemlove</p><p>根据题目提示，有一个加重的猜字，很容易联想到 outguess加密 （其实是百度的）<a href="https://blog.csdn.net/xuqi7/article/details/63362839">工具介绍</a></p><p><strong>隐写工具outguess使用</strong>：</p><p>kail下载</p><pre><code class="bash">git clone https://github.com/crorvick/outguess</code></pre><p>cd outguess</p><p>安装</p><pre><code class="bash">./configure &amp;&amp; make &amp;&amp; make install</code></pre><p> 解密</p><pre><code class="bash"> outguess -k &quot;key&quot; -r 1.jpg hidden.txt</code></pre><p>解密内容会放在hidden.txt中</p><p><img src="https://img-blog.csdnimg.cn/20210215161119589.png" alt="在这里插入图片描述"><br>打开out.txt 得到flag<br><img src="https://img-blog.csdnimg.cn/20210215161249187.png" alt="在这里插入图片描述"></p><hr>🆗，先总结这么多吧。]]></content>
-      
-      
-      <categories>
-          
-          <category> CTF </category>
-          
-          <category> MISC </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> misc </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Bugku web(一)</title>
       <link href="2019/09/12/Bugku%E2%80%94%E2%80%94web(%E4%B8%80)/"/>
       <url>2019/09/12/Bugku%E2%80%94%E2%80%94web(%E4%B8%80)/</url>
@@ -882,6 +855,33 @@
         <tags>
             
             <tag> web </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>BUU刷题记录——Misc(一)</title>
+      <link href="2019/09/12/BUU%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94Misc(%E4%B8%80)/"/>
+      <url>2019/09/12/BUU%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94Misc(%E4%B8%80)/</url>
+      
+        <content type="html"><![CDATA[<p>[toc]</p><h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><p>最近学习之余在BUU上刷了几道misc题，有一些没接触过的知识，挺有意思的，顺便来记录下。<hr></p><h5 id="1、九连环"><a href="#1、九连环" class="headerlink" title="1、九连环"></a>1、九连环</h5><p>涉及到的知识点：</p><ul><li>steghide的使用</li></ul><p>打开附件，是一张图片<br><img src="https://img-blog.csdnimg.cn/20210213113213717.jpg" alt="在这里插入图片描述"><br>丢winhex里看一下，搜索jpg文件尾 FF D9，发现后面有压缩包，<br><img src="https://img-blog.csdnimg.cn/20210214150209264.png" alt="在这里插入图片描述"><br>用foremost分离出一个压缩包且存在伪加密<br><img src="https://img-blog.csdnimg.cn/20210214151342639.png" alt="在这里插入图片描述"><br>把01改为00后，打开压缩包 里面有一张图片和压缩包<br><img src="https://img-blog.csdnimg.cn/20210214152049918.png" alt="在这里插入图片描述"><br>这个压缩包也是加密的，密码大概率是在图片中的，对着图片分析了一圈没什么发现，在查看wp之后知道需要用到 Steghide工具。<a href="https://blog.csdn.net/Blood_Seeker/article/details/81837571">工具介绍</a></p><p> <strong>工具使用</strong>：</p><p>Steghide是一款开源的隐写术软件，可以在一张图片或者音频文件中隐藏信息，同时也可以提取在图片或音频中的隐藏信息。</p><p>kali下steghide的安装：</p><pre><code class="bash">apt-get install steghide</code></pre><p>使用：<br><img src="https://img-blog.csdnimg.cn/20210214155028491.png" alt="在这里插入图片描述"><br>隐藏信息没有设置密码，直接回车即可。得到隐藏文件，打开<br><img src="https://img-blog.csdnimg.cn/20210214155458703.png" alt="在这里插入图片描述"><br>使用密码打开压缩包，得到flag<br><img src="https://img-blog.csdnimg.cn/20210214155614270.png" alt="在这里插入图片描述"></p><h5 id="2、面具下的flag"><a href="#2、面具下的flag" class="headerlink" title="2、面具下的flag"></a>2、面具下的flag</h5><p>打开附件，是一张jpg格式的图片<br><img src="https://img-blog.csdnimg.cn/20210214161947870.jpg" alt="在这里插入图片描述"><br>winhex看一下，发现图片尾后有zip文件<br><img src="https://img-blog.csdnimg.cn/20210214162423279.png" alt="在这里插入图片描述"><br>foremost分离出压缩包，且存在伪加密，09 改为 00 解除伪加密，压缩包里面是一个vmdk类型的文件<br><img src="https://img-blog.csdnimg.cn/20210214223238305.png" alt="在这里插入图片描述"><br>之前没见过这种类型的文件，百度了一下，知道这种文件可以用 7z 进行解压提取，在kali中使用 7z 解压：<br><img src="https://img-blog.csdnimg.cn/20210214224646275.png" alt="在这里插入图片描述"><br>得到几个文件夹，其中 key_part_one 和 key_part_two 中含有Brainfuck与Ook!的加密文本 ，解密后将得到的字符串前拼接起来就得到了flag。</p><p>在线网站：<a href="https://www.splitbrain.org/services/ook">https://www.splitbrain.org/services/ook</a><br><img src="https://img-blog.csdnimg.cn/20210214225655176.png" alt="在这里插入图片描述"></p><h5 id="3、刷新过的图片"><a href="#3、刷新过的图片" class="headerlink" title="3、刷新过的图片"></a>3、刷新过的图片</h5><p>打开附件，是一张图片<br><img src="https://img-blog.csdnimg.cn/20210214230352744.jpg" alt="在这里插入图片描述"><br>各种尝试都没发现什么东西，百度了才知道这题用到了F5隐写。</p><p>kali下安装 F5-steganography：</p><pre><code class="bash">git clone https://github.com/matthewgao/F5-steganography</code></pre><p>安装完成后如下<br><img src="https://img-blog.csdnimg.cn/2021021423211023.png" alt="在这里插入图片描述"></p><p>使用方法：</p><pre><code class="bash">java Extract 图片路径 [-p 密码]</code></pre><p><img src="https://img-blog.csdnimg.cn/20210214231942390.png" alt="在这里插入图片描述"><br>得到out.text文件，很明显是一个zip文件<br><img src="https://img-blog.csdnimg.cn/20210214232211376.png" alt="在这里插入图片描述"><br>后缀名改为zip，发现有伪加密，修改之后再解压就可以得到 flag.txt<br><img src="https://img-blog.csdnimg.cn/20210214232425793.png" alt="在这里插入图片描述"></p><h5 id="4、snake"><a href="#4、snake" class="headerlink" title="4、snake"></a>4、snake</h5><p>附件是一张蛇的图片，图就不放了 有点吓人。</p><p>binwalk分析出有压缩文件<br><img src="https://img-blog.csdnimg.cn/20210214233331322.png" alt="在这里插入图片描述">分离出一个压缩包，里面有 key和cipher 文件，key文件中是base64加密的密文：</p><pre><code class="bash">V2hhdCBpcyBOaWNraSBNaW5haidzIGZhdm9yaXRlIHNvbmcgdGhhdCByZWZlcnMgdG8gc25ha2VzPwo=</code></pre><p>解密得到：What is Nicki Minaj’s favorite song that refers to snakes? （尼基·米纳吉最喜欢的关于蛇的歌是什么？）</p><p>百度了一下，这首歌应该是 Anaconda ，即 key应该就是 Anaconda<br><img src="https://img-blog.csdnimg.cn/20210214234126976.png" alt="在这里插入图片描述"><br>但是 cipher 不知道是什么文件。百度了一下才知道，对于蛇这个名词，在英语中还有一个翻译：Serpent。</p><p>Serpent是一个加密算法，于是对 cipher文件进行 Serpent解密</p><p>在线网站：<a href="http://serpent.online-domain-tools.com/">http://serpent.online-domain-tools.com/</a></p><p>key是 anaconda<br><img src="https://img-blog.csdnimg.cn/20210215000531120.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>得到flag<br><img src="https://img-blog.csdnimg.cn/20210215001043502.png" alt="在这里插入图片描述"></p><h5 id="5、-BJDCTF-2nd-圣火昭昭"><a href="#5、-BJDCTF-2nd-圣火昭昭" class="headerlink" title="5、[BJDCTF 2nd]圣火昭昭"></a>5、[BJDCTF 2nd]圣火昭昭</h5><p>打开附件，是一张喵图<br><img src="https://img-blog.csdnimg.cn/20210215001222799.jpg" alt="在这里插入图片描述"><br>在图片属性备注里可以看到<br><img src="https://img-blog.csdnimg.cn/20210215150707913.png" alt="在这里插入图片描述"><br>新佛曰 在线解密 <a href="http://hi.pcmoe.net/buddha.html">http://hi.pcmoe.net/buddha.html</a><br><img src="https://img-blog.csdnimg.cn/20210215150845879.png" alt="在这里插入图片描述"><br>题目说了com是多余的，所以解出来应该是 gemlove</p><p>根据题目提示，有一个加重的猜字，很容易联想到 outguess加密 （其实是百度的）<a href="https://blog.csdn.net/xuqi7/article/details/63362839">工具介绍</a></p><p><strong>隐写工具outguess使用</strong>：</p><p>kail下载</p><pre><code class="bash">git clone https://github.com/crorvick/outguess</code></pre><p>cd outguess</p><p>安装</p><pre><code class="bash">./configure &amp;&amp; make &amp;&amp; make install</code></pre><p> 解密</p><pre><code class="bash"> outguess -k &quot;key&quot; -r 1.jpg hidden.txt</code></pre><p>解密内容会放在hidden.txt中</p><p><img src="https://img-blog.csdnimg.cn/20210215161119589.png" alt="在这里插入图片描述"><br>打开out.txt 得到flag<br><img src="https://img-blog.csdnimg.cn/20210215161249187.png" alt="在这里插入图片描述"></p><hr>🆗，先总结这么多吧。]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF </category>
+          
+          <category> MISC </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> misc </tag>
             
         </tags>
       
