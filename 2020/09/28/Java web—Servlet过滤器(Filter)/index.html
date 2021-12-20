@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>我的第一个Spring MVC程序 | 未完成的歌</title>
-  <meta name="keywords" content=" SpringMVC ">
-  <meta name="description" content="我的第一个Spring MVC程序 | 未完成的歌">
+  <title>Servlet过滤器(Filter) | 未完成的歌</title>
+  <meta name="keywords" content=" javaweb ">
+  <meta name="description" content="Servlet过滤器(Filter) | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="在DVWA页面中选择 SQL Injection 一、首先肯定是要判断是否有注入漏洞，在输入框输入1，返回 ID: 1 First name: admin Surname: admin 返回正常； 再次输入1&#39;，报错，返回 You have an error in your SQL syntax; check the manual that corresponds to your Mari">
 <meta property="og:type" content="article">
@@ -1352,9 +1352,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-我的第一个Spring MVC程序" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Java web—Servlet过滤器(Filter)" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">我的第一个Spring MVC程序</h1>
+        <h1 class="article-title">Servlet过滤器(Filter)</h1>
     
     <div class="article-meta">
         
@@ -1366,7 +1366,7 @@
             
             <a  data-rel="Web开发">Web开发</a> > 
             
-            <a  data-rel="Web开发&lt;---&gt;JavaEE">JavaEE</a>
+            <a  data-rel="Web开发&lt;---&gt;JavaWeb">JavaWeb</a>
             
         </span>
         
@@ -1374,19 +1374,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">SpringMVC</a>
+            <a class="color3">javaweb</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-12-16 13:37:04'>2020-11-03 20:30</time>
+            发布时间 : <time class="date" title='最后更新: 2021-12-20 10:14:28'>2020-09-28 20:06</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1.5k</span>
+        <span>字数:1.7k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1405,7 +1405,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AASpring-MVC%E7%A8%8B%E5%BA%8F"><span class="toc-text">第一个Spring MVC程序</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A6%96%E5%85%88%E6%9D%A5%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%87%E6%BB%A4%E5%99%A8%EF%BC%9A"><span class="toc-text">一、首先来了解一下什么是过滤器：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Filter%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-text">二、Filter特点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="toc-text">三、过滤器的实现：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AF%B9%E8%AF%B7%E6%B1%82%E4%BF%A1%E6%81%AF%E7%9A%84%E8%BF%87%E6%BB%A4%EF%BC%9A"><span class="toc-text">四、对请求信息的过滤：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AF%B9%E5%93%8D%E5%BA%94%E4%BF%A1%E6%81%AF%E7%9A%84%E8%BF%87%E6%BB%A4%EF%BC%9A"><span class="toc-text">五、对响应信息的过滤：</span></a>
     
 <style>
     .left-col .switch-btn,
@@ -1421,141 +1421,130 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> <strong>1、先简单说一下SpringMVC的概念</strong>：</p>
-<ul>
-<li>Spring MVC是Spring为表现层提供的基于MVC设计模式的轻量级Web框架，是目前最主流的 MVC框架之一。它与Struts2框架一样，都属于MVC框架，但其使用和性能等方面比Struts2更加优异。</li>
+        <p>前言：<br>过滤器是Servlet中一个非常重要的组成部分，进行WEB开发时无不用到过滤器；因此这篇blog来单独总结下关于过滤器的知识点。<hr/></p>
+<h6 id="一、首先来了解一下什么是过滤器："><a href="#一、首先来了解一下什么是过滤器：" class="headerlink" title="一、首先来了解一下什么是过滤器："></a>一、首先来了解一下什么是过滤器：</h6><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xdp-gacl/p/3948353.html">下面这句话引自这篇文章</a><br>　　Filte即过滤器，它是Servlet技术中最激动人心的技术，WEB开发人员通过Filter技术，对web服务器管理的<strong>所有web资源</strong>：例如Jsp, Servlet, 静态图片文件或静态 html 文件等进行拦截，从而实现一些特殊的功能。例如实现URL级别的权限访问控制、过滤敏感词汇、压缩响应信息等一些高级功能。<br>　　Servlet API中提供了一个Filter接口，如果编写的Java类实现了这个接口，则把这个java类称之为过滤器Filter。通过Filter技术，开发人员可以实现用户在访问某个目标资源之前，对访问的请求和响应进行拦截，如下：<br>　　<img src="https://img-blog.csdnimg.cn/20200422000020988.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="二、Filter特点："><a href="#二、Filter特点：" class="headerlink" title="二、Filter特点："></a>二、Filter特点：</h5><ul>
+<li>Servlet过滤器可以检查和修改ServletRequest和ServletResponse对象。</li>
+<li>Servlet过滤器可以被指定和特定的URL关联，且不能独立执行，只有当客户请求访问该URL时，才会触发过滤器。</li>
+<li>Servlet过滤器可以被串联在一起，形成管道效应，协同修改请求和响应对象（过滤器链）。<br><img src="https://img-blog.csdnimg.cn/20200422001954640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h5 id="三、过滤器的实现："><a href="#三、过滤器的实现：" class="headerlink" title="三、过滤器的实现："></a>三、过滤器的实现：</h5>建立一个过滤器涉及下列五个步骤:</li>
 </ul>
-<p><strong>2、Spring MVC具有以下特点</strong>：</p>
 <ol>
-<li>是Spring框架的一部分，可以方便的利用Spring所提供的其他功能。</li>
-<li>灵活性强，易于与其他框架集成。</li>
-<li>提供了一个前端控制器DispatcherServlet，使开发人员无需额外开发控制器对象。</li>
-<li>可自动绑定用户输入，并能正确的转换数据类型。</li>
-<li>内置了常见的校验器，可以校验用户输入。如果校验不能通过，那么就会重定向到输入表单。</li>
-<li>支持多种视图技术。它支持JSP、Velocity和FreeMarker等视图技术。</li>
-<li>使用基于XML的配置文件，在编辑后，不需要重新编译应用程序。</li>
+<li>建立一个实现Filter接口的类；</li>
+<li>在doFilter方法中实现过滤行为；</li>
+<li>调用FilterChain对象的doFilter方法；</li>
+<li>对相应的servlet和JSP页面注册过滤器；</li>
+<li>禁用激活器servlet；</li>
 </ol>
-<p><strong>3、SpringMVC在三层架构的位置</strong>：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200930171640705.png" alt="在这里插入图片描述"><hr></p>
-<h3 id="第一个Spring-MVC程序"><a href="#第一个Spring-MVC程序" class="headerlink" title="第一个Spring MVC程序"></a>第一个Spring MVC程序</h3><p><strong>第一步：新建web项目：</strong></p>
+<p><strong>1、建立一个实现Filter接口的类</strong>：</p>
 <ul>
-<li>在eclipse中，新建一个名字为SpringMvc的Web项目，在项目的lib目录中添加运行Spring MVC程序所需要的JAR包，并发布到类路径下。</li>
+<li>Servlet过滤器类必须实现javax.servlet.Filter</li>
+<li>这个接口含有3个过滤器类必须实现的方法：</li>
 </ul>
-<p>必须的 jar包如下：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200930174641501.png" alt="在这里插入图片描述"></p>
+<pre><code class="java">    init( )
+    doFilter( )
+    destroy( )</code></pre>
 <ul>
-<li>项目中添加了Spring的4个核心JAR包、commons-logging的JAR以及两个web相关的JAR，这两个web相关的JAR包就是Spring MVC框架所需的JAR包。</li>
+<li><code>public void init(FilterConfig config)   thows ServletException</code>只在此过滤器第一次初始化时执行</li>
+<li>简单过滤器可提供此方法的空体，两种情况使用init:</li>
 </ul>
-<p><strong>第二步：配置XML</strong></p>
-<ul>
-<li>在web.xml中，配置Spring MVC的前端控制器DispatcherServlet</li>
-</ul>
-<p>如下：</p>
-<pre><code class="java">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;web-app xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-    xmlns=&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;
-    xsi:schemaLocation=&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd&quot;
-    id=&quot;WebApp_ID&quot; version=&quot;4.0&quot;&gt;
-    &lt;display-name&gt;SpringMvc&lt;/display-name&gt;
-    &lt;servlet&gt;
-        &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
-        &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
-
-        &lt;--当前Servlet的参数信息--&gt;
-        &lt;init-param&gt;
-            &lt;--contextConfigLocation是参数名称，该参数的值包含了SpringMVC的配置文件路径--&gt;
-            &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
-            &lt;param-value&gt;classpath:springmvc-config.xml&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;--定义在Web应用启动是立即加载Servlet--&gt;
-        &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
-    &lt;/servlet&gt;
-
-    &lt;servlet-mapping&gt;
-        &lt;--请求对应的Servlet名称--&gt;
-        &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
-        &lt;--监听当前域的所有请求--&gt;
-        &lt;url-pattern&gt;/&lt;/url-pattern&gt;
-    &lt;/servlet-mapping&gt;
-&lt;/web-app&gt;</code></pre>
-<p><strong>第三步：编写 Controller</strong>：</p>
-<ul>
-<li>在src目录下，创建一个com.itheima.controller包，并在包中创建控制器类FirstController，该类需要实现Controller接口，编辑后如下所示:</li>
-</ul>
-<pre><code class="java">public class FirstController implements Controller &#123;
-
-    @Override
-    public ModelAndView handleRequest(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception &#123;
-        // TODO Auto-generated method stub
-        ModelAndView mav = new ModelAndView();
-        // 添加模型数据，可以是任何的POJO对象
-        mav.addObject(&quot;msg&quot;, &quot;这是我的第一个Spring MVC程序&quot;);
-        // 设置逻辑视图名，视图解析器会根据该名字解析到具体的视图页面
-        mav.setViewName(&quot;/WEB-INF/jsp/first.jsp&quot;);
-        // 返回ModelAndView 对象
-        return mav;
-    &#125;
-&#125;</code></pre>
-<p><strong>4、第四步：编辑 dispatcher-servlet.xml</strong></p>
-<ul>
-<li>在src目录下，创建配置文件springmvc-config.xml，这个文件名的开头与上面 web.xml 中的 <code>&lt;servlet-name&gt;</code> 元素配置的 dispatcher 对应，这是 Spring MVC 的映射配置文件（格式：xxx-servlet.xml）</li>
-</ul>
-<pre><code class="java">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
-
-    &lt;!--配置Handle，映射&quot;/hello&quot;请求 --&gt;
-    &lt;bean name=&quot;/hello&quot; class=&quot;com.itheima.controller.FirstController&quot; /&gt;
-
-    &lt;!-- 处理器映射器，将处理器Handle的name作为url进行查找 --&gt;
-    &lt;bean
-        class=&quot;org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping&quot; /&gt;
-    &lt;!-- 处理器适配器，配置对处理器中handleRequest()方法的调用 --&gt;
-    &lt;bean
-        class=&quot;org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter&quot; /&gt;
-    &lt;!-- 配置视图解析器 --&gt;
-    &lt;bean
-        class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot; /&gt;
-&lt;/beans&gt;</code></pre>
-<p><strong>第五步：准备 first.jsp</strong></p>
-<ul>
-<li> 在WEB-INF目录下，创建一个jsp文件夹，并在文件夹中创建一个页面文件first.jsp，在该页面中使用EL表达式获取msg中的信息，如下所示：</li>
-</ul>
-<pre><code class="java">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;
-    pageEncoding=&quot;UTF-8&quot;%&gt;
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;UTF-8&quot;&gt;
-&lt;title&gt;Insert title here&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    $&#123;msg&#125;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p><strong>第六步： 部署 Tomcat 及相关环境</strong>：</p>
-<ul>
-<li>将SpringMvc 项目发布到Tomcat中，并启动Tomcat服务器。在浏览器中访问地址：<a target="_blank" rel="noopener" href="http://localhost:8080/SpringMvc/hello%EF%BC%8C%E5%85%B6%E6%98%BE%E7%A4%BA%E6%95%88%E6%9E%9C%E5%A6%82%E4%B8%8B%E6%89%80%E7%A4%BA%EF%BC%9A">http://localhost:8080/SpringMvc/hello，其显示效果如下所示：</a></li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/20200930183954310.png" alt="在这里插入图片描述"></p>
-<p>至此第一个Spring MVC程序就此完成了（￣︶￣）↗　</p>
-<p><strong>再来说一下Spring MVC的工作流程：</strong></p>
-<p>图示如下：<br><img src="https://img-blog.csdnimg.cn/20200930184844281.png" alt="在这里插入图片描述"></p>
 <ol>
-<li>DispatcherServlet所拦截：用户通过浏览器向服务器发送请求，请求会被Spring MVC的前端控制器。</li>
-<li>DispatcherServlet拦截到请求后，会调用HandlerMapping处理器映射器。</li>
-<li> 处理器映射器根据请求URL找到其体的处理器，生成处理器对象及处理器拦截器（如果有则生成）一并返回给DispatcherServlet</li>
-<li>DispatcherServlet会通过返回信思选择合适的HandlerAdapter(处理器适配器）。</li>
-<li>HandlerAdapter会调用并执行Handler(处理器），这里的处理器指的就是程序中编写的Controller类，也被称之为后端控制器。</li>
-<li>Controller执行完成后，会返回一个ModelAndView对象，该对象中会包含视图名或包含模型和视图名。</li>
-<li> HandlerAdapter将ModelAndView对象返回给DispatcherServlet</li>
-<li> DispatcherServlet会根据ModelAndView对象选择一个合适的ViewReslover（视图解析器）。</li>
-<li> ViewReslover解析后，会向DispatcherServlet中返回具体的View(视图）。</li>
-<li>DispatcherServlet对View进行渲染（即将模型数据填充至视图中）。</li>
-<li>视图渲染结果会返回给客户端浏览器显示。</li>
+<li>FilterConfig对象提供对servlet环境及web.xml文件中指派的过滤器名的访问。利用init将FilterConfig对象存放在一个字段中，以便doFilter方法能够访问servlet环境或过滤器名。</li>
+<li>FilterConfig对象具有一个getInitParameter方法，它能够访问部署描述符文件（web.xml）中分配的过滤器初始化参数。 </li>
 </ol>
+<p><strong>2、在doFilter方法中实现过滤行为：</strong></p>
+<ul>
+<li>重要方法：<pre><code class="java">   public void doFilter(ServletRequset request, ServletResponse response,FilterChain chain)   </code></pre>
+</li>
+</ul>
+<p><strong>3、调用FilterChain对象的doFilter方法：</strong></p>
+<ul>
+<li>最后一个参数FilterChain对象。对此对象调用以激活与servlet或JSP相关的下一个过滤器。如果没有另一个相关的过滤器，则对doFilter的调用激活servlet或JSP本身</li>
+</ul>
+<p><strong>4、对相应的servlet和JSP页面注册过滤器：</strong></p>
+<ul>
+<li>web.xml中用于过滤器的元素:<br><code>filter</code>：元素向系统注册一个过滤对象<br><code>filter-mapping</code>：元素指定该过滤对象所应用的URL<br><code>&lt;filter-name&gt;</code>必需元素，必须与用filter元素声明时给予过滤器的名称相匹配<br><code>&lt;url-pattern&gt;</code>必需元素，此元素声明一个以斜杠<code>&quot;/&quot;</code>开始的模式，它指定过滤器应用的URL。</li>
+</ul>
+<p><strong>例：</strong><br>要求：利用filter和filter-mapping指示名为SomeFilter的过滤器应用到名为SomeServlet的servlet。</p>
+<p>web.xml应配置为：</p>
+<pre><code class="java">&lt;filter&gt;
+   &lt;filter-name&gt;SomeFilter&lt;/filter-name&gt;
+   &lt;filter-class&gt;sPackage.SFilterClass&lt;/filter-class&gt;
+&lt;/filter&gt;
+&lt;filter-mapping&gt; 
+   &lt;filter-name&gt;SomeFilter&lt;/filter-name&gt;
+   &lt;servlet-name&gt;SomeServlet&lt;/servlet-name&gt;
+&lt;/filter-mapping&gt;</code></pre>
+<p><strong>5、禁用激活器servlet：</strong></p>
+<ul>
+<li>在对资源应用过滤器时，可通过指定要应用过滤器的URL模式或servlet名来完成。</li>
+<li>如果提供servlet名，则此名称必须与web.xml的servlet元素中给出的名称相匹配。</li>
+<li>如果使用应用到一个serlvet的URL模式，则此模式必须与利用web.xml的元素servlet-mapping指定的模式相匹配。</li>
+<li>防止用户利用缺省servlet URL绕过过滤器设置 。</li>
+</ul>
+<h5 id="四、对请求信息的过滤："><a href="#四、对请求信息的过滤：" class="headerlink" title="四、对请求信息的过滤："></a>四、对请求信息的过滤：</h5><p>对请求信息的过滤大致分为下列5个步骤：</p>
+<ol>
+<li>Servlet容器创建一个过滤器实例。</li>
+<li>过滤器实例调用init方法，读取过滤器初始化参数。</li>
+<li>过滤器实例调用doFilter方法，根据初始化参数的值判断该请求是否合法。</li>
+<li>如果该请求不合法则阻塞该请求。</li>
+<li>如果该请求合法则调用chain.doFilter方法将该请求向后续传递。 </li>
+</ol>
+<p>因为Servlet对中文支持不好，用户提交的表单信息会产生乱码问题，会给后台的数据查询和记录（数据库存储）等功能造成影响，因此需要对请求信息进行转码。</p>
+<p> <strong>解决方法一：</strong><br> 直接在Servlet中转码</p>
+<p>处理get请求：：</p>
+<pre><code class="java">    String name = request.getParameter(param_name);
+    name = new String( name.getBytes(&quot;ISO8859_1&quot;) );</code></pre>
+<p>处理post请求：</p>
+<pre><code class="java">request.setCharacterEncoding(&quot;utf-8&quot;);</code></pre>
+<p>直接在servlet里处理的缺点是从request中取出的每个中文变量都要转换，且不能动态的改变编码。</p>
+<p> <strong>解决方法二：</strong><br>在过滤器中进行转码，且在一个动态web项目里设置完成后就可以不用在单个Servlet中一一设置了。<br><strong>例：</strong><br>Filter类：</p>
+<pre><code class="java">public class MyFilter  implements Filter
+&#123;  private String tarEncoding = &quot;gb2312&quot;;
+    protected FilterConfig filterConfig;
+    public void init(FilterConfig config) throws ServletException 
+    &#123;   this.filterConfig = config;    
+        this.tarEncoding =    config.getInitParameter(&quot;encoding&quot;); 
+     &#125;    
+    public void doFilter( ServletRequest srequest, ServletResponse sresponse, FilterChain chain) throws IOException, ServletException 
+    &#123;
+    HttpServletRequest request =   (HttpServletRequest)srequest;
+    HttpServletResponse response = (HttpServletResponse)sresponse;
+    //把请求用指定的方式编码     
+    request.setCharacterEncoding(targetEncoding);
+  //把响应用指定的方式编码
+    response.setCharacterEncoding(targetEncoding);
+  // 把处理发送到下一个过滤器     
+    chain.doFilter(srequest,sresponse); 
+    &#125;    
+    public void destroy() 
+    &#123;    this.filterConfig=null; &#125;     
+&#125;
+</code></pre>
+<p>过滤器部署描述：</p>
+<pre><code class="java">&lt;filter&gt;
+    &lt;filter-name&gt;encod&lt;/filter-name&gt;
+    &lt;filter-class&gt;pdsu.edu.cn.chu.MyFilter&lt;/filter-class&gt;
+    &lt;init-param&gt;
+        &lt;param-name&gt;encoding&lt;/param-name&gt;
+        &lt;param-value&gt;gb2312&lt;/param-value&gt;
+    &lt;/init-param&gt;
+ &lt;/filter&gt;
+&lt;filter-mapping&gt;
+     &lt;filter-name&gt;encod&lt;/filter-name&gt;
+      &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;filter-mapping&gt;</code></pre>
+<p>过滤器只能解决Post提交的中文乱码问题，Get提交中文乱码解决方法为：  </p>
+<p>修改tomcat配置文件下的server.xml，找到对8080端口进行服务的Connector组件的设置部分，为Connector添加属性<code>URIEncoding=&quot;GBK&quot;</code><br><img src="https://img-blog.csdnimg.cn/20200422215757800.png" alt="在这里插入图片描述"></p>
+<h5 id="五、对响应信息的过滤："><a href="#五、对响应信息的过滤：" class="headerlink" title="五、对响应信息的过滤："></a>五、对响应信息的过滤：</h5><ol>
+<li>过滤器截获客户端的请求.</li>
+<li>重新封装ServletResponse，在封装后的ServletResponse中提供用户自定义的输出流；即：<br><img src="https://img-blog.csdnimg.cn/20200422221449696.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></li>
+<li>将请求向后续传递。</li>
+<li>Web组件产生响应。</li>
+<li>从封装后的ServletResponse中获取用户自定义的输出流。</li>
+<li>将响应内容通过用户自定义的输出流写入到缓冲流。</li>
+<li>在缓冲流中修改响应的内容后清空缓冲流，输出响应内容。</li>
+</ol>
+<p>🆗，关于Filter的总结暂时就这么多。 =￣ω￣=</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>
