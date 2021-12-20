@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Bugku杂项(三) | 未完成的歌</title>
-  <meta name="keywords" content=" 杂项 ">
-  <meta name="description" content="Bugku杂项(三) | 未完成的歌">
+  <title>JSP——EL语法总结 | 未完成的歌</title>
+  <meta name="keywords" content=" jsp ">
+  <meta name="description" content="JSP——EL语法总结 | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="在DVWA页面中选择 SQL Injection 一、首先肯定是要判断是否有注入漏洞，在输入框输入1，返回 ID: 1 First name: admin Surname: admin 返回正常； 再次输入1&#39;，报错，返回 You have an error in your SQL syntax; check the manual that corresponds to your Mari">
 <meta property="og:type" content="article">
@@ -1364,9 +1364,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Bugku 杂项（三）" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-JSP——EL语法总结" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Bugku杂项(三)</h1>
+        <h1 class="article-title">JSP——EL语法总结</h1>
     
     <div class="article-meta">
         
@@ -1376,9 +1376,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="CTF">CTF</a> > 
+            <a  data-rel="Web开发">Web开发</a> > 
             
-            <a  data-rel="CTF&lt;---&gt;MISC">MISC</a>
+            <a  data-rel="Web开发&lt;---&gt;JavaWeb">JavaWeb</a>
             
         </span>
         
@@ -1386,19 +1386,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color3">杂项</a>
+            <a class="color4">jsp</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-05-04 11:55:18'>2019-08-01 20:06</time>
+            发布时间 : <time class="date" title='最后更新: 2021-12-20 10:31:59'>2020-09-27 20:07</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:727</span>
+        <span>字数:1.2k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1417,7 +1417,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81EL%E6%A6%82%E8%BF%B0%EF%BC%9A"><span class="toc-text">1、EL概述：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81EL%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="toc-text">2、EL基本语法：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81EL%E4%B8%8EJavaBean%EF%BC%9A"><span class="toc-text">3、EL与JavaBean：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81EL%E4%B8%8E%E5%B1%9E%E6%80%A7%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="toc-text">4、EL与属性操作：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81EL%E4%B8%8E%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="toc-text">5、EL与集合操作：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6%E3%80%81EL%E9%9A%90%E5%90%AB%E5%AF%B9%E8%B1%A1"><span class="toc-text">6、EL隐含对象</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1433,15 +1433,115 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这周接着扳bugku上的题，话说暑假真的好无聊啊╯︿╰，希望赶紧开学。。。<hr><br><strong>1、旋转跳跃</strong><br><img src="http://img-blog.csdnimg.cn/20190730164612158.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这题没啥难度，就是考会不会用<strong>MP3Stego</strong>这个工具；放个福利吧，为了让更多的小白免受找工具之苦 下载地址：<a target="_blank" rel="noopener" href="http://www.petitcolas.net/fabien/software/">http://www.petitcolas.net/fabien/software/</a><br><strong>常用命令：</strong></p>
-<blockquote>
-<p>加密：-X -P 123456 test.mp3  （123456 是密码，test.mp3待解密文件）<br> 加密：-E hidden.txt  -P 123456 test.mp3 （ hidden.txt 是隐藏文档，123456是密码 test.mp3待加密文件）</p>
-</blockquote>
-<p>开始做题，这题已经给了提示密文：<code>syclovergeek</code> 等会解密会用到，先把这题要分析的文件放进<code>MP3Stego</code>文件目录下，可以在<code>MP3Stego</code>的目录下打开Powershell窗口（ps：这里我在<code>MP3Stego</code>的目录下直接<code>get base here</code> 显示无法找到文件，不知道为啥）<br><img src="http://img-blog.csdnimg.cn/2019073018001427.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后直接把<code>decode.exe</code>文件拖进黑框界面里 然后输入 <code>-X -P 密码 文件名</code><br><img src="http://img-blog.csdnimg.cn/20190730180141177.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>解密成功<br><img src="http://img-blog.csdnimg.cn/20190730180204398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开txt文档 得到flag<br><img src="http://img-blog.csdnimg.cn/20190730180401502.png" alt="在这里插入图片描述"><br><strong>2、论剑</strong><br><img src="http://img-blog.csdnimg.cn/20190730221305476.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这题也挺有意思的，下载文件打开是张图：<br><img src="http://img-blog.csdnimg.cn/20190731170714189.jpg" alt="在这里插入图片描述"><br>老套路，先右键查看详细信息， Stegsolve里看下，没啥信息；再WinHex里查看下，发现一串二进制数<br><img src="http://img-blog.csdnimg.cn/20190731171453940.png" alt="在这里插入图片描述"><br>8个一组转成ASCII码值，得到<code>mynameiskey!!!hhh</code>   先留着肯定有用；binwalk里跑一波 ，也没啥东西<br><img src="http://img-blog.csdnimg.cn/20190731210932937.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>去修改下文件宽高看看， 右键查看详细信息<br><img src="http://img-blog.csdnimg.cn/20190731211304882.png" alt="在这里插入图片描述"><br>JPG图片<code>FFC2</code>后面三个字节即为高与宽（注意是高与宽哦），然后再winhex里<strong>Ctrl+Alt+x</strong> 搜索16进制文件找到<code>FFC2</code>（小白提醒，搜索的时候要大写字母）<br><img src="https://img-blog.csdnimg.cn/20190731222234592.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190731222655375.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>将781转换为16进制为<code>030D</code>，66转换为16进制为<code>42</code>，找到后把0042改为030D保存打开<br><img src="http://img-blog.csdnimg.cn/20190731222850211.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>emm… 发现有些地方被遮住了，继续找吧，肯定还有线索；无奈看了下别人的blog，才知道那串二进制后面的数值是7Z文件的文件头，不过要修复下<br><img src="http://img-blog.csdnimg.cn/20190731230519799.png" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/2019073123041266.png" alt="在这里插入图片描述"><br>将38改为37 7B改成7A，保存，在用binwalk跑一波，发现果然有了个压缩包<br><img src="http://img-blog.csdnimg.cn/20190731231218431.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>dd命令分离<br><img src="http://img-blog.csdnimg.cn/20190731231736435.png" alt="在这里插入图片描述"><br>打开是一张加密的图，那先前解出来应该就是密码，输入密码，成功打开<br><img src="http://img-blog.csdnimg.cn/20190731231744452.jpg" alt="在这里插入图片描述">再次更改高度查看，得到：<br><img src="http://img-blog.csdnimg.cn/20190731231857871.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>合在一起为<code>f666C61677B6D795F6E616D655F482121487D</code> 目测为base16 解码得：<code>flag&#123;my_name_H!!H&#125;</code>，啊，好累啊，写完睡觉。。。</p>
-<p><strong>3、图穷匕见</strong><br><img src="http://img-blog.csdnimg.cn/20190801192229654.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>下载打开是张图，先看下详细信息，发现了这个：<br><img src="http://img-blog.csdnimg.cn/20190801192339178.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>画图题？，接着放进winhex里查看，这里可以看到有很多16进制数。把他们复制下来（全选然后双击）<br><img src="http://img-blog.csdnimg.cn/20190801195504794.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后再notepad++里hex→ascii<br><img src="http://img-blog.csdnimg.cn/20190801200007455.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>得到一串坐标，之后就好办了，把括号和逗号替换掉，保存。<img src="http://img-blog.csdnimg.cn/20190801200233616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>另存为txt文件，接下来使用一个画图工具：gnuplot（自己百度吧 下载地址很多的）把txt文件拖进bin目录下，然后执行命令：<br>plot”文件名.txt”</p>
-<p><img src="http://img-blog.csdnimg.cn/20190801200402664.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>回车：</p>
-<p><img src="http://img-blog.csdnimg.cn/20190801200446697.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>扫描二维码得到<code>flag&#123;40fc0a979f759c8892f4dc045e28b820&#125;</code></p>
+        <p>前言：<br>这周学习了EL和JSTL，内容是很简单，但知识点很琐碎，所以来总结一下。<hr/></p>
+<h5 id="1、EL概述："><a href="#1、EL概述：" class="headerlink" title="1、EL概述："></a>1、EL概述：</h5><p>1、 什么是 EL ？</p>
+<ul>
+<li>EL即Expression Language（表达式语言），是一种简单的语言，便于简化<strong>JSP页面</strong>对变量和对象的访问。</li>
+</ul>
+<p>2、EL的功能：</p>
+<ul>
+<li>与<code>&lt;jsp:getProperty /&gt;</code>类似</li>
+<li>是简化的 <code>&lt;jsp:getProperty /&gt;</code></li>
+</ul>
+<p>3、EL的语法结构：</p>
+<ul>
+<li>${  EL expression }</li>
+<li>EL可以直接在JSP页面的模板文本中使用，也可以作为元素属性的值，还可以在自定义或者标准动作元素的内容中使用，但<strong>不能在</strong>脚本元素中使用 。<h5 id="2、EL基本语法："><a href="#2、EL基本语法：" class="headerlink" title="2、EL基本语法："></a>2、EL基本语法：</h5></li>
+<li>一个EL元素必须以 <code>$&#123;</code> 开始，以 <code>&#125;</code> 结束。</li>
+<li>它可以直接出现在模板文本中，也可以出现在JSP标记的属性中，例：<pre><code class="java">  姓名：$&#123; expression1 &#125;
+  地址：$&#123; expression2 &#125;
+  &lt;jsp:include page= &quot;$&#123; expression3 &#125;&quot;/&gt;</code></pre>
+</li>
+<li>empty操作符（验证操作符）</li>
+</ul>
+<p>是一个前缀操作符，用于检测一个表达式的值是否为null或者为empty。 </p>
+<p>例：<code>$&#123;empty  user&#125;</code>，如果变量user不存在返回true，否则为false。 </p>
+<ul>
+<li>条件操作符</li>
+</ul>
+<p>条件运算符的格式：<code>$&#123;A ? B : C&#125;</code> 如果A为true时，执行B代码；而如果A为false时，则执行C代码。</p>
+<h5 id="3、EL与JavaBean："><a href="#3、EL与JavaBean：" class="headerlink" title="3、EL与JavaBean："></a>3、EL与JavaBean：</h5><p>1、使用EL简化JavaBean的属性操作：</p>
+<ul>
+<li>如原来的：<code>&lt;jsp:getProperty name=&quot;myBean&quot; property=&quot;name&quot; /&gt;</code> 或 <code>&lt;%= myBean.getName()%&gt;</code><br>现可以简化成：<code>$&#123;myBean.name&#125;</code></li>
+</ul>
+<p>2、可以使用EL实现对属性的嵌套访问：</p>
+<ul>
+<li>例：<code>$&#123;person.address.phoneNumbers[1].number&#125;</code></li>
+</ul>
+<p>3、EL基本操作符：</p>
+<ul>
+<li>${  bean.name }（点操作符） </li>
+<li>${  bean[“name”] }（[ ]操作符）</li>
+</ul>
+<p>例：</p>
+<pre><code class="java">$&#123;user.name&#125;或$&#123;user[“name”]&#125;实质是调用JavaBean对象user的getName()方法</code></pre>
+<p>当要存取的属性名称中包含一些特殊字符(非字母、数字符号)或动态取值([]中是变量)时，要用[]操作符。</p>
+<p>例：<code>$&#123;user.My-name&#125;应当改为$&#123;user[“My-name”]&#125;</code></p>
+<h5 id="4、EL与属性操作："><a href="#4、EL与属性操作：" class="headerlink" title="4、EL与属性操作："></a>4、EL与属性操作：</h5><p>1、在EL中访问某变量：<code> $&#123; 变量名 &#125;</code></p>
+<ul>
+<li> 在EL中，有四个用于设定有效范围的对象：pageScope、requestScope、sessionScope、applicationScope；使用它们可以限定变量的查找范围。</li>
+<li>如果没有指定变量的有效范围，JSP容器会首先从页内有效范围查找，如果找到，返回相应的值；否则，EL会依次到请求有效、会话有效和应用有效范围中查找对应的变量，找到了，就返回相应的值。如果最终也没有找到，则返回null。</li>
+</ul>
+<p>2、可在变量名前直接指定范围，只在指定的范围内查找变量，如只在会话有效范围内查找变量userName的语句为：</p>
+<pre><code class="java">$&#123; sessionScope.userName &#125;</code></pre>
+<p>例1：如果通过<code>&lt;% request.setAttribute(“user”, “chengdong”); %&gt;</code>定义了一个属性对象。</p>
+<p>要将这个属性对象输出，应该使用如下语句：</p>
+<pre><code class="java">&lt;% String s = (String)request.getAttribute(“user”);
+ out.print(s); %&gt;</code></pre>
+<p>或<code>&lt;%=request.getAttribute(“user”) %&gt;</code></p>
+<p>如果采用表达式语言，则写出如下语句即可</p>
+<pre><code class="java">$&#123; user &#125;</code></pre>
+<p>例2：如果有一个页面有效的属性对象，名叫customer，现在要输出它的firstName属性</p>
+<pre><code class="java">&lt;%pageContext.setAttribute(“customer”,customer)%&gt;</code></pre>
+<p>customer对象的类型为NameBean，则相应语句为：</p>
+<pre><code class="java">&lt;% NameBean person = (NameBean) pageContext.getAttribute(“customer”); %&gt;
+&lt;%=person.getFirstName() %&gt;</code></pre>
+<p>如果采用表达式语言，采用如下语句即可：</p>
+<pre><code class="java">$&#123; customer.firstName &#125;</code></pre>
+<h5 id="5、EL与集合操作："><a href="#5、EL与集合操作：" class="headerlink" title="5、EL与集合操作："></a>5、EL与集合操作：</h5><p>EL也可以实现简化对集合对象的访问：<br>例：</p>
+<pre><code class="java">&lt;%
+        String[] str = &#123;&quot;hello&quot;,&quot;world&quot;&#125;;
+
+        List&lt;String&gt; list = new ArrayList&lt;String&gt;();
+        list.add(&quot;zhangsan&quot;);
+        list.add(&quot;lisi&quot;);
+
+        Map&lt;String,Integer&gt; map = new HashMap&lt;String,Integer&gt;();
+        map.put(&quot;a&quot;,100);
+        map.put(&quot;b&quot;,200);
+        map.put(&quot;c&quot;,300);
+
+        request.setAttribute(&quot;str&quot;,str);
+        request.setAttribute(&quot;list&quot;,list);
+        request.setAttribute(&quot;map&quot;,map);        
+        %&gt;
+
+        $&#123;str[0] &#125;
+        $&#123;map.a&#125;&lt;br&gt;
+        $&#123;list[1] &#125;&lt;br&gt;</code></pre>
+<p>运行结果：<br><img src="https://img-blog.csdnimg.cn/20200520155527192.png" alt="在这里插入图片描述"></p>
+<h5 id="6、EL隐含对象"><a href="#6、EL隐含对象" class="headerlink" title="6、EL隐含对象"></a>6、EL隐含对象</h5><p>EL是和JSP是共用的一套隐式对象。</p>
+<p><strong>1、pageContext对象的访问方法：</strong></p>
+<ul>
+<li>EL中的pageContext对象其实就是当前JSP页面中的pageContext对象(即它们是同一个) 。</li>
+<li>通过EL中的pageContext对象可以访问到当前JSP页面中的所有隐含对象。    </li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200520160734668.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>2、param和paramValues对象：</strong></p>
+<p>使用对象param可以访问请求的参数值，下面的语句会输出请求参数userName的值</p>
+<pre><code class="java">$&#123; param.userName &#125;</code></pre>
+<p>它相当于：</p>
+<pre><code class="java"> &lt;%=request.getParameter(“userName”) %&gt;</code></pre>
+<p>如果一个参数名对应多个值时，就需要使用paramValues对象了，获取其各个值的方法为：<code>$&#123; paramValues.user[i] &#125;</code>（其中i表示第几个值，从0开始取值）。</p>
+<p><strong>3、cookie对象：</strong></p>
+<ul>
+<li>使用cookie可以快速访问引入的Cookie对象。</li>
+<li>要访问名字为userCookie的Cookie对象，方法为：<code>$&#123; cookie.userCookie &#125;</code></li>
+<li>要访问它的名字、值、maxAge等的方法为：</li>
+</ul>
+<pre><code>     $&#123; cookie.userCookie.name &#125;
+     $&#123; cookie.userCookie.value &#125;
+     $&#123; cookie.userCookie.maxAge &#125;</code></pre>
+<p>🆗，EL的知识点差不多就这些了。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>
