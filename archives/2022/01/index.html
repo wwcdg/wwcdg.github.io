@@ -2,35 +2,44 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>JSP——EL语法总结 | 未完成的歌</title>
-  <meta name="keywords" content=" jsp ">
-  <meta name="description" content="JSP——EL语法总结 | 未完成的歌">
+  <title>未完成的歌</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="在DVWA页面中选择 SQL Injection 一、首先肯定是要判断是否有注入漏洞，在输入框输入1，返回 ID: 1 First name: admin Surname: admin 返回正常； 再次输入1&#39;，报错，返回 You have an error in your SQL syntax; check the manual that corresponds to your Mari">
+<meta name="description" content="[TOC] 一、漏洞原理1、XSS简介：XSS全称：Cross Site Scripting，即跨站脚本攻击，为了不和“层叠样式表”(Cascading Style Sheets, CSS)的缩写混淆，故将跨站脚本攻击缩写为XSS。 XSS是最常见的 Web 应用程序安全漏洞之一，这类漏洞能够使攻击者嵌入恶意脚本代码（一般是JS代码）到正常用户会访问到的页面中，当正常用户访问该页面时，恶意脚本代码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DVWA——Sqlmap练习">
-<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2021/12/16/DVWA%E2%80%94%E2%80%94Sqlmap%E7%BB%83%E4%B9%A0/index.html">
+<meta property="og:title" content="XSS (跨站脚本攻击) 分析与实战">
+<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2022/01/14/XSS%20(%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB)%20%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E6%88%98/index.html">
 <meta property="og:site_name" content="未完成的歌">
-<meta property="og:description" content="在DVWA页面中选择 SQL Injection 一、首先肯定是要判断是否有注入漏洞，在输入框输入1，返回 ID: 1 First name: admin Surname: admin 返回正常； 再次输入1&#39;，报错，返回 You have an error in your SQL syntax; check the manual that corresponds to your Mari">
+<meta property="og:description" content="[TOC] 一、漏洞原理1、XSS简介：XSS全称：Cross Site Scripting，即跨站脚本攻击，为了不和“层叠样式表”(Cascading Style Sheets, CSS)的缩写混淆，故将跨站脚本攻击缩写为XSS。 XSS是最常见的 Web 应用程序安全漏洞之一，这类漏洞能够使攻击者嵌入恶意脚本代码（一般是JS代码）到正常用户会访问到的页面中，当正常用户访问该页面时，恶意脚本代码">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105173214418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105174614243.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105204730652.png#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2020110520533660.png#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105210027467.png#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105210545491.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105212241569.png#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105214939645.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105215718669.png#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105221313664.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2020110522281247.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2020110523301156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="article:published_time" content="2021-12-16T05:19:01.144Z">
-<meta property="article:modified_time" content="2021-12-16T05:26:39.862Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ba8e75e4ab7f41eeba69313bf99ba6cc.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/9b65e60015244e8d89e4039bef197534.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/540cb05c3d294f7fa615db5178262608.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/22444e6e72ee4ec290a919ab1f882904.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ef3d12c10f874e82bb331d52be41c350.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/3babd4c4dc1c4c5c8c70b1eadce98519.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/605b6c76cbe642e398585296251c0c44.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4046823d4efe48478e655a7001431e9b.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/1010ca6d05b24e9b8ad8236a91b4e938.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/215f084ad21f4be5a73e4a2266d663ce.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/1bea6ce743d7452088a2d7391acf5191.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/fb035a64fa62462c9755d1c5b049a8c7.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5f6956fcc72248e78f98c6eed17a0d22.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c4d3638ea9fb48969d14c529c6f60846.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/fbb1137ef38f436da43929b80cbf85b8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_18,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/90e72d05d8a240ccbb529c56e6127738.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e84fb4661bf940f4af7876c04ffd1f1e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/11e2538f460b42909d0179f8e54a0036.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/1bd2f2a9f3fc40eb8ce8cedbba859ed9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f11471db97574ec8ba1f96db6866124f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8c760cecb32f4b4f997654559e2e70ce.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2022-01-14T15:39:33.924Z">
+<meta property="article:modified_time" content="2022-01-14T15:42:11.334Z">
 <meta property="article:author" content="未完成的歌">
-<meta property="article:tag" content="sql注入">
+<meta property="article:tag" content="xss">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201105173214418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70#pic_center">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/ba8e75e4ab7f41eeba69313bf99ba6cc.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -70,7 +79,7 @@
 
 
 <body>
-<aside class="nav">
+<aside class="nav mobile">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -176,7 +185,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         漏洞原理
-                        <small>(12)</small>
+                        <small>(13)</small>
                         
                     </div>
                     
@@ -223,7 +232,7 @@
                                         
                                         XSS
                                         
-                                            <small>(1
+                                            <small>(2
                                                 )</small>
                                         
                                     </div>
@@ -279,7 +288,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Web开发
-                        <small>(14)</small>
+                        <small>(13)</small>
                         
                     </div>
                     
@@ -314,7 +323,7 @@
                                         
                                         JavaWeb
                                         
-                                            <small>(3
+                                            <small>(2
                                                 )</small>
                                         
                                     </div>
@@ -599,7 +608,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="67">
-<input type="hidden" id="yelog_site_word_count" value="130.1k">
+<input type="hidden" id="yelog_site_word_count" value="132.2k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -690,10 +699,6 @@
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>javaweb</a>
-            </li>
-        
-            <li class="article-tag-list-item">
-                <i class="iconfont icon-tag"></i><a>jsp</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -810,6 +815,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 漏洞原理 XSS "
+           href="/2022/01/14/XSS%20(%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB)%20%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E6%88%98/"
+           data-tag="xss"
+           data-author="" >
+            <span class="post-title" title="XSS (跨站脚本攻击) 分析与实战">XSS (跨站脚本攻击) 分析与实战</span>
+            <span class="post-date" title="2022-01-14 23:39:33">2022/01/14</span>
+        </a>
         
         <a  class="全部文章 漏洞原理 Sql注入 "
            href="/2021/12/16/DVWA%E2%80%94%E2%80%94Sqlmap%E7%BB%83%E4%B9%A0/"
@@ -964,18 +977,18 @@
         </a>
         
         <a  class="全部文章 Web开发 JavaEE "
-           href="/2020/11/03/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AASpring%20MVC%E7%A8%8B%E5%BA%8F/"
-           data-tag="SpringMVC"
-           data-author="" >
-            <span class="post-title" title="我的第一个Spring MVC程序">我的第一个Spring MVC程序</span>
-            <span class="post-date" title="2020-11-03 20:30:54">2020/11/03</span>
-        </a>
-        
-        <a  class="全部文章 Web开发 JavaEE "
            href="/2020/11/03/Java%20EE%E2%80%94%E2%80%94SpringMVC%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/"
            data-tag="SpringMVC"
            data-author="" >
             <span class="post-title" title="SpringMVC框架学习">SpringMVC框架学习</span>
+            <span class="post-date" title="2020-11-03 20:30:54">2020/11/03</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 JavaEE "
+           href="/2020/11/03/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AASpring%20MVC%E7%A8%8B%E5%BA%8F/"
+           data-tag="SpringMVC"
+           data-author="" >
+            <span class="post-title" title="我的第一个Spring MVC程序">我的第一个Spring MVC程序</span>
             <span class="post-date" title="2020-11-03 20:30:54">2020/11/03</span>
         </a>
         
@@ -985,6 +998,14 @@
            data-author="" >
             <span class="post-title" title="Cookie与Session对象">Cookie与Session对象</span>
             <span class="post-date" title="2020-09-28 20:08:27">2020/09/28</span>
+        </a>
+        
+        <a  class="全部文章 Web开发 JavaSE "
+           href="/2020/09/28/Java%20SE%E2%80%94%E2%80%94%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0/"
+           data-tag="javase"
+           data-author="" >
+            <span class="post-title" title="JavaSE——多线程学习">JavaSE——多线程学习</span>
+            <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
         </a>
         
         <a  class="全部文章 Web开发 JavaSE "
@@ -1003,28 +1024,12 @@
             <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
         </a>
         
-        <a  class="全部文章 Web开发 JavaSE "
-           href="/2020/09/28/Java%20SE%E2%80%94%E2%80%94%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0/"
-           data-tag="javase"
-           data-author="" >
-            <span class="post-title" title="JavaSE——多线程学习">JavaSE——多线程学习</span>
-            <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
-        </a>
-        
         <a  class="全部文章 Web开发 JavaWeb "
            href="/2020/09/28/Java%20web%E2%80%94Servlet%E8%BF%87%E6%BB%A4%E5%99%A8(Filter)/"
            data-tag="javaweb"
            data-author="" >
             <span class="post-title" title="Servlet过滤器——Filter">Servlet过滤器——Filter</span>
             <span class="post-date" title="2020-09-28 20:06:27">2020/09/28</span>
-        </a>
-        
-        <a  class="全部文章 Web开发 JavaWeb "
-           href="/2020/09/27/JSP%E2%80%94%E2%80%94EL%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/"
-           data-tag="jsp"
-           data-author="" >
-            <span class="post-title" title="JSP——EL语法总结">JSP——EL语法总结</span>
-            <span class="post-date" title="2020-09-27 20:07:27">2020/09/27</span>
         </a>
         
         <a  class="全部文章 Python "
@@ -1362,62 +1367,12 @@
         </div>
     </div>
 </aside>
-<div id="post">
+<div id="post" class="index">
     <div class="pjax">
-        <article id="post-JSP——EL语法总结" class="article article-type-post" itemscope itemprop="blogPost">
+        <article class="index">
+            <div class="toc-ref">
     
-        <h1 class="article-title">JSP——EL语法总结</h1>
-    
-    <div class="article-meta">
-        
-        
-        
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="Web开发">Web开发</a> > 
-            
-            <a  data-rel="Web开发&lt;---&gt;JavaWeb">JavaWeb</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color4">jsp</a>
-            
-        </span>
-        
-    </div>
-    <div class="article-meta">
-        
-            发布时间 : <time class="date" title='最后更新: 2021-12-20 10:34:56'>2020-09-27 20:07</time>
-        
-    </div>
-    <div class="article-meta">
-        
-        <span>字数:1.2k</span>
-        
-        
-        <span id="busuanzi_container_page_pv">
-            阅读 :<span id="busuanzi_value_page_pv">
-                <span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </span>
-        </span>
-        
-        
-    </div>
-    
-    <div class="toc-ref">
-    
-        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81EL%E6%A6%82%E8%BF%B0%EF%BC%9A"><span class="toc-text">1、EL概述：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81EL%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="toc-text">2、EL基本语法：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81EL%E4%B8%8EJavaBean%EF%BC%9A"><span class="toc-text">3、EL与JavaBean：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81EL%E4%B8%8E%E5%B1%9E%E6%80%A7%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="toc-text">4、EL与属性操作：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81EL%E4%B8%8E%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="toc-text">5、EL与集合操作：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6%E3%80%81EL%E9%9A%90%E5%90%AB%E5%AF%B9%E8%B1%A1"><span class="toc-text">6、EL隐含对象</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">对博客的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%9C%AA%E5%AE%8C%E6%88%90%E7%9A%84%E6%AD%8C"><span class="toc-text">关于未完成的歌</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1430,139 +1385,36 @@
     }
 </style>
 </div>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前言：<br>这周学习了EL和JSTL，内容是很简单，但知识点很琐碎，所以来总结一下。<hr/></p>
-<h5 id="1、EL概述："><a href="#1、EL概述：" class="headerlink" title="1、EL概述："></a>1、EL概述：</h5><p>1、 什么是 EL ？</p>
+            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
+<blockquote>
+<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
+</blockquote>
+<blockquote>
+<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
+</blockquote>
+<blockquote>
+<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
+</blockquote>
+<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
+<p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
+<h2 id="关于未完成的歌"><a href="#关于未完成的歌" class="headerlink" title="关于未完成的歌"></a>关于未完成的歌</h2><p>此站点是<strong>未完成的歌</strong>的个人博客。</p>
+<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
+<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
+<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主题 <a href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
+<p>主要功能：</p>
 <ul>
-<li>EL即Expression Language（表达式语言），是一种简单的语言，便于简化<strong>JSP页面</strong>对变量和对象的访问。</li>
+<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
+<li>pad/手机等移动端适配</li>
+<li>页面全局快捷键 <a target="_blank" rel="noopener" href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
 </ul>
-<p>2、EL的功能：</p>
-<ul>
-<li>与<code>&lt;jsp:getProperty /&gt;</code>类似</li>
-<li>是简化的 <code>&lt;jsp:getProperty /&gt;</code></li>
-</ul>
-<p>3、EL的语法结构：</p>
-<ul>
-<li>${  EL expression }</li>
-<li>EL可以直接在JSP页面的模板文本中使用，也可以作为元素属性的值，还可以在自定义或者标准动作元素的内容中使用，但<strong>不能在</strong>脚本元素中使用 。<h5 id="2、EL基本语法："><a href="#2、EL基本语法：" class="headerlink" title="2、EL基本语法："></a>2、EL基本语法：</h5></li>
-<li>一个EL元素必须以 <code>$&#123;</code> 开始，以 <code>&#125;</code> 结束。</li>
-<li>它可以直接出现在模板文本中，也可以出现在JSP标记的属性中，例：<pre><code class="java">  姓名：$&#123; expression1 &#125;
-  地址：$&#123; expression2 &#125;
-  &lt;jsp:include page= &quot;$&#123; expression3 &#125;&quot;/&gt;</code></pre>
-</li>
-<li>empty操作符（验证操作符）</li>
-</ul>
-<p>是一个前缀操作符，用于检测一个表达式的值是否为null或者为empty。 </p>
-<p>例：<code>$&#123;empty  user&#125;</code>，如果变量user不存在返回true，否则为false。 </p>
-<ul>
-<li>条件操作符</li>
-</ul>
-<p>条件运算符的格式：<code>$&#123;A ? B : C&#125;</code> 如果A为true时，执行B代码；而如果A为false时，则执行C代码。</p>
-<h5 id="3、EL与JavaBean："><a href="#3、EL与JavaBean：" class="headerlink" title="3、EL与JavaBean："></a>3、EL与JavaBean：</h5><p>1、使用EL简化JavaBean的属性操作：</p>
-<ul>
-<li>如原来的：<code>&lt;jsp:getProperty name=&quot;myBean&quot; property=&quot;name&quot; /&gt;</code> 或 <code>&lt;%= myBean.getName()%&gt;</code><br>现可以简化成：<code>$&#123;myBean.name&#125;</code></li>
-</ul>
-<p>2、可以使用EL实现对属性的嵌套访问：</p>
-<ul>
-<li>例：<code>$&#123;person.address.phoneNumbers[1].number&#125;</code></li>
-</ul>
-<p>3、EL基本操作符：</p>
-<ul>
-<li>${  bean.name }（点操作符） </li>
-<li>${  bean[“name”] }（[ ]操作符）</li>
-</ul>
-<p>例：</p>
-<pre><code class="java">$&#123;user.name&#125;或$&#123;user[“name”]&#125;实质是调用JavaBean对象user的getName()方法</code></pre>
-<p>当要存取的属性名称中包含一些特殊字符(非字母、数字符号)或动态取值([]中是变量)时，要用[]操作符。</p>
-<p>例：<code>$&#123;user.My-name&#125;应当改为$&#123;user[“My-name”]&#125;</code></p>
-<h5 id="4、EL与属性操作："><a href="#4、EL与属性操作：" class="headerlink" title="4、EL与属性操作："></a>4、EL与属性操作：</h5><p>1、在EL中访问某变量：<code> $&#123; 变量名 &#125;</code></p>
-<ul>
-<li> 在EL中，有四个用于设定有效范围的对象：pageScope、requestScope、sessionScope、applicationScope；使用它们可以限定变量的查找范围。</li>
-<li>如果没有指定变量的有效范围，JSP容器会首先从页内有效范围查找，如果找到，返回相应的值；否则，EL会依次到请求有效、会话有效和应用有效范围中查找对应的变量，找到了，就返回相应的值。如果最终也没有找到，则返回null。</li>
-</ul>
-<p>2、可在变量名前直接指定范围，只在指定的范围内查找变量，如只在会话有效范围内查找变量userName的语句为：</p>
-<pre><code class="java">$&#123; sessionScope.userName &#125;</code></pre>
-<p>例1：如果通过<code>&lt;% request.setAttribute(“user”, “chengdong”); %&gt;</code>定义了一个属性对象。</p>
-<p>要将这个属性对象输出，应该使用如下语句：</p>
-<pre><code class="java">&lt;% String s = (String)request.getAttribute(“user”);
- out.print(s); %&gt;</code></pre>
-<p>或<code>&lt;%=request.getAttribute(“user”) %&gt;</code></p>
-<p>如果采用表达式语言，则写出如下语句即可</p>
-<pre><code class="java">$&#123; user &#125;</code></pre>
-<p>例2：如果有一个页面有效的属性对象，名叫customer，现在要输出它的firstName属性</p>
-<pre><code class="java">&lt;%pageContext.setAttribute(“customer”,customer)%&gt;</code></pre>
-<p>customer对象的类型为NameBean，则相应语句为：</p>
-<pre><code class="java">&lt;% NameBean person = (NameBean) pageContext.getAttribute(“customer”); %&gt;
-&lt;%=person.getFirstName() %&gt;</code></pre>
-<p>如果采用表达式语言，采用如下语句即可：</p>
-<pre><code class="java">$&#123; customer.firstName &#125;</code></pre>
-<h5 id="5、EL与集合操作："><a href="#5、EL与集合操作：" class="headerlink" title="5、EL与集合操作："></a>5、EL与集合操作：</h5><p>EL也可以实现简化对集合对象的访问：<br>例：</p>
-<pre><code class="java">&lt;%
-        String[] str = &#123;&quot;hello&quot;,&quot;world&quot;&#125;;
 
-        List&lt;String&gt; list = new ArrayList&lt;String&gt;();
-        list.add(&quot;zhangsan&quot;);
-        list.add(&quot;lisi&quot;);
-
-        Map&lt;String,Integer&gt; map = new HashMap&lt;String,Integer&gt;();
-        map.put(&quot;a&quot;,100);
-        map.put(&quot;b&quot;,200);
-        map.put(&quot;c&quot;,300);
-
-        request.setAttribute(&quot;str&quot;,str);
-        request.setAttribute(&quot;list&quot;,list);
-        request.setAttribute(&quot;map&quot;,map);        
-        %&gt;
-
-        $&#123;str[0] &#125;
-        $&#123;map.a&#125;&lt;br&gt;
-        $&#123;list[1] &#125;&lt;br&gt;</code></pre>
-<p>运行结果：<br><img src="https://img-blog.csdnimg.cn/20200520155527192.png" alt="在这里插入图片描述"></p>
-<h5 id="6、EL隐含对象"><a href="#6、EL隐含对象" class="headerlink" title="6、EL隐含对象"></a>6、EL隐含对象</h5><p>EL是和JSP是共用的一套隐式对象。</p>
-<p><strong>1、pageContext对象的访问方法：</strong></p>
-<ul>
-<li>EL中的pageContext对象其实就是当前JSP页面中的pageContext对象(即它们是同一个) 。</li>
-<li>通过EL中的pageContext对象可以访问到当前JSP页面中的所有隐含对象。    </li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/20200520160734668.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>2、param和paramValues对象：</strong></p>
-<p>使用对象param可以访问请求的参数值，下面的语句会输出请求参数userName的值</p>
-<pre><code class="java">$&#123; param.userName &#125;</code></pre>
-<p>它相当于：</p>
-<pre><code class="java"> &lt;%=request.getParameter(“userName”) %&gt;</code></pre>
-<p>如果一个参数名对应多个值时，就需要使用paramValues对象了，获取其各个值的方法为：<code>$&#123; paramValues.user[i] &#125;</code>（其中i表示第几个值，从0开始取值）。</p>
-<p><strong>3、cookie对象：</strong></p>
-<ul>
-<li>使用cookie可以快速访问引入的Cookie对象。</li>
-<li>要访问名字为userCookie的Cookie对象，方法为：<code>$&#123; cookie.userCookie &#125;</code></li>
-<li>要访问它的名字、值、maxAge等的方法为：</li>
-</ul>
-<pre><code>     $&#123; cookie.userCookie.name &#125;
-     $&#123; cookie.userCookie.value &#125;
-     $&#123; cookie.userCookie.maxAge &#125;</code></pre>
-<p>🆗，EL的知识点差不多就这些了。</p>
-
-      
-       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>
-    </div>
-</article>
-
-
-<p>
-    <a  class="dashang" onclick="dashangToggle()">赏</a>
-</p>
-
-
-
-
-
-
-    
-
-
-
-
+        </article>
+        
+        <p>
+            <a  class="dashang" onclick="dashangToggle()">赏</a>
+        </p>
+        
+        
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -1571,11 +1423,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-    <div class="full-toc">
-        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+</div>
+<div class="full-toc">
+    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
-    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>
