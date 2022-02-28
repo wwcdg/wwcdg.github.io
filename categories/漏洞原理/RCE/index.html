@@ -2,25 +2,38 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>命令执行漏洞（Commnd Execution）总结 | 未完成的歌</title>
-  <meta name="keywords" content=" 命令执行 ">
-  <meta name="description" content="命令执行漏洞（Commnd Execution）总结 | 未完成的歌">
+  <title>未完成的歌</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="[toc] 前言：简单总结下Google Hacking语法。 一、什么是Google Hacking？Google Hacking是指使用Google、百度等搜索引擎对某些特定网站主机漏洞进行搜索，以达到快速找到漏洞主机或特定主机的漏洞的目的。 对于普通用户而言，Google只是一款强大的搜索引擎，而对于渗透人员而言，它可能是一款绝佳的渗透工具。正因为Google的检索能力强大，我们可以构造特殊">
+<meta name="description" content="[toc] 前言：这周来学习下 “命令执行” 与 “代码执行” 漏洞；命令执行漏洞与代码执行漏洞没有太大的区别，不过我们在学习时还是要区分不同的概念。 一、基础知识RCE，即 Remote Command&#x2F;Code Execute：远程命令&#x2F;代码执行。可以让攻击者直接向后台服务器远程注入操作系统命令或者代码，从而控制后台系统。 很多人喜欢把代码执行漏洞称为命令执行漏洞，因为命令执行漏洞可以执行系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Google Hacking语法总结">
-<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2022/01/17/Google%20Hacking%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="远程命令执行与代码执行（remote command_code execute）漏洞总结">
+<meta property="og:url" content="https://github.com/wwcdg/wwcdg.github.io/2022/02/28/%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%EF%BC%88remote%20command_code%20execute%EF%BC%89%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="未完成的歌">
-<meta property="og:description" content="[toc] 前言：简单总结下Google Hacking语法。 一、什么是Google Hacking？Google Hacking是指使用Google、百度等搜索引擎对某些特定网站主机漏洞进行搜索，以达到快速找到漏洞主机或特定主机的漏洞的目的。 对于普通用户而言，Google只是一款强大的搜索引擎，而对于渗透人员而言，它可能是一款绝佳的渗透工具。正因为Google的检索能力强大，我们可以构造特殊">
+<meta property="og:description" content="[toc] 前言：这周来学习下 “命令执行” 与 “代码执行” 漏洞；命令执行漏洞与代码执行漏洞没有太大的区别，不过我们在学习时还是要区分不同的概念。 一、基础知识RCE，即 Remote Command&#x2F;Code Execute：远程命令&#x2F;代码执行。可以让攻击者直接向后台服务器远程注入操作系统命令或者代码，从而控制后台系统。 很多人喜欢把代码执行漏洞称为命令执行漏洞，因为命令执行漏洞可以执行系统">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210121211831580.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210121214752387.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
-<meta property="article:published_time" content="2022-01-17T13:05:34.752Z">
-<meta property="article:modified_time" content="2022-01-17T13:07:29.322Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a50235531ad8490ca6873ad441c649fe.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c7e1ffa8d2ea4fd087c0abaa000cce99.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/407e2565d1ea4e4ba96e9f9faa60abeb.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5c6a581cc34d4d429da5d6a0b4e9ab0e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2dd4d9fa23574b3284f1cd63f9fcf90a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190820151202475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190820161837141.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019082016482838.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190820170652732.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8335ee41e6b9494e8913385a9c09dfb2.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2187b0a4e2fc4fc8b6da7502a805d337.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a7f719ecfb594ba49486f6f003980f44.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/cb2f2a2ffeca45af829e4a3fae05fdff.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e865462c47554b1db7e06256788f9413.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a31a050234354473b41039ee0b40ca39.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2022-02-28T15:32:09.433Z">
+<meta property="article:modified_time" content="2022-02-28T15:36:04.863Z">
 <meta property="article:author" content="未完成的歌">
-<meta property="article:tag" content="Google Hacking">
+<meta property="article:tag" content="rce">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210121211831580.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/a50235531ad8490ca6873ad441c649fe.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -60,7 +73,7 @@
 
 
 <body>
-<aside class="nav">
+<aside class="nav mobile">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -185,6 +198,18 @@
                                 </li>
                             
                                 <li>
+                                    <div data-rel="漏洞原理<--->RCE">
+                                        
+                                        RCE
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
                                     <div data-rel="漏洞原理<--->Sql注入">
                                         
                                         Sql注入
@@ -224,18 +249,6 @@
                                     <div data-rel="漏洞原理<--->XXE">
                                         
                                         XXE
-                                        
-                                            <small>(1
-                                                )</small>
-                                        
-                                    </div>
-                                    
-                                </li>
-                            
-                                <li>
-                                    <div data-rel="漏洞原理<--->命令执行">
-                                        
-                                        命令执行
                                         
                                             <small>(1
                                                 )</small>
@@ -589,7 +602,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="68">
-<input type="hidden" id="yelog_site_word_count" value="139.7k">
+<input type="hidden" id="yelog_site_word_count" value="140.3k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -719,6 +732,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>rce</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>SpringMVC</a>
             </li>
         
@@ -759,10 +776,6 @@
             </li>
         
             <li class="article-tag-list-item">
-                <i class="iconfont icon-tag"></i><a>命令执行</a>
-            </li>
-        
-            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>密码学</a>
             </li>
         
@@ -796,6 +809,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 漏洞原理 RCE "
+           href="/2022/02/28/%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%EF%BC%88remote%20command_code%20execute%EF%BC%89%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/"
+           data-tag="rce"
+           data-author="" >
+            <span class="post-title" title="远程命令执行与代码执行（remote command_code execute）漏洞总结">远程命令执行与代码执行（remote command_code execute）漏洞总结</span>
+            <span class="post-date" title="2022-02-28 23:32:09">2022/02/28</span>
+        </a>
         
         <a  class="全部文章 工具使用 "
            href="/2022/01/17/Google%20Hacking%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/"
@@ -989,19 +1010,19 @@
             <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
         </a>
         
-        <a  class="全部文章 Liunx "
-           href="/2020/09/28/Linux%E4%B8%8Btar%E5%91%BD%E4%BB%A4%E7%AE%80%E4%BB%8B/"
-           data-tag="liunx"
-           data-author="" >
-            <span class="post-title" title="Linux下tar命令简介">Linux下tar命令简介</span>
-            <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
-        </a>
-        
         <a  class="全部文章 Web开发 JavaSE "
            href="/2020/09/28/Java%20SE%20%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/"
            data-tag="javase"
            data-author="" >
             <span class="post-title" title="JavaSE 重点知识笔记">JavaSE 重点知识笔记</span>
+            <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
+        </a>
+        
+        <a  class="全部文章 Liunx "
+           href="/2020/09/28/Linux%E4%B8%8Btar%E5%91%BD%E4%BB%A4%E7%AE%80%E4%BB%8B/"
+           data-tag="liunx"
+           data-author="" >
+            <span class="post-title" title="Linux下tar命令简介">Linux下tar命令简介</span>
             <span class="post-date" title="2020-09-28 20:07:27">2020/09/28</span>
         </a>
         
@@ -1083,14 +1104,6 @@
            data-author="" >
             <span class="post-title" title="时间盲注详解 Sqli-labs闯关(Less 9—10)">时间盲注详解 Sqli-labs闯关(Less 9—10)</span>
             <span class="post-date" title="2019-09-01 19:59:43">2019/09/01</span>
-        </a>
-        
-        <a  class="全部文章 漏洞原理 命令执行 "
-           href="/2019/08/20/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%EF%BC%88Commnd%20Execution%EF%BC%89%E6%80%BB%E7%BB%93/"
-           data-tag="命令执行"
-           data-author="" >
-            <span class="post-title" title="命令执行漏洞（Commnd Execution）总结">命令执行漏洞（Commnd Execution）总结</span>
-            <span class="post-date" title="2019-08-20 17:20:28">2019/08/20</span>
         </a>
         
         <a  class="全部文章 CTF Crypto "
@@ -1356,62 +1369,12 @@
         </div>
     </div>
 </aside>
-<div id="post">
+<div id="post" class="index">
     <div class="pjax">
-        <article id="post-命令执行漏洞（Commnd Execution）总结" class="article article-type-post" itemscope itemprop="blogPost">
+        <article class="index">
+            <div class="toc-ref">
     
-        <h1 class="article-title">命令执行漏洞（Commnd Execution）总结</h1>
-    
-    <div class="article-meta">
-        
-        
-        
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="漏洞原理">漏洞原理</a> > 
-            
-            <a  data-rel="漏洞原理&lt;---&gt;命令执行">命令执行</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color5">命令执行</a>
-            
-        </span>
-        
-    </div>
-    <div class="article-meta">
-        
-            发布时间 : <time class="date" title='最后更新: 2021-01-20 15:44:05'>2019-08-20 17:20</time>
-        
-    </div>
-    <div class="article-meta">
-        
-        <span>字数:1.6k</span>
-        
-        
-        <span id="busuanzi_container_page_pv">
-            阅读 :<span id="busuanzi_value_page_pv">
-                <span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </span>
-        </span>
-        
-        
-    </div>
-    
-    <div class="toc-ref">
-    
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DVWA%E2%80%94Command-Injection%EF%BC%88%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%EF%BC%89"><span class="toc-text">DVWA—Command Injection（命令注入）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Medium"><span class="toc-text">Medium</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#High"><span class="toc-text">High</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Impossible"><span class="toc-text">Impossible</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">对博客的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%9C%AA%E5%AE%8C%E6%88%90%E7%9A%84%E6%AD%8C"><span class="toc-text">关于未完成的歌</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1424,192 +1387,36 @@
     }
 </style>
 </div>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前言：<br>&emsp; &emsp;这周来学习下命令执行漏洞；命令执行漏洞是用户通过浏览器在远程服务器上执行任意系统命令，与代码执行漏洞没有太大的区别，不过我们在学习时还是要区分不同的概念。关于代码执行漏洞会在下篇博客中详述。</p>
-<p><strong>一、什么是命令执行漏洞</strong>：</p>
-<p>应用 有时需要调用一些执行系统命令的函数，如PHP中的<code>system</code>、<code>exec</code>、<code>shell_exec</code>、<code>passthru</code>、<code>popen</code>、<code>proc_popen</code>等，当用户能控制这些函数中的参数时，就可以将恶意系统命令拼接到正常命令中，从而造成命令执行攻击，这就是命令执行漏洞。</p>
-<p><strong>二、命令执行漏洞产生原因</strong>：</p>
+            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
+<blockquote>
+<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
+</blockquote>
+<blockquote>
+<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
+</blockquote>
+<blockquote>
+<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
+</blockquote>
+<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
+<p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
+<h2 id="关于未完成的歌"><a href="#关于未完成的歌" class="headerlink" title="关于未完成的歌"></a>关于未完成的歌</h2><p>此站点是<strong>未完成的歌</strong>的个人博客。</p>
+<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
+<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
+<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主题 <a href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
+<p>主要功能：</p>
 <ul>
-<li>开发人员没有对特殊函数入口做过滤，导致用户可以提交恶意代码并提交服务端执行。</li>
-<li>Web服务器没有过滤危险函数导致命令执行漏洞攻击成功。</li>
+<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
+<li>pad/手机等移动端适配</li>
+<li>页面全局快捷键 <a target="_blank" rel="noopener" href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
 </ul>
-<p><strong>三、PHP中的危险函数</strong>：</p>
-<p><code>system</code>：成功则返回命令输出的最后一行，失败则返回FALSE。<br><code>exec</code>：命令执行结果的最后一行内容。<br><code>shell_exec</code>：命令执行的输出。如果执行过程中发生错误或者进程不产生输出，则返回NULL。<br><code>passthru</code>：执行外部程序并且显示原始输出。<br><code>eval</code>：将输入的字符串参数当做PHP程序代码来执行。<br><code>assert</code><br><code>preg_replace</code><br><code>call_user_func</code></p>
-<p><strong>四、命令执行漏洞的危害</strong>：</p>
-<ul>
-<li>任意执行系统命令</li>
-<li>恶意木马被种植</li>
-<li>挂马、钓鱼</li>
-<li>敏感信息泄露</li>
-</ul>
-<p><strong>常用的命令连接符</strong>：</p>
-<p>在windows和linux都支持，如果程序没有进行过滤，那么我们可以通过连接符来执行多条命令。</p>
-<pre><code>A&amp;&amp;B   先执行A，执行成功后执行B，否则不执行B
-A|B    只执行B
-A&amp;B    先执行A，不管是否成功，都会执行B
-A;B    先执行A，再执行B
-A&amp;B    简单拼接，A B之间无制约关系</code></pre>
-<p>了解了这些知识后，下面就在本地搭建的DVWA中练习下。</p>
-<h2 id="DVWA—Command-Injection（命令注入）"><a href="#DVWA—Command-Injection（命令注入）" class="headerlink" title="DVWA—Command Injection（命令注入）"></a>DVWA—Command Injection（命令注入）</h2><p><img src="http://img-blog.csdnimg.cn/20190820151202475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>先从Low级别开始：<br>查看源码：</p>
-<pre><code>&lt;?php
 
-if( isset( $_POST[ &#39;Submit&#39; ]  ) ) &#123;
-    // Get input
-    $target = $_REQUEST[ &#39;ip&#39; ];
-
-    // Determine OS and execute the ping command.
-    if( stristr( php_uname( &#39;s&#39; ), &#39;Windows NT&#39; ) ) &#123;
-        // Windows
-        $cmd = shell_exec( &#39;ping  &#39; . $target );
-    &#125;
-    else &#123;
-        // *nix
-        $cmd = shell_exec( &#39;ping  -c 4 &#39; . $target );
-    &#125;
-    // Feedback for the end user
-    echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;;
-&#125;
-?&gt;</code></pre>
-<p>可以看到，low级别的代码接收了用户输入的ip，服务器通过判断操作系统执行不同<strong>ping命令</strong>。但是这里对用户输入的ip并没有进行任何的过滤，所以存在可利用的命令执行漏洞。</p>
-<p>用<code>&amp;&amp;</code>来执行多条命令，构造payload：<code>127.0.0.1&amp;&amp;net user</code><br><img src="http://img-blog.csdnimg.cn/20190820161837141.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>执行成功；（如果存在乱码问题，把<code>DVWA\dvwa\includes</code>目录下的<code>dvwaPage.inc.php</code>文件中所有的<code>”charset=utf-8”</code>，全部替换修改为<code>”charset=gb2312”</code>即可）</p>
-<h3 id="Medium"><a href="#Medium" class="headerlink" title="Medium"></a>Medium</h3><p>源码：</p>
-<pre><code>&lt;?php
-if( isset( $_POST[ &#39;Submit&#39; ]  ) ) &#123;
-    // Get input
-    $target = $_REQUEST[ &#39;ip&#39; ];
-
-    // Set blacklist
-    $substitutions = array(
-        &#39;&amp;&amp;&#39; =&gt; &#39;&#39;,
-        &#39;;&#39;  =&gt; &#39;&#39;,
-    );
-
-    // Remove any of the charactars in the array (blacklist).
-    $target = str_replace( array_keys( $substitutions ), $substitutions, $target );
-
-    // Determine OS and execute the ping command.
-    if( stristr( php_uname( &#39;s&#39; ), &#39;Windows NT&#39; ) ) &#123;
-        // Windows
-        $cmd = shell_exec( &#39;ping  &#39; . $target );
-    &#125;
-    else &#123;
-        // *nix
-        $cmd = shell_exec( &#39;ping  -c 4 &#39; . $target );
-    &#125;
-
-    // Feedback for the end user
-    echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;;
-&#125;
-?&gt; </code></pre>
-<p>可以看到，medium级别相较于low级别的代码 只增加了对 <code>&amp;&amp;</code> 和 <code>；</code>的过滤，绕过也很简单，不用 <code>&amp;&amp;</code> ，直接用 <code>&amp;</code>不就好起来了吗！</p>
-<p><code>&amp;&amp;</code>和<code>&amp;</code>的区别在于<code>&amp;&amp;</code>是执行完前面的命令然后执行后面的命令，<code>&amp;</code>是不管前面的命令是否值执行，后面的都执行。</p>
-<p>构造poyload：<code>127.0.0.1&amp;ipconfig</code></p>
-<p><img src="http://img-blog.csdnimg.cn/2019082016482838.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>绕过执行成功！</p>
-<h3 id="High"><a href="#High" class="headerlink" title="High"></a>High</h3><p>源码：</p>
-<pre><code>&lt;?php
-if( isset( $_POST[ &#39;Submit&#39; ]  ) ) &#123;
-    // Get input
-    $target = trim($_REQUEST[ &#39;ip&#39; ]);
-
-    // Set blacklist
-    $substitutions = array(
-        &#39;&amp;&#39;  =&gt; &#39;&#39;,
-        &#39;;&#39;  =&gt; &#39;&#39;,
-        &#39;| &#39; =&gt; &#39;&#39;,
-        &#39;-&#39;  =&gt; &#39;&#39;,
-        &#39;$&#39;  =&gt; &#39;&#39;,
-        &#39;(&#39;  =&gt; &#39;&#39;,
-        &#39;)&#39;  =&gt; &#39;&#39;,
-        &#39;`&#39;  =&gt; &#39;&#39;,
-        &#39;||&#39; =&gt; &#39;&#39;,
-    );
-
-    // Remove any of the charactars in the array (blacklist).
-    $target = str_replace( array_keys( $substitutions ), $substitutions, $target );
-
-    // Determine OS and execute the ping command.
-    if( stristr( php_uname( &#39;s&#39; ), &#39;Windows NT&#39; ) ) &#123;
-        // Windows
-        $cmd = shell_exec( &#39;ping  &#39; . $target );
-    &#125;
-    else &#123;
-        // *nix
-        $cmd = shell_exec( &#39;ping  -c 4 &#39; . $target );
-    &#125;
-
-    // Feedback for the end user
-    echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;;
-&#125;
-?&gt; </code></pre>
-<p>相比于前面两个等级的，high等级的黑名单更完善了，但是由我们可以看出来他只是过滤掉了<code>“| ”</code>，如果用<code>|</code>后不跟空格就可以绕过过滤。<br>构造payload：<code>127.0.0.1|dir</code><br><img src="http://img-blog.csdnimg.cn/20190820170652732.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>绕过成功。</p>
-<h3 id="Impossible"><a href="#Impossible" class="headerlink" title="Impossible"></a>Impossible</h3><p>源码：</p>
-<pre><code>&lt;?php
-if( isset( $_POST[ &#39;Submit&#39; ]  ) ) &#123;
-    // Check Anti-CSRF token
-    checkToken( $_REQUEST[ &#39;user_token&#39; ], $_SESSION[ &#39;session_token&#39; ], &#39;index.php&#39; );
-
-    // Get input
-    $target = $_REQUEST[ &#39;ip&#39; ];
-    $target = stripslashes( $target );
-
-    // Split the IP into 4 octects
-    $octet = explode( &quot;.&quot;, $target );
-
-    // Check IF each octet is an integer
-    if( ( is_numeric( $octet[0] ) ) &amp;&amp; ( is_numeric( $octet[1] ) ) &amp;&amp; ( is_numeric( $octet[2] ) ) &amp;&amp; ( is_numeric( $octet[3] ) ) &amp;&amp; ( sizeof( $octet ) == 4 ) ) &#123;
-        // If all 4 octets are int&#39;s put the IP back together.
-        $target = $octet[0] . &#39;.&#39; . $octet[1] . &#39;.&#39; . $octet[2] . &#39;.&#39; . $octet[3];
-
-        // Determine OS and execute the ping command.
-        if( stristr( php_uname( &#39;s&#39; ), &#39;Windows NT&#39; ) ) &#123;
-            // Windows
-            $cmd = shell_exec( &#39;ping  &#39; . $target );
-        &#125;
-        else &#123;
-            // *nix
-            $cmd = shell_exec( &#39;ping  -c 4 &#39; . $target );
-        &#125;
-
-        // Feedback for the end user
-        echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;;
-    &#125;
-    else &#123;
-        // Ops. Let the user name theres a mistake
-        echo &#39;&lt;pre&gt;ERROR: You have entered an invalid IP.&lt;/pre&gt;&#39;;
-    &#125;
-&#125;
-
-// Generate Anti-CSRF token
-generateSessionToken();
-?&gt; </code></pre>
-<p>了解下几个函数：<br><code>stripslashes(string)</code> : 该函数会删除字符串string中的反斜杠，返回已剥离反斜杠的字符串。</p>
-<p><code>explode(separator,string,limit)</code>: 该函数把字符串打散为数组，返回字符串的数组。参数separator规定在哪里分割字符串，参数string是要分割的字符串，可选参数limit规定所返回的数组元素的数目。</p>
-<p><code>is_numeric(string)</code>: 该检测string是否为数字或数字字符串，如果是返回TRUE，否则返回FALSE。</p>
-<p>可以看到 Impossible级别的代码加入了<code>Anti-CSRF token</code>，至于什么是<code>Anti-CSRF token</code>请点击 <a target="_blank" rel="noopener" href="https://www.owasp.org/index.php/Anti_CSRF_Tokens_ASP.NET">链接</a> 查看；同时对参数ip进行了严格的限制，只有诸如“数字.数字.数字.数字”的输入才会被接收执行，因此不存在命令注入漏洞。<br>好了，关于命令执行漏洞这次就先总结到这，下篇会更代码执行漏洞的知识。(●’◡’●)</p>
-<p>参考博客：<br>  <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36119192/article/details/82917250">https://blog.csdn.net/qq_36119192/article/details/82917250</a><br>  <a target="_blank" rel="noopener" href="https://blog.csdn.net/jpygx123/article/details/83276533">https://blog.csdn.net/jpygx123/article/details/83276533</a>  </p>
-
-      
-       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>
-    </div>
-</article>
-
-
-<p>
-    <a  class="dashang" onclick="dashangToggle()">赏</a>
-</p>
-
-
-
-
-
-
-    
-
-
-
-
+        </article>
+        
+        <p>
+            <a  class="dashang" onclick="dashangToggle()">赏</a>
+        </p>
+        
+        
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -1618,11 +1425,11 @@ generateSessionToken();
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-    <div class="full-toc">
-        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+</div>
+<div class="full-toc">
+    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
-    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>
